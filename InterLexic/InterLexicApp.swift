@@ -11,7 +11,7 @@ import SwiftUI
 struct InterLexicApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TranslatorView()
         }
     }
 }

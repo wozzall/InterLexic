@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA05927FCAAD40049444D /* InterLexicApp.swift */; };
-		AD1DA05C27FCAAD40049444D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA05B27FCAAD40049444D /* ContentView.swift */; };
+		AD1DA05C27FCAAD40049444D /* TranslatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA05B27FCAAD40049444D /* TranslatorView.swift */; };
 		AD1DA05E27FCAADB0049444D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD1DA05D27FCAADB0049444D /* Assets.xcassets */; };
 		AD1DA06127FCAADB0049444D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD1DA06027FCAADB0049444D /* Preview Assets.xcassets */; };
 		AD1DA06B27FCAADB0049444D /* InterLexicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA06A27FCAADB0049444D /* InterLexicTests.swift */; };
 		AD1DA07527FCAADB0049444D /* InterLexicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA07427FCAADB0049444D /* InterLexicUITests.swift */; };
 		AD1DA07727FCAADB0049444D /* InterLexicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA07627FCAADB0049444D /* InterLexicUITestsLaunchTests.swift */; };
+		AD1DA08527FCAC3E0049444D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD1DA08727FCAC3E0049444D /* Localizable.strings */; };
+		AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */; };
+		AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85ED280089E200030EF2 /* TranslationManager.swift */; };
+		AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213C2866018B004E4F44 /* ExtensionString.swift */; };
+		AD5321402868ABB9004E4F44 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213F2868ABB9004E4F44 /* Language.swift */; };
+		AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8259D72811BC0B00CA9805 /* Translation API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +42,7 @@
 /* Begin PBXFileReference section */
 		AD1DA05627FCAAD40049444D /* InterLexic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterLexic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1DA05927FCAAD40049444D /* InterLexicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterLexicApp.swift; sourceTree = "<group>"; };
-		AD1DA05B27FCAAD40049444D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AD1DA05B27FCAAD40049444D /* TranslatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorView.swift; sourceTree = "<group>"; };
 		AD1DA05D27FCAADB0049444D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD1DA06027FCAADB0049444D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AD1DA06627FCAADB0049444D /* InterLexicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterLexicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +50,16 @@
 		AD1DA07027FCAADB0049444D /* InterLexicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterLexicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1DA07427FCAADB0049444D /* InterLexicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterLexicUITests.swift; sourceTree = "<group>"; };
 		AD1DA07627FCAADB0049444D /* InterLexicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterLexicUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AD1DA08627FCAC3E0049444D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AD1DA08827FCAC410049444D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AD1DA08927FCAC410049444D /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		AD1DA08A27FCAC430049444D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AD1DA08B27FCAC440049444D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator_ViewModel.swift; sourceTree = "<group>"; };
+		AD4B85ED280089E200030EF2 /* TranslationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
+		AD53213C2866018B004E4F44 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
+		AD53213F2868ABB9004E4F44 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		AD8259D72811BC0B00CA9805 /* Translation API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translation API.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				AD1DA05927FCAAD40049444D /* InterLexicApp.swift */,
-				AD1DA05B27FCAAD40049444D /* ContentView.swift */,
+				AD4B85F028008D0F00030EF2 /* Welcome (Top) */,
 				AD1DA05D27FCAADB0049444D /* Assets.xcassets */,
 				AD1DA05F27FCAADB0049444D /* Preview Content */,
 			);
@@ -125,6 +141,60 @@
 				AD1DA07627FCAADB0049444D /* InterLexicUITestsLaunchTests.swift */,
 			);
 			path = InterLexicUITests;
+			sourceTree = "<group>";
+		};
+		AD4B85EB280089C200030EF2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD1DA05B27FCAAD40049444D /* TranslatorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD4B85EC280089CE00030EF2 /* Viewmodels */ = {
+			isa = PBXGroup;
+			children = (
+				AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */,
+			);
+			path = Viewmodels;
+			sourceTree = "<group>";
+		};
+		AD4B85EF280089E700030EF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD4B85ED280089E200030EF2 /* TranslationManager.swift */,
+				AD8259D72811BC0B00CA9805 /* Translation API.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AD4B85F028008D0F00030EF2 /* Welcome (Top) */ = {
+			isa = PBXGroup;
+			children = (
+				AD4B85EF280089E700030EF2 /* Model */,
+				AD4B85EB280089C200030EF2 /* Views */,
+				AD5321412868ABC1004E4F44 /* Types */,
+				AD53213E28660197004E4F44 /* Extensions */,
+				AD4B85EC280089CE00030EF2 /* Viewmodels */,
+				AD1DA08727FCAC3E0049444D /* Localizable.strings */,
+			);
+			path = "Welcome (Top)";
+			sourceTree = "<group>";
+		};
+		AD53213E28660197004E4F44 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD53213C2866018B004E4F44 /* ExtensionString.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AD5321412868ABC1004E4F44 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				AD53213F2868ABB9004E4F44 /* Language.swift */,
+			);
+			path = Types;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,7 +261,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					AD1DA05527FCAAD40049444D = {
 						CreatedOnToolsVersion = 13.0;
@@ -212,7 +282,10 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				"zh-Hans",
+				ar,
+				fr,
+				es,
 			);
 			mainGroup = AD1DA04D27FCAAD40049444D;
 			productRefGroup = AD1DA05727FCAAD40049444D /* Products */;
@@ -232,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD1DA06127FCAADB0049444D /* Preview Assets.xcassets in Resources */,
+				AD1DA08527FCAC3E0049444D /* Localizable.strings in Resources */,
 				AD1DA05E27FCAADB0049444D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +331,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD1DA05C27FCAAD40049444D /* ContentView.swift in Sources */,
+				AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */,
+				AD1DA05C27FCAAD40049444D /* TranslatorView.swift in Sources */,
+				AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */,
+				AD5321402868ABB9004E4F44 /* Language.swift in Sources */,
+				AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */,
+				AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */,
 				AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,11 +373,27 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		AD1DA08727FCAC3E0049444D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AD1DA08627FCAC3E0049444D /* en */,
+				AD1DA08827FCAC410049444D /* ar */,
+				AD1DA08927FCAC410049444D /* zh-Hans */,
+				AD1DA08A27FCAC430049444D /* fr */,
+				AD1DA08B27FCAC440049444D /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		AD1DA07827FCAADB0049444D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -360,6 +455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -416,9 +512,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 001;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
+				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -426,13 +524,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.GWorrall.InterLexic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gworrall.interlexic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -445,9 +543,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 001;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
+				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -455,13 +555,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.GWorrall.InterLexic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gworrall.interlexic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

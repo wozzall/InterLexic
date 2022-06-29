@@ -1,0 +1,35 @@
+/* 
+  Localisable.strings
+  InterLexic
+
+  Created by George Worrall on 05/04/2022.
+  
+*/
+
+//MARK - Sample Sentences
+
+"welcome_screen_title" = "مرحبا بكم في InterLexic!";
+
+"welcome_screen_explanation" = "InterLexic يساعدك في العثور على كلمات بلغات أخرى بسهولة أكبر.";
+
+"welcome_screen_user_start" = "أولاً ، دعنا ننشئ لك حسابًا!";
+
+"welcome_screen_user_languages" = "حدد اللغات التي تستخدمها أكثر من غيرها:";
+
+"welcome_screen_user_acknowledgement" = "جميل!";
+
+//MARK - Translate Function Text
+
+"welcome_screen_textField" = "اكتب النص لترجمته هنا!";
+
+"welcome_screen_languageSelector" = "ما اللغة التي تريد الترجمة إليها؟";
+
+"welcome_screen_translateButton" = "يترجم";
+
+//MARK - Language Selectors Buttons
+
+"languageSelectors_chooseLanguage" = "Choose language...";
+
+"languageSelectors_English" = "English";
+
+"languageSelectors_ChineseSimp" = "Chinese";

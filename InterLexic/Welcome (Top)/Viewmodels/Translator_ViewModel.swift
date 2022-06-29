@@ -1,0 +1,37 @@
+//
+//  TranslatorView_ViewModel.swift
+//  InterLexic
+//
+//  Created by George Worrall on 08/04/2022.
+//
+import Combine
+import Foundation
+
+class TranslatorViewModel: ObservableObject {
+    
+    var model: TranslationManager
+    
+    @Published var translatedString: String
+    
+    init() {
+        self.model = TranslationManager()
+        self.translatedString = String()
+    }
+    
+    func initiateTranslation(text: String, sourceLanguage: String, targetLanguage: String) {
+        
+        TranslationManager.shared.sourceLanguageCode = sourceLanguage
+        TranslationManager.shared.textToTranslate = text
+        TranslationManager.shared.targetLanguageCode = targetLanguage
+        
+        TranslationManager.shared.translate(completion: { (translation) in
+            print(translation!)
+            
+            DispatchQueue.main.async {
+                self.translatedString = translation!
+            }
+        })
+    }
+}
+
+
