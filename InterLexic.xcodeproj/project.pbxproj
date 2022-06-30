@@ -19,6 +19,8 @@
 		AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85ED280089E200030EF2 /* TranslationManager.swift */; };
 		AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213C2866018B004E4F44 /* ExtensionString.swift */; };
 		AD5321402868ABB9004E4F44 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213F2868ABB9004E4F44 /* Language.swift */; };
+		AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */; };
+		AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752569286DEFDA00CD30A7 /* ExtensionView.swift */; };
 		AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8259D72811BC0B00CA9805 /* Translation API.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		AD4B85ED280089E200030EF2 /* TranslationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
 		AD53213C2866018B004E4F44 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
 		AD53213F2868ABB9004E4F44 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectorView.swift; sourceTree = "<group>"; };
+		AD752569286DEFDA00CD30A7 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		AD8259D72811BC0B00CA9805 /* Translation API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translation API.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				AD1DA05B27FCAAD40049444D /* TranslatorView.swift */,
+				AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				AD53213C2866018B004E4F44 /* ExtensionString.swift */,
+				AD752569286DEFDA00CD30A7 /* ExtensionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,11 +338,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */,
+				AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */,
 				AD1DA05C27FCAAD40049444D /* TranslatorView.swift in Sources */,
 				AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */,
 				AD5321402868ABB9004E4F44 /* Language.swift in Sources */,
 				AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */,
 				AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */,
+				AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */,
 				AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,20 +7,25 @@
 
 import Foundation
 
-class TranslationManager: NSObject {
+enum TranslationManagerError: Error {
+    case failToFetch
+}
+
+
+class TranslationManager: NSObject, ObservableObject {
     
     static let shared = TranslationManager()
     
     var sourceLanguageCode: String?
     
-    var supportedLanguages = [Language]()
+    @Published var supportedLanguages: Array<Language> = []
     
     var textToTranslate: String?
     
     var targetLanguageCode: String?
-        
-    private let apiKey = "AIzaSyB18mfRbdzlZec0wTauheIhn9GbZ2-FvJ4"
     
+    var isLoading: Bool = true
+            
     override init() {
         super.init()
     }
@@ -92,13 +97,13 @@ class TranslationManager: NSObject {
         }
     }
     
-    func fetchSupportedLanguages(completion: @escaping (_ success: Bool) -> Void) {
+    func fetchSupportedLanguages(completion: @escaping (_ result: Result<[Language], TranslationManagerError>) -> Void) {
         var urlParams = [String: String]()
         urlParams["key"] = apiKey
         urlParams["target"] = Locale.current.languageCode ?? "en"
         
         makeRequest(usingTranslationAPI: .supportedLanguages, urlParams: urlParams) { (results) in
-            guard let results = results else { completion(false); return }
+            guard let results = results else { completion(.failure(.failToFetch)); return }
             
             if let data = results["data"] as? [String: Any], let languages = data["languages"] as? [[String: Any]] {
                 
@@ -116,9 +121,10 @@ class TranslationManager: NSObject {
                     self.supportedLanguages.append(Language(name: languageName!, translatorID: languageCode!, id: UUID()))
                 }
                 
-                completion(true)
+                completion(.success(self.supportedLanguages))
+                self.isLoading = false
             } else {
-                completion(false)
+                completion(.failure(.failToFetch))
             }
         }
     }
@@ -152,6 +158,21 @@ class TranslationManager: NSObject {
                 } else {
                     completion (nil)
                     
+                }
+            }
+        }
+    }
+    
+    func fetchLanguage() {
+        fetchSupportedLanguages { result in
+            DispatchQueue.main.async {
+                switch result {
+                    
+                case .success(let fetchedLanguages):
+                    self.supportedLanguages = fetchedLanguages
+                case .failure(_):
+                    break
+                    // TODO - fix this.
                 }
             }
         }
