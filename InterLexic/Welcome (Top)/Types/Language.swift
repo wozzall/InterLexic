@@ -13,14 +13,4 @@ struct Language: Identifiable, Hashable {
     var id: UUID
 }
 
-struct LanguageFetcher {
-    
-    var api: TranslationManager
-    var languages: Array<Language>
-    
-    func fetchLanguages() {
-        api.fetchSupportedLanguages { success in
-            
-        }
-    }
-}
+

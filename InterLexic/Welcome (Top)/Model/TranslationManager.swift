@@ -25,7 +25,7 @@ class TranslationManager: NSObject, ObservableObject {
     var targetLanguageCode: String?
     
     var isLoading: Bool = true
-            
+    
     override init() {
         super.init()
     }

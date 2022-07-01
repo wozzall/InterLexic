@@ -15,6 +15,7 @@
 		AD1DA07527FCAADB0049444D /* InterLexicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA07427FCAADB0049444D /* InterLexicUITests.swift */; };
 		AD1DA07727FCAADB0049444D /* InterLexicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA07627FCAADB0049444D /* InterLexicUITestsLaunchTests.swift */; };
 		AD1DA08527FCAC3E0049444D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD1DA08727FCAC3E0049444D /* Localizable.strings */; };
+		AD37270F286F3CE500CE4B45 /* LanguageSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD37270E286F3CE500CE4B45 /* LanguageSelection.swift */; };
 		AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */; };
 		AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85ED280089E200030EF2 /* TranslationManager.swift */; };
 		AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213C2866018B004E4F44 /* ExtensionString.swift */; };
@@ -57,6 +58,7 @@
 		AD1DA08927FCAC410049444D /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AD1DA08A27FCAC430049444D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AD1DA08B27FCAC440049444D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AD37270E286F3CE500CE4B45 /* LanguageSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelection.swift; sourceTree = "<group>"; };
 		AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator_ViewModel.swift; sourceTree = "<group>"; };
 		AD4B85ED280089E200030EF2 /* TranslationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
 		AD53213C2866018B004E4F44 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				AD53213F2868ABB9004E4F44 /* Language.swift */,
+				AD37270E286F3CE500CE4B45 /* LanguageSelection.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			files = (
 				AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */,
 				AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */,
+				AD37270F286F3CE500CE4B45 /* LanguageSelection.swift in Sources */,
 				AD1DA05C27FCAAD40049444D /* TranslatorView.swift in Sources */,
 				AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */,
 				AD5321402868ABB9004E4F44 /* Language.swift in Sources */,

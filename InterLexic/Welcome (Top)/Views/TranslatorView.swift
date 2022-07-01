@@ -9,15 +9,17 @@ import SwiftUI
 import Foundation
 
 struct TranslatorView: View {
-    
+        
     @ObservedObject var viewModel = TranslatorViewModel()
     
     @State private var translatableText: String = String()
     @State private var translationEdit: String = String()
     @State private var languagesSupported: Array<Language> = []
     @State var selectedNavigation: String?
-    @State var translationDirection: Bool = true
-    // MARK - True = to, False = from
+
+    @State var languageA: Language?
+    @State var languageB: Language?
+    
     
 //    var body: some View {
 //        VStack(spacing:10) {
@@ -42,13 +44,13 @@ struct TranslatorView: View {
             GeometryReader { geometry in
                 VStack(spacing: 10) {
                     NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                        LanguageSelectorView(toFromLanguage: translationDirection)
+                        LanguageSelectorView(viewModel: viewModel)
                     } label: {
                         EmptyView()
                     }
                     HStack {
                         Button {
-                            translationDirection = true
+                            viewModel.setDirection(direction: false)
                             didTapSelector()
                         } label: {
                             ZStack {
@@ -56,14 +58,14 @@ struct TranslatorView: View {
                                     .fill(.white)
                                     .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
                                     .shadow(color: .gray, radius: 3, x: 0, y: 3)
-                                Text(viewModel.languageA?.name ?? "languageSelectors_chooseLanguage".localized)
+                                Text(languageA?.name ?? "languageSelectors_chooseLanguage".localized)
                             }
                         }
                         .buttonStyle(.borderless)
                         Image(systemName: "arrow.right")
                             .foregroundColor(.accentColor)
                         Button {
-                            translationDirection = false
+                            viewModel.setDirection(direction: true)
                             didTapSelector()
                         } label: {
                             ZStack {
@@ -71,7 +73,7 @@ struct TranslatorView: View {
                                     .fill(.white)
                                     .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
                                     .shadow(color: .gray, radius: 3, x: 0, y: 3)
-                                Text(viewModel.languageB?.name ?? "languageSelectors_chooseLanguage".localized)
+                                Text(languageB?.name ?? "languageSelectors_chooseLanguage".localized)
                             }
                         }
                     }
@@ -105,6 +107,7 @@ struct TranslatorView: View {
                     }
                 }
             }
+        .onAppear(perform: assignLanguages)
         .navigationBarTitle("")
         .navigationBarHidden(true)
         }
@@ -180,12 +183,23 @@ struct TranslatorView: View {
         self.selectedNavigation = LanguageSelectorView.navigation
     }
     
+    private func assignLanguages() {
+        
+        languageA = viewModel.languageA
+        languageB = viewModel.languageB
+        
+        print(viewModel.languageA?.name ?? "No language available!")
+        print(viewModel.languageB?.name ?? "No language available!")
+        viewModel.toFromDirection = false
+    
+    }
+    
     // TODO - Make picker default values reflect these default languages.
 }
 
-struct TranslatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        TranslatorView()
-    }
-}
+//struct TranslatorView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        
+//        TranslatorView(viewModel: <#TranslatorViewModel#>)
+//    }
+//}

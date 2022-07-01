@@ -14,12 +14,15 @@ class TranslatorViewModel: ObservableObject {
     @Published var translatedString: String
     @Published var languageA: Language?
     @Published var languageB: Language?
+    @Published var toFromDirection: Bool
+    // MARK - True = to, False = from
     @Published var translatableText: String?
 
     
     init() {
         self.model = TranslationManager()
         self.translatedString = String()
+        self.toFromDirection = false
     }
     
     func initiateTranslation(text: String, sourceLanguage: String, targetLanguage: String) {
@@ -46,6 +49,19 @@ class TranslatorViewModel: ObservableObject {
                 }
             }
         return
+    }
+    
+    func changeLanguages(toFromDirection: Bool, in language: Language) {
+        if toFromDirection {
+            languageB = language
+        }
+        else {
+            languageA = language
+        }
+    }
+    
+    func setDirection(direction: Bool) {
+        toFromDirection = direction
     }
 }
 

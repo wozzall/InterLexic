@@ -7,11 +7,21 @@
 
 import SwiftUI
 
+class LanguageSelection: ObservableObject {
+   @Published var languageA: Language?
+   @Published var languageB: Language?
+    
+}
+
 @main
 struct InterLexicApp: App {
+    
+    @StateObject var selection = LanguageSelection()
+    
     var body: some Scene {
         WindowGroup {
             TranslatorView()
+                .environmentObject(selection)
         }
     }
 }

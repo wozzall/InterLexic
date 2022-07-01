@@ -39,17 +39,94 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9C9754CB-5A75-41D3-8994-1C9D2FBC095F"
+            uuid = "046ADEBB-B45F-4F51-9E66-52FAF5BA5A8F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InterLexic/Welcome (Top)/Model/TranslationManager.swift"
+            filePath = "InterLexic/Welcome (Top)/Views/LanguageSelectorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "TranslationManager"
-            landmarkType = "3">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "LanguageSelectorView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "046ADEBB-B45F-4F51-9E66-52FAF5BA5A8F - d8ff44cb480a2a6b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of InterLexic.LanguageSelectorView.viewModel : InterLexic.TranslatorViewModel"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Welcome%20(Top)/Views/LanguageSelectorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "046ADEBB-B45F-4F51-9E66-52FAF5BA5A8F - 1502d31deea318f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.LanguageSelectorView.viewModel.getter : InterLexic.TranslatorViewModel"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Welcome%20(Top)/Views/LanguageSelectorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "51">
+               </Location>
+               <Location
+                  uuid = "046ADEBB-B45F-4F51-9E66-52FAF5BA5A8F - be943a3ccfb4c0c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.LanguageSelectorView.viewModel.setter : InterLexic.TranslatorViewModel"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Welcome%20(Top)/Views/LanguageSelectorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "77">
+               </Location>
+               <Location
+                  uuid = "046ADEBB-B45F-4F51-9E66-52FAF5BA5A8F - 7d890e116c1b665c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.LanguageSelectorView.viewModel.modify : InterLexic.TranslatorViewModel with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Welcome%20(Top)/Views/LanguageSelectorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "046ADEBB-B45F-4F51-9E66-52FAF5BA5A8F - 75cd7b0beacbf62"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.LanguageSelectorView.$viewModel.getter : SwiftUI.ObservedObject&lt;InterLexic.TranslatorViewModel&gt;.Wrapper"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Welcome%20(Top)/Views/LanguageSelectorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "106">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
