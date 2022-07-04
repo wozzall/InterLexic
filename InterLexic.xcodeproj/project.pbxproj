@@ -169,8 +169,7 @@
 		AD4B85EF280089E700030EF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AD4B85ED280089E200030EF2 /* TranslationManager.swift */,
-				AD8259D72811BC0B00CA9805 /* Translation API.swift */,
+				ADC0CFF428731E6D006B2824 /* Google Translate */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +203,15 @@
 				AD37270E286F3CE500CE4B45 /* LanguageSelection.swift */,
 			);
 			path = Types;
+			sourceTree = "<group>";
+		};
+		ADC0CFF428731E6D006B2824 /* Google Translate */ = {
+			isa = PBXGroup;
+			children = (
+				AD4B85ED280089E200030EF2 /* TranslationManager.swift */,
+				AD8259D72811BC0B00CA9805 /* Translation API.swift */,
+			);
+			path = "Google Translate";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -25,7 +25,11 @@ class TranslatorViewModel: ObservableObject {
         self.toFromDirection = false
     }
     
-    func initiateTranslation(text: String, sourceLanguage: String, targetLanguage: String) {
+    func initiateTranslation(text: String, sourceLanguage: String, targetLanguage: String, sameLanguage: Bool) {
+        
+        if sameLanguage {
+            self.translatedString = text
+        }
         
         TranslationManager.shared.sourceLanguageCode = sourceLanguage
         TranslationManager.shared.textToTranslate = text

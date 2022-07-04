@@ -20,7 +20,7 @@ struct InterLexicApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TranslatorView()
+            TranslatorView(languageA: Language(name: String(), translatorID: String(), id: UUID()), languageB: Language(name: String(), translatorID: String(), id: UUID()))
                 .environmentObject(selection)
         }
     }

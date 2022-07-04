@@ -17,9 +17,10 @@ struct TranslatorView: View {
     @State private var languagesSupported: Array<Language> = []
     @State var selectedNavigation: String?
 
-    @State var languageA: Language?
-    @State var languageB: Language?
+    @State var languageA: Language
+    @State var languageB: Language
     
+    @State var sameLanguage: Bool = false
     
 //    var body: some View {
 //        VStack(spacing:10) {
@@ -44,7 +45,7 @@ struct TranslatorView: View {
             GeometryReader { geometry in
                 VStack(spacing: 10) {
                     NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                        LanguageSelectorView(viewModel: viewModel)
+                        LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection)
                     } label: {
                         EmptyView()
                     }
@@ -58,7 +59,12 @@ struct TranslatorView: View {
                                     .fill(.white)
                                     .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
                                     .shadow(color: .gray, radius: 3, x: 0, y: 3)
-                                Text(languageA?.name ?? "languageSelectors_chooseLanguage".localized)
+                                if languageA.name == "" {
+                                    Text("languageSelectors_chooseLanguage".localized)
+                                }
+                                else {
+                                    Text(languageA.name)
+                                }
                             }
                         }
                         .buttonStyle(.borderless)
@@ -73,7 +79,12 @@ struct TranslatorView: View {
                                     .fill(.white)
                                     .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
                                     .shadow(color: .gray, radius: 3, x: 0, y: 3)
-                                Text(languageB?.name ?? "languageSelectors_chooseLanguage".localized)
+                                if languageB.name == "" {
+                                    Text("languageSelectors_chooseLanguage".localized)
+                                }
+                                else {
+                                    Text(languageB.name)
+                                }
                             }
                         }
                     }
@@ -91,8 +102,8 @@ struct TranslatorView: View {
                                 .fill(.blue)
                                 .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
                             Button(action: {
-                                viewModel.defaultLanguageSelector(A: viewModel.languageA!, B: viewModel.languageB!)
-                                viewModel.initiateTranslation(text: translatableText, sourceLanguage: viewModel.languageA!.translatorID, targetLanguage: viewModel.languageB!.translatorID)
+                                viewModel.defaultLanguageSelector(A: languageA, B: languageB)
+                                viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
                             }) {
                                 Text("welcome_screen_translateButton".localized)
                             }
@@ -107,7 +118,7 @@ struct TranslatorView: View {
                     }
                 }
             }
-        .onAppear(perform: assignLanguages)
+        .onAppear(perform: assignDefaultLanguages)
         .navigationBarTitle("")
         .navigationBarHidden(true)
         }
@@ -172,10 +183,12 @@ struct TranslatorView: View {
 //    }
 //
     // MARK -- Checks to see if Language A and B are still empty values of type Language. Loads the translate function with default values, in this case English as Language A and Chinese (Simplified) as Language B.
-    private func sameLanguageChecker() {
-        if viewModel.languageA == viewModel.languageB {
-            viewModel.translatedString = translatableText
+    private func sameLanguageChecker() -> Bool {
+        
+        if languageA == languageB {
+            return true
         }
+            return false
     }
     
     private func didTapSelector() {
@@ -183,13 +196,12 @@ struct TranslatorView: View {
         self.selectedNavigation = LanguageSelectorView.navigation
     }
     
-    private func assignLanguages() {
+    private func assignDefaultLanguages() {
         
-        languageA = viewModel.languageA
-        languageB = viewModel.languageB
-        
-        print(viewModel.languageA?.name ?? "No language available!")
-        print(viewModel.languageB?.name ?? "No language available!")
+        if languageA.name == "" || languageB.name == "" {
+            languageA = Language(name: "English", translatorID: "en", id: UUID())
+            languageB = Language(name: "Chinese (Simplified)", translatorID: "zh-CN", id: UUID())
+        }
         viewModel.toFromDirection = false
     
     }

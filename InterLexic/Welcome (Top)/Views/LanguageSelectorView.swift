@@ -12,21 +12,23 @@ struct LanguageSelectorView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var manager = TranslationManager()
-    @ObservedObject var viewModel: TranslatorViewModel
         
+    @Binding var languageA: Language
+    @Binding var languageB: Language
+    @Binding var toFromDirection: Bool
+    
     var body: some View {
             List {
                 ForEach(manager.supportedLanguages) { language in
                     ZStack {
                         Button {
-                            didTapLanguage(tapped: language, direction: viewModel.toFromDirection)
+                            didTapLanguage(tapped: language, direction: toFromDirection)
+                            presentationMode.wrappedValue.dismiss()
                         } label: {
                             Text(language.name)
                         }
                     }
-                    .onTapGesture {
-                        presentationMode.wrappedValue.dismiss()
-                    }
+                  
                 }
             }
             .navigationTitle("languageSelectors_chooseLanguage".localized)
@@ -38,13 +40,22 @@ struct LanguageSelectorView: View {
         }
     
     func didTapLanguage(tapped language: Language, direction: Bool) {
-        viewModel.changeLanguages(toFromDirection: direction, in: language)
+        changeLanguages(toFromDirection: direction, in: language)
     }
     private func testLanguageSelection() {
-        print(viewModel.languageA ?? "Whoops!")
-        print(viewModel.languageB ?? "Whoops!")
-        viewModel.toFromDirection = false
+        print(languageA)
+        print(languageB)
+        toFromDirection = false
         }
+    
+    func changeLanguages(toFromDirection: Bool, in language: Language) {
+        if toFromDirection {
+            languageB = language
+        }
+        else {
+            languageA = language
+        }
+    }
 }
 
 

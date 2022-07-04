@@ -26,6 +26,8 @@ class TranslationManager: NSObject, ObservableObject {
     
     var isLoading: Bool = true
     
+    private let apiKey = "AIzaSyATkpxkaYc59u0TuYmD2f5Xdwe0z1V2WEs"
+
     override init() {
         super.init()
     }
