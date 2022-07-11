@@ -23,24 +23,6 @@ struct TranslatorView: View {
     
     @State var sameLanguage: Bool = false
     
-//    var body: some View {
-//        VStack(spacing:10) {
-//            NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-//                LanguageSelectorView()
-//            } label: {
-//                EmptyView()
-//            }
-//            languageSelectors
-//            Text("welcome_screen_textField".localized)
-//            userInput
-//            TextEditor(text: $viewModel.translatedString)
-//                .multilineTextAlignment(.center)
-//                .padding()
-//                .textFieldStyle(.roundedBorder)
-//                .shadow(radius: 5)
-//        }
-//    }
-    
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -123,7 +105,10 @@ struct TranslatorView: View {
                     }
                 }
             }
-        .onAppear(perform: assignDefaultLanguages)
+        .onAppear{
+            assignDefaultLanguages();
+            manager.fetchLanguage()
+        }
         .navigationBarTitle("")
         .navigationBarHidden(true)
         }

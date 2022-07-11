@@ -32,7 +32,7 @@ struct LanguageSelectorView: View {
         }
         
         .navigationTitle("languageSelectors_chooseLanguage".localized)
-        .onAppear(perform: manager.fetchLanguage)
+//        .onAppear(perform: manager.fetchLanguage)
         .onDisappear(perform: testLanguageSelection)
         .opacity(manager.isLoading ? 0 : 1)
         ProgressView()
