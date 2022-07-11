@@ -9,7 +9,8 @@ import SwiftUI
 import Foundation
 
 struct TranslatorView: View {
-        
+    
+    @ObservedObject var manager = TranslationManager()
     @ObservedObject var viewModel = TranslatorViewModel()
     
     @State private var translatableText: String = String()
@@ -45,7 +46,7 @@ struct TranslatorView: View {
             GeometryReader { geometry in
                 VStack(spacing: 10) {
                     NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                        LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection)
+                        LanguageSelectorView(manager: manager, languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection)
                     } label: {
                         EmptyView()
                     }
@@ -64,6 +65,8 @@ struct TranslatorView: View {
                                 }
                                 else {
                                     Text(languageA.name)
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.center)
                                 }
                             }
                         }
@@ -84,6 +87,8 @@ struct TranslatorView: View {
                                 }
                                 else {
                                     Text(languageB.name)
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.center)
                                 }
                             }
                         }

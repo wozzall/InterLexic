@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD18312E287C6D3800C04EAA /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD18312D287C6D3800C04EAA /* ExtensionArray.swift */; };
 		AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA05927FCAAD40049444D /* InterLexicApp.swift */; };
 		AD1DA05C27FCAAD40049444D /* TranslatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA05B27FCAAD40049444D /* TranslatorView.swift */; };
 		AD1DA05E27FCAADB0049444D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD1DA05D27FCAADB0049444D /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */; };
 		AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752569286DEFDA00CD30A7 /* ExtensionView.swift */; };
 		AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8259D72811BC0B00CA9805 /* Translation API.swift */; };
+		ADA3A2B52875E4C700193F87 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADA3A2B32875E4C700193F87 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD18312D287C6D3800C04EAA /* ExtensionArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
 		AD1DA05627FCAAD40049444D /* InterLexic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterLexic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1DA05927FCAAD40049444D /* InterLexicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterLexicApp.swift; sourceTree = "<group>"; };
 		AD1DA05B27FCAAD40049444D /* TranslatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorView.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 		AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectorView.swift; sourceTree = "<group>"; };
 		AD752569286DEFDA00CD30A7 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		AD8259D72811BC0B00CA9805 /* Translation API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translation API.swift"; sourceTree = "<group>"; };
+		ADA3A2B42875E4C700193F87 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +187,7 @@
 				AD53213E28660197004E4F44 /* Extensions */,
 				AD4B85EC280089CE00030EF2 /* Viewmodels */,
 				AD1DA08727FCAC3E0049444D /* Localizable.strings */,
+				ADA3A2B32875E4C700193F87 /* Model.xcdatamodeld */,
 			);
 			path = "Welcome (Top)";
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 		AD53213E28660197004E4F44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AD18312D287C6D3800C04EAA /* ExtensionArray.swift */,
 				AD53213C2866018B004E4F44 /* ExtensionString.swift */,
 				AD752569286DEFDA00CD30A7 /* ExtensionView.swift */,
 			);
@@ -357,7 +363,9 @@
 				AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */,
 				AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */,
 				AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */,
+				ADA3A2B52875E4C700193F87 /* Model.xcdatamodeld in Sources */,
 				AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */,
+				AD18312E287C6D3800C04EAA /* ExtensionArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +542,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 001;
+				CURRENT_PROJECT_VERSION = 002;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
@@ -542,6 +550,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -565,7 +574,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 001;
+				CURRENT_PROJECT_VERSION = 002;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
@@ -573,6 +582,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -721,6 +731,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ADA3A2B32875E4C700193F87 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ADA3A2B42875E4C700193F87 /* Model.xcdatamodel */,
+			);
+			currentVersion = ADA3A2B42875E4C700193F87 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AD1DA04E27FCAAD40049444D /* Project object */;
 }

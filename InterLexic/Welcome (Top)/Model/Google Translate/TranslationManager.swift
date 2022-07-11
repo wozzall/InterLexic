@@ -9,7 +9,9 @@ import Foundation
 
 enum TranslationManagerError: Error {
     case failToFetch
+    
 }
+
 
 
 class TranslationManager: NSObject, ObservableObject {
@@ -26,8 +28,6 @@ class TranslationManager: NSObject, ObservableObject {
     
     var isLoading: Bool = true
     
-    private let apiKey = "AIzaSyATkpxkaYc59u0TuYmD2f5Xdwe0z1V2WEs"
-
     override init() {
         super.init()
     }
@@ -105,28 +105,33 @@ class TranslationManager: NSObject, ObservableObject {
         urlParams["target"] = Locale.current.languageCode ?? "en"
         
         makeRequest(usingTranslationAPI: .supportedLanguages, urlParams: urlParams) { (results) in
-            guard let results = results else { completion(.failure(.failToFetch)); return }
-            
-            if let data = results["data"] as? [String: Any], let languages = data["languages"] as? [[String: Any]] {
+                guard let results = results else { completion(.failure(.failToFetch)); return }
                 
-                for lang in languages {
-                    var languageCode: String?
-                    var languageName: String?
+            DispatchQueue.main.async {
+
+                if let data = results["data"] as? [String: Any], let languages = data["languages"] as? [[String: Any]] {
                     
-                    if let code = lang["language"] as? String {
-                        languageCode = code
-                    }
-                    if let name = lang["name"] as? String {
-                        languageName = name
+                    for lang in languages {
+                        var languageCode: String?
+                        var languageName: String?
+                        
+                        if let code = lang["language"] as? String {
+                            languageCode = code
+                        }
+                        if let name = lang["name"] as? String {
+                            languageName = name
+                        }
+                        if languageName != "" {
+                            self.supportedLanguages.append(Language(name: languageName!, translatorID: languageCode!, id: UUID()))
+                            self.supportedLanguages = self.supportedLanguages.sorted(by: { $0.name < $1.name })
+                        }
                     }
                     
-                    self.supportedLanguages.append(Language(name: languageName!, translatorID: languageCode!, id: UUID()))
+                    completion(.success(self.supportedLanguages))
+                    self.isLoading = false
+                } else {
+                    completion(.failure(.failToFetch))
                 }
-                
-                completion(.success(self.supportedLanguages))
-                self.isLoading = false
-            } else {
-                completion(.failure(.failToFetch))
             }
         }
     }
