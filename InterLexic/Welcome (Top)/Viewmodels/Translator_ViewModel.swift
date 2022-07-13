@@ -8,7 +8,7 @@ import Combine
 import Foundation
 
 class TranslatorViewModel: ObservableObject {
-    
+        
     var model: TranslationManager
     
     @Published var translatedString: String

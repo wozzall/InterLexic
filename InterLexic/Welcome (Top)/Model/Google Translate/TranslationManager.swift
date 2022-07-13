@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum TranslationManagerError: Error {
     case failToFetch
@@ -18,9 +19,11 @@ class TranslationManager: NSObject, ObservableObject {
     
     static let shared = TranslationManager()
     
-    var sourceLanguageCode: String?
+    private let apiKey = "AIzaSyATkpxkaYc59u0TuYmD2f5Xdwe0z1V2WEs"
     
     @Published var supportedLanguages: Array<Language> = []
+    
+    var sourceLanguageCode: String?
     
     var textToTranslate: String?
     

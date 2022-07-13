@@ -6,6 +6,12 @@
   
 */
 
+//MARK - TabView Labels
+
+"TabView_Translate" = "Translate";
+
+"TabView_Favorites" = "Favorites";
+
 //MARK - Sample Sentences
 
 "welcome_screen_title" = "Bienvenue à InterLexic!";
@@ -25,6 +31,9 @@
 "welcome_screen_languageSelector" = "À quelle langue voulez-vous traduire?";
 
 "welcome_screen_translateButton" = "Traduire";
+
+"welcome_screen_saveButton" = "Save";
+
 
 //MARK - Language Selectors Buttons
 
