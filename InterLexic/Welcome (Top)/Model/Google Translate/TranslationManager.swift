@@ -18,9 +18,7 @@ enum TranslationManagerError: Error {
 class TranslationManager: NSObject, ObservableObject {
     
     static let shared = TranslationManager()
-    
-    private let apiKey = "AIzaSyATkpxkaYc59u0TuYmD2f5Xdwe0z1V2WEs"
-    
+        
     @Published var supportedLanguages: Array<Language> = []
     
     var sourceLanguageCode: String?

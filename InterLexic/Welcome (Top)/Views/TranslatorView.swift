@@ -151,7 +151,6 @@ struct TranslatorView: View {
                         .frame(height: UIScreen.main.bounds.height * 0.33)
 
                 }
-//                .ignoresSafeArea(.keyboard, edges: .bottom)
                 .navigationBarTitle("TabView_Translate".localized)
                 .navigationBarHidden(true)
                 .onAppear{
