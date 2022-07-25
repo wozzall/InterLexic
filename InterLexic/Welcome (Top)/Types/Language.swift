@@ -7,10 +7,15 @@
 
 import Foundation
 
-struct Language: Identifiable, Hashable {
+struct Language: Identifiable, Hashable, Comparable {
+    
     var name: String
     var translatorID: String
     var id: UUID
+    
+    static func < (lhs: Language, rhs: Language) -> Bool {
+        lhs.name < rhs.name
+    }
 }
 
 

@@ -9,31 +9,44 @@ import SwiftUI
 
 struct FavouritesView: View {
     
-//    @EnvironmentObject var favorites: Favorites
-//
+    @EnvironmentObject var favorites: Favorites
+    
     var body: some View {
-        
-        Text("hello")
-//        HStack{
-//        Text("Flashcards")
-//            .font(.largeTitle)
-//        }
-//        List {
-//            if favorites.flashCards != nil {
-//                ForEach(favorites.flashCards!) { favorite in
-//                    if favorites.flashCards != [] {
-//                        FlashCardView(favorites: _favorites, flashCard: favorite)
-//                    }
-//                }
-//            }
-//            else {
-//                Text("No flashcards saved!")
-//            }
-//        }
-//
+        GeometryReader { geo in
+            VStack{
+               
+                Text("TabView_Favorites".localized)
+                    .font(.title3)
+                
+                ScrollView(.vertical){
+                    LazyVStack{
+                        ForEach(favorites.flashCards) { flashCard in
+                            HStack{
+                                FlashCardView(flashCard: flashCard)
+                                Button {
+                                    favorites.remove(flashCard)
+                                } label: {
+                                    ZStack{
+                                        Circle()
+                                            .foregroundColor(.gray)
+                                            .opacity(1)
+                                            .frame(width: geo.size.width*0.1, height: geo.size.height*0.1, alignment: .trailing)
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+            }
+            .padding()
+        }
     }
 }
-//
+
+
 
 
 struct FavouritesView_Previews: PreviewProvider {

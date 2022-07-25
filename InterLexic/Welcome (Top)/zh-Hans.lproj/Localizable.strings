@@ -12,6 +12,8 @@
 
 "TabView_Favorites" = "Favorites";
 
+"TabView_Settings" = "Settings";
+
 //MARK - Sample Sentences
 
 "welcome_screen_title" = "欢迎使用InterLexic！";
@@ -42,3 +44,9 @@
 "languageSelectors_English" = "英语";
 
 "languageSelectors_ChineseSimp" = "汉语";
+
+//MARK - Translation Manager Error Handler
+
+"TMerror_error" = "Error!";
+
+"TMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";

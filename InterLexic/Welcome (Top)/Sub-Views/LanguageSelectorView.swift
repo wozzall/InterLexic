@@ -17,6 +17,7 @@ struct LanguageSelectorView: View {
     @Binding var languageB: Language
     @Binding var toFromDirection: Bool
     
+    
     var body: some View {
         List{
             ForEach(manager.supportedLanguages) { language in
@@ -37,6 +38,7 @@ struct LanguageSelectorView: View {
         .opacity(manager.isLoading ? 0 : 1)
         ProgressView()
             .opacity(manager.isLoading ? 1 : 0)
+            
     }
     
     func didTapLanguage(tapped language: Language, direction: Bool) {

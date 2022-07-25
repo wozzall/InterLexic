@@ -14,8 +14,9 @@ struct TranslatorView: View {
     
     @ObservedObject var manager = TranslationManager()
     @ObservedObject var viewModel = TranslatorViewModel()
-        
+    
     @State private var translatableText: String = String()
+    var textEditorPlaceHolder: String = "Type text to translate here"
     @State private var translationEdit: String = String()
     @State private var languagesSupported: Array<Language> = []
     @State var selectedNavigation: String?
@@ -27,13 +28,13 @@ struct TranslatorView: View {
     
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                VStack(spacing: 10) {
+                ScrollView {
                     NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
                         LanguageSelectorView(manager: manager, languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection)
                     } label: {
                         EmptyView()
                     }
+                    
                     HStack {
                         Button {
                             viewModel.setDirection(direction: false)
@@ -41,20 +42,21 @@ struct TranslatorView: View {
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 15)
-                                    .fill(.white)
-                                    .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
+                                    .fill(.blue)
+//
                                     .shadow(color: .gray, radius: 3, x: 0, y: 3)
                                 if languageA.name == "" {
                                     Text("languageSelectors_chooseLanguage".localized)
+                                        
                                 }
                                 else {
                                     Text(languageA.name)
-                                        .lineLimit(2)
+                                        .fixedSize(horizontal: false, vertical: true)
                                         .multilineTextAlignment(.center)
                                 }
                             }
+                            .foregroundColor(.white)
                         }
-                        .buttonStyle(.borderless)
                         Image(systemName: "arrow.right")
                             .foregroundColor(.accentColor)
                         Button {
@@ -63,49 +65,69 @@ struct TranslatorView: View {
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 15)
-                                    .fill(.white)
-                                    .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
+                                    .fill(.blue)
                                     .shadow(color: .gray, radius: 3, x: 0, y: 3)
                                 if languageB.name == "" {
                                     Text("languageSelectors_chooseLanguage".localized)
                                 }
                                 else {
                                     Text(languageB.name)
-                                        .lineLimit(2)
+                                        .fixedSize(horizontal: false, vertical: true)
                                         .multilineTextAlignment(.center)
                                 }
                             }
+                            .foregroundColor(.white)
                         }
                     }
+                    .frame(height: 50)
+                    .padding(.horizontal)
+                    .padding(.top, 30)
                     .buttonStyle(.borderless)
-                    .padding()
-                    Text("welcome_screen_textField".localized)
-                    TextEditor(text: $translatableText)
-                        .padding()
-                        .multilineTextAlignment(.center)
-                        .textFieldStyle(.roundedBorder)
-                        .shadow(radius: 5)
-                    HStack(spacing: 15){
+                   
                     ZStack{
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(.blue)
-                            .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
-                        Button(action: {
-                            viewModel.defaultLanguageSelector(A: languageA, B: languageB)
-                            viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
-                        
-                        }) {
-                            Text("welcome_screen_translateButton".localized)
+                        VStack{
+                            TextEditor(text: $translatableText)
+                                .padding()
+                                .multilineTextAlignment(.leading)
+                                .textFieldStyle(.roundedBorder)
+                                .shadow(radius: 5)
                         }
-                        .buttonStyle(.borderless)
-                    
+                        if translatableText.isEmpty {
+                            VStack{
+                                Text(textEditorPlaceHolder)
+                                    .padding(.top, 10)
+                                    .padding(.trailing)
+                                    .opacity(0.4)
+                                Spacer()
+                            }
+                            .padding()
+                        }
+                        
                     }
+                    .frame(height: UIScreen.main.bounds.height * 0.33)
+                    
+                    HStack{
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(.blue)
+//                                .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
+                                .shadow(color: .gray, radius: 3, x: 0, y: 3)
+                            Button(action: {
+                                viewModel.defaultLanguageSelector(A: languageA, B: languageB)
+                                viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
+                                
+                            }) {
+                                Text("welcome_screen_translateButton".localized)
+                            }
+                            .buttonStyle(.borderless)
+                            
+                        }
                         ZStack{
                             RoundedRectangle(cornerRadius: 15)
                                 .fill(.white)
-                                .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
-                                
-                                
+//                                .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
+                            
+                            
                             Button(action: {
                                 saveButton()
                                 
@@ -114,32 +136,39 @@ struct TranslatorView: View {
                                     .foregroundColor(.blue)
                             }
                             .buttonStyle(.borderless)
-                        
+                            
                         }
                     }
+                    .frame(height: 50)
+                    .padding(.horizontal)
                     .foregroundColor(Color.white)
+                    
                     TextEditor(text: $viewModel.translatedString)
-                        .multilineTextAlignment(.center)
+                        .multilineTextAlignment(.leading)
                         .padding()
                         .textFieldStyle(.roundedBorder)
                         .shadow(radius: 5)
-                }
-            }
-        }
-        .onAppear{
-            assignDefaultLanguages();
-            manager.fetchLanguage()
-        }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
-    }
+                        .frame(height: UIScreen.main.bounds.height * 0.33)
 
+                }
+//                .ignoresSafeArea(.keyboard, edges: .bottom)
+                .navigationBarTitle("TabView_Translate".localized)
+                .navigationBarHidden(true)
+                .onAppear{
+                    assignDefaultLanguages();
+                    manager.fetchLanguage()
+                }
+        }
+        
+    }
+    
+    
     private func sameLanguageChecker() -> Bool {
         // MARK -- Checks to see if Language A and B are still empty values of type Language. Loads the translate function with default values, in this case English as Language A and Chinese (Simplified) as Language B.
         if languageA == languageB {
             return true
         }
-            return false
+        return false
     }
     
     private func didTapSelector() {

@@ -13,60 +13,46 @@ struct FlashCardView: View {
     var flashCard: FlashCard
     
     var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.gray)
-                    .frame(width: geo.size.width*0.9, height: geo.size.height*0.3, alignment: .center)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .foregroundColor(.white)
-                            .opacity(0.9)
-                            .padding(4)
-                    )
-                VStack{
-                    HStack(spacing: 50){
-                        Text(flashCard.sourceLanguage)
-                        
-                        Image(systemName: "arrow.right")
-                            .font(.largeTitle)
-                        
-                        Text(flashCard.targetLanguage)
-                    }
-                    .font(.title3)
-                    
-                    Divider()
-                        .padding(.horizontal, 22)
-                    Text(flashCard.sourceString)
-                        .padding()
-                    
-                    Divider()
-                        .padding(.horizontal, 22)
-                    Text(flashCard.targetString)
-                        .padding()
+        ZStack {
+            RoundedRectangle(cornerRadius: 15)
+                .foregroundColor(.gray)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .foregroundColor(.white)
+                        .opacity(0.9)
+                        .padding(4)
+                )
+            VStack{
+                HStack(spacing: 5){
+                    Text(flashCard.sourceLanguage)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Image(systemName: "arrow.right")
+                        .font(.largeTitle)
+                    Text(flashCard.targetLanguage)
+                        .fixedSize(horizontal: false, vertical: true)
                     
                 }
-                .multilineTextAlignment(.center)
+                .padding()
+                .opacity(0.6)
+                
+                Divider()
+                    .padding(.horizontal, 22)
+                Text(flashCard.sourceString)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding()
+                
+                Divider()
+                    .padding(.horizontal, 22)
+                Text(flashCard.targetString)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding()
+                
+                
             }
-            .overlay(
-                VStack{
-                    Spacer()
-                    HStack{
-                        Spacer()
-                        Button {
-                            favorites.remove(flashCard)
-                        } label: {
-                            ZStack{
-                                Circle()
-                                    .foregroundColor(.gray)
-                                    .opacity(1)
-                                    .frame(width: geo.size.width*0.1, height: geo.size.height*0.1, alignment: .trailing)
-                                Image(systemName: "trash")
-                            }
-                        }
-                    }
-                }
-            )}
+            .multilineTextAlignment(.center)
+        }
     }
 }
 

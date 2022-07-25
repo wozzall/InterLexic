@@ -15,7 +15,5 @@ struct FlashCard: Identifiable, Hashable, Codable {
     var targetString: String
     
     var id: UUID
-
-    
 }
 

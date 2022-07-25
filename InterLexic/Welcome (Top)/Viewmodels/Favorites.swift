@@ -8,7 +8,7 @@
 import Foundation
 
 class Favorites: ObservableObject {
-    
+        
     @Published var flashCards: Array<FlashCard>
     private var saveKey = "favorites"
     
@@ -19,7 +19,9 @@ class Favorites: ObservableObject {
                 return
             }
         }
-        flashCards = []
+        flashCards = [
+            FlashCard(sourceLanguage: "English", sourceString: "This is a sample flashcard", targetLanguage: "Chinese", targetString: "这是闪卡例子", id: UUID())
+        ]
     }
     
     

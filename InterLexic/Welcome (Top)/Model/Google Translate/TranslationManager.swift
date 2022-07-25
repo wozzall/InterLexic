@@ -31,6 +31,10 @@ class TranslationManager: NSObject, ObservableObject {
     
     var isLoading: Bool = true
     
+    var isDuplicate: Bool = false
+    
+    @Published var isShowingAlert = false
+    
     override init() {
         super.init()
     }
@@ -107,11 +111,11 @@ class TranslationManager: NSObject, ObservableObject {
         urlParams["key"] = apiKey
         urlParams["target"] = Locale.current.languageCode ?? "en"
         
-        makeRequest(usingTranslationAPI: .supportedLanguages, urlParams: urlParams) { (results) in
+        DispatchQueue.main.async { [self] in
+            
+            makeRequest(usingTranslationAPI: .supportedLanguages, urlParams: urlParams) { (results) in
                 guard let results = results else { completion(.failure(.failToFetch)); return }
                 
-            DispatchQueue.main.async {
-
                 if let data = results["data"] as? [String: Any], let languages = data["languages"] as? [[String: Any]] {
                     
                     for lang in languages {
@@ -125,11 +129,14 @@ class TranslationManager: NSObject, ObservableObject {
                             languageName = name
                         }
                         if languageName != "" {
-                            self.supportedLanguages.append(Language(name: languageName!, translatorID: languageCode!, id: UUID()))
-                            self.supportedLanguages = self.supportedLanguages.sorted(by: { $0.name < $1.name })
+                            self.duplicateChecker(languageName: languageName!)
+                            if self.isDuplicate != true {
+                                self.supportedLanguages.append(Language(name: languageName!, translatorID: languageCode!, id: UUID()))
+                                self.supportedLanguages.sort()
+                                self.isDuplicate = false
+                            }
                         }
                     }
-                    
                     completion(.success(self.supportedLanguages))
                     self.isLoading = false
                 } else {
@@ -174,18 +181,31 @@ class TranslationManager: NSObject, ObservableObject {
     }
     
     func fetchLanguage() {
-        fetchSupportedLanguages { result in
-            DispatchQueue.main.async {
-                switch result {
-                    
-                case .success(let fetchedLanguages):
-                    self.supportedLanguages = fetchedLanguages
-                case .failure(_):
-                    break
-                    // TODO - fix this.
+        if self.supportedLanguages == [] {
+            
+            fetchSupportedLanguages { result in
+                DispatchQueue.main.async {
+                    switch result {
+                        
+                    case .success(let fetchedLanguages):
+                        self.supportedLanguages = fetchedLanguages
+                    case .failure(_):
+                        break
+                        // TODO - fix this.
+                    }
                 }
             }
         }
+    }
+    
+    func duplicateChecker(languageName: String) {
+        
+        for language in supportedLanguages {
+            if language.name == languageName {
+                self.isDuplicate = true
+            }
+        }
+        self.isDuplicate = false
     }
 }
 

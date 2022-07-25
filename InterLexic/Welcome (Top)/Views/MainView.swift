@@ -17,15 +17,20 @@ struct MainView: View {
             TranslatorView(languageA: Language(name: String(), translatorID: String(), id: UUID()), languageB: Language(name: String(), translatorID: String(), id: UUID()))
                 .tabItem {
                     Label("TabView_Translate".localized, systemImage: "character.bubble.fill")
-                        .foregroundColor(.gray)
                 }
                 .tag(1)
-            
+                        
             FavouritesView()
                 .tabItem {
                     Label("TabView_Favorites".localized, systemImage: "star.fill")
                 }
                 .tag(2)
+            
+            SettingsView()
+                .tabItem {
+                    Label("TabView_Favorites".localized, systemImage: "star.fill")
+                }
+                .tag(3)
         }
     }
 }
