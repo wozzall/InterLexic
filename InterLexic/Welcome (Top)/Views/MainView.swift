@@ -26,11 +26,11 @@ struct MainView: View {
                 }
                 .tag(2)
             
-            SettingsView()
-                .tabItem {
-                    Label("TabView_Favorites".localized, systemImage: "star.fill")
-                }
-                .tag(3)
+//            SettingsView()
+//                .tabItem {
+//                    Label("TabView_Settings".localized, systemImage: "gear")
+//                }
+//                .tag(3)
         }
     }
 }

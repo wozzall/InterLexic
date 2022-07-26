@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @State var selectedNavigation: String?
+
     var body: some View {
-        Text("Settings View")
+        NavigationView{
+            List {
+                Section {
+                    NavigationLink(tag: CreditsView.navigation, selection: $selectedNavigation) {
+                        CreditsView()
+                    } label: {
+                        HStack{
+                            Text("Settings_Credits".localized)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.red)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

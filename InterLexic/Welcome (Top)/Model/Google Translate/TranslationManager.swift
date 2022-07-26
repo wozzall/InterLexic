@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 enum TranslationManagerError: Error {
+    
     case failToFetch
     
 }

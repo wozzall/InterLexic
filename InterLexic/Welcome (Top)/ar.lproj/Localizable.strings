@@ -51,3 +51,8 @@
 
 "TMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";
 
+//MARK - Settings Labels
+
+"Settings_Credits" = "Credits";
+
+"Settings_License" = "API License";

@@ -12,7 +12,6 @@ struct FavouritesView: View {
     @EnvironmentObject var favorites: Favorites
     
     var body: some View {
-        GeometryReader { geo in
             VStack{
                
                 Text("TabView_Favorites".localized)
@@ -30,7 +29,7 @@ struct FavouritesView: View {
                                         Circle()
                                             .foregroundColor(.gray)
                                             .opacity(1)
-                                            .frame(width: geo.size.width*0.1, height: geo.size.height*0.1, alignment: .trailing)
+                                            .frame(width: 30, height: 30, alignment: .trailing)
                                         Image(systemName: "trash")
                                             .foregroundColor(.white)
                                     }
@@ -42,8 +41,14 @@ struct FavouritesView: View {
                 }
             }
             .padding()
+            .onAppear {
+                self.favorites.flashCards = sortByAlphabetical()
+            }
         }
-    }
+    
+    private func sortByAlphabetical() -> Array<FlashCard> {
+        self.favorites.flashCards.sorted()
+            }
 }
 
 

@@ -8,7 +8,13 @@
 import SwiftUI
 import Foundation
 
+private enum Field: Int, CaseIterable {
+    case sourceText, targetText
+}
+
 struct TranslatorView: View {
+    
+   
     
     @EnvironmentObject var favorites: Favorites
     
@@ -26,6 +32,8 @@ struct TranslatorView: View {
     
     @State var sameLanguage: Bool = false
     
+    @FocusState private var focusedField: Field?
+            
     var body: some View {
         NavigationView {
                 ScrollView {
@@ -91,6 +99,7 @@ struct TranslatorView: View {
                                 .multilineTextAlignment(.leading)
                                 .textFieldStyle(.roundedBorder)
                                 .shadow(radius: 5)
+                                .focused($focusedField, equals: .sourceText)
                         }
                         if translatableText.isEmpty {
                             VStack{
@@ -148,7 +157,10 @@ struct TranslatorView: View {
                         .padding()
                         .textFieldStyle(.roundedBorder)
                         .shadow(radius: 5)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                         .frame(height: UIScreen.main.bounds.height * 0.33)
+                        .focused($focusedField, equals: .targetText)
+
 
                 }
                 .navigationBarTitle("TabView_Translate".localized)
@@ -157,8 +169,10 @@ struct TranslatorView: View {
                     assignDefaultLanguages();
                     manager.fetchLanguage()
                 }
+                .onTapGesture {
+                    focusedField = nil
+                }
         }
-        
     }
     
     

@@ -14,6 +14,7 @@
 		AD183136287EF47300C04EAA /* FlashCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183135287EF47300C04EAA /* FlashCard.swift */; };
 		AD183139287F2D3800C04EAA /* FlashCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183138287F2D3800C04EAA /* FlashCardView.swift */; };
 		AD1CAA53288EC2C700ED3A99 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1CAA52288EC2C600ED3A99 /* SettingsView.swift */; };
+		AD1CAA55288ED26400ED3A99 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1CAA54288ED26300ED3A99 /* CreditsView.swift */; };
 		AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA05927FCAAD40049444D /* InterLexicApp.swift */; };
 		AD1DA05C27FCAAD40049444D /* TranslatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA05B27FCAAD40049444D /* TranslatorView.swift */; };
 		AD1DA05E27FCAADB0049444D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD1DA05D27FCAADB0049444D /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		AD183135287EF47300C04EAA /* FlashCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCard.swift; sourceTree = "<group>"; };
 		AD183138287F2D3800C04EAA /* FlashCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardView.swift; sourceTree = "<group>"; };
 		AD1CAA52288EC2C600ED3A99 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AD1CAA54288ED26300ED3A99 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		AD1DA05627FCAAD40049444D /* InterLexic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterLexic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1DA05927FCAAD40049444D /* InterLexicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterLexicApp.swift; sourceTree = "<group>"; };
 		AD1DA05B27FCAAD40049444D /* TranslatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				AD1DA05B27FCAAD40049444D /* TranslatorView.swift */,
 				AD18312F287DBB3B00C04EAA /* FavouritesView.swift */,
 				AD1CAA52288EC2C600ED3A99 /* SettingsView.swift */,
+				AD1CAA54288ED26300ED3A99 /* CreditsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				AD183130287DBB3B00C04EAA /* FavouritesView.swift in Sources */,
 				AD37270F286F3CE500CE4B45 /* LanguageSelection.swift in Sources */,
 				AD1DA05C27FCAAD40049444D /* TranslatorView.swift in Sources */,
+				AD1CAA55288ED26400ED3A99 /* CreditsView.swift in Sources */,
 				AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */,
 				AD5321402868ABB9004E4F44 /* Language.swift in Sources */,
 				AD183139287F2D3800C04EAA /* FlashCardView.swift in Sources */,
@@ -574,7 +578,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 002;
+				CURRENT_PROJECT_VERSION = 006;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
@@ -606,7 +610,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 002;
+				CURRENT_PROJECT_VERSION = 006;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
