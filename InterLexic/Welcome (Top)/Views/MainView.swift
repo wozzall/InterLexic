@@ -20,7 +20,7 @@ struct MainView: View {
                 }
                 .tag(1)
                         
-            FavouritesView()
+            CardsView()
                 .tabItem {
                     Label("TabView_Favorites".localized, systemImage: "star.fill")
                 }

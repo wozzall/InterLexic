@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Language: Identifiable, Hashable, Comparable {
+struct Language: Identifiable, Hashable, Comparable, Codable {
     
     var name: String
     var translatorID: String

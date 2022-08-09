@@ -1,5 +1,5 @@
 //
-//  Favorites.swift
+//  FlashCardStorage.swift
 //  InterLexic
 //
 //  Created by George Worrall on 13/07/2022.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-class Favorites: ObservableObject {
+class FlashCardStorage: ObservableObject {
         
     @Published var flashCards: Array<FlashCard>
-    private var saveKey = "favorites"
+    private var saveKey = "flashCards"
     
     init() {
         if let data = UserDefaults.standard.data(forKey: saveKey) {

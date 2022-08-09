@@ -36,5 +36,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2C8DE398-355F-4A80-95F6-0415AFA578AB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Welcome (Top)/Sub-Views/LanguageSelectorView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "LanguageSelectorView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "2C8DE398-355F-4A80-95F6-0415AFA578AB - 63213b412cfd543d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.LanguageSelectorView.supportedLanguages.getter : InterLexic.TranslatorLanguages"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Welcome%20(Top)/Sub-Views/LanguageSelectorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  uuid = "2C8DE398-355F-4A80-95F6-0415AFA578AB - 12e84f81bd725960"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.LanguageSelectorView.$supportedLanguages.getter : SwiftUI.EnvironmentObject&lt;InterLexic.TranslatorLanguages&gt;.Wrapper"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Welcome%20(Top)/Sub-Views/LanguageSelectorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "106">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

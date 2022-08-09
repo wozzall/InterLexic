@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct FavouritesView: View {
+struct CardsView: View {
     
-    @EnvironmentObject var favorites: Favorites
+    @EnvironmentObject var flashCardStorage: FlashCardStorage
     
     var body: some View {
             VStack{
@@ -19,11 +19,11 @@ struct FavouritesView: View {
                 
                 ScrollView(.vertical){
                     LazyVStack{
-                        ForEach(favorites.flashCards) { flashCard in
+                        ForEach(flashCardStorage.flashCards) { flashCard in
                             HStack{
                                 FlashCardView(flashCard: flashCard)
                                 Button {
-                                    favorites.remove(flashCard)
+                                    flashCardStorage.remove(flashCard)
                                 } label: {
                                     ZStack{
                                         Circle()
@@ -42,13 +42,13 @@ struct FavouritesView: View {
             }
             .padding()
             .onAppear {
-                self.favorites.flashCards = sortByAlphabetical()
+                self.flashCardStorage.flashCards = sortByAlphabetical()
             }
         }
     
     private func sortByAlphabetical() -> Array<FlashCard> {
-        self.favorites.flashCards.sorted()
-            }
+        self.flashCardStorage.flashCards.sorted()
+    }
 }
 
 
@@ -56,6 +56,6 @@ struct FavouritesView: View {
 
 struct FavouritesView_Previews: PreviewProvider {
     static var previews: some View {
-        FavouritesView()
+        CardsView()
     }
 }

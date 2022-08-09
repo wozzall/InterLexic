@@ -14,9 +14,8 @@ private enum Field: Int, CaseIterable {
 
 struct TranslatorView: View {
     
-   
-    
-    @EnvironmentObject var favorites: Favorites
+    @EnvironmentObject var supportedLanguages: TranslatorLanguages
+    @EnvironmentObject var flashCardStorage: FlashCardStorage
     
     @ObservedObject var manager = TranslationManager()
     @ObservedObject var viewModel = TranslatorViewModel()
@@ -33,93 +32,94 @@ struct TranslatorView: View {
     @State var sameLanguage: Bool = false
     
     @FocusState private var focusedField: Field?
-            
+    
     var body: some View {
         NavigationView {
-                ScrollView {
-                    NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                        LanguageSelectorView(manager: manager, languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection)
+            ScrollView {
+                NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
+                    LanguageSelectorView(manager: manager, languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection)
+                } label: {
+                    EmptyView()
+                }
+                
+                HStack {
+                    Button {
+                        viewModel.setDirection(direction: false)
+                        didTapSelector()
                     } label: {
-                        EmptyView()
-                    }
-                    
-                    HStack {
-                        Button {
-                            viewModel.setDirection(direction: false)
-                            didTapSelector()
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 15)
-                                    .fill(.blue)
-//
-                                    .shadow(color: .gray, radius: 3, x: 0, y: 3)
-                                if languageA.name == "" {
-                                    Text("languageSelectors_chooseLanguage".localized)
-                                        
-                                }
-                                else {
-                                    Text(languageA.name)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .multilineTextAlignment(.center)
-                                }
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(.blue)
+                            //
+                                .shadow(color: .gray, radius: 3, x: 0, y: 3)
+                            if languageA.name == "" {
+                                Text("languageSelectors_chooseLanguage".localized)
+                                
                             }
-                            .foregroundColor(.white)
-                        }
-                        Image(systemName: "arrow.right")
-                            .foregroundColor(.accentColor)
-                        Button {
-                            viewModel.setDirection(direction: true)
-                            didTapSelector()
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 15)
-                                    .fill(.blue)
-                                    .shadow(color: .gray, radius: 3, x: 0, y: 3)
-                                if languageB.name == "" {
-                                    Text("languageSelectors_chooseLanguage".localized)
-                                }
-                                else {
-                                    Text(languageB.name)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .multilineTextAlignment(.center)
-                                }
+                            else {
+                                Text(languageA.name)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .multilineTextAlignment(.center)
                             }
-                            .foregroundColor(.white)
                         }
+                        .foregroundColor(.white)
                     }
-                    .frame(height: 50)
-                    .padding(.horizontal)
-                    .padding(.top, 30)
-                    .buttonStyle(.borderless)
-                   
-                    ZStack{
+                    Image(systemName: "arrow.right")
+                        .foregroundColor(.accentColor)
+                    Button {
+                        viewModel.setDirection(direction: true)
+                        didTapSelector()
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(.blue)
+                                .shadow(color: .gray, radius: 3, x: 0, y: 3)
+                            if languageB.name == "" {
+                                Text("languageSelectors_chooseLanguage".localized)
+                            }
+                            else {
+                                Text(languageB.name)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .multilineTextAlignment(.center)
+                            }
+                        }
+                        .foregroundColor(.white)
+                    }
+                }
+                .frame(height: 50)
+                .padding(.horizontal)
+                .padding(.top, 30)
+                .buttonStyle(.borderless)
+                
+                ZStack{
+                    VStack{
+                        TextEditor(text: $translatableText)
+                            .padding()
+                            .multilineTextAlignment(.leading)
+                            .textFieldStyle(.roundedBorder)
+                            .shadow(radius: 5)
+                            .focused($focusedField, equals: .sourceText)
+                    }
+                    if translatableText.isEmpty {
                         VStack{
-                            TextEditor(text: $translatableText)
-                                .padding()
-                                .multilineTextAlignment(.leading)
-                                .textFieldStyle(.roundedBorder)
-                                .shadow(radius: 5)
-                                .focused($focusedField, equals: .sourceText)
-                        }
-                        if translatableText.isEmpty {
-                            VStack{
+                            HStack{
                                 Text(textEditorPlaceHolder)
                                     .padding(.top, 10)
-                                    .padding(.trailing)
+                                    .padding(.horizontal)
                                     .opacity(0.4)
                                 Spacer()
                             }
                             .padding()
+                            Spacer()
                         }
-                        
                     }
-                    .frame(height: UIScreen.main.bounds.height * 0.33)
-                    
+                }
+                .frame(height: UIScreen.main.bounds.height * 0.33)
+                
                     HStack{
                         ZStack{
                             RoundedRectangle(cornerRadius: 15)
                                 .fill(.blue)
-//                                .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
                                 .shadow(color: .gray, radius: 3, x: 0, y: 3)
                             Button(action: {
                                 viewModel.defaultLanguageSelector(A: languageA, B: languageB)
@@ -133,9 +133,7 @@ struct TranslatorView: View {
                         }
                         ZStack{
                             RoundedRectangle(cornerRadius: 15)
-                                .fill(.white)
-//                                .frame(width: geometry.size.width*0.4, height: geometry.size.height*0.1)
-                            
+                                .fill(.white)                            
                             
                             Button(action: {
                                 saveButton()
@@ -165,10 +163,7 @@ struct TranslatorView: View {
                 }
                 .navigationBarTitle("TabView_Translate".localized)
                 .navigationBarHidden(true)
-                .onAppear{
-                    assignDefaultLanguages();
-                    manager.fetchLanguage()
-                }
+                .onAppear(perform: assignDefaultLanguages)
                 .onTapGesture {
                     focusedField = nil
                 }
@@ -191,7 +186,7 @@ struct TranslatorView: View {
     
     private func assignDefaultLanguages() {
         
-        if languageA.name == "" || languageB.name == "" {
+        if languageA.name.isEmpty && languageB.name.isEmpty {
             languageA = Language(name: "English", translatorID: "en", id: UUID())
             languageB = Language(name: "Chinese (Simplified)", translatorID: "zh-CN", id: UUID())
         }
@@ -199,9 +194,9 @@ struct TranslatorView: View {
     }
     
     private func saveButton() {
-        favorites.add(FlashCard(sourceLanguage: languageA.name, sourceString: translatableText, targetLanguage: languageB.name, targetString: viewModel.translatedString, id: UUID()))
+        flashCardStorage.add(FlashCard(sourceLanguage: languageA.name, sourceString: translatableText, targetLanguage: languageB.name, targetString: viewModel.translatedString, id: UUID()))
         
-        print(favorites.flashCards)
+        print(flashCardStorage.flashCards)
     }
 }
 

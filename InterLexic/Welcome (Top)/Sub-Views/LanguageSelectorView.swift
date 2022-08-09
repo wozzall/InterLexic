@@ -11,16 +11,20 @@ struct LanguageSelectorView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    @EnvironmentObject var supportedLanguages: TranslatorLanguages
+    
     @ObservedObject var manager: TranslationManager
         
     @Binding var languageA: Language
     @Binding var languageB: Language
     @Binding var toFromDirection: Bool
     
+    @State var searchQuery = ""
+    @State var filteredLanguages: Array<Language>?
     
     var body: some View {
         List{
-            ForEach(manager.supportedLanguages) { language in
+            ForEach(Array(Set(filteredLanguages ?? manager.supportedLanguages).sorted()), id: \.name) { language in
                 ZStack {
                     Button {
                         didTapLanguage(tapped: language, direction: toFromDirection)
@@ -31,9 +35,16 @@ struct LanguageSelectorView: View {
                 }
             }
         }
+        .searchable(text: $searchQuery)
+        .onChange(of: searchQuery) { _ in
+            filterLanguages()
+        }
+        .onSubmit(of: .search) {
+            filterLanguages()
+        }
         
         .navigationTitle("languageSelectors_chooseLanguage".localized)
-//        .onAppear(perform: manager.fetchLanguage)
+        .onAppear(perform: manager.fetchLanguage)
         .onDisappear(perform: testLanguageSelection)
         .opacity(manager.isLoading ? 0 : 1)
         ProgressView()
@@ -50,6 +61,8 @@ struct LanguageSelectorView: View {
         toFromDirection = false
         }
     
+    
+    
     func changeLanguages(toFromDirection: Bool, in language: Language) {
         if toFromDirection {
             languageB = language
@@ -58,6 +71,22 @@ struct LanguageSelectorView: View {
             languageA = language
         }
     }
+    
+    //MARK - This function sets which language selector receives the chosen value based on a boolean value. In this case, true is language B and false is language A.
+    
+    func filterLanguages() {
+      if searchQuery.isEmpty {
+        // 1
+          filteredLanguages = manager.supportedLanguages
+      } else {
+        // 2
+          filteredLanguages = manager.supportedLanguages.filter {
+          $0.name
+            .localizedCaseInsensitiveContains(searchQuery)
+        }
+      }
+    }
+    // MARK - Filters language based on the current search query. Along with .onChange and .onSubmit, the list of languages dynamically changes.
 }
 
 

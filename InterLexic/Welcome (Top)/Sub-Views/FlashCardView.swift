@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FlashCardView: View {
     
-    @EnvironmentObject var favorites: Favorites
+    @EnvironmentObject var flashCardStorage: FlashCardStorage
     var flashCard: FlashCard
     
     var body: some View {

@@ -10,12 +10,14 @@ import SwiftUI
 @main
 struct InterLexicApp: App {
     
-    @StateObject var favorites = Favorites()
+    @StateObject var flashCardStorage = FlashCardStorage()
+    @StateObject var supportedLanguages = TranslatorLanguages()
     
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(favorites)
+                .environmentObject(flashCardStorage)
+                .environmentObject(supportedLanguages)
         }
     }
 }

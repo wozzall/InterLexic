@@ -19,7 +19,7 @@ enum TranslationManagerError: Error {
 class TranslationManager: NSObject, ObservableObject {
     
     static let shared = TranslationManager()
-        
+            
     @Published var supportedLanguages: Array<Language> = []
     
     var sourceLanguageCode: String?
@@ -116,28 +116,26 @@ class TranslationManager: NSObject, ObservableObject {
                 guard let results = results else { completion(.failure(.failToFetch)); return }
                 
                 if let data = results["data"] as? [String: Any], let languages = data["languages"] as? [[String: Any]] {
-                    
-                    for lang in languages {
-                        var languageCode: String?
-                        var languageName: String?
+                    if self.supportedLanguages.isEmpty {
                         
-                        if let code = lang["language"] as? String {
-                            languageCode = code
-                        }
-                        if let name = lang["name"] as? String {
-                            languageName = name
-                        }
-                        if languageName != "" {
-                            self.duplicateChecker(languageName: languageName!)
-                            if self.isDuplicate != true {
+                        for lang in languages {
+                            var languageCode: String?
+                            var languageName: String?
+                            
+                            if let code = lang["language"] as? String {
+                                languageCode = code
+                            }
+                            if let name = lang["name"] as? String {
+                                languageName = name
+                            }
+                            if languageName != ""{
                                 self.supportedLanguages.append(Language(name: languageName!, translatorID: languageCode!, id: UUID()))
-                                self.supportedLanguages.sort()
-                                self.isDuplicate = false
                             }
                         }
+                        self.supportedLanguages.sort()
+                        completion(.success(self.supportedLanguages))
+                        self.isLoading = false
                     }
-                    completion(.success(self.supportedLanguages))
-                    self.isLoading = false
                 } else {
                     completion(.failure(.failToFetch))
                 }
@@ -180,31 +178,19 @@ class TranslationManager: NSObject, ObservableObject {
     }
     
     func fetchLanguage() {
-        if self.supportedLanguages == [] {
-            
-            fetchSupportedLanguages { result in
-                DispatchQueue.main.async {
-                    switch result {
-                        
-                    case .success(let fetchedLanguages):
-                        self.supportedLanguages = fetchedLanguages
-                    case .failure(_):
-                        break
-                        // TODO - fix this.
-                    }
+        
+        fetchSupportedLanguages { result in
+            DispatchQueue.main.async {
+                switch result {
+                    
+                case .success(let fetchedLanguages):
+                    self.supportedLanguages = fetchedLanguages
+                case .failure(_):
+                    break
+                    // TODO - fix this.
                 }
             }
         }
-    }
-    
-    func duplicateChecker(languageName: String) {
-        
-        for language in supportedLanguages {
-            if language.name == languageName {
-                self.isDuplicate = true
-            }
-        }
-        self.isDuplicate = false
     }
 }
 
