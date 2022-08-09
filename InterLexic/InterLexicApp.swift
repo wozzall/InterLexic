@@ -15,7 +15,7 @@ struct InterLexicApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            SplashScreenView()
                 .environmentObject(flashCardStorage)
                 .environmentObject(supportedLanguages)
         }

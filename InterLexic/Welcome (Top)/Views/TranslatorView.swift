@@ -60,6 +60,7 @@ struct TranslatorView: View {
                                 Text(languageA.name)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .multilineTextAlignment(.center)
+                                    .padding(.horizontal)
                             }
                         }
                         .foregroundColor(.white)
@@ -81,6 +82,7 @@ struct TranslatorView: View {
                                 Text(languageB.name)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .multilineTextAlignment(.center)
+                                    .padding(.horizontal)
                             }
                         }
                         .foregroundColor(.white)
