@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct SettingsView: View {
     
@@ -14,15 +15,13 @@ struct SettingsView: View {
     var body: some View {
         NavigationView{
             List {
-                Section {
+                Section(header: Text("Acknowledgements")) {
                     NavigationLink(tag: CreditsView.navigation, selection: $selectedNavigation) {
                         CreditsView()
                     } label: {
                         HStack{
                             Text("Settings_Credits".localized)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.red)
+                            
                         }
                     }
                 }
