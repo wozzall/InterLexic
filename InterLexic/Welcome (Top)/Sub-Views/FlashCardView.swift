@@ -14,8 +14,10 @@ struct FlashCardView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.gray)
+            Color.offWhite
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
                         .foregroundColor(.white)
@@ -41,7 +43,6 @@ struct FlashCardView: View {
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding()
-                
                 Divider()
                     .padding(.horizontal, 22)
                 Text(flashCard.targetString)

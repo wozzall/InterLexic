@@ -28,6 +28,9 @@ struct SplashScreenView: View {
                     .font(.system(.largeTitle, design: .rounded)
                         .weight(.bold).lowercaseSmallCaps())
                     .padding(.bottom)
+                    Text("©2022 George Worrall")
+                        .foregroundColor(.gray)
+                        .opacity(0.7)
                 }
                 .scaleEffect(size)
                 .opacity(opacity)
@@ -39,7 +42,7 @@ struct SplashScreenView: View {
                 }
             }
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                     self.isActive = true
                 }
             }

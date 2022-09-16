@@ -41,17 +41,15 @@ struct TranslatorView: View {
                 } label: {
                     EmptyView()
                 }
-                
                 HStack {
                     Button {
                         viewModel.setDirection(direction: false)
                         didTapSelector()
                     } label: {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.blue)
-                            //
-                                .shadow(color: .gray, radius: 3, x: 0, y: 3)
+                            Color.offWhite
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
                             if languageA.name == "" {
                                 Text("languageSelectors_chooseLanguage".localized)
                                 
@@ -63,7 +61,7 @@ struct TranslatorView: View {
                                     .padding(.horizontal)
                             }
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(.blue)
                     }
                     Image(systemName: "arrow.right")
                         .foregroundColor(.accentColor)
@@ -72,9 +70,9 @@ struct TranslatorView: View {
                         didTapSelector()
                     } label: {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.blue)
-                                .shadow(color: .gray, radius: 3, x: 0, y: 3)
+                            Color.offWhite
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
                             if languageB.name == "" {
                                 Text("languageSelectors_chooseLanguage".localized)
                             }
@@ -85,7 +83,7 @@ struct TranslatorView: View {
                                     .padding(.horizontal)
                             }
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(.blue)
                     }
                 }
                 .frame(height: 50)
@@ -99,7 +97,8 @@ struct TranslatorView: View {
                             .padding()
                             .multilineTextAlignment(.leading)
                             .textFieldStyle(.roundedBorder)
-                            .shadow(radius: 5)
+                            .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
+                            .shadow(color: Color.black.opacity(0.2), radius: 2, x: -5, y: -5)
                             .focused($focusedField, equals: .sourceText)
                     }
                     if translatableText.isEmpty {
@@ -118,57 +117,58 @@ struct TranslatorView: View {
                 }
                 .frame(height: UIScreen.main.bounds.height * 0.33)
                 
-                    HStack{
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.blue)
-                                .shadow(color: .gray, radius: 3, x: 0, y: 3)
-                            Button(action: {
-                                viewModel.defaultLanguageSelector(A: languageA, B: languageB)
-                                viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
-                                
-                            }) {
-                                Text("welcome_screen_translateButton".localized)
-                            }
-                            .buttonStyle(.borderless)
+                HStack{
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.blue)
+                        Button(action: {
+                            viewModel.defaultLanguageSelector(A: languageA, B: languageB)
+                            viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
                             
+                        }) {
+                            Text("welcome_screen_translateButton".localized)
                         }
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.white)                            
-                            
-                            Button(action: {
-                                saveButton()
-                                
-                            }) {
-                                Text("welcome_screen_saveButton".localized)
-                                    .foregroundColor(.blue)
-                            }
-                            .buttonStyle(.borderless)
-                            
-                        }
+                        .buttonStyle(.borderless)
+                        
                     }
-                    .frame(height: 50)
-                    .padding(.horizontal)
-                    .foregroundColor(Color.white)
-                    
-                    TextEditor(text: $viewModel.translatedString)
-                        .multilineTextAlignment(.leading)
-                        .padding()
-                        .textFieldStyle(.roundedBorder)
-                        .shadow(radius: 5)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .frame(height: UIScreen.main.bounds.height * 0.33)
-                        .focused($focusedField, equals: .targetText)
-
-
+                    ZStack{
+                        Color.offWhite
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
+                        
+                        Button(action: {
+                            saveButton()
+                            
+                        }) {
+                            Text("welcome_screen_saveButton".localized)
+                                .foregroundColor(.blue)
+                        }
+                        .buttonStyle(.borderless)
+                        
+                    }
                 }
-                .navigationBarTitle("TabView_Translate".localized)
-                .navigationBarHidden(true)
-                .onAppear(perform: assignDefaultLanguages)
-                .onTapGesture {
-                    focusedField = nil
-                }
+                .frame(height: 50)
+                .padding(.horizontal)
+                .foregroundColor(Color.white)
+                
+                TextEditor(text: $viewModel.translatedString)
+                    .multilineTextAlignment(.leading)
+                    .padding()
+                    .textFieldStyle(.roundedBorder)
+                    .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
+                    .shadow(color: Color.black.opacity(0.2), radius: 2, x: -5, y: -5)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .frame(height: UIScreen.main.bounds.height * 0.33)
+                    .focused($focusedField, equals: .targetText)
+                
+                
+            }
+            .navigationBarTitle("TabView_Translate".localized)
+            .navigationBarHidden(true)
+            .onAppear(perform: assignDefaultLanguages)
+            .onTapGesture {
+                focusedField = nil
+            }
         }
     }
     
@@ -197,8 +197,6 @@ struct TranslatorView: View {
     
     private func saveButton() {
         flashCardStorage.add(FlashCard(sourceLanguage: languageA.name, sourceString: translatableText, targetLanguage: languageB.name, targetString: viewModel.translatedString, id: UUID()))
-        
-        print(flashCardStorage.flashCards)
     }
 }
 

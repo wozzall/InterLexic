@@ -13,13 +13,11 @@ struct CreditsView: View {
             AsyncImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716")) { image in
                 image.resizable()
                 image.cornerRadius(25)
-                image.clipped()
-                image.clipShape(RoundedRectangle(cornerRadius: 25))
+                image.clipShape(Circle())
                 image.frame(width: 50, height: 50, alignment: .center)
             } placeholder: {
                 ProgressView()
             }
-            
         }
     }
 }

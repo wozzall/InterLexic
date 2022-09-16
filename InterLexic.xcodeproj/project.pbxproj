@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD05604128C64D0D004AE5B9 /* FlashCardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05604028C64D0D004AE5B9 /* FlashCardDeckView.swift */; };
 		AD18312E287C6D3800C04EAA /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD18312D287C6D3800C04EAA /* ExtensionArray.swift */; };
 		AD183130287DBB3B00C04EAA /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD18312F287DBB3B00C04EAA /* CardsView.swift */; };
 		AD183132287DC12F00C04EAA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183131287DC12F00C04EAA /* MainView.swift */; };
@@ -30,6 +31,8 @@
 		AD5321402868ABB9004E4F44 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213F2868ABB9004E4F44 /* Language.swift */; };
 		AD642C7328A1232200D1638E /* TranslateLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642C7228A1232200D1638E /* TranslateLanguages.swift */; };
 		AD642C7528A299F400D1638E /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642C7428A299F400D1638E /* SplashScreenView.swift */; };
+		AD642C7728A2B4CC00D1638E /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642C7628A2B4CA00D1638E /* ExtensionColor.swift */; };
+		AD642C7928A2BA1C00D1638E /* FlashCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642C7828A2BA1C00D1638E /* FlashCardDeck.swift */; };
 		AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */; };
 		AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752569286DEFDA00CD30A7 /* ExtensionView.swift */; };
 		AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8259D72811BC0B00CA9805 /* Translation API.swift */; };
@@ -54,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD05604028C64D0D004AE5B9 /* FlashCardDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardDeckView.swift; sourceTree = "<group>"; };
 		AD18312D287C6D3800C04EAA /* ExtensionArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
 		AD18312F287DBB3B00C04EAA /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
 		AD183131287DC12F00C04EAA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 		AD53213F2868ABB9004E4F44 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		AD642C7228A1232200D1638E /* TranslateLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateLanguages.swift; sourceTree = "<group>"; };
 		AD642C7428A299F400D1638E /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		AD642C7628A2B4CA00D1638E /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
+		AD642C7828A2BA1C00D1638E /* FlashCardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardDeck.swift; sourceTree = "<group>"; };
 		AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectorView.swift; sourceTree = "<group>"; };
 		AD752569286DEFDA00CD30A7 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		AD8259D72811BC0B00CA9805 /* Translation API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translation API.swift"; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 				AD642C7428A299F400D1638E /* SplashScreenView.swift */,
 				AD183131287DC12F00C04EAA /* MainView.swift */,
 				AD1DA05B27FCAAD40049444D /* TranslatorView.swift */,
+				AD05604028C64D0D004AE5B9 /* FlashCardDeckView.swift */,
 				AD18312F287DBB3B00C04EAA /* CardsView.swift */,
 				AD1CAA52288EC2C600ED3A99 /* SettingsView.swift */,
 				AD1CAA54288ED26300ED3A99 /* CreditsView.swift */,
@@ -229,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				AD18312D287C6D3800C04EAA /* ExtensionArray.swift */,
+				AD642C7628A2B4CA00D1638E /* ExtensionColor.swift */,
 				AD53213C2866018B004E4F44 /* ExtensionString.swift */,
 				AD752569286DEFDA00CD30A7 /* ExtensionView.swift */,
 			);
@@ -239,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				AD183135287EF47300C04EAA /* FlashCard.swift */,
+				AD642C7828A2BA1C00D1638E /* FlashCardDeck.swift */,
 				AD53213F2868ABB9004E4F44 /* Language.swift */,
 				AD37270E286F3CE500CE4B45 /* LanguageSelection.swift */,
 			);
@@ -400,6 +409,8 @@
 				AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */,
 				AD183132287DC12F00C04EAA /* MainView.swift in Sources */,
 				AD183136287EF47300C04EAA /* FlashCard.swift in Sources */,
+				AD642C7728A2B4CC00D1638E /* ExtensionColor.swift in Sources */,
+				AD642C7928A2BA1C00D1638E /* FlashCardDeck.swift in Sources */,
 				AD1CAA53288EC2C700ED3A99 /* SettingsView.swift in Sources */,
 				AD642C7328A1232200D1638E /* TranslateLanguages.swift in Sources */,
 				AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */,
@@ -415,6 +426,7 @@
 				AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */,
 				AD183134287EEC7300C04EAA /* FlashCardStorage.swift in Sources */,
 				AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */,
+				AD05604128C64D0D004AE5B9 /* FlashCardDeckView.swift in Sources */,
 				ADA3A2B52875E4C700193F87 /* InterLexic.xcdatamodeld in Sources */,
 				AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */,
 				AD18312E287C6D3800C04EAA /* ExtensionArray.swift in Sources */,
@@ -605,6 +617,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -637,6 +650,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
