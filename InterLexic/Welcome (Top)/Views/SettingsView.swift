@@ -15,7 +15,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationView{
             List {
-                Section(header: Text("Acknowledgements")) {
+                Section(header: Text("Settings_section_acknowledgements".localized)) {
                     NavigationLink(tag: CreditsView.navigation, selection: $selectedNavigation) {
                         CreditsView()
                     } label: {

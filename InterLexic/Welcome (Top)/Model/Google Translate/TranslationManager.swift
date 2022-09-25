@@ -140,6 +140,7 @@ class TranslationManager: NSObject, ObservableObject {
                     }
                 } else {
                     completion(.failure(.failToFetch))
+                    self.isShowingAlert = true
                 }
             }
         }
@@ -188,8 +189,7 @@ class TranslationManager: NSObject, ObservableObject {
                 case .success(let fetchedLanguages):
                     self.supportedLanguages = fetchedLanguages
                 case .failure(_):
-                    break
-                    // TODO - fix this.
+                    self.isShowingAlert = true
                 }
             }
         }

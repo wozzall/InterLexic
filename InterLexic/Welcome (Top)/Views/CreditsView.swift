@@ -19,76 +19,73 @@ struct CreditsView: View {
     @State var presentingAlert = false
     
     init() {
-        biography = "Linguist turned iOS Developer. Currently working on iOS App InterLexic and tvOS App Frikanalen."
+        biography = "Linguist turned iOS Developer.\n Currently working on iOS App InterLexic and tvOS App Frikanalen."
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ZStack {
-                    WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
-                        .resizable()
-                        .frame(width: 200, height: 200, alignment: .center)
-                        .clipShape(Circle())
-                        .padding()
-                }
-                Spacer()
-                ZStack {
-                    Color.offWhite
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                    Text(biography)
-                        .padding()
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                .padding()
-                Spacer()
-                HStack{
-                    Button {
-                        didTapGitHub()
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(Color.offWhite)
-                                .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                            Text("GitHub")
-                                .padding()
-                        }
-                    }
-                    
-                    
-                    Spacer()
-                    
-                    Button {
-                        didTapLinkedIn()
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(Color.offWhite)
-                                .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                            Text("LinkedIn")
-                                .padding()
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        didTapGitHub()
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(Color.offWhite)
-                                .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                            Image(systemName: "envelope.fill")
-                                .padding()
-                        }
-                    }
-                }
-                .padding()
+        VStack(spacing: 20) {
+            ZStack {
+                WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
+                    .resizable()
+                    .frame(width: 200, height: 200, alignment: .center)
+                    .clipShape(Circle())
+                    .padding()
+                    .shadow(color: .gray, radius: 2, x: 1, y: 1)
             }
+            Text("George Worrall")
+                .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .padding()
+            Text(biography)
+                .multilineTextAlignment(.center)
+                .padding()
+                .fixedSize(horizontal: false, vertical: true)
+            
+            Spacer()
+            HStack{
+                Button {
+                    didTapGitHub()
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 15)
+                            .foregroundColor(Color.offWhite)
+                            .shadow(color: .gray, radius: 2, x: 1, y: 1)
+                        Text("GitHub")
+                            .padding()
+                    }
+                }
+                Button {
+                    didTapLinkedIn()
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 15)
+                            .foregroundColor(Color.offWhite)
+                            .shadow(color: .gray, radius: 2, x: 1, y: 1)
+                        Text("LinkedIn")
+                            .padding()
+                    }
+                }
+                Button {
+                    didTapMail()
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 15)
+                            .foregroundColor(Color.offWhite)
+                            .shadow(color: .gray, radius: 2, x: 1, y: 1)
+                        Image(systemName: "envelope.fill")
+                            .padding()
+                    }
+                }
+            }
+            .padding()
+            Spacer()
         }
+        .background(
+            Color.gray
+                .opacity(0.2)
+        )
     }
+    
     func didTapGitHub() {
         UIApplication.shared.open(URL(string: "https://github.com/wozzall")!)
     }
@@ -113,8 +110,8 @@ struct CreditsView: View {
         //
         //            presentingAlert = true
         //        }
-//    }
-}
+        //    }
+    }
 }
 
 

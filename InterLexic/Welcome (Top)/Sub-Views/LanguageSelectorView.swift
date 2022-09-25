@@ -42,10 +42,14 @@ struct LanguageSelectorView: View {
         .onSubmit(of: .search) {
             filterLanguages()
         }
-        
         .navigationTitle("languageSelectors_chooseLanguage".localized)
         .onAppear(perform: manager.fetchLanguage)
         .onDisappear(perform: testLanguageSelection)
+        .alert(isPresented: $manager.isShowingAlert) {
+            Alert(title: Text("TMerror_error".localized), message: Text("TMError_fetchLanguages".localized), dismissButton: .default(Text("OK")))
+        }
+            
+        
         .opacity(manager.isLoading ? 0 : 1)
         ProgressView()
             .opacity(manager.isLoading ? 1 : 0)

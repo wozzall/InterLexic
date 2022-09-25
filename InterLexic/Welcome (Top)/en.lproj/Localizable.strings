@@ -52,6 +52,8 @@
 
 //MARK - Settings Labels
 
+"Settings_section_acknowledgements" = "Acknowledgements";
+
 "Settings_Credits" = "Credits";
 
 "Settings_License" = "API License";
