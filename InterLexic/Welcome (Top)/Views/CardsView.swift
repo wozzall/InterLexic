@@ -15,29 +15,33 @@ struct CardsView: View {
     
     var body: some View {
         ScrollView(.vertical){
-            LazyVStack{
+            List{
                 ForEach(flashCardStorage.flashCardDecks) { flashCardDeck in
                     Text("\(flashCardDeck.sourceLanguage + " -> " + flashCardDeck.targetLanguage)")
                     ForEach(flashCardDeck.flashCards) { flashCard in
                         HStack{
                             FlashCardView(flashCard: flashCard)
-                            Button {
-                                flashCardStorage.removeCard(flashCard)
-                            } label: {
-                                ZStack{
-                                    Circle()
-                                        .foregroundColor(.gray)
-                                        .opacity(1)
-                                        .frame(width: 30, height: 30, alignment: .trailing)
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.white)
-                                }
-                            }
-                            Spacer()
+//                            Button {
+//                                flashCardStorage.removeCard
+//                            } label: {
+//                                ZStack{
+//                                    Circle()
+//                                        .foregroundColor(.gray)
+//                                        .opacity(1)
+//                                        .frame(width: 30, height: 30, alignment: .trailing)
+//                                    Image(systemName: "trash")
+//                                        .foregroundColor(.white)
+//                                }
+//                            }
+//                            Spacer()
                         }
                     }
                     
                 }
+                .onDelete(perform: flashCardStorage.removeCard)
+            }
+            .toolbar {
+                EditButton()
             }
         }
         .padding()

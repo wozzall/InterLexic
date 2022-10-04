@@ -12,7 +12,7 @@ struct Language: Identifiable, Hashable, Comparable, Codable {
     
     var name: String
     var translatorID: String
-    var id: UUID
+    var id = UUID()
     
     static func < (lhs: Language, rhs: Language) -> Bool {
         lhs.name < rhs.name

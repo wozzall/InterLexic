@@ -12,12 +12,15 @@ struct InterLexicApp: App {
     
     @StateObject var flashCardStorage = FlashCardStorage()
     @StateObject var supportedLanguages = TranslatorLanguages()
+    @StateObject var networkMonitor = Monitor()
+
     
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
                 .environmentObject(flashCardStorage)
                 .environmentObject(supportedLanguages)
+                .environmentObject(networkMonitor)
         }
     }
 }

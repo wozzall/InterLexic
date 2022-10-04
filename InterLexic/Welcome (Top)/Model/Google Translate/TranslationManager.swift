@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Network
 
 enum TranslationManagerError: Error {
     
@@ -17,6 +18,8 @@ enum TranslationManagerError: Error {
 
 
 class TranslationManager: NSObject, ObservableObject {
+    
+    let network = Monitor()
     
     static let shared = TranslationManager()
     
@@ -30,11 +33,13 @@ class TranslationManager: NSObject, ObservableObject {
     
     var targetLanguageCode: String?
     
-    var isLoading: Bool = true
+    var isLoading: Bool = false
     
     var isDuplicate: Bool = false
     
     @Published var isShowingAlert = false
+    
+    
     
     override init() {
         super.init()
@@ -51,8 +56,9 @@ class TranslationManager: NSObject, ObservableObject {
             if let url = components.url {
                 var request = URLRequest(url: url)
                 request.httpMethod = api.getHTTPMethod()
-                
+
                 let session = URLSession(configuration: .default)
+                session.configuration.timeoutIntervalForRequest = 5
                 let task = session.dataTask(with: request) { (results, response, error) in
                     if let error = error {
                         print(error)
@@ -79,6 +85,7 @@ class TranslationManager: NSObject, ObservableObject {
     }
     
     func detectLanguage(forText text: String, completion: @escaping (_ language: String?) -> Void) {
+        
         
         let urlParams = ["key": apiKey, "q": text]
         
@@ -182,12 +189,15 @@ class TranslationManager: NSObject, ObservableObject {
     
     func fetchLanguage() {
         
+        self.isLoading = true
+        
         fetchSupportedLanguages { result in
             DispatchQueue.main.async {
                 switch result {
                     
                 case .success(let fetchedLanguages):
                     self.supportedLanguages = fetchedLanguages
+                    self.isLoading = false
                 case .failure(_):
                     self.isShowingAlert = true
                 }

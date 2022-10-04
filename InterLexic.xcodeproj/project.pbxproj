@@ -26,7 +26,7 @@
 		AD1DA07527FCAADB0049444D /* InterLexicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA07427FCAADB0049444D /* InterLexicUITests.swift */; };
 		AD1DA07727FCAADB0049444D /* InterLexicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1DA07627FCAADB0049444D /* InterLexicUITestsLaunchTests.swift */; };
 		AD1DA08527FCAC3E0049444D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD1DA08727FCAC3E0049444D /* Localizable.strings */; };
-		AD37270F286F3CE500CE4B45 /* LanguageSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD37270E286F3CE500CE4B45 /* LanguageSelection.swift */; };
+		AD24DD7C28E3435300793B85 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD7B28E3435300793B85 /* Network.swift */; };
 		AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */; };
 		AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85ED280089E200030EF2 /* TranslationManager.swift */; };
 		AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213C2866018B004E4F44 /* ExtensionString.swift */; };
@@ -84,7 +84,7 @@
 		AD1DA08927FCAC410049444D /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AD1DA08A27FCAC430049444D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AD1DA08B27FCAC440049444D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AD37270E286F3CE500CE4B45 /* LanguageSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelection.swift; sourceTree = "<group>"; };
+		AD24DD7B28E3435300793B85 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator_ViewModel.swift; sourceTree = "<group>"; };
 		AD4B85ED280089E200030EF2 /* TranslationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
 		AD53213C2866018B004E4F44 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
@@ -136,7 +136,6 @@
 		AD183137287F2D1900C04EAA /* Sub-Views */ = {
 			isa = PBXGroup;
 			children = (
-				AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */,
 				AD183138287F2D3800C04EAA /* FlashCardView.swift */,
 			);
 			path = "Sub-Views";
@@ -198,12 +197,21 @@
 			path = InterLexicUITests;
 			sourceTree = "<group>";
 		};
+		AD24DD7D28E3439E00793B85 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AD24DD7B28E3435300793B85 /* Network.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		AD4B85EB280089C200030EF2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				AD642C7428A299F400D1638E /* SplashScreenView.swift */,
 				AD183131287DC12F00C04EAA /* MainView.swift */,
 				AD1DA05B27FCAAD40049444D /* TranslatorView.swift */,
+				AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */,
 				AD05604028C64D0D004AE5B9 /* FlashCardDeckView.swift */,
 				AD18312F287DBB3B00C04EAA /* CardsView.swift */,
 				AD1CAA52288EC2C600ED3A99 /* SettingsView.swift */,
@@ -231,6 +239,7 @@
 		AD4B85F028008D0F00030EF2 /* Welcome (Top) */ = {
 			isa = PBXGroup;
 			children = (
+				AD24DD7D28E3439E00793B85 /* Services */,
 				AD4B85EF280089E700030EF2 /* Model */,
 				AD4B85EB280089C200030EF2 /* Views */,
 				AD183137287F2D1900C04EAA /* Sub-Views */,
@@ -262,7 +271,6 @@
 				AD183135287EF47300C04EAA /* FlashCard.swift */,
 				AD642C7828A2BA1C00D1638E /* FlashCardDeck.swift */,
 				AD53213F2868ABB9004E4F44 /* Language.swift */,
-				AD37270E286F3CE500CE4B45 /* LanguageSelection.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -425,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD24DD7C28E3435300793B85 /* Network.swift in Sources */,
 				AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */,
 				AD183132287DC12F00C04EAA /* MainView.swift in Sources */,
 				AD183136287EF47300C04EAA /* FlashCard.swift in Sources */,
@@ -434,7 +443,6 @@
 				AD642C7328A1232200D1638E /* TranslateLanguages.swift in Sources */,
 				AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */,
 				AD183130287DBB3B00C04EAA /* CardsView.swift in Sources */,
-				AD37270F286F3CE500CE4B45 /* LanguageSelection.swift in Sources */,
 				AD1DA05C27FCAAD40049444D /* TranslatorView.swift in Sources */,
 				AD1CAA55288ED26400ED3A99 /* CreditsView.swift in Sources */,
 				AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */,

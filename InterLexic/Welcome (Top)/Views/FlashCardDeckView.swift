@@ -12,31 +12,29 @@ struct FlashCardDeckView: View {
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     
     @State var selectedNavigation: String?
-
+    
+    @State var selection: FlashCardDeck?
+    
     var body: some View {
         NavigationView {
             List {
                 Section {
                     ForEach(flashCardStorage.flashCardDecks) { flashCardDeck in
-                            NavigationLink(tag: CardsView.navigation, selection: $selectedNavigation) {
-                                CardsView(cardDeck: flashCardDeck)
-                            } label: {
-                                HStack {
+                        NavigationLink(tag: CardsView.navigation, selection: $selectedNavigation) {
+                            CardsView(cardDeck: flashCardDeck)
+                        } label: {
+                            HStack {
                                 Text("\(flashCardDeck.sourceLanguage)" + " -> " + "\(flashCardDeck.targetLanguage)")
-                                Spacer()
-                                    Button {
-                                        flashCardStorage.removeDeck(flashCardDeck)
-                                    } label: {
-                                        Image(systemName: "trash.circle.fill")
-                                    }
-
-                                }
+                                
                             }
+                        }
                     }
-                    
+                    .onDelete(perform: flashCardStorage.removeDeck)
                 }
             }
-            
+            .toolbar {
+                EditButton()
+            }
         }
     }
 }

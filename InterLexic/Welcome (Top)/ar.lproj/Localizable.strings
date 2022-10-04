@@ -51,6 +51,16 @@
 
 "TMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";
 
+//MARK - Network Errors
+
+"NetworkError_Error" = "Error!";
+
+"NetworkError_NoConnection" = "Unable to connect to the internet! Configure network settings and try again.";
+
+//MARK - Progress View
+
+"ProgressView_Loading" = "Loading";
+
 //MARK - Settings Labels
 
 "Settings_section_acknowledgements" = "Acknowledgements";

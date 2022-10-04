@@ -58,21 +58,17 @@ class FlashCardStorage: ObservableObject {
         save()
     }
     
-    func removeCard(_ flashCard: FlashCard) {
+    func removeCard(at offsets: IndexSet) {
         objectWillChange.send()
         for var flashCardDeck in flashCardDecks {
-            if let index = flashCardDeck.flashCards.firstIndex(of: flashCard) {
-                flashCardDeck.flashCards.remove(at: index)
-            }
+            flashCardDeck.flashCards.remove(atOffsets: offsets)
         }
         save()
     }
     
-    func removeDeck(_ flashCardDeck: FlashCardDeck) {
+    func removeDeck(at offsets: IndexSet) {
         objectWillChange.send()
-        if let index = flashCardDecks.firstIndex(of: flashCardDeck) {
-            flashCardDecks.remove(at: index)
-        }
+        flashCardDecks.remove(atOffsets: offsets)
         save()
     }
 

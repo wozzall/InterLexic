@@ -14,6 +14,8 @@ private enum Field: Int, CaseIterable {
 
 struct TranslatorView: View {
     
+    
+    @EnvironmentObject var networkMonitor: Monitor
     @EnvironmentObject var supportedLanguages: TranslatorLanguages
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     
@@ -49,7 +51,7 @@ struct TranslatorView: View {
                         ZStack {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
+                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                             if languageA.name == "" {
                                 Text("languageSelectors_chooseLanguage".localized)
                                 
@@ -72,7 +74,7 @@ struct TranslatorView: View {
                         ZStack {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
+                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                             if languageB.name == "" {
                                 Text("languageSelectors_chooseLanguage".localized)
                             }
@@ -97,8 +99,7 @@ struct TranslatorView: View {
                             .padding()
                             .multilineTextAlignment(.leading)
                             .textFieldStyle(.roundedBorder)
-                            .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
-                            .shadow(color: Color.black.opacity(0.2), radius: 2, x: -5, y: -5)
+                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                             .focused($focusedField, equals: .sourceText)
                     }
                     if translatableText.isEmpty {
@@ -121,6 +122,7 @@ struct TranslatorView: View {
                     ZStack{
                         RoundedRectangle(cornerRadius: 15)
                             .fill(.blue)
+                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                         Button(action: {
                             viewModel.defaultLanguageSelector(A: languageA, B: languageB)
                             viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
@@ -134,7 +136,7 @@ struct TranslatorView: View {
                     ZStack{
                         Color.offWhite
                             .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
+                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                         
                         Button(action: {
                             saveButton()
@@ -155,8 +157,7 @@ struct TranslatorView: View {
                     .multilineTextAlignment(.leading)
                     .padding()
                     .textFieldStyle(.roundedBorder)
-                    .shadow(color: Color.black.opacity(0.2), radius: 2, x: 5, y: 5)
-                    .shadow(color: Color.black.opacity(0.2), radius: 2, x: -5, y: -5)
+                    .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .frame(height: UIScreen.main.bounds.height * 0.33)
                     .focused($focusedField, equals: .targetText)
