@@ -15,6 +15,11 @@ struct FlashCardDeckView: View {
     
     @State var selection: FlashCardDeck?
     
+    init() {
+        UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
+    }
+    
+    
     var body: some View {
         NavigationView {
             List {
@@ -35,6 +40,7 @@ struct FlashCardDeckView: View {
             .toolbar {
                 EditButton()
             }
+            .navigationBarTitle(Text("Saved Flashcard Decks"))
         }
     }
 }
