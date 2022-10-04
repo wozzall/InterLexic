@@ -12,7 +12,7 @@ struct LanguageSelectorView: View {
     @EnvironmentObject var networkMonitor: Monitor
     @Environment(\.presentationMode) var presentationMode
     
-    @EnvironmentObject var supportedLanguages: TranslatorLanguages
+//    @EnvironmentObject var supportedLanguages: TranslatorLanguages
     
     @ObservedObject var manager: TranslationManager
     

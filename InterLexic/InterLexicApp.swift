@@ -11,7 +11,7 @@ import SwiftUI
 struct InterLexicApp: App {
     
     @StateObject var flashCardStorage = FlashCardStorage()
-    @StateObject var supportedLanguages = TranslatorLanguages()
+//    @StateObject var supportedLanguages = TranslatorLanguages()
     @StateObject var networkMonitor = Monitor()
 
     
@@ -19,7 +19,7 @@ struct InterLexicApp: App {
         WindowGroup {
             SplashScreenView()
                 .environmentObject(flashCardStorage)
-                .environmentObject(supportedLanguages)
+//                .environmentObject(supportedLanguages)
                 .environmentObject(networkMonitor)
         }
     }

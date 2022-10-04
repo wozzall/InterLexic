@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import ToastSwiftUI
 
 private enum Field: Int, CaseIterable {
     case sourceText, targetText
@@ -16,7 +17,7 @@ struct TranslatorView: View {
     
     
     @EnvironmentObject var networkMonitor: Monitor
-    @EnvironmentObject var supportedLanguages: TranslatorLanguages
+//    @EnvironmentObject var supportedLanguages: TranslatorLanguages
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     
     @ObservedObject var manager = TranslationManager()
@@ -32,6 +33,8 @@ struct TranslatorView: View {
     @State var languageB: Language
     
     @State var sameLanguage: Bool = false
+    @State var tappedSave: Bool = false
+    @State var isDisabled: Bool = true
     
     @FocusState private var focusedField: Field?
     
@@ -126,7 +129,8 @@ struct TranslatorView: View {
                         Button(action: {
                             viewModel.defaultLanguageSelector(A: languageA, B: languageB)
                             viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
-                            
+                            isDisabled = false
+                            focusedField = nil
                         }) {
                             Text("welcome_screen_translateButton".localized)
                         }
@@ -134,20 +138,42 @@ struct TranslatorView: View {
                         
                     }
                     ZStack{
-                        Color.offWhite
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                        
-                        Button(action: {
-                            saveButton()
+                        if isDisabled {
+                            Color.offWhite
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                .opacity(0.6)
                             
-                        }) {
-                            Text("welcome_screen_saveButton".localized)
-                                .foregroundColor(.blue)
+                            Button(action: {
+                                saveButton()
+                                self.tappedSave = true
+                                
+                            }) {
+                                Text("welcome_screen_saveButton".localized)
+                                    .foregroundColor(.black)
+                                    .opacity(0.6)
+                            }
+                            .buttonStyle(.borderless)
+                            .disabled(isDisabled)
                         }
-                        .buttonStyle(.borderless)
+                        else {
+                            Color.blue
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                            
+                            Button(action: {
+                                saveButton()
+                                self.tappedSave = true
+                                
+                            }) {
+                                Text("welcome_screen_saveButton".localized)
+                                    .foregroundColor(.white)
+                            }
+                            .buttonStyle(.borderless)
+                        }
+                        
                         
                     }
+                    
                 }
                 .frame(height: 50)
                 .padding(.horizontal)
@@ -161,6 +187,8 @@ struct TranslatorView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .frame(height: UIScreen.main.bounds.height * 0.33)
                     .focused($focusedField, equals: .targetText)
+                    .toast(isPresenting: $tappedSave, message: "Translation saved!")
+
                 
                 
             }

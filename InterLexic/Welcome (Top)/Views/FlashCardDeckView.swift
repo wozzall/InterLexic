@@ -19,23 +19,23 @@ struct FlashCardDeckView: View {
         UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
     }
     
-    
     var body: some View {
         NavigationView {
             List {
-                Section {
-                    ForEach(flashCardStorage.flashCardDecks) { flashCardDeck in
-                        NavigationLink(tag: CardsView.navigation, selection: $selectedNavigation) {
-                            CardsView(cardDeck: flashCardDeck)
-                        } label: {
-                            HStack {
-                                Text("\(flashCardDeck.sourceLanguage)" + " -> " + "\(flashCardDeck.targetLanguage)")
-                                
-                            }
+                ForEach(flashCardStorage.flashCardDecks, id: \.id) { flashCardDeck in
+                    NavigationLink(tag: CardsView.navigation, selection: $selectedNavigation) {
+                        CardsView(cardDeck: flashCardDeck)
+                    } label: {
+                        HStack {
+                            Text(flashCardDeck.sourceLanguage)
+                            Image(systemName: "arrow.right")
+                                .opacity(0.7)
+                            Text(flashCardDeck.targetLanguage)
+                            
                         }
                     }
-                    .onDelete(perform: flashCardStorage.removeDeck)
                 }
+                .onDelete(perform: flashCardStorage.removeDeck)
             }
             .toolbar {
                 EditButton()

@@ -17,6 +17,15 @@
         "revision" : "83d46c08b5027727955fe83f67be4388c3aae65b",
         "version" : "2.1.0"
       }
+    },
+    {
+      "identity" : "toastswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/huynguyencong/ToastSwiftUI.git",
+      "state" : {
+        "revision" : "fc621e168dd8b308a1a4a6ea3bf6a85716d3d361",
+        "version" : "0.3.4"
+      }
     }
   ],
   "version" : 2

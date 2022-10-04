@@ -21,8 +21,8 @@ class FlashCardStorage: ObservableObject {
                 return
             }
         }
-        let sampleDeck = FlashCardDeck(id: UUID(), sourceLanguage: "English", targetLanguage: "Chinese", flashCards: [
-            FlashCard(sourceLanguage: "English", sourceString: "This is a sample flashcard", targetLanguage: "Chinese", targetString: "这是闪卡例子", id: UUID())])
+        let sampleDeck = FlashCardDeck(id: UUID(), sourceLanguage: "English", targetLanguage: "Chinese (Simplified)", flashCards: [
+            FlashCard(sourceLanguage: "English", sourceString: "This is a sample flashcard", targetLanguage: "Chinese (Simplified)", targetString: "这是闪卡例子", id: UUID())])
         flashCardDecks = [sampleDeck]
     }
     
@@ -45,15 +45,16 @@ class FlashCardStorage: ObservableObject {
     
     func add(_ flashCard: FlashCard) {
         objectWillChange.send()
-        for var flashCardDeck in flashCardDecks {
+        for var flashCardDeck in self.flashCardDecks {
             if flashCard.sourceLanguage == flashCardDeck.sourceLanguage && flashCard.targetLanguage == flashCardDeck.targetLanguage {
                 flashCardDeck.flashCards.append(flashCard)
                 save()
                 return
             }
-            var newDeck = FlashCardDeck(id: UUID(), sourceLanguage: flashCard.sourceLanguage, targetLanguage: flashCard.targetLanguage, flashCards: [])
-            newDeck.flashCards.append(flashCard)
-            flashCardDecks.append(newDeck)
+            else {
+                var newDeck = FlashCardDeck(id: UUID(), sourceLanguage: flashCard.sourceLanguage, targetLanguage: flashCard.targetLanguage, flashCards: [flashCard])
+                self.flashCardDecks.append(newDeck)
+            }
         }
         save()
     }
