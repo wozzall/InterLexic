@@ -41,42 +41,42 @@ struct CreditsView: View {
                 .padding()
                 .fixedSize(horizontal: false, vertical: true)
             
-            Spacer()
             HStack{
                 Button {
                     didTapGitHub()
                 } label: {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 15)
+                        RoundedRectangle(cornerRadius: 5)
                             .foregroundColor(Color.offWhite)
                             .shadow(color: .gray, radius: 2, x: 1, y: 1)
                         Text("GitHub")
-                            .padding()
                     }
                 }
+            
                 Button {
                     didTapLinkedIn()
                 } label: {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 15)
+                        RoundedRectangle(cornerRadius: 5)
                             .foregroundColor(Color.offWhite)
                             .shadow(color: .gray, radius: 2, x: 1, y: 1)
                         Text("LinkedIn")
-                            .padding()
                     }
                 }
+
                 Button {
                     didTapMail()
                 } label: {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 15)
+                        RoundedRectangle(cornerRadius: 5)
                             .foregroundColor(Color.offWhite)
                             .shadow(color: .gray, radius: 2, x: 1, y: 1)
                         Image(systemName: "envelope.fill")
-                            .padding()
                     }
                 }
+
             }
+            .frame(height: 50)
             .padding()
             Spacer()
         }

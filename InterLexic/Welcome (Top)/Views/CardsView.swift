@@ -14,28 +14,10 @@ struct CardsView: View {
     @State var cardDeck: FlashCardDeck
     
     var body: some View {
-        ScrollView(.vertical){
             List{
                 ForEach(cardDeck.flashCards) { flashCard in
-                    VStack(alignment: .leading){
-                        Text(flashCard.sourceString)
-                            .opacity(0.8)
-                        Text(flashCard.targetString)
-                            .bold()
-                        //                            Button {
-                        //                                flashCardStorage.removeCard
-                        //                            } label: {
-                        //                                ZStack{
-                        //                                    Circle()
-                        //                                        .foregroundColor(.gray)
-                        //                                        .opacity(1)
-                        //                                        .frame(width: 30, height: 30, alignment: .trailing)
-                        //                                    Image(systemName: "trash")
-                        //                                        .foregroundColor(.white)
-                        //                                }
-                        //                            }
-                        //                            Spacer()
-                    }
+                    FlashCardView(source: flashCard.sourceString, target: flashCard.targetString)
+                        .padding()
                 }
                 .onDelete(perform: flashCardStorage.removeCard)
             }
@@ -47,7 +29,6 @@ struct CardsView: View {
             .onAppear {
                 self.flashCardStorage.flashCardDecks = sortByAlphabetical()
             }
-        }
     }
 
     private func sortByAlphabetical() -> Array<FlashCardDeck> {

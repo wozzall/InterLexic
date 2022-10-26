@@ -21,7 +21,7 @@ class FlashCardStorage: ObservableObject {
                 return
             }
         }
-        let sampleDeck = FlashCardDeck(id: UUID(), sourceLanguage: "English", targetLanguage: "Chinese (Simplified)", flashCards: [
+        let sampleDeck = FlashCardDeck(id: UUID(), name: "English to Chinese (Simplified)" , sourceLanguage: "English", targetLanguage: "Chinese (Simplified)",  flashCards: [
             FlashCard(sourceLanguage: "English", sourceString: "This is a sample flashcard", targetLanguage: "Chinese (Simplified)", targetString: "这是闪卡例子", id: UUID())])
         flashCardDecks = [sampleDeck]
     }
@@ -52,7 +52,7 @@ class FlashCardStorage: ObservableObject {
                 return
             }
             else {
-                var newDeck = FlashCardDeck(id: UUID(), sourceLanguage: flashCard.sourceLanguage, targetLanguage: flashCard.targetLanguage, flashCards: [flashCard])
+                let newDeck = FlashCardDeck(id: UUID(), name: flashCard.sourceLanguage + " to " + flashCard.targetLanguage, sourceLanguage: flashCard.sourceLanguage, targetLanguage: flashCard.targetLanguage, flashCards: [flashCard])
                 self.flashCardDecks.append(newDeck)
             }
         }

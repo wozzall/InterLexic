@@ -12,7 +12,7 @@ struct LanguageSelectorView: View {
     @EnvironmentObject var networkMonitor: Monitor
     @Environment(\.presentationMode) var presentationMode
     
-//    @EnvironmentObject var supportedLanguages: TranslatorLanguages
+    //    @EnvironmentObject var supportedLanguages: TranslatorLanguages
     
     @ObservedObject var manager: TranslationManager
     
@@ -53,13 +53,12 @@ struct LanguageSelectorView: View {
         .alert(isPresented: $manager.isShowingAlert) {
             Alert(title: Text("TMerror_error".localized), message: Text("TMError_fetchLanguages".localized), dismissButton: .default(Text("OK")))
         }
-        
         .alert(isPresented: $networkMonitor.isDisconnected) {
             Alert(title: Text("NetworkError_Error".localized), message: Text("NetworkError_NoConnection".localized), dismissButton: .destructive(Text("Ok!"), action: {
                 presentationMode.wrappedValue.dismiss()
             })
             )}
-      
+        
         
     }
     
@@ -90,7 +89,7 @@ struct LanguageSelectorView: View {
     func filterLanguages() {
         if searchQuery.isEmpty {
             // 1
-            filteredLanguages = manager.supportedLanguages
+            filteredLanguages = Array(Set(manager.supportedLanguages))
         } else {
             // 2
             filteredLanguages = manager.supportedLanguages.filter {

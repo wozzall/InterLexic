@@ -12,7 +12,6 @@ struct FlashCardDeckView: View {
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     
     @State var selectedNavigation: String?
-    
     @State var selection: FlashCardDeck?
     
     init() {
@@ -26,13 +25,7 @@ struct FlashCardDeckView: View {
                     NavigationLink(tag: CardsView.navigation, selection: $selectedNavigation) {
                         CardsView(cardDeck: flashCardDeck)
                     } label: {
-                        HStack {
-                            Text(flashCardDeck.sourceLanguage)
-                            Image(systemName: "arrow.right")
-                                .opacity(0.7)
-                            Text(flashCardDeck.targetLanguage)
-                            
-                        }
+                        Text(flashCardDeck.name)
                     }
                 }
                 .onDelete(perform: flashCardStorage.removeDeck)
