@@ -13,18 +13,18 @@ struct FlashCardDeckView: View {
     
     @State var selectedNavigation: String?
     @State var selection: FlashCardDeck?
+    var defaultDeck: FlashCardDeck
     
     init() {
         UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
+        defaultDeck = FlashCardDeck(id: UUID(), name: "Error", sourceLanguage: "English", targetLanguage: "Chinese", flashCards: [])
     }
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(flashCardStorage.flashCardDecks, id: \.id) { flashCardDeck in
-                    NavigationLink(tag: CardsView.navigation, selection: $selectedNavigation) {
-                        CardsView(cardDeck: flashCardDeck)
-                    } label: {
+                    NavigationLink(destination: CardsView(cardDeck: flashCardDeck)) {
                         Text(flashCardDeck.name)
                     }
                 }

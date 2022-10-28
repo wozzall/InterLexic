@@ -25,7 +25,6 @@ struct CardsView: View {
                 EditButton()
             }
             .navigationTitle(Text("\(cardDeck.sourceLanguage + " to " + cardDeck.targetLanguage)"))
-            .padding()
             .onAppear {
                 self.flashCardStorage.flashCardDecks = sortByAlphabetical()
             }
