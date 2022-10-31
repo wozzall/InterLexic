@@ -130,6 +130,7 @@
 		AD05604728D4C5B4004AE5B9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				ADC0CFF428731E6D006B2824 /* Google Translate */,
 				AD05604528D4C590004AE5B9 /* MailDelegate.swift */,
 			);
 			path = Managers;
@@ -241,7 +242,6 @@
 		AD4B85EF280089E700030EF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ADC0CFF428731E6D006B2824 /* Google Translate */,
 			);
 			path = Model;
 			sourceTree = "<group>";

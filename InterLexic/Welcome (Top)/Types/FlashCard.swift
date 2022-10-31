@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FlashCard: Identifiable, Hashable, Codable, Comparable {
+struct FlashCard: Identifiable, Hashable, Codable, Comparable, Equatable {
     
     var sourceLanguage: String
     var sourceString: String

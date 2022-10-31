@@ -8,7 +8,7 @@
 import Foundation
 
 class FlashCardStorage: ObservableObject {
-        
+    
     @Published var flashCardDecks: Array<FlashCardDeck>
     private var saveKey = "flashCardDecks"
     
@@ -21,7 +21,7 @@ class FlashCardStorage: ObservableObject {
                 return
             }
         }
-        let sampleDeck = FlashCardDeck(id: UUID(), name: "English to Chinese (Simplified)" , sourceLanguage: "English", targetLanguage: "Chinese (Simplified)",  flashCards: [
+        let sampleDeck = FlashCardDeck(id: UUID(), name: "Sample Deck" , sourceLanguage: "English", targetLanguage: "Chinese (Simplified)",  flashCards: [
             FlashCard(sourceLanguage: "English", sourceString: "This is a sample flashcard", targetLanguage: "Chinese (Simplified)", targetString: "这是闪卡例子", id: UUID())])
         flashCardDecks = [sampleDeck]
     }
@@ -45,18 +45,20 @@ class FlashCardStorage: ObservableObject {
     
     func add(_ flashCard: FlashCard) {
         objectWillChange.send()
-        for var flashCardDeck in self.flashCardDecks {
-            if flashCard.sourceLanguage == flashCardDeck.sourceLanguage && flashCard.targetLanguage == flashCardDeck.targetLanguage {
-                flashCardDeck.flashCards.append(flashCard)
+        let newLanguagePair = flashCard.sourceLanguage + flashCard.targetLanguage
+        for var deck in self.flashCardDecks {
+            let existingLanguagePair = deck.sourceLanguage + deck.targetLanguage
+            if newLanguagePair == existingLanguagePair {
+                deck.flashCards.append(flashCard)
                 save()
                 return
             }
-            else {
-                let newDeck = FlashCardDeck(id: UUID(), name: flashCard.sourceLanguage + " to " + flashCard.targetLanguage, sourceLanguage: flashCard.sourceLanguage, targetLanguage: flashCard.targetLanguage, flashCards: [flashCard])
-                self.flashCardDecks.append(newDeck)
-            }
         }
+        let newDeck = FlashCardDeck(id: UUID(), name: flashCard.sourceLanguage + " to " + flashCard.targetLanguage, sourceLanguage: flashCard.sourceLanguage, targetLanguage: flashCard.targetLanguage, flashCards: [flashCard])
+        self.flashCardDecks.append(newDeck)
+        self.flashCardDecks.sort()
         save()
+        return
     }
     
     func removeCard(at offsets: IndexSet) {
@@ -72,7 +74,7 @@ class FlashCardStorage: ObservableObject {
         flashCardDecks.remove(atOffsets: offsets)
         save()
     }
-
+    
     func save() {
         if let encoded = try? JSONEncoder().encode(flashCardDecks) {
             UserDefaults.standard.set(encoded, forKey: saveKey)

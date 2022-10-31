@@ -15,7 +15,7 @@ struct CardsView: View {
     
     var body: some View {
             List{
-                ForEach(cardDeck.flashCards) { flashCard in
+                ForEach(cardDeck.flashCards, id: \.id) { flashCard in
                     FlashCardView(source: flashCard.sourceString, target: flashCard.targetString)
                         .padding()
                 }

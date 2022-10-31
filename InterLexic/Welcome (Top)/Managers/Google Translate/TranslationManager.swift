@@ -37,6 +37,8 @@ class TranslationManager: NSObject, ObservableObject {
     
     var isDuplicate: Bool = false
     
+    var hasLoaded: Bool = false
+    
     @Published var isShowingAlert = false
     
     
@@ -188,18 +190,21 @@ class TranslationManager: NSObject, ObservableObject {
     }
     
     func fetchLanguage() {
-        
-        self.isLoading = true
-        
-        fetchSupportedLanguages { result in
-            DispatchQueue.main.async {
-                switch result {
-                    
-                case .success(let fetchedLanguages):
-                    self.supportedLanguages = fetchedLanguages
-                    self.isLoading = false
-                case .failure(_):
-                    self.isShowingAlert = true
+        if self.hasLoaded == false {
+            
+            self.isLoading = true
+            
+            fetchSupportedLanguages { result in
+                DispatchQueue.main.async {
+                    switch result {
+                        
+                    case .success(let fetchedLanguages):
+                        self.supportedLanguages = fetchedLanguages
+                        self.isLoading = false
+                        self.hasLoaded = true
+                    case .failure(_):
+                        self.isShowingAlert = true
+                    }
                 }
             }
         }

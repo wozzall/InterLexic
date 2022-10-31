@@ -48,7 +48,7 @@ class TranslatorViewModel: ObservableObject {
             if A.name == "" {
                 languageA = Language(name: "languageSelectors_English".localized, translatorID: "en", id: UUID())
                 if B.name == "" {
-                   languageB = Language(name: "languageSelectors_ChineseSimp".localized, translatorID: "zh-CN", id: UUID())
+                    languageB = Language(name: "languageSelectors_ChineseSimp".localized, translatorID: "zh-CN", id: UUID())
                     return
                 }
             }

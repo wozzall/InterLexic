@@ -48,7 +48,11 @@ struct LanguageSelectorView: View {
                 .opacity(manager.isLoading ? 1 : 0)
         )
         .navigationTitle("languageSelectors_chooseLanguage".localized)
-        .onAppear(perform: manager.fetchLanguage)
+        .onAppear {
+            DispatchQueue.main.async {
+                manager.fetchLanguage()
+            }
+        }
         .onDisappear(perform: testLanguageSelection)
         .alert(isPresented: $manager.isShowingAlert) {
             Alert(title: Text("TMerror_error".localized), message: Text("TMError_fetchLanguages".localized), dismissButton: .default(Text("OK")))
@@ -70,6 +74,7 @@ struct LanguageSelectorView: View {
     private func testLanguageSelection() {
         print(languageA)
         print(languageB)
+        print(manager.supportedLanguages)
         toFromDirection = false
     }
     //MARK - Prints out languages selected for testing ease-of-viewing.

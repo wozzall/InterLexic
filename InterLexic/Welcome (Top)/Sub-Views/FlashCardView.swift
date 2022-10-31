@@ -16,9 +16,11 @@ struct FlashCardView: View {
         VStack(alignment: .leading) {
             Text(source)
                 .font(.subheadline)
+                .textSelection(.enabled)
             Divider()
             Text(target)
                 .font(.headline)
+                .textSelection(.enabled)
         }
     }
 }

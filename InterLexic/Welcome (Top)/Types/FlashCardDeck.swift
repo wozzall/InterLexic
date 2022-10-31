@@ -24,5 +24,3 @@ struct FlashCardDeck: Identifiable, Hashable, Codable, Comparable {
     }
 }
     
-    
-    

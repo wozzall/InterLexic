@@ -17,24 +17,25 @@ struct TranslatorView: View {
     
     
     @EnvironmentObject var networkMonitor: Monitor
-//    @EnvironmentObject var supportedLanguages: TranslatorLanguages
+    //    @EnvironmentObject var supportedLanguages: TranslatorLanguages
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     
     @ObservedObject var manager = TranslationManager()
     @ObservedObject var viewModel = TranslatorViewModel()
     
     @State private var translatableText: String = String()
-    var textEditorPlaceHolder: String = "Type text to translate here"
+    let textEditorPlaceHolder: String = "Type text to translate here"
     @State private var translationEdit: String = String()
     @State private var languagesSupported: Array<Language> = []
     @State var selectedNavigation: String?
     
     @State var languageA: Language
     @State var languageB: Language
+    @State var newFlashCard: FlashCard
     
     @State var sameLanguage: Bool = false
     @State var tappedSave: Bool = false
-    @State var isDisabled: Bool = true
+    @State var disabledSave: Bool = false
     
     @FocusState private var focusedField: Field?
     
@@ -121,16 +122,14 @@ struct TranslatorView: View {
                 }
                 .frame(height: UIScreen.main.bounds.height * 0.33)
                 
+                
                 HStack{
                     ZStack{
                         RoundedRectangle(cornerRadius: 15)
                             .fill(.blue)
                             .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                         Button(action: {
-                            viewModel.defaultLanguageSelector(A: languageA, B: languageB)
-                            viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
-                            isDisabled = false
-                            focusedField = nil
+                            didTapTranslate()
                         }) {
                             Text("welcome_screen_translateButton".localized)
                         }
@@ -138,22 +137,20 @@ struct TranslatorView: View {
                         
                     }
                     ZStack{
-                        if isDisabled {
+                        if disabledSave {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .opacity(0.6)
                             
                             Button(action: {
                                 saveButton()
-                                self.tappedSave = true
-                                
                             }) {
                                 Text("welcome_screen_saveButton".localized)
                                     .foregroundColor(.black)
                                     .opacity(0.6)
                             }
                             .buttonStyle(.borderless)
-                            .disabled(isDisabled)
+                            .disabled(disabledSave)
                         }
                         else {
                             Color.blue
@@ -162,8 +159,7 @@ struct TranslatorView: View {
                             
                             Button(action: {
                                 saveButton()
-                                self.tappedSave = true
-                                
+                                self.disabledSave = true
                             }) {
                                 Text("welcome_screen_saveButton".localized)
                                     .foregroundColor(.white)
@@ -188,7 +184,7 @@ struct TranslatorView: View {
                     .frame(height: UIScreen.main.bounds.height * 0.33)
                     .focused($focusedField, equals: .targetText)
                     .toast(isPresenting: $tappedSave, message: "Translation saved!")
-
+                
                 
                 
             }
@@ -224,14 +220,29 @@ struct TranslatorView: View {
         viewModel.toFromDirection = false
     }
     
+    private func didTapTranslate() {
+        viewModel.defaultLanguageSelector(A: languageA, B: languageB)
+        viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
+        self.disabledSave = false
+        self.focusedField = nil
+        self.tappedSave = false
+    }
+    
     private func saveButton() {
-        flashCardStorage.add(FlashCard(sourceLanguage: languageA.name, sourceString: translatableText, targetLanguage: languageB.name, targetString: viewModel.translatedString, id: UUID()))
+        if tappedSave != true {
+            self.newFlashCard = FlashCard(sourceLanguage: languageA.name, sourceString: translatableText, targetLanguage: languageB.name, targetString: viewModel.translatedString, id: UUID())
+            flashCardStorage.add(newFlashCard)
+            tappedSave = true
+        }
+        else {
+            return
+        }
     }
 }
 
-struct TranslatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        TranslatorView(languageA: Language(name: "", translatorID: "", id: UUID()), languageB: Language(name: "", translatorID: "", id: UUID()))
-    }
-}
+//struct TranslatorView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        TranslatorView(languageA: Language(name: "", translatorID: "", id: UUID()), languageB: Language(name: "", translatorID: "", id: UUID()))
+//    }
+//}

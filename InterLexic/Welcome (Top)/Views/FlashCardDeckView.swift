@@ -13,11 +13,11 @@ struct FlashCardDeckView: View {
     
     @State var selectedNavigation: String?
     @State var selection: FlashCardDeck?
-    var defaultDeck: FlashCardDeck
+//    var defaultDeck: FlashCardDeck
     
     init() {
         UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
-        defaultDeck = FlashCardDeck(id: UUID(), name: "Error", sourceLanguage: "English", targetLanguage: "Chinese", flashCards: [])
+//        defaultDeck = FlashCardDeck(id: UUID(), name: "Error", sourceLanguage: "English", targetLanguage: "Chinese", flashCards: [])
     }
     
     var body: some View {
@@ -35,6 +35,11 @@ struct FlashCardDeckView: View {
             }
             .navigationBarTitle(Text("Saved Flashcard Decks"))
         }
+        .onAppear(perform: showDecks)
+    }
+    
+    func showDecks() {
+        print(flashCardStorage.flashCardDecks)
     }
 }
 
