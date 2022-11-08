@@ -35,6 +35,7 @@ struct TranslatorView: View {
     @State var sameLanguage: Bool = false
     @State var tappedSave: Bool = false
     @State var disabledSave: Bool = true
+    @State var showAlert: Bool = false
     
     @FocusState private var focusedField: Field?
     

@@ -72,7 +72,11 @@ struct CreditsView: View {
                 }
 
                 Button {
-                    showMailView.toggle();
+                    if canSendMail {
+                        showMailView.toggle();
+                    } else {
+                        presentingAlert = true
+                    }
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
@@ -81,7 +85,6 @@ struct CreditsView: View {
                         Image(systemName: "envelope.fill")
                     }
                 }
-                .disabled(!MailViewRepresentative.canSendMail)
                 .sheet(isPresented: $showMailView) {
                     MailViewRepresentative(data: $mailData) { result in
                         print(result)
@@ -92,20 +95,14 @@ struct CreditsView: View {
             }
             .frame(height: 50)
             .padding()
-            HStack(alignment: .center) {
-                if !MailViewRepresentative.canSendMail {
-                    Text("Unable to send email because mail is not setup on this device.")
-                        .opacity(0.5)
-                }
-            }
             Spacer()
         }
         .background(
             Color.gray
                 .opacity(0.2)
         )
-        .alert(isPresented: $canSendMail) {
-            Alert(title: Text("Error!"), message: Text("There is no mail client setup on this device."), dismissButton: .default(Text("Cancel")))
+        .alert(isPresented: $presentingAlert) {
+            Alert(title: Text("Error!"), message: Text("There is no mail client setup on this device. Please set up email and try again!"), dismissButton: .default(Text("Dismiss")))
         }
     }
     

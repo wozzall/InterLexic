@@ -57,7 +57,7 @@ struct LanguageSelectorView: View {
         .alert(isPresented: $manager.isShowingAlert) {
             Alert(title: Text("TMerror_error".localized), message: Text("TMError_fetchLanguages".localized), dismissButton: .default(Text("OK")))
         }
-        .alert(isPresented: $networkMonitor.isDisconnected) {
+        .alert(isPresented: $manager.isShowingAlert) {
             Alert(title: Text("NetworkError_Error".localized), message: Text("NetworkError_NoConnection".localized), dismissButton: .destructive(Text("Ok!"), action: {
                 presentationMode.wrappedValue.dismiss()
             })
