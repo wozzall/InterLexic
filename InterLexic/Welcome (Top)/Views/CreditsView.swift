@@ -12,36 +12,43 @@ import MessageUI
 
 struct CreditsView: View {
     
+    @Environment(\.openURL) private var openURL
+            
     private var biography: String
-    
-    @ObservedObject var mailDelegate = MailDelegate()
-    
+        
     @State var presentingAlert = false
+    
+    @State private var mailData = ComposeMailData(subject: "",
+                                                  recipients: ["wozzall.ios@gmail.com"],
+                                                  message: "Sent from within Interlexic app. Please write your message below.")
+    
+    @State private var showMailView = false
+    
+    @State private var canSendMail = MailViewRepresentative.canSendMail
+
     
     init() {
         biography = "Linguist turned iOS Developer.\n Currently working on iOS App InterLexic and tvOS App Frikanalen."
     }
     
     var body: some View {
-        VStack(spacing: 20) {
-            ZStack {
-                WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
-                    .resizable()
-                    .frame(width: 200, height: 200, alignment: .center)
-                    .clipShape(Circle())
-                    .padding()
-                    .shadow(color: .gray, radius: 2, x: 1, y: 1)
-            }
+        VStack(spacing: 5) {
+            Spacer()
+            WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
+                .resizable()
+                .frame(width: 100, height: 100, alignment: .center)
+                .clipShape(Circle())
+                .shadow(color: .gray, radius: 2, x: 1, y: 1)
+                .padding()
             Text("George Worrall")
                 .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .padding()
+                .font(.title)
             Text(biography)
                 .multilineTextAlignment(.center)
                 .padding()
                 .fixedSize(horizontal: false, vertical: true)
             
-            HStack{
+            HStack(spacing: 35){
                 Button {
                     didTapGitHub()
                 } label: {
@@ -65,7 +72,7 @@ struct CreditsView: View {
                 }
 
                 Button {
-                    didTapMail()
+                    showMailView.toggle();
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
@@ -74,16 +81,32 @@ struct CreditsView: View {
                         Image(systemName: "envelope.fill")
                     }
                 }
+                .disabled(!MailViewRepresentative.canSendMail)
+                .sheet(isPresented: $showMailView) {
+                    MailViewRepresentative(data: $mailData) { result in
+                        print(result)
+                    }
+                }
+                
 
             }
             .frame(height: 50)
             .padding()
+            HStack(alignment: .center) {
+                if !MailViewRepresentative.canSendMail {
+                    Text("Unable to send email because mail is not setup on this device.")
+                        .opacity(0.5)
+                }
+            }
             Spacer()
         }
         .background(
             Color.gray
                 .opacity(0.2)
         )
+        .alert(isPresented: $canSendMail) {
+            Alert(title: Text("Error!"), message: Text("There is no mail client setup on this device."), dismissButton: .default(Text("Cancel")))
+        }
     }
     
     func didTapGitHub() {
@@ -92,25 +115,6 @@ struct CreditsView: View {
     
     func didTapLinkedIn() {
         UIApplication.shared.open(URL(string: "https://www.linkedin.com/in/georgeworrall/")!)
-    }
-    
-    func didTapMail() {
-        //
-        //        if MFMailComposeViewController.canSendMail() {
-        //
-        //            let mail = MFMailComposeViewController()
-        //            mail.mailComposeDelegate = mailDelegate
-        //            mail.setToRecipients([])
-        //            viewControllerHolder?.present(mail, animated: true) {
-        //
-        //                mailDelegate.isShowing = true
-        //            }
-        //        }
-        //        else {
-        //
-        //            presentingAlert = true
-        //        }
-        //    }
     }
 }
 

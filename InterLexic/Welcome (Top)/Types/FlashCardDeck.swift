@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FlashCardDeck: Identifiable, Hashable, Codable, Comparable {
+struct FlashCardDeck: Identifiable, Comparable, Codable {
     
     var id: UUID
     
@@ -17,10 +17,12 @@ struct FlashCardDeck: Identifiable, Hashable, Codable, Comparable {
     
     var flashCards: Array<FlashCard>
     
-    
-    
     static func < (lhs: FlashCardDeck, rhs: FlashCardDeck) -> Bool {
         (lhs.sourceLanguage + lhs.targetLanguage) < (rhs.sourceLanguage + rhs.targetLanguage)
+    }
+    
+    static func == (lhs: FlashCardDeck, rhs: FlashCardDeck) -> Bool {
+        (lhs.sourceLanguage + lhs.targetLanguage) == (rhs.sourceLanguage + rhs.targetLanguage)
     }
 }
     

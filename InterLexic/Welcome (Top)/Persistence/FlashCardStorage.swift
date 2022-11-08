@@ -44,9 +44,9 @@ class FlashCardStorage: ObservableObject {
     }
     
     func add(_ flashCard: FlashCard) {
-        objectWillChange.send()
         let newLanguagePair = flashCard.sourceLanguage + flashCard.targetLanguage
-        for var deck in self.flashCardDecks {
+            
+        for var deck in self.flashCardDecks where deck.name != "Sample Deck" {
             let existingLanguagePair = deck.sourceLanguage + deck.targetLanguage
             if newLanguagePair == existingLanguagePair {
                 deck.flashCards.append(flashCard)

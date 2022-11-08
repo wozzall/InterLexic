@@ -28,6 +28,11 @@
 		AD1DA08527FCAC3E0049444D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD1DA08727FCAC3E0049444D /* Localizable.strings */; };
 		AD24DD7C28E3435300793B85 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD7B28E3435300793B85 /* Network.swift */; };
 		AD24DD8228ECC7DE00793B85 /* ToastSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AD24DD8128ECC7DE00793B85 /* ToastSwiftUI */; };
+		AD24DD8429100DDA00793B85 /* AcknowledgementsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD8329100DDA00793B85 /* AcknowledgementsMenuView.swift */; };
+		AD24DD882910144800793B85 /* Acknowledgement.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD872910144800793B85 /* Acknowledgement.swift */; };
+		AD24DD8E2910304D00793B85 /* SupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD8D2910304D00793B85 /* SupportEmail.swift */; };
+		AD24DD90291AAA2E00793B85 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD8F291AAA2E00793B85 /* MailView.swift */; };
+		AD24DD92291AAA8E00793B85 /* ComposeMailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD91291AAA8E00793B85 /* ComposeMailData.swift */; };
 		AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */; };
 		AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85ED280089E200030EF2 /* TranslationManager.swift */; };
 		AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213C2866018B004E4F44 /* ExtensionString.swift */; };
@@ -86,6 +91,11 @@
 		AD1DA08A27FCAC430049444D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AD1DA08B27FCAC440049444D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AD24DD7B28E3435300793B85 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		AD24DD8329100DDA00793B85 /* AcknowledgementsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsMenuView.swift; sourceTree = "<group>"; };
+		AD24DD872910144800793B85 /* Acknowledgement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acknowledgement.swift; sourceTree = "<group>"; };
+		AD24DD8D2910304D00793B85 /* SupportEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportEmail.swift; sourceTree = "<group>"; };
+		AD24DD8F291AAA2E00793B85 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		AD24DD91291AAA8E00793B85 /* ComposeMailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMailData.swift; sourceTree = "<group>"; };
 		AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator_ViewModel.swift; sourceTree = "<group>"; };
 		AD4B85ED280089E200030EF2 /* TranslationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
 		AD53213C2866018B004E4F44 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
@@ -140,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				AD183138287F2D3800C04EAA /* FlashCardView.swift */,
+				AD24DD8F291AAA2E00793B85 /* MailView.swift */,
 			);
 			path = "Sub-Views";
 			sourceTree = "<group>";
@@ -227,6 +238,7 @@
 				AD18312F287DBB3B00C04EAA /* CardsView.swift */,
 				AD1CAA52288EC2C600ED3A99 /* SettingsView.swift */,
 				AD1CAA54288ED26300ED3A99 /* CreditsView.swift */,
+				AD24DD8329100DDA00793B85 /* AcknowledgementsMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,9 +291,12 @@
 		AD5321412868ABC1004E4F44 /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				AD24DD872910144800793B85 /* Acknowledgement.swift */,
 				AD183135287EF47300C04EAA /* FlashCard.swift */,
 				AD642C7828A2BA1C00D1638E /* FlashCardDeck.swift */,
 				AD53213F2868ABB9004E4F44 /* Language.swift */,
+				AD24DD8D2910304D00793B85 /* SupportEmail.swift */,
+				AD24DD91291AAA8E00793B85 /* ComposeMailData.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -451,7 +466,10 @@
 				AD183136287EF47300C04EAA /* FlashCard.swift in Sources */,
 				AD642C7728A2B4CC00D1638E /* ExtensionColor.swift in Sources */,
 				AD642C7928A2BA1C00D1638E /* FlashCardDeck.swift in Sources */,
+				AD24DD8E2910304D00793B85 /* SupportEmail.swift in Sources */,
+				AD24DD92291AAA8E00793B85 /* ComposeMailData.swift in Sources */,
 				AD1CAA53288EC2C700ED3A99 /* SettingsView.swift in Sources */,
+				AD24DD8429100DDA00793B85 /* AcknowledgementsMenuView.swift in Sources */,
 				AD642C7328A1232200D1638E /* TranslateLanguages.swift in Sources */,
 				AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */,
 				AD183130287DBB3B00C04EAA /* CardsView.swift in Sources */,
@@ -462,12 +480,14 @@
 				AD183139287F2D3800C04EAA /* FlashCardView.swift in Sources */,
 				AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */,
 				AD642C7528A299F400D1638E /* SplashScreenView.swift in Sources */,
+				AD24DD90291AAA2E00793B85 /* MailView.swift in Sources */,
 				AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */,
 				AD183134287EEC7300C04EAA /* FlashCardStorage.swift in Sources */,
 				AD05604628D4C590004AE5B9 /* MailDelegate.swift in Sources */,
 				AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */,
 				AD05604128C64D0D004AE5B9 /* FlashCardDeckView.swift in Sources */,
 				ADA3A2B52875E4C700193F87 /* InterLexic.xcdatamodeld in Sources */,
+				AD24DD882910144800793B85 /* Acknowledgement.swift in Sources */,
 				AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */,
 				AD18312E287C6D3800C04EAA /* ExtensionArray.swift in Sources */,
 			);
@@ -646,7 +666,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 006;
+				CURRENT_PROJECT_VERSION = 007;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
@@ -679,7 +699,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 006;
+				CURRENT_PROJECT_VERSION = 007;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;

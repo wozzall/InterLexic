@@ -31,11 +31,10 @@ struct TranslatorView: View {
     
     @State var languageA: Language
     @State var languageB: Language
-    @State var newFlashCard: FlashCard
     
     @State var sameLanguage: Bool = false
     @State var tappedSave: Bool = false
-    @State var disabledSave: Bool = false
+    @State var disabledSave: Bool = true
     
     @FocusState private var focusedField: Field?
     
@@ -120,10 +119,9 @@ struct TranslatorView: View {
                         }
                     }
                 }
-                .frame(height: UIScreen.main.bounds.height * 0.33)
+                .frame(height: UIScreen.main.bounds.height * 0.3)
                 
-                
-                HStack{
+                HStack(spacing: 35){
                     ZStack{
                         RoundedRectangle(cornerRadius: 15)
                             .fill(.blue)
@@ -134,8 +132,8 @@ struct TranslatorView: View {
                             Text("welcome_screen_translateButton".localized)
                         }
                         .buttonStyle(.borderless)
-                        
                     }
+                    
                     ZStack{
                         if disabledSave {
                             Color.offWhite
@@ -145,15 +143,14 @@ struct TranslatorView: View {
                             Button(action: {
                                 saveButton()
                             }) {
-                                Text("welcome_screen_saveButton".localized)
-                                    .foregroundColor(.black)
+                                Image(systemName: "star.fill")
                                     .opacity(0.6)
                             }
                             .buttonStyle(.borderless)
                             .disabled(disabledSave)
                         }
                         else {
-                            Color.blue
+                            Color.yellow
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                             
@@ -161,15 +158,12 @@ struct TranslatorView: View {
                                 saveButton()
                                 self.disabledSave = true
                             }) {
-                                Text("welcome_screen_saveButton".localized)
+                                Image(systemName: "star.fill")
                                     .foregroundColor(.white)
                             }
                             .buttonStyle(.borderless)
                         }
-                        
-                        
                     }
-                    
                 }
                 .frame(height: 50)
                 .padding(.horizontal)
@@ -181,10 +175,16 @@ struct TranslatorView: View {
                     .textFieldStyle(.roundedBorder)
                     .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .frame(height: UIScreen.main.bounds.height * 0.33)
+                    .frame(height: UIScreen.main.bounds.height * 0.3)
                     .focused($focusedField, equals: .targetText)
                     .toast(isPresenting: $tappedSave, message: "Translation saved!")
                 
+                HStack {
+                    Spacer()
+                    Image("color-short")
+                        .padding(.bottom)
+                        .padding(.trailing)
+                }
                 
                 
             }
@@ -230,7 +230,7 @@ struct TranslatorView: View {
     
     private func saveButton() {
         if tappedSave != true {
-            self.newFlashCard = FlashCard(sourceLanguage: languageA.name, sourceString: translatableText, targetLanguage: languageB.name, targetString: viewModel.translatedString, id: UUID())
+            let newFlashCard = FlashCard(sourceLanguage: languageA.name, sourceString: translatableText, targetLanguage: languageB.name, targetString: viewModel.translatedString, id: UUID())
             flashCardStorage.add(newFlashCard)
             tappedSave = true
         }

@@ -13,14 +13,20 @@ struct FlashCardView: View {
     var target: String
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(source)
-                .font(.subheadline)
-                .textSelection(.enabled)
-            Divider()
-            Text(target)
-                .font(.headline)
-                .textSelection(.enabled)
+        ZStack{
+            
+            RoundedRectangle(cornerRadius: 15)
+                .foregroundColor(.white)
+                
+            VStack(alignment: .leading) {
+                Text(source)
+                    .font(.subheadline)
+                    .textSelection(.enabled)
+                Divider()
+                Text(target)
+                    .font(.headline)
+                    .textSelection(.enabled)
+            }
         }
     }
 }

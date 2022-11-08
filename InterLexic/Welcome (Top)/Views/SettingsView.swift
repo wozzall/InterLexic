@@ -11,7 +11,7 @@ import MessageUI
 struct SettingsView: View {
     
     @State var selectedNavigation: String?
-
+    
     var body: some View {
         NavigationView{
             List {
@@ -21,7 +21,13 @@ struct SettingsView: View {
                     } label: {
                         HStack{
                             Text("Settings_Credits".localized)
-                            
+                        }
+                    }
+                    NavigationLink(tag: AcknowledgementsMenuView.navigation, selection: $selectedNavigation) {
+                        AcknowledgementsMenuView()
+                    } label: {
+                        HStack{
+                            Text("Licenses")
                         }
                     }
                 }
@@ -29,6 +35,7 @@ struct SettingsView: View {
         }
     }
 }
+
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {

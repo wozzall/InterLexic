@@ -32,7 +32,7 @@
 
 "welcome_screen_languageSelector" = "Which language would you like to translate to?";
 
-"welcome_screen_translateButton" = "Translate";
+"welcome_screen_translateButton" = "Translate with Google";
 
 "welcome_screen_saveButton" = "Save";
 
