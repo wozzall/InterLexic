@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FlashCardDeck: Identifiable, Comparable, Codable {
+struct FlashCardDeck: Identifiable, Comparable, Hashable, Codable {
     
     var id: UUID
     

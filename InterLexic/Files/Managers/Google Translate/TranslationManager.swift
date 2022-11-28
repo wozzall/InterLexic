@@ -18,7 +18,7 @@ enum TranslationManagerError: Error {
 
 
 class TranslationManager: NSObject, ObservableObject {
-    
+        
     let network = Monitor()
     
     static let shared = TranslationManager()
@@ -123,7 +123,7 @@ class TranslationManager: NSObject, ObservableObject {
         
         DispatchQueue.main.async { [self] in
             
-            makeRequest(usingTranslationAPI: .supportedLanguages, urlParams: urlParams) { (results) in
+            makeRequest(usingTranslationAPI: .supportedLanguages, urlParams: urlParams) { [self] (results) in
                 guard let results = results else { completion(.failure(.failToFetch)); return }
                 
                 if let data = results["data"] as? [String: Any], let languages = data["languages"] as? [[String: Any]] {
@@ -141,10 +141,10 @@ class TranslationManager: NSObject, ObservableObject {
                             }
                             if languageName != ""{
                                 self.supportedLanguages.append(Language(name: languageName!, translatorID: languageCode!, id: UUID()))
+                               
                             }
                         }
                         self.supportedLanguages.sort()
-                        completion(.success(self.supportedLanguages))
                         self.isLoading = false
                     }
                 } else {
@@ -213,6 +213,7 @@ class TranslationManager: NSObject, ObservableObject {
                 isShowingAlert = true
             }
         }
+        self.isLoading = false
     }
 }
 

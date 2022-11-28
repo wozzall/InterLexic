@@ -10,6 +10,7 @@ import SwiftUI
 struct LanguageSelectorView: View {
     
     @EnvironmentObject var networkMonitor: Monitor
+    @EnvironmentObject var translatorLanguages: SupportedLanguages
     @Environment(\.presentationMode) var presentationMode
     
     //    @EnvironmentObject var supportedLanguages: TranslatorLanguages

@@ -15,7 +15,7 @@ struct SplashScreenView: View {
     
     var body: some View {
         if isActive {
-            MainView()
+            MainView(manager: TranslationManager())
         }
         else {
             VStack{

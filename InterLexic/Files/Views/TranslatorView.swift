@@ -17,7 +17,7 @@ struct TranslatorView: View {
     
     
     @EnvironmentObject var networkMonitor: Monitor
-    //    @EnvironmentObject var supportedLanguages: TranslatorLanguages
+    @EnvironmentObject var translatorLanguages: SupportedLanguages
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     
     @ObservedObject var manager = TranslationManager()
@@ -58,7 +58,7 @@ struct TranslatorView: View {
                                 .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                             if languageA.name == "" {
                                 Text("languageSelectors_chooseLanguage".localized)
-                                
+                                    .padding()
                             }
                             else {
                                 Text(languageA.name)
@@ -81,6 +81,7 @@ struct TranslatorView: View {
                                 .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                             if languageB.name == "" {
                                 Text("languageSelectors_chooseLanguage".localized)
+                                    .padding()
                             }
                             else {
                                 Text(languageB.name)
@@ -215,11 +216,12 @@ struct TranslatorView: View {
     private func assignDefaultLanguages() {
         
         if languageA.name.isEmpty && languageB.name.isEmpty {
-            languageA = Language(name: "English", translatorID: "en", id: UUID())
-            languageB = Language(name: "Chinese (Simplified)", translatorID: "zh-CN", id: UUID())
+            languageA = translatorLanguages.languages.first(where: { $0.name == "English"})!
+            languageB = translatorLanguages.languages.first(where: { $0.name == "Chinese (Simplified)"})!
         }
         viewModel.toFromDirection = false
     }
+
     
     private func didTapTranslate() {
         viewModel.defaultLanguageSelector(A: languageA, B: languageB)
@@ -234,6 +236,8 @@ struct TranslatorView: View {
             let newFlashCard = FlashCard(sourceLanguage: languageA.name, sourceString: translatableText, targetLanguage: languageB.name, targetString: viewModel.translatedString, id: UUID())
             flashCardStorage.add(newFlashCard)
             tappedSave = true
+            flashCardStorage.flashCardDecks = flashCardStorage.sortIntoDecks()
+            print(flashCardStorage.flashCardDecks)
         }
         else {
             return

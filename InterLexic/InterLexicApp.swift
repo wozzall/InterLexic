@@ -11,16 +11,17 @@ import SwiftUI
 struct InterLexicApp: App {
     
     @StateObject var flashCardStorage = FlashCardStorage()
-//    @StateObject var supportedLanguages = TranslatorLanguages()
     @StateObject var networkMonitor = Monitor()
+    @StateObject var translatorLanguages = SupportedLanguages()
 
     
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
                 .environmentObject(flashCardStorage)
-//                .environmentObject(supportedLanguages)
+                .environmentObject(translatorLanguages)
                 .environmentObject(networkMonitor)
+            
         }
     }
 }
