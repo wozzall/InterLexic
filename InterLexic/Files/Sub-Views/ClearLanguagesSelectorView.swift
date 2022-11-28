@@ -11,20 +11,16 @@ struct ClearLanguagesSelectorView: View {
     
     @Binding var languageA: Language
     @Binding var languageB: Language
-    @Binding var sourceLanguageState: SelectorState
-    @Binding var targetLanguageState: SelectorState
     
     var body: some View {
         HStack{
             Button {
                 languageA = didTapClear()
-                sourceLanguageState = .notSelected
             } label: {
                 Text("Clear")
             }
             Button {
                 languageB = didTapClear()
-                targetLanguageState = .notSelected
             } label: {
                 Text("Clear")
             }

@@ -148,5 +148,181 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0D445E9B-1866-4336-92E9-03CD3F8CE868"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Views/SplashScreenView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "SplashScreenView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF20F287-4D7F-409C-B582-B3DF996C2888"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Views/SplashScreenView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "SplashScreenView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3FDB136E-1691-4BE2-9077-796E9BC8E848"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Views/SplashScreenView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "SplashScreenView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83899592-8060-463B-ADE4-5611BF3AFBC7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Views/SplashScreenView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "SplashScreenView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "785D4D9F-9B2A-453A-BA99-6C8E72AD2516"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Views/TranslatorView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "TranslatorView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "785D4D9F-9B2A-453A-BA99-6C8E72AD2516 - cc64134aeb5208ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TranslatorView.assignDefaultLanguages() -&gt; ()"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Files/Views/TranslatorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "219"
+                  endingLineNumber = "219"
+                  offsetFromSymbolStart = "1320">
+               </Location>
+               <Location
+                  uuid = "785D4D9F-9B2A-453A-BA99-6C8E72AD2516 - 31d670d8fde640b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (InterLexic.Language) -&gt; Swift.Bool in InterLexic.TranslatorView.assignDefaultLanguages() -&gt; ()"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Files/Views/TranslatorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "219"
+                  endingLineNumber = "219"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ACCC3CC1-B0AE-4743-AA5E-D51F2B90BCE3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Views/TranslatorView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "TranslatorView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "ACCC3CC1-B0AE-4743-AA5E-D51F2B90BCE3 - cc64134aeb52088a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TranslatorView.assignDefaultLanguages() -&gt; ()"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Files/Views/TranslatorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "1816">
+               </Location>
+               <Location
+                  uuid = "ACCC3CC1-B0AE-4743-AA5E-D51F2B90BCE3 - 67e5d4e18d05a696"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (InterLexic.Language) -&gt; Swift.Bool in InterLexic.TranslatorView.assignDefaultLanguages() -&gt; ()"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Files/Views/TranslatorView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04211810-59A6-482A-9369-6715369289C1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Views/SplashScreenView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "SplashScreenView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

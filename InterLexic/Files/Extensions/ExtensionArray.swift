@@ -18,4 +18,8 @@ extension Array where Element:Equatable {
         }
         return result
     }
+    
+    func remove(at id: UUID) {
+        
+    }
 }

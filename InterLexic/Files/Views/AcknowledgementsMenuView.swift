@@ -40,9 +40,9 @@ struct AcknowledgementsMenuView: View {
             
             Acknowledgement(id: UUID(), name: "ToastSwiftUI", uRL: "https://github.com/huynguyencong/ToastSwiftUI", version: "0.3.4", disclaimer: """
                             MIT License
-
+                            
                             Copyright (c) 2020 Huy Nguyen
-
+                            
                             Permission is hereby granted, free of charge, to any person obtaining a copy
                             of this software and associated documentation files (the "Software"), to deal
                             in the Software without restriction, including without limitation the rights
@@ -65,35 +65,21 @@ struct AcknowledgementsMenuView: View {
     }
     
     var body: some View {
-        NavigationView{
             List {
-                ForEach(acknowledgements) { acknowledgement in
-                    Section(header: Text(acknowledgement.name + " " + (acknowledgement.version ?? "")).font(.callout)) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Button {
-                                didTapURL(url: acknowledgement.uRL)
-                            } label: {
-                                Text(acknowledgement.uRL)
-                            }
-                            Divider()
-                            Text(acknowledgement.disclaimer ?? "No disclaimer available!")
-                                .opacity(0.6)
+                Section("Acknowledgements") {
+                    ForEach(acknowledgements) { acknowledgement in
+                        NavigationLink(acknowledgement.name) {
+                            AcknowledgmentsCellView(info: acknowledgement)
                         }
-                        .buttonStyle(.borderless)
                     }
                 }
             }
         }
-        .navigationBarTitle("Acknowledgements")
     }
-    
-    func didTapURL(url: String) {
-        UIApplication.shared.open(URL(string: url)!)
-    }
-}
 
-struct AcknowledgementsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AcknowledgementsMenuView()
-    }
-}
+
+//struct AcknowledgementsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AcknowledgementsMenuView()
+//    }
+//}

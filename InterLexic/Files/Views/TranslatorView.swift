@@ -17,10 +17,9 @@ struct TranslatorView: View {
     
     
     @EnvironmentObject var networkMonitor: Monitor
-    @EnvironmentObject var translatorLanguages: SupportedLanguages
+    @EnvironmentObject var manager: TranslationManager
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     
-    @ObservedObject var manager = TranslationManager()
     @ObservedObject var viewModel = TranslatorViewModel()
     
     @State private var translatableText: String = String()
@@ -43,7 +42,7 @@ struct TranslatorView: View {
         NavigationView {
             ScrollView {
                 NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                    LanguageSelectorView(manager: manager, languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection)
+                    LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection)
                 } label: {
                     EmptyView()
                 }
@@ -112,8 +111,9 @@ struct TranslatorView: View {
                             HStack{
                                 Text(textEditorPlaceHolder)
                                     .padding(.top, 10)
-                                    .padding(.horizontal)
+                                    .padding(.leading, 2)
                                     .opacity(0.4)
+                                    .allowsHitTesting(false)
                                 Spacer()
                             }
                             .padding()
@@ -192,7 +192,10 @@ struct TranslatorView: View {
             }
             .navigationBarTitle("TabView_Translate".localized)
             .navigationBarHidden(true)
-            .onAppear(perform: assignDefaultLanguages)
+            .onAppear {
+//                assignDefaultLanguages()
+                manager.fetchLanguages()
+            }
             .onTapGesture {
                 focusedField = nil
             }
@@ -213,14 +216,14 @@ struct TranslatorView: View {
         self.selectedNavigation = LanguageSelectorView.navigation
     }
     
-    private func assignDefaultLanguages() {
-        
-        if languageA.name.isEmpty && languageB.name.isEmpty {
-            languageA = translatorLanguages.languages.first(where: { $0.name == "English"})!
-            languageB = translatorLanguages.languages.first(where: { $0.name == "Chinese (Simplified)"})!
-        }
-        viewModel.toFromDirection = false
-    }
+//    private func assignDefaultLanguages() {
+//
+//        if languageA.name.isEmpty && languageB.name.isEmpty {
+//            languageA = manager.supportedLanguages.first(where: { $0.name == "English"}) ?? Language(name: "Error", translatorID: "en")
+//            languageB = manager.supportedLanguages.first(where: { $0.name == "Chinese (Simplified)"}) ?? Language(name: "Error", translatorID: "zh-CN")
+//        }
+//        viewModel.toFromDirection = false
+//    }
 
     
     private func didTapTranslate() {

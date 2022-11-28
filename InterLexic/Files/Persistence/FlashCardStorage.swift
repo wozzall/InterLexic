@@ -63,8 +63,9 @@ class FlashCardStorage: ObservableObject {
         save()
     }
     
-    func removeCard(_ card:FlashCard) {
-        flashCards.removeAll { $0 == card }
+    func removeCard(at index: Int) {
+        objectWillChange.send()
+        self.flashCards.remove(at: index)
         save()
     }
     

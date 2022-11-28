@@ -14,21 +14,18 @@ struct InputLanguagesSelectorView: View {
     @Binding var languageA: Language
     @Binding var languageB: Language
     @Binding var toFromDirection: Bool
-    @Binding var sourceLanguageState: SelectorState
-    @Binding var targetLanguageState: SelectorState
     @State var selectedNavigation: String?
     
     var body: some View {
         NavigationView {
             NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                LanguageSelectorView(manager: manager, languageA: $languageA, languageB: $languageB, toFromDirection: $toFromDirection)
+                LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $toFromDirection)
             } label: {
                 EmptyView()
             }
             HStack {
                 Button {
                     didTapSelector()
-                    sourceLanguageState = .selected
                 } label: {
                     ZStack {
                         Color.offWhite
@@ -50,7 +47,6 @@ struct InputLanguagesSelectorView: View {
                     .foregroundColor(.accentColor)
                 Button {
                     didTapSelector()
-                    targetLanguageState = .selected
                 } label: {
                     ZStack {
                         Color.offWhite

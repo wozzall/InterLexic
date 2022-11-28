@@ -15,7 +15,9 @@ struct CreditsView: View {
     @Environment(\.openURL) private var openURL
             
     private var biography: String
-        
+    
+    private var acknowledgements: Array<Acknowledgement>
+    
     @State var presentingAlert = false
     
     @State private var mailData = ComposeMailData(subject: "",
@@ -29,80 +31,135 @@ struct CreditsView: View {
     
     init() {
         biography = "Linguist turned iOS Developer.\n Currently working on iOS App InterLexic and tvOS App Frikanalen."
+        acknowledgements = [
+                
+                Acknowledgement(id: UUID(), name: "Google Cloud Translate API", uRL: "https://cloud.google.com/translate/", disclaimer: "THIS SERVICE MAY CONTAIN TRANSLATIONS POWERED BY GOOGLE. GOOGLE DISCLAIMS ALL WARRANTIES RELATED TO THE TRANSLATIONS, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTIES OF ACCURACY, RELIABILITY, AND ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT."),
+                
+                Acknowledgement(id: UUID(), name: "SDWebImageSwiftUI", uRL: "https://github.com/SDWebImage/SDWebImageSwiftUI", version: "2.2.1", disclaimer: """
+                                Copyright (c) 2019 lizhuoli1126@126.com <lizhuoli1126@126.com>
+                                
+                                Permission is hereby granted, free of charge, to any person obtaining a copy
+                                of this software and associated documentation files (the "Software"), to deal
+                                in the Software without restriction, including without limitation the rights
+                                to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                                copies of the Software, and to permit persons to whom the Software is
+                                furnished to do so, subject to the following conditions:
+                                
+                                The above copyright notice and this permission notice shall be included in
+                                all copies or substantial portions of the Software.
+                                
+                                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                                IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                                FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                                AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                                LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                                OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+                                THE SOFTWARE.
+                                """),
+                
+                Acknowledgement(id: UUID(), name: "ToastSwiftUI", uRL: "https://github.com/huynguyencong/ToastSwiftUI", version: "0.3.4", disclaimer: """
+                                MIT License
+                                
+                                Copyright (c) 2020 Huy Nguyen
+                                
+                                Permission is hereby granted, free of charge, to any person obtaining a copy
+                                of this software and associated documentation files (the "Software"), to deal
+                                in the Software without restriction, including without limitation the rights
+                                to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                                copies of the Software, and to permit persons to whom the Software is
+                                furnished to do so, subject to the following conditions:
+                                
+                                The above copyright notice and this permission notice shall be included in all
+                                copies or substantial portions of the Software.
+                                
+                                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                                IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                                FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                                AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                                LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                                OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+                                SOFTWARE.
+                                """)
+            ]
     }
     
     var body: some View {
-        VStack(spacing: 5) {
-            Spacer()
-            WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
-                .resizable()
-                .frame(width: 100, height: 100, alignment: .center)
-                .clipShape(Circle())
-                .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                .padding()
-            Text("George Worrall")
-                .multilineTextAlignment(.center)
-                .font(.title)
-            Text(biography)
-                .multilineTextAlignment(.center)
-                .padding()
-                .fixedSize(horizontal: false, vertical: true)
-            
-            HStack(spacing: 35){
-                Button {
-                    didTapGitHub()
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(Color.offWhite)
+        NavigationView{
+            List{
+                Section("Profile") {
+                    VStack(spacing: 5) {
+                        WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
+                            .resizable()
+                            .frame(width: 100, height: 100, alignment: .center)
+                            .clipShape(Circle())
                             .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                        Text("GitHub")
+                            .padding()
+                        Text("George Worrall")
+                            .multilineTextAlignment(.center)
+                            .font(.title)
+                        Text(biography)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .fixedSize(horizontal: false, vertical: true)
+                        
+                        HStack(spacing: 35){
+                            Button {
+                                didTapGitHub()
+                            } label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .foregroundColor(Color.offWhite)
+                                        .shadow(color: .gray, radius: 2, x: 1, y: 1)
+                                    Text("GitHub")
+                                }
+                            }
+                            
+                            Button {
+                                didTapLinkedIn()
+                            } label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .foregroundColor(Color.offWhite)
+                                        .shadow(color: .gray, radius: 2, x: 1, y: 1)
+                                    Text("LinkedIn")
+                                }
+                            }
+                            
+                            Button {
+                                if canSendMail {
+                                    showMailView.toggle();
+                                } else {
+                                    presentingAlert = true
+                                }
+                            } label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .foregroundColor(Color.offWhite)
+                                        .shadow(color: .gray, radius: 2, x: 1, y: 1)
+                                    Image(systemName: "envelope.fill")
+                                }
+                            }
+                            .sheet(isPresented: $showMailView) {
+                                MailViewRepresentative(data: $mailData) { result in
+                                    print(result)
+                                }
+                            }
+                            .alert(isPresented: $presentingAlert) {
+                                Alert(title: Text("Error!"), message: Text("There is no mail client setup on this device. Please set up email and try again!"), dismissButton: .default(Text("Dismiss")))
+                            }
+                        }
+                        .frame(height: 50)
+                        .padding()
                     }
                 }
-            
-                Button {
-                    didTapLinkedIn()
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(Color.offWhite)
-                            .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                        Text("LinkedIn")
+                Section("Acknowledgements") {
+                    ForEach(acknowledgements) { acknowledgement in
+                        NavigationLink(acknowledgement.name) {
+                            AcknowledgmentsCellView(info: acknowledgement)
+                        }
                     }
                 }
-
-                Button {
-                    if canSendMail {
-                        showMailView.toggle();
-                    } else {
-                        presentingAlert = true
-                    }
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(Color.offWhite)
-                            .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                        Image(systemName: "envelope.fill")
-                    }
-                }
-                .sheet(isPresented: $showMailView) {
-                    MailViewRepresentative(data: $mailData) { result in
-                        print(result)
-                    }
-                }
-                
-
             }
-            .frame(height: 50)
-            .padding()
-            Spacer()
-        }
-        .background(
-            Color.gray
-                .opacity(0.2)
-        )
-        .alert(isPresented: $presentingAlert) {
-            Alert(title: Text("Error!"), message: Text("There is no mail client setup on this device. Please set up email and try again!"), dismissButton: .default(Text("Dismiss")))
         }
     }
     

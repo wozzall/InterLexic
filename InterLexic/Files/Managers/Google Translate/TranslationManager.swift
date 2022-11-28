@@ -189,7 +189,7 @@ class TranslationManager: NSObject, ObservableObject {
         }
     }
     
-    func fetchLanguage() {
+    func fetchLanguages() {
         if self.hasLoaded == false {
             if !network.isDisconnected {
                 

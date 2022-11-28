@@ -10,7 +10,7 @@ import Foundation
 class SupportedLanguages: ObservableObject {
     
     @Published var languages: Array<Language>
-    
+        
     private var saveKey = "supportedLanguages"
     
     init() {
@@ -20,11 +20,11 @@ class SupportedLanguages: ObservableObject {
                 return
             }
         }
-        languages = [Language(name: "Sample", translatorID: String())]
+        languages = []
     }
     
     func containsLanguage(_ language: Language) -> Bool {
-        if languages.contains(language){
+        if self.languages.contains(where: {$0.translatorID != "zh"}) {
             return true
         }
         return false
@@ -45,5 +45,4 @@ class SupportedLanguages: ObservableObject {
             UserDefaults.standard.set(encoded, forKey: saveKey)
         }
     }
-    
 }

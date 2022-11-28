@@ -9,13 +9,18 @@ import SwiftUI
 
 struct SplashScreenView: View {
     
+//    @EnvironmentObject var translatorLanguages: SupportedLanguages
+    
+//    @ObservedObject var manager: TranslationManager
+    
+    @State var hasLoaded: Bool = false
     @State var isActive = false
     @State var size = 0.8
     @State var opacity = 0.5
     
     var body: some View {
         if isActive {
-            MainView(manager: TranslationManager())
+            MainView()
         }
         else {
             VStack{
@@ -46,12 +51,25 @@ struct SplashScreenView: View {
                     self.isActive = true
                 }
             }
+//            .onDisappear(perform: languagesSetup)
         }
     }
+//    func languagesSetup() {
+//        if !hasLoaded {
+//            manager.fetchLanguage()
+//            if self.translatorLanguages.languages.isEmpty {
+//                for language in manager.supportedLanguages {
+//                    self.translatorLanguages.add(language)
+//                    self.translatorLanguages.languages.sort()
+//                }
+//            }
+//            hasLoaded = true
+//        }
+//    }
 }
-
-struct SplashScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashScreenView()
-    }
-}
+//
+//struct SplashScreenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SplashScreenView()
+//    }
+//}

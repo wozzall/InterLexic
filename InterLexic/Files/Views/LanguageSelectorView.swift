@@ -10,17 +10,14 @@ import SwiftUI
 struct LanguageSelectorView: View {
     
     @EnvironmentObject var networkMonitor: Monitor
-    @EnvironmentObject var translatorLanguages: SupportedLanguages
+    @EnvironmentObject var manager: TranslationManager
     @Environment(\.presentationMode) var presentationMode
-    
-    //    @EnvironmentObject var supportedLanguages: TranslatorLanguages
-    
-    @ObservedObject var manager: TranslationManager
     
     @Binding var languageA: Language
     @Binding var languageB: Language
     @Binding var toFromDirection: Bool
     
+    @State var hasLoaded: Bool = false
     @State var searchQuery = ""
     @State var filteredLanguages: Array<Language>?
     
@@ -49,11 +46,6 @@ struct LanguageSelectorView: View {
                 .opacity(manager.isLoading ? 1 : 0)
         )
         .navigationTitle("languageSelectors_chooseLanguage".localized)
-        .onAppear {
-            DispatchQueue.main.async {
-                manager.fetchLanguage()
-            }
-        }
         .onDisappear(perform: testLanguageSelection)
         .alert(isPresented: $manager.isShowingAlert) {
             Alert(title: Text("TMerror_error".localized), message: Text("TMError_fetchLanguages".localized), dismissButton: .default(Text("OK")))
@@ -95,7 +87,7 @@ struct LanguageSelectorView: View {
     func filterLanguages() {
         if searchQuery.isEmpty {
             // 1
-            filteredLanguages = Array(Set(manager.supportedLanguages))
+            filteredLanguages = manager.supportedLanguages
         } else {
             // 2
             filteredLanguages = manager.supportedLanguages.filter {
@@ -105,6 +97,18 @@ struct LanguageSelectorView: View {
         }
     }
     // MARK - Filters language based on the current search query. Along with .onChange and .onSubmit, the list of languages dynamically changes.
+    
+//    func supportedLanguagesSetup() {
+//        if !hasLoaded {
+//            if self.translatorLanguages.languages.isEmpty {
+//                for language in manager.supportedLanguages {
+//                    self.translatorLanguages.add(language)
+//                    self.translatorLanguages.languages.sort()
+//                }
+//            }
+//            hasLoaded = true
+//        }
+//    }
 }
 
 

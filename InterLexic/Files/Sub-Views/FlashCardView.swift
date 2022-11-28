@@ -12,23 +12,34 @@ struct FlashCardView: View {
     var flashCard: FlashCard
     
     var body: some View {
-        VStack(spacing: 10){
+        VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .center) {
                 Text(flashCard.sourceLanguage)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(width: UIScreen.main.bounds.width * 0.4)
+                    .font(Font.body.weight(.light))
                 Image(systemName: "arrow.right")
-                    .opacity(0.8)
+                    .opacity(0.5)
                 Text(flashCard.targetLanguage)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(width: UIScreen.main.bounds.width * 0.4)
-                
+                    .font(Font.body.weight(.bold))
+
             }
+            .foregroundColor(.gray)
+            
             Divider()
+            
             Text(flashCard.sourceString)
+                .font(Font.body.weight(.light))
+                .textSelection(.enabled)
                 .padding()
+            
             Divider()
+            
             Text(flashCard.targetString)
+                .font(Font.body.weight(.bold))
+                .textSelection(.enabled)
                 .padding()
         }
         .multilineTextAlignment(.leading)

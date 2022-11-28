@@ -11,7 +11,7 @@ struct MainView: View {
     
     @EnvironmentObject var translatorLanguages: SupportedLanguages
     
-    @ObservedObject var manager: TranslationManager
+    @EnvironmentObject var manager: TranslationManager
     
     @State var selection: Int = 1
     @State var hasLoaded: Bool = false
@@ -25,38 +25,17 @@ struct MainView: View {
                 }
                 .tag(1)
             
-//            FlashCardDeckView()
-//                .tabItem {
-//                    Label("TabView_Favorites".localized, systemImage: "star.fill")
-//                }
-//                .tag(2)
-            
-            CardsTESTView(languageA: Language(name: "", translatorID: ""), languageB: Language(name: "", translatorID: ""))
+            CardsView(languageA: Language(name: "", translatorID: ""), languageB: Language(name: "", translatorID: ""))
                 .tabItem {
-                    Label("FC Test", systemImage: "star.fill")
+                    Label("Flashcards", systemImage: "star.fill")
+                }
+                .tag(2)
+            
+            CreditsView()
+                .tabItem {
+                    Label("Credits".localized, systemImage: "person.crop.circle")
                 }
                 .tag(3)
-            
-            SettingsView()
-                .tabItem {
-                    Label("TabView_Settings".localized, systemImage: "gear")
-                }
-                .tag(3)
-        }
-        .onAppear(perform: languagesFetchSetup)
-        
-    }
-    
-    func languagesFetchSetup() {
-        if !hasLoaded {
-            manager.fetchLanguage()
-            if self.translatorLanguages.languages.isEmpty {
-                for language in manager.supportedLanguages {
-                    self.translatorLanguages.add(language)
-                }
-                self.translatorLanguages.languages = Array(Set(translatorLanguages.languages)).sorted()
-            }
-            hasLoaded = true
         }
     }
 }
