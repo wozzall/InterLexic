@@ -79,7 +79,7 @@ struct CardsView: View {
                 .padding()
                 .buttonStyle(.borderless)
                 //MARK - Flashcards
-                if flashCardStorage.flashCards.isEmpty {
+                if filteredFlashCards.isEmpty {
                     VStack{
                         Spacer()
                         Text("No flashcards saved. Please save translations to create flashcards!")
