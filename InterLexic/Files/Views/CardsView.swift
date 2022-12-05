@@ -81,7 +81,10 @@ struct CardsView: View {
                 //MARK - Flashcards
                 if flashCardStorage.flashCards.isEmpty {
                     VStack{
+                        Spacer()
                         Text("No flashcards saved. Please save translations to create flashcards!")
+                            .padding()
+                        Spacer()
                     }
                 }
                 else {
@@ -97,6 +100,9 @@ struct CardsView: View {
                     .environment(\.defaultMinListRowHeight, 50)
                     .listStyle(.insetGrouped)
                     .listRowSeparator(.hidden)
+                    .onChange(of: flashCardStorage.flashCards) { _ in
+                        filterFlashCards()
+                    }
                 }
             }
             .toolbar {
@@ -114,9 +120,6 @@ struct CardsView: View {
                 filterFlashCards()
             }
             .onChange(of: languageB) { _ in
-                filterFlashCards()
-            }
-            .onChange(of: filteredFlashCards) { _ in
                 filterFlashCards()
             }
         }

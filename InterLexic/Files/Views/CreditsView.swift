@@ -113,6 +113,7 @@ struct CreditsView: View {
                                     Text("GitHub")
                                 }
                             }
+                            .buttonStyle(.borderless)
                             
                             Button {
                                 didTapLinkedIn()
@@ -124,6 +125,7 @@ struct CreditsView: View {
                                     Text("LinkedIn")
                                 }
                             }
+                            .buttonStyle(.borderless)
                             
                             Button {
                                 if canSendMail {
@@ -139,6 +141,7 @@ struct CreditsView: View {
                                     Image(systemName: "envelope.fill")
                                 }
                             }
+                            .buttonStyle(.borderless)
                             .sheet(isPresented: $showMailView) {
                                 MailViewRepresentative(data: $mailData) { result in
                                     print(result)

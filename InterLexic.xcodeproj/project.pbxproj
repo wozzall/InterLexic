@@ -258,18 +258,10 @@
 			path = Viewmodels;
 			sourceTree = "<group>";
 		};
-		AD4B85EF280089E700030EF2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		AD4B85F028008D0F00030EF2 /* Files */ = {
 			isa = PBXGroup;
 			children = (
 				AD24DD7D28E3439E00793B85 /* Services */,
-				AD4B85EF280089E700030EF2 /* Model */,
 				AD4B85EB280089C200030EF2 /* Views */,
 				AD183137287F2D1900C04EAA /* Sub-Views */,
 				AD4B85EC280089CE00030EF2 /* Viewmodels */,
