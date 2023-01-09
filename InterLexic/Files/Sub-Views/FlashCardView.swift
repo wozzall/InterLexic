@@ -43,6 +43,7 @@ struct FlashCardView: View {
                 .padding()
         }
         .multilineTextAlignment(.leading)
+        
     }
 }
 

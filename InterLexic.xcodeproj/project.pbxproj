@@ -31,6 +31,7 @@
 		AD24DD8E2910304D00793B85 /* SupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD8D2910304D00793B85 /* SupportEmail.swift */; };
 		AD24DD90291AAA2E00793B85 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD8F291AAA2E00793B85 /* MailView.swift */; };
 		AD24DD92291AAA8E00793B85 /* ComposeMailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD91291AAA8E00793B85 /* ComposeMailData.swift */; };
+		AD27CBAD296C5FFF0051C5EF /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = AD27CBAC296C5FFF0051C5EF /* PopupView */; };
 		AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */; };
 		AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85ED280089E200030EF2 /* TranslationManager.swift */; };
 		AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213C2866018B004E4F44 /* ExtensionString.swift */; };
@@ -121,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD27CBAD296C5FFF0051C5EF /* PopupView in Frameworks */,
 				AD24DD8228ECC7DE00793B85 /* ToastSwiftUI in Frameworks */,
 				AD05604428D4BAEA004AE5B9 /* SDWebImageSwiftUI in Frameworks */,
 			);
@@ -346,6 +348,7 @@
 			packageProductDependencies = (
 				AD05604328D4BAEA004AE5B9 /* SDWebImageSwiftUI */,
 				AD24DD8128ECC7DE00793B85 /* ToastSwiftUI */,
+				AD27CBAC296C5FFF0051C5EF /* PopupView */,
 			);
 			productName = InterLexic;
 			productReference = AD1DA05627FCAAD40049444D /* InterLexic.app */;
@@ -425,6 +428,7 @@
 			packageReferences = (
 				AD05604228D4BAE9004AE5B9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				AD24DD8028ECC7DE00793B85 /* XCRemoteSwiftPackageReference "ToastSwiftUI" */,
+				AD27CBAB296C5FFF0051C5EF /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = AD1DA05727FCAAD40049444D /* Products */;
 			projectDirPath = "";
@@ -887,6 +891,14 @@
 				minimumVersion = 0.3.4;
 			};
 		};
+		AD27CBAB296C5FFF0051C5EF /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -899,6 +911,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AD24DD8028ECC7DE00793B85 /* XCRemoteSwiftPackageReference "ToastSwiftUI" */;
 			productName = ToastSwiftUI;
+		};
+		AD27CBAC296C5FFF0051C5EF /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD27CBAB296C5FFF0051C5EF /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

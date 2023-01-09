@@ -32,6 +32,12 @@ struct CardsView: View {
                     EmptyView()
                 }
                 // MARK - Language Selectors
+                HStack{
+                    Text("Filter by:")
+                        .padding(.horizontal)
+                    Spacer()
+                }
+           
                 HStack {
                     Button {
                         toFromDirection = false
@@ -85,6 +91,13 @@ struct CardsView: View {
                         Text("No flashcards saved. Please save translations to create flashcards!")
                             .padding()
                         Spacer()
+                        HStack{
+                            Image(systemName: "arrow.down")
+                            Text("Tap here to start translating!")
+                        }
+                        .opacity(0.7)
+                        .padding(.bottom)
+                        .padding(.trailing)
                     }
                 }
                 else {
@@ -93,6 +106,11 @@ struct CardsView: View {
                             Section("") {
                                 FlashCardView(flashCard: flashCard)
                                     .padding(.leading, 25)
+                                    .background(
+                                        Color.offWhite
+                                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                                            .ignoresSafeArea()
+                                    )
                             }
                         }
                         .onDelete(perform: deleteItems)

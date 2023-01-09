@@ -1,12 +1,21 @@
 {
   "pins" : [
     {
+      "identity" : "popupview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/PopupView",
+      "state" : {
+        "revision" : "208faafa83c74a9366a216471cc69503ddb1a21a",
+        "version" : "2.0.0"
+      }
+    },
+    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "318cca556b0489aede0cd98d8d0c7f1408ab7bd6",
-        "version" : "5.13.5"
+        "revision" : "4178d12a44691182c2eb79c70281b14cb73f4cbf",
+        "version" : "5.14.3"
       }
     },
     {
@@ -14,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
       "state" : {
-        "revision" : "ed288667c909c89127ab1b690113a3e397af3098",
-        "version" : "2.2.1"
+        "revision" : "61fefe9c284fd41ddef77d02749e88f00c305196",
+        "version" : "2.2.2"
       }
     },
     {
