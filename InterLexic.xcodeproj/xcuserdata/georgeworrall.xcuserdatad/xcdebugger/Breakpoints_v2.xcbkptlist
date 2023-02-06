@@ -222,42 +222,10 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "TranslatorView"
             landmarkType = "14">
-            <Locations>
-               <Location
-                  uuid = "785D4D9F-9B2A-453A-BA99-6C8E72AD2516 - cc64134aeb5208ab"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "InterLexic.TranslatorView.assignDefaultLanguages() -&gt; ()"
-                  moduleName = "InterLexic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Files/Views/TranslatorView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "219"
-                  endingLineNumber = "219"
-                  offsetFromSymbolStart = "1320">
-               </Location>
-               <Location
-                  uuid = "785D4D9F-9B2A-453A-BA99-6C8E72AD2516 - 31d670d8fde640b4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (InterLexic.Language) -&gt; Swift.Bool in InterLexic.TranslatorView.assignDefaultLanguages() -&gt; ()"
-                  moduleName = "InterLexic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Files/Views/TranslatorView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "219"
-                  endingLineNumber = "219"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -270,42 +238,10 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "TranslatorView"
             landmarkType = "14">
-            <Locations>
-               <Location
-                  uuid = "ACCC3CC1-B0AE-4743-AA5E-D51F2B90BCE3 - cc64134aeb52088a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "InterLexic.TranslatorView.assignDefaultLanguages() -&gt; ()"
-                  moduleName = "InterLexic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Files/Views/TranslatorView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "220"
-                  endingLineNumber = "220"
-                  offsetFromSymbolStart = "1816">
-               </Location>
-               <Location
-                  uuid = "ACCC3CC1-B0AE-4743-AA5E-D51F2B90BCE3 - 67e5d4e18d05a696"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (InterLexic.Language) -&gt; Swift.Bool in InterLexic.TranslatorView.assignDefaultLanguages() -&gt; ()"
-                  moduleName = "InterLexic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgeworrall/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/InterLexic/InterLexic/Files/Views/TranslatorView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "220"
-                  endingLineNumber = "220"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -327,16 +263,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6E512242-6C7C-4A37-A735-37F7D8144E97"
+            uuid = "0B6FB175-1A2C-4A35-9F13-CAB3B9D50554"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InterLexic/Files/Views/CardsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "filterFlashCards()"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "45C82BD2-84F1-4895-B2E8-6F223A9D5A94"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Persistence/FlashCardStorage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "removeCard(selectedCard:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

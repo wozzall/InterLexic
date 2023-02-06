@@ -16,15 +16,15 @@ struct FlashCardView: View {
             HStack(alignment: .center) {
                 Text(flashCard.sourceLanguage)
                     .fixedSize(horizontal: false, vertical: true)
-                    .frame(width: UIScreen.main.bounds.width * 0.4)
+                    .frame(width: UIScreen.main.bounds.width * 0.35)
                     .font(Font.body.weight(.light))
                 Image(systemName: "arrow.right")
                     .opacity(0.5)
                 Text(flashCard.targetLanguage)
                     .fixedSize(horizontal: false, vertical: true)
-                    .frame(width: UIScreen.main.bounds.width * 0.4)
+                    .frame(width: UIScreen.main.bounds.width * 0.35)
                     .font(Font.body.weight(.bold))
-
+                
             }
             .foregroundColor(.gray)
             
@@ -43,7 +43,8 @@ struct FlashCardView: View {
                 .padding()
         }
         .multilineTextAlignment(.leading)
-        
+        .padding()
+        .border(Color.black.opacity(0.4))
     }
 }
 

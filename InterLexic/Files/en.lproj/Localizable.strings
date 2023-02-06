@@ -38,7 +38,11 @@
 
 //MARK - Language Selectors Buttons
 
-"languageSelectors_chooseLanguage" = "Choose a language";
+"languageSelectors_chooseLanguage" = "Choose a language:";
+
+"languageSelectors_from" = "From";
+
+"languageSelectors_to" = "To";
 
 "languageSelectors_English" = "English";
 

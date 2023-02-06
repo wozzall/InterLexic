@@ -55,8 +55,13 @@ struct TranslatorView: View {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(.black)
+                                            .opacity(0.3)
+                                    )
                             if languageA.name == "" {
-                                Text("languageSelectors_chooseLanguage".localized)
+                                Text("languageSelectors_from".localized)
                                     .padding()
                             }
                             else {
@@ -78,8 +83,13 @@ struct TranslatorView: View {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(.black)
+                                            .opacity(0.3)
+                                    )
                             if languageB.name == "" {
-                                Text("languageSelectors_chooseLanguage".localized)
+                                Text("languageSelectors_to".localized)
                                     .padding()
                             }
                             else {
@@ -100,10 +110,11 @@ struct TranslatorView: View {
                 ZStack{
                     VStack{
                         TextEditor(text: $translatableText)
+                            .border(Color.black.opacity(0.3))
                             .padding()
                             .multilineTextAlignment(.leading)
                             .textFieldStyle(.roundedBorder)
-                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+//                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                             .focused($focusedField, equals: .sourceText)
                     }
                     if translatableText.isEmpty {
@@ -123,11 +134,17 @@ struct TranslatorView: View {
                 }
                 .frame(height: UIScreen.main.bounds.height * 0.3)
                 
+                
                 HStack(spacing: 35){
                     ZStack{
                         RoundedRectangle(cornerRadius: 15)
                             .fill(.blue)
                             .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                            .overlay(
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(.black)
+                                        .opacity(0.4)
+                                )
                         Button(action: {
                             didTapTranslate()
                         }) {
@@ -141,12 +158,17 @@ struct TranslatorView: View {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .opacity(0.6)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(.black)
+                                            .opacity(0.3)
+                                    )
                             
                             Button(action: {
                                 saveButton()
                             }) {
-                                Image(systemName: "star.fill")
-                                    .opacity(0.6)
+                                Text("Save")
+                                    .foregroundColor(.white)
                             }
                             .buttonStyle(.borderless)
                             .disabled(disabledSave)
@@ -155,6 +177,11 @@ struct TranslatorView: View {
                             Color.yellow
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(.white)
+                                            .opacity(0.3)
+                                    )
                             
                             Button(action: {
                                 saveButton()
@@ -173,10 +200,10 @@ struct TranslatorView: View {
                 
                 TextEditor(text: $viewModel.translatedString)
                     .multilineTextAlignment(.leading)
+                    .border(Color.black.opacity(0.4))
                     .padding()
                     .textFieldStyle(.roundedBorder)
-                    .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//                    .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                     .frame(height: UIScreen.main.bounds.height * 0.3)
                     .focused($focusedField, equals: .targetText)
                     .toast(isPresenting: $tappedSave, message: "Translation saved!")
@@ -192,6 +219,10 @@ struct TranslatorView: View {
             }
             .navigationBarTitle("TabView_Translate".localized)
             .navigationBarHidden(true)
+            .background(
+                Color.gray
+                    .opacity(0.1)
+            )
             .onAppear {
 //                assignDefaultLanguages()
                 manager.fetchLanguages()

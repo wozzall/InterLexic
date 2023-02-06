@@ -39,7 +39,11 @@
 
 //MARK - Language Selectors Buttons
 
-"languageSelectors_chooseLanguage" = "选择翻译语言";
+"languageSelectors_chooseLanguage" = "Choose a language:";
+
+"languageSelectors_from" = "From";
+
+"languageSelectors_to" = "To";
 
 "languageSelectors_English" = "英语";
 

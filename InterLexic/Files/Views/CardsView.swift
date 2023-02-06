@@ -21,6 +21,8 @@ struct CardsView: View {
     // MARK - True = to, False = from
     @State var selectedNavigation: String?
     @State var filteredFlashCards: Array<FlashCard> = []
+    @State var hitEdit: Bool = false
+    @State var animationAmount = 1.0
     
     
     var body: some View {
@@ -32,11 +34,12 @@ struct CardsView: View {
                     EmptyView()
                 }
                 // MARK - Language Selectors
-                HStack{
-                    Text("Filter by:")
-                        .padding(.horizontal)
-                    Spacer()
-                }
+//                HStack{
+//                    Text("Filter by:")
+//                        .padding(.horizontal)
+//                    Spacer()
+//                }
+                
            
                 HStack {
                     Button {
@@ -47,8 +50,13 @@ struct CardsView: View {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(.black)
+                                            .opacity(0.3)
+                                    )
                             if languageA.name.isEmpty {
-                                Text("languageSelectors_chooseLanguage".localized)
+                                Text("languageSelectors_from".localized)
                                     .padding()
                             } else {
                                 Text(languageA.name)
@@ -69,8 +77,13 @@ struct CardsView: View {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(.black)
+                                            .opacity(0.3)
+                                    )
                             if languageB.name.isEmpty {
-                                Text("languageSelectors_chooseLanguage".localized)
+                                Text("languageSelectors_to".localized)
                                     .padding()
                             }
                             Text(languageB.name)
@@ -88,12 +101,30 @@ struct CardsView: View {
                 if filteredFlashCards.isEmpty {
                     VStack{
                         Spacer()
-                        Text("No flashcards saved. Please save translations to create flashcards!")
+                        Text("There are either no cards that match your filter query, or no flashcards saved. Please save translations to create flashcards!")
                             .padding()
                         Spacer()
-                        HStack{
-                            Image(systemName: "arrow.down")
-                            Text("Tap here to start translating!")
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 15)
+                                .foregroundColor(.orange)
+                                .frame(height: 60)
+                                .padding(.horizontal, 40)
+                                .opacity(0.5)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(.orange, lineWidth: 4)
+                                            .padding(.horizontal, 40)
+                                    )
+                            HStack{
+                                Image(systemName: "arrow.turn.left.down")
+                                    .font(.largeTitle)
+                                    .padding(.leading, 50)
+                                VStack{
+                                    Text("Tap here to start translating!")
+                                        .padding(.bottom, 30)
+                                }
+                                Spacer()
+                            }
                         }
                         .opacity(0.7)
                         .padding(.bottom)
@@ -101,25 +132,38 @@ struct CardsView: View {
                     }
                 }
                 else {
-                    List{
-                        ForEach(filteredFlashCards, id: \.id) { flashCard in
-                            Section("") {
-                                FlashCardView(flashCard: flashCard)
-                                    .padding(.leading, 25)
-                                    .background(
-                                        Color.offWhite
-                                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                                            .ignoresSafeArea()
-                                    )
+                    ScrollView {
+                        LazyVStack{
+                            ForEach(filteredFlashCards, id: \.id) { flashCard in
+                                Section("") {
+                                    FlashCardView(flashCard: flashCard)
+                                        .overlay(alignment: .topTrailing) {
+                                            if hitEdit {
+                                                Button {
+                                                    flashCardStorage.removeCard(selectedCard: flashCard)
+                                                } label: {
+                                                    Image(systemName: "trash.circle")
+                                                        .foregroundColor(Color.red)
+                                                        .font(.largeTitle)
+                                                        .opacity(0.5)
+                                                        .animation(.easeIn(duration: 2)
+                                                            .repeatForever(autoreverses: false),
+                                                        value: animationAmount)
+                                                }
+                                                .padding(.trailing, 4)
+                                                .padding(.top, 4)
+                                            } else {
+                                                EmptyView()
+                                        }
+                                    }
+                                        .padding(.horizontal, 50)
+                                }
                             }
                         }
-                        .onDelete(perform: deleteItems)
-                    }
-                    .environment(\.defaultMinListRowHeight, 50)
-                    .listStyle(.insetGrouped)
-                    .listRowSeparator(.hidden)
-                    .onChange(of: flashCardStorage.flashCards) { _ in
-                        filterFlashCards()
+                        .environment(\.defaultMinListRowHeight, 50)
+                        .onChange(of: flashCardStorage.flashCards) { _ in
+                            filterFlashCards()
+                        }
                     }
                 }
             }
@@ -129,11 +173,27 @@ struct CardsView: View {
                         languageA = didTapClear()
                         languageB = didTapClear()
                     }
-                    EditButton()
+                    Button {
+                        hitEdit.toggle()
+                    } label: {
+                        if hitEdit == false {
+                            Text("Edit")
+                        } else {
+                            Text("Cancel")
+                        }
+                    }
+
                 }
                     
             }
-            .onAppear(perform: filterFlashCards)
+            .background(
+                Color.white.opacity(0.2)
+                    .blur(radius: 20)
+            )
+            .onAppear{
+                filterFlashCards()
+                animationAmount = 2
+            }
             .onChange(of: languageA) { _ in
                 filterFlashCards()
             }
@@ -174,15 +234,15 @@ struct CardsView: View {
         }
     }
     
-    func deleteItems(at offsets: IndexSet) {
-        withAnimation {
-            for offset in offsets{
-                if let index = flashCardStorage.flashCards.firstIndex(of: filteredFlashCards[offset]) {
-                    flashCardStorage.removeCard(at: index)
-                }
-            }
-        }
-    }
+//    func deleteItems(at offsets: IndexSet) {
+//        withAnimation {
+//            for offset in offsets{
+//                if let index = flashCardStorage.flashCards.firstIndex(of: filteredFlashCards[offset]) {
+//                    flashCardStorage.removeCard(at: index)
+//                }
+//            }
+//        }
+//    }
 }
 
 

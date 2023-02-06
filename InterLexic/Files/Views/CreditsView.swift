@@ -155,6 +155,7 @@ struct CreditsView: View {
                         .padding()
                     }
                 }
+                
                 Section("Acknowledgements") {
                     ForEach(acknowledgements) { acknowledgement in
                         NavigationLink(acknowledgement.name) {
@@ -164,6 +165,11 @@ struct CreditsView: View {
                 }
             }
         }
+        .background(
+            Color.gray
+                .opacity(0.1)
+        )
+        
     }
     
     func didTapGitHub() {

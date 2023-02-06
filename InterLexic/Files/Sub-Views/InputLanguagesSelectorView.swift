@@ -32,7 +32,7 @@ struct InputLanguagesSelectorView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                         if languageA.name.isEmpty {
-                            Text("languageSelectors_chooseLanguage".localized)
+                            Text("languageSelectors_from".localized)
                                 .padding()
                         } else {
                             Text(languageA.name)
@@ -53,7 +53,7 @@ struct InputLanguagesSelectorView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                         if languageB.name.isEmpty {
-                            Text("languageSelectors_chooseLanguage".localized)
+                            Text("languageSelectors_to".localized)
                                 .padding()
                         }
                         Text(languageB.name)

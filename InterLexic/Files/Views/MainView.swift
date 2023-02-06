@@ -37,6 +37,7 @@ struct MainView: View {
                 }
                 .tag(3)
         }
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
