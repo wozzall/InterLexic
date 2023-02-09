@@ -21,8 +21,9 @@ struct CardsView: View {
     // MARK - True = to, False = from
     @State var selectedNavigation: String?
     @State var filteredFlashCards: Array<FlashCard> = []
-    @State var hitEdit: Bool = false
+    @State var tapDelete: Bool = false
     @State var animationAmount = 1.0
+    @State var tapFilter: Bool = false
     
     
     var body: some View {
@@ -33,13 +34,6 @@ struct CardsView: View {
                 } label: {
                     EmptyView()
                 }
-                // MARK - Language Selectors
-                //                HStack{
-                //                    Text("Filter by:")
-                //                        .padding(.horizontal)
-                //                    Spacer()
-                //                }
-                
                 ZStack{
                     //MARK - Flashcards
                     if filteredFlashCards.isEmpty {
@@ -47,6 +41,16 @@ struct CardsView: View {
                             Spacer()
                             Text("There are either no cards that match your filter query, or no flashcards saved. Please save translations to create flashcards!")
                                 .padding()
+                                .background
+                                    {
+                                        Color.gray.opacity(0.1)
+                                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                                    }
+                                    .overlay{
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(.black)
+                                            .opacity(0.2)
+                                    }
                             Spacer()
                             ZStack{
                                 RoundedRectangle(cornerRadius: 15)
@@ -82,7 +86,7 @@ struct CardsView: View {
                                     Section("") {
                                         FlashCardView(flashCard: flashCard)
                                             .overlay(alignment: .topTrailing) {
-                                                if hitEdit {
+                                                if tapDelete {
                                                     Button {
                                                         flashCardStorage.removeCard(selectedCard: flashCard)
                                                     } label: {
@@ -116,83 +120,96 @@ struct CardsView: View {
                             }
                         }
                     }
-                    VStack{
-                        ZStack{
-                            Color.clear.opacity(0.3)
-                                .background(.ultraThinMaterial)
-                                .saturation(0.0)
-                                .frame(height: 90)
-                            HStack{
-                                Button {
-                                    toFromDirection = false
-                                    didTapSelector()
-                                } label: {
-                                    ZStack {
-                                        Color.offWhite
-                                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 15)
-                                                    .stroke(.black)
-                                                    .opacity(0.3)
-                                            )
-                                        if languageA.name.isEmpty {
-                                            Text("languageSelectors_from".localized)
-                                                .padding()
-                                        } else {
-                                            Text(languageA.name)
+                    if tapFilter{
+                        VStack{
+                            ZStack{
+                                Color.clear.opacity(0.3)
+                                    .background(.ultraThinMaterial)
+                                    .saturation(0.0)
+                                    .frame(height: 90)
+                                HStack{
+                                    Button {
+                                        toFromDirection = false
+                                        didTapSelector()
+                                    } label: {
+                                        ZStack {
+                                            Color.offWhite
+                                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 15)
+                                                        .stroke(.black)
+                                                        .opacity(0.3)
+                                                )
+                                            if languageA.name.isEmpty {
+                                                Text("languageSelectors_from".localized)
+                                                    .padding()
+                                            } else {
+                                                Text(languageA.name)
+                                                    .fixedSize(horizontal: false, vertical: true)
+                                                    .multilineTextAlignment(.center)
+                                                    .padding(.horizontal)
+                                            }
+                                        }
+                                        .foregroundColor(.blue)
+                                    }
+                                    Image(systemName: "arrow.right")
+                                        .foregroundColor(.accentColor)
+                                    Button {
+                                        toFromDirection = true
+                                        didTapSelector()
+                                    } label: {
+                                        ZStack {
+                                            Color.offWhite
+                                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 15)
+                                                        .stroke(.black)
+                                                        .opacity(0.3)
+                                                )
+                                            if languageB.name.isEmpty {
+                                                Text("languageSelectors_to".localized)
+                                                    .padding()
+                                            }
+                                            Text(languageB.name)
                                                 .fixedSize(horizontal: false, vertical: true)
                                                 .multilineTextAlignment(.center)
                                                 .padding(.horizontal)
                                         }
+                                        .foregroundColor(.blue)
                                     }
-                                    .foregroundColor(.blue)
                                 }
-                                Image(systemName: "arrow.right")
-                                    .foregroundColor(.accentColor)
-                                Button {
-                                    toFromDirection = true
-                                    didTapSelector()
-                                } label: {
-                                    ZStack {
-                                        Color.offWhite
-                                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 15)
-                                                    .stroke(.black)
-                                                    .opacity(0.3)
-                                            )
-                                        if languageB.name.isEmpty {
-                                            Text("languageSelectors_to".localized)
-                                                .padding()
-                                        }
-                                        Text(languageB.name)
-                                            .fixedSize(horizontal: false, vertical: true)
-                                            .multilineTextAlignment(.center)
-                                            .padding(.horizontal)
-                                    }
-                                    .foregroundColor(.blue)
-                                }
+                                .frame(height: 50)
+                                .padding()
+                                .buttonStyle(.borderless)
                             }
-                            .frame(height: 50)
-                            .padding()
-                            .buttonStyle(.borderless)
+                            Spacer()
                         }
-                        Spacer()
                     }
                 }
             }
             .toolbar {
                 ToolbarItemGroup(placement: .automatic) {
-                    Button("Clear Filters") {
-                        languageA = didTapClear()
-                        languageB = didTapClear()
+                    Button {
+                        tapFilter.toggle()
+                    } label: {
+                        if tapFilter {
+                            Text("Hide Filter")
+                        } else {
+                            Text("Filter")
+                        }
+                    }
+                    if tapFilter {
+                        Button("Clear Filters") {
+                            languageA = didTapClear()
+                            languageB = didTapClear()
+                        }
                     }
                     Button {
-                        hitEdit.toggle()
+                        tapDelete.toggle()
                     } label: {
-                        if hitEdit == false {
+                        if tapDelete == false {
                             Text("Delete")
                         } else {
                             Text("Cancel")
