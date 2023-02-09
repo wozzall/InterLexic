@@ -102,15 +102,22 @@ struct CreditsView: View {
                             .padding()
                             .fixedSize(horizontal: false, vertical: true)
                         
-                        HStack(spacing: 35){
+                        HStack(spacing: 40){
+                            Spacer()
                             Button {
                                 didTapGitHub()
                             } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .foregroundColor(Color.offWhite)
-                                        .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                                    Text("GitHub")
+                                HStack(spacing: 0){
+                                    Image("github-mark")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 35, height: 35)
+                                        .clipped()
+                                    Image("GitHub_Logo")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 60, height: 25)
+                                        .clipped()
                                 }
                             }
                             .buttonStyle(.borderless)
@@ -118,12 +125,11 @@ struct CreditsView: View {
                             Button {
                                 didTapLinkedIn()
                             } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .foregroundColor(Color.offWhite)
-                                        .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                                    Text("LinkedIn")
-                                }
+                                    Image("LI-In-Bug")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                                    .clipped()
                             }
                             .buttonStyle(.borderless)
                             
@@ -134,14 +140,18 @@ struct CreditsView: View {
                                     presentingAlert = true
                                 }
                             } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .foregroundColor(Color.offWhite)
-                                        .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                                    Image(systemName: "envelope.fill")
+                                HStack(spacing: 0){
+                                    Image(systemName: "envelope.circle")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 50, height: 50)
+                                        .clipped()
                                 }
+
                             }
                             .buttonStyle(.borderless)
+                            .padding(.leading)
+                            Spacer()
                             .sheet(isPresented: $showMailView) {
                                 MailViewRepresentative(data: $mailData) { result in
                                     print(result)
@@ -153,6 +163,7 @@ struct CreditsView: View {
                         }
                         .frame(height: 50)
                         .padding()
+                        
                     }
                 }
                 

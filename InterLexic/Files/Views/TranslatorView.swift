@@ -158,17 +158,17 @@ struct TranslatorView: View {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .opacity(0.6)
-                                .overlay(
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .stroke(.black)
-                                            .opacity(0.3)
-                                    )
+//                                .overlay(
+//                                        RoundedRectangle(cornerRadius: 15)
+//                                            .stroke(.black)
+//                                            .opacity(0.1)
+//                                    )
                             
                             Button(action: {
                                 saveButton()
                             }) {
                                 Text("Save")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.gray)
                             }
                             .buttonStyle(.borderless)
                             .disabled(disabledSave)
@@ -176,7 +176,7 @@ struct TranslatorView: View {
                         else {
                             Color.yellow
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
                                 .overlay(
                                         RoundedRectangle(cornerRadius: 15)
                                             .stroke(.white)
@@ -187,7 +187,7 @@ struct TranslatorView: View {
                                 saveButton()
                                 self.disabledSave = true
                             }) {
-                                Image(systemName: "star.fill")
+                                Text("Save")
                                     .foregroundColor(.white)
                             }
                             .buttonStyle(.borderless)

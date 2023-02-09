@@ -16,7 +16,7 @@ struct AcknowledgementsMenuView: View {
             
             Acknowledgement(id: UUID(), name: "Google Cloud Translate API", uRL: "https://cloud.google.com/translate/", disclaimer: "THIS SERVICE MAY CONTAIN TRANSLATIONS POWERED BY GOOGLE. GOOGLE DISCLAIMS ALL WARRANTIES RELATED TO THE TRANSLATIONS, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTIES OF ACCURACY, RELIABILITY, AND ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT."),
             
-            Acknowledgement(id: UUID(), name: "SDWebImageSwiftUI", uRL: "https://github.com/SDWebImage/SDWebImageSwiftUI", version: "2.2.1", disclaimer: """
+            Acknowledgement(id: UUID(), name: "SDWebImageSwiftUI", uRL: "https://github.com/SDWebImage/SDWebImageSwiftUI", version: "2.2.2", disclaimer: """
                             Copyright (c) 2019 lizhuoli1126@126.com <lizhuoli1126@126.com>
                             
                             Permission is hereby granted, free of charge, to any person obtaining a copy

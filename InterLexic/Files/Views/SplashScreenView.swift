@@ -24,48 +24,44 @@ struct SplashScreenView: View {
         }
         else {
             VStack{
-                VStack{
-                    Image(uiImage: UIImage(named: "SplashScreenIcon") ?? UIImage())
-                        .resizable()
-                        .frame(width: 200, height: 200)
-                    Text("InterLexic")
+                Image(uiImage: UIImage(named: "SplashScreenIcon") ?? UIImage())
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                Text("InterLexic")
                     .foregroundColor(.black)
                     .font(.system(.largeTitle, design: .rounded)
                         .weight(.bold).lowercaseSmallCaps())
                     .padding(.bottom)
-                    Text("©2022 George Worrall")
-                        .foregroundColor(.gray)
-                        .opacity(0.7)
-                }
-                .scaleEffect(size)
-                .opacity(opacity)
-                .onAppear {
-                    withAnimation(.easeIn(duration: 1.2)) {
-                        self.size = 0.9
-                        self.opacity = 1.0
-                    }
-                }
+                Text("©2022 George Worrall")
+                    .foregroundColor(.gray)
+                    .opacity(0.7)
             }
+            .scaleEffect(size)
+            .opacity(opacity)
             .onAppear {
+                withAnimation(.easeIn(duration: 1.2)) {
+                    self.size = 0.9
+                    self.opacity = 1.0
+                }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                     self.isActive = true
                 }
             }
-//            .onDisappear(perform: languagesSetup)
+            //            .onDisappear(perform: languagesSetup)
         }
     }
-//    func languagesSetup() {
-//        if !hasLoaded {
-//            manager.fetchLanguage()
-//            if self.translatorLanguages.languages.isEmpty {
-//                for language in manager.supportedLanguages {
-//                    self.translatorLanguages.add(language)
-//                    self.translatorLanguages.languages.sort()
-//                }
-//            }
-//            hasLoaded = true
-//        }
-//    }
+    //    func languagesSetup() {
+    //        if !hasLoaded {
+    //            manager.fetchLanguage()
+    //            if self.translatorLanguages.languages.isEmpty {
+    //                for language in manager.supportedLanguages {
+    //                    self.translatorLanguages.add(language)
+    //                    self.translatorLanguages.languages.sort()
+    //                }
+    //            }
+    //            hasLoaded = true
+    //        }
+    //    }
 }
 //
 //struct SplashScreenView_Previews: PreviewProvider {
