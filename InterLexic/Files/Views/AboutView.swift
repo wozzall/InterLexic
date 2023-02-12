@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 import MessageUI
 
 
-struct CreditsView: View {
+struct AboutView: View {
     
     @Environment(\.openURL) private var openURL
             
@@ -30,7 +30,7 @@ struct CreditsView: View {
 
     
     init() {
-        biography = "Linguist turned iOS Developer.\n Currently working on iOS App InterLexic and tvOS App Frikanalen."
+        biography = "Linguist turning iOS Developer.\n Currently working on: \n-> iOS App InterLexic \n-> tvOS App Frikanalen."
         acknowledgements = [
                 
                 Acknowledgement(id: UUID(), name: "Google Cloud Translate API", uRL: "https://cloud.google.com/translate/", disclaimer: "THIS SERVICE MAY CONTAIN TRANSLATIONS POWERED BY GOOGLE. GOOGLE DISCLAIMS ALL WARRANTIES RELATED TO THE TRANSLATIONS, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTIES OF ACCURACY, RELIABILITY, AND ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT."),
@@ -86,7 +86,7 @@ struct CreditsView: View {
     var body: some View {
         NavigationView{
             List{
-                Section("Profile") {
+                Section("Developer") {
                     VStack(spacing: 5) {
                         WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
                             .resizable()
@@ -100,7 +100,7 @@ struct CreditsView: View {
                         Text(biography)
                             .multilineTextAlignment(.center)
                             .padding()
-                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(width: UIScreen.main.bounds.width * 0.8)
                         
                         HStack(spacing: 40){
                             Spacer()
@@ -166,8 +166,7 @@ struct CreditsView: View {
                         
                     }
                 }
-                
-                Section("Acknowledgements") {
+                Section("Licenses") {
                     ForEach(acknowledgements) { acknowledgement in
                         NavigationLink(acknowledgement.name) {
                             AcknowledgmentsCellView(info: acknowledgement)
@@ -195,6 +194,6 @@ struct CreditsView: View {
 
 struct CreditsView_Previews: PreviewProvider {
     static var previews: some View {
-        CreditsView()
+        AboutView()
     }
 }

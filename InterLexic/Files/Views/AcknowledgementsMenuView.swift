@@ -66,7 +66,7 @@ struct AcknowledgementsMenuView: View {
     
     var body: some View {
             List {
-                Section("Acknowledgements") {
+                Section("Licenses") {
                     ForEach(acknowledgements) { acknowledgement in
                         NavigationLink(acknowledgement.name) {
                             AcknowledgmentsCellView(info: acknowledgement)

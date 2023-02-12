@@ -79,8 +79,70 @@ struct CardsView: View {
                     }
                     else {
                         ScrollView {
-                            Spacer()
-                                .frame(height: 90)
+                            if tapFilter{
+                                    ZStack{
+                                        Color.clear.opacity(0.3)
+                                            .background(.ultraThinMaterial)
+                                            .saturation(0.0)
+                                            .frame(height: 90)
+                                        HStack{
+                                            Button {
+                                                toFromDirection = false
+                                                didTapSelector()
+                                            } label: {
+                                                ZStack {
+                                                    Color.offWhite
+                                                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                                                        .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: 15)
+                                                                .stroke(.black)
+                                                                .opacity(0.3)
+                                                        )
+                                                    if languageA.name.isEmpty {
+                                                        Text("languageSelectors_from".localized)
+                                                            .padding()
+                                                    } else {
+                                                        Text(languageA.name)
+                                                            .fixedSize(horizontal: false, vertical: true)
+                                                            .multilineTextAlignment(.center)
+                                                            .padding(.horizontal)
+                                                    }
+                                                }
+                                                .foregroundColor(.blue)
+                                            }
+                                            Image(systemName: "arrow.right")
+                                                .foregroundColor(.accentColor)
+                                            Button {
+                                                toFromDirection = true
+                                                didTapSelector()
+                                            } label: {
+                                                ZStack {
+                                                    Color.offWhite
+                                                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                                                        .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: 15)
+                                                                .stroke(.black)
+                                                                .opacity(0.3)
+                                                        )
+                                                    if languageB.name.isEmpty {
+                                                        Text("languageSelectors_to".localized)
+                                                            .padding()
+                                                    }
+                                                    Text(languageB.name)
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                        .multilineTextAlignment(.center)
+                                                        .padding(.horizontal)
+                                                }
+                                                .foregroundColor(.blue)
+                                            }
+                                        }
+                                        .frame(height: 50)
+                                        .padding()
+                                        .buttonStyle(.borderless)
+                                    }
+                            }
                             LazyVStack{
                                 ForEach(filteredFlashCards, id: \.id) { flashCard in
                                     Section("") {
@@ -106,8 +168,6 @@ struct CardsView: View {
                                                         .padding(.trailing, 4)
                                                         .padding(.top, 4)
                                                     }
-                                                } else {
-                                                    EmptyView()
                                                 }
                                             }
                                             .padding(.horizontal, 50)
@@ -118,73 +178,6 @@ struct CardsView: View {
                             .onChange(of: flashCardStorage.flashCards) { _ in
                                 filterFlashCards()
                             }
-                        }
-                    }
-                    if tapFilter{
-                        VStack{
-                            ZStack{
-                                Color.clear.opacity(0.3)
-                                    .background(.ultraThinMaterial)
-                                    .saturation(0.0)
-                                    .frame(height: 90)
-                                HStack{
-                                    Button {
-                                        toFromDirection = false
-                                        didTapSelector()
-                                    } label: {
-                                        ZStack {
-                                            Color.offWhite
-                                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(.black)
-                                                        .opacity(0.3)
-                                                )
-                                            if languageA.name.isEmpty {
-                                                Text("languageSelectors_from".localized)
-                                                    .padding()
-                                            } else {
-                                                Text(languageA.name)
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                    .multilineTextAlignment(.center)
-                                                    .padding(.horizontal)
-                                            }
-                                        }
-                                        .foregroundColor(.blue)
-                                    }
-                                    Image(systemName: "arrow.right")
-                                        .foregroundColor(.accentColor)
-                                    Button {
-                                        toFromDirection = true
-                                        didTapSelector()
-                                    } label: {
-                                        ZStack {
-                                            Color.offWhite
-                                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(.black)
-                                                        .opacity(0.3)
-                                                )
-                                            if languageB.name.isEmpty {
-                                                Text("languageSelectors_to".localized)
-                                                    .padding()
-                                            }
-                                            Text(languageB.name)
-                                                .fixedSize(horizontal: false, vertical: true)
-                                                .multilineTextAlignment(.center)
-                                                .padding(.horizontal)
-                                        }
-                                        .foregroundColor(.blue)
-                                    }
-                                }
-                                .frame(height: 50)
-                                .padding()
-                                .buttonStyle(.borderless)
-                            }
-                            Spacer()
                         }
                     }
                 }
@@ -260,16 +253,6 @@ struct CardsView: View {
             }
         }
     }
-    
-    //    func deleteItems(at offsets: IndexSet) {
-    //        withAnimation {
-//            for offset in offsets{
-//                if let index = flashCardStorage.flashCards.firstIndex(of: filteredFlashCards[offset]) {
-//                    flashCardStorage.removeCard(at: index)
-//                }
-//            }
-//        }
-//    }
 }
 
 

@@ -31,9 +31,9 @@ struct MainView: View {
                 }
                 .tag(2)
             
-            CreditsView()
+            AboutView()
                 .tabItem {
-                    Label("Credits".localized, systemImage: "person.crop.circle")
+                    Label("TabView_About".localized, systemImage: "questionmark.circle")
                 }
                 .tag(3)
         }

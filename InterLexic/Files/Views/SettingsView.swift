@@ -16,8 +16,8 @@ struct SettingsView: View {
         NavigationView{
             List {
                 Section(header: Text("Settings_section_acknowledgements".localized)) {
-                    NavigationLink(tag: CreditsView.navigation, selection: $selectedNavigation) {
-                        CreditsView()
+                    NavigationLink(tag: AboutView.navigation, selection: $selectedNavigation) {
+                        AboutView()
                     } label: {
                         HStack{
                             Text("Settings_Credits".localized)

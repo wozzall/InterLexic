@@ -114,7 +114,6 @@ struct TranslatorView: View {
                             .padding()
                             .multilineTextAlignment(.leading)
                             .textFieldStyle(.roundedBorder)
-//                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                             .focused($focusedField, equals: .sourceText)
                     }
                     if translatableText.isEmpty {
@@ -203,7 +202,6 @@ struct TranslatorView: View {
                     .border(Color.black.opacity(0.4))
                     .padding()
                     .textFieldStyle(.roundedBorder)
-//                    .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                     .frame(height: UIScreen.main.bounds.height * 0.3)
                     .focused($focusedField, equals: .targetText)
                     .toast(isPresenting: $tappedSave, message: "Translation saved!")
