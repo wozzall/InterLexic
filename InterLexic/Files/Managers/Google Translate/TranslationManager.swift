@@ -139,7 +139,7 @@ class TranslationManager: NSObject, ObservableObject {
                             if let name = lang["name"] as? String {
                                 languageName = name
                             }
-                            if languageName != ""{
+                            if languageName != "" && languageCode != "zh" {
                                 self.supportedLanguages.append(Language(name: languageName!, translatorID: languageCode!, id: UUID()))
                                
                             }
