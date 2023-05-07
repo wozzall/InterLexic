@@ -153,11 +153,8 @@ struct CardsView: View {
                                                         flashCardStorage.removeCard(selectedCard: flashCard)
                                                     } label: {
                                                         ZStack{
-                                                            Circle()
-                                                                .strokeBorder(Color.red)
-                                                                .frame(width: 25, height: 25)
-                                                                .opacity(0.8)
-                                                            Image(systemName: "trash.fill")
+                                                            Image(systemName: "minus.circle.fill")
+                                                                .resizable()
                                                                 .foregroundColor(Color.red)
                                                                 .frame(width: 25, height: 25)
                                                                 .opacity(0.8)
@@ -204,8 +201,11 @@ struct CardsView: View {
                     } label: {
                         if tapDelete == false {
                             Text("Delete")
+                                .foregroundColor(.red)
                         } else {
                             Text("Cancel")
+                                .foregroundColor(.red)
+
                         }
                     }
                 }
