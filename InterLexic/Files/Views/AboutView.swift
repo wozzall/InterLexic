@@ -90,7 +90,7 @@ struct AboutView: View {
                     VStack(spacing: 5) {
                         WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
                             .resizable()
-                            .frame(width: 100, height: 100, alignment: .center)
+                            .frame(width: 150, height: 150, alignment: .center)
                             .clipShape(Circle())
                             .shadow(color: .gray, radius: 2, x: 1, y: 1)
                             .padding()
@@ -141,10 +141,10 @@ struct AboutView: View {
                                 }
                             } label: {
                                 HStack(spacing: 0){
-                                    Image(systemName: "envelope.circle")
+                                    Image(systemName: "envelope.fill")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 50, height: 50)
+                                        .frame(width: 35, height: 35)
                                         .clipped()
                                 }
 
