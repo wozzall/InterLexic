@@ -34,151 +34,189 @@ struct CardsView: View {
                 } label: {
                     EmptyView()
                 }
-                ZStack{
-                    //MARK - Flashcards
-                    if filteredFlashCards.isEmpty {
-                        VStack{
-                            Spacer()
-                            Text("There are either no cards that match your filter query, or no flashcards saved. Please save translations to create flashcards!")
-                                .padding()
-                                .background
-                                    {
-                                        Color.gray.opacity(0.1)
+                //MARK - Flashcards
+                if flashCardStorage.flashCards.isEmpty {
+                    VStack{
+                        Spacer()
+                        Text("No translations saved!")
+                            .multilineTextAlignment(.center)
+                            .font(.body)
+                            .padding()
+                            .background {
+                            Color.red.opacity(0.3)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(lineWidth: 2)
+                                        .foregroundColor(.red)
+                                }
+                        }
+                        Spacer()
+//                        ZStack{
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .foregroundColor(.blue)
+//                                .frame(height: 50)
+//                                .padding(.horizontal, 45)
+//                                .opacity(0.5)
+//                                .overlay(
+//                                    RoundedRectangle(cornerRadius: 15)
+//                                        .stroke(.blue, lineWidth: 4)
+//                                        .padding(.horizontal, 45)
+//                                )
+                            HStack{
+                                Text("👇")
+                                    .padding(.leading, 50)
+                                    .font(.title)
+                                Text("Tap here to start translating!")
+                                    .padding(.bottom, 15)
+                                Spacer()
+                            }
+//                        }
+                        .opacity(0.7)
+                        .padding(.bottom)
+                        .padding(.trailing)
+                    }
+                } else if filteredFlashCards.isEmpty {
+                    VStack{
+                        Spacer()
+                        Text("No filter results found!")
+                            .multilineTextAlignment(.center)
+                            .font(.body)
+                            .padding()
+                            .background
+                        {
+                            Color.red.opacity(0.3)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(lineWidth: 2)
+                                        .foregroundColor(.red)
+                                }
+                        }
+                        
+                        Spacer()
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 15)
+                                .foregroundColor(.blue)
+                                .frame(height: 50)
+                                .padding(.horizontal, 45)
+                                .opacity(0.5)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(.blue, lineWidth: 4)
+                                        .padding(.horizontal, 45)
+                                )
+                            HStack{
+                                Image(systemName: "arrow.turn.left.down")
+                                    .font(.body)
+                                    .padding(.leading, 50)
+                                Text("Tap here to start translating!")
+                                    .padding(.bottom, 15)
+                                Spacer()
+                            }
+                        }
+                        .opacity(0.7)
+                        .padding(.bottom)
+                        .padding(.trailing)
+                    }
+                }
+                
+                else {
+                    ScrollView {
+                        if tapFilter{
+                            HStack{
+                                Button {
+                                    toFromDirection = false
+                                    didTapSelector()
+                                } label: {
+                                    ZStack {
+                                        Color.offWhite
                                             .clipShape(RoundedRectangle(cornerRadius: 15))
+                                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .stroke(.black)
+                                                    .opacity(0.3)
+                                            )
+                                        if languageA.name.isEmpty {
+                                            Text("languageSelectors_from".localized)
+                                                .padding()
+                                        } else {
+                                            Text(languageA.name)
+                                                .fixedSize(horizontal: false, vertical: true)
+                                                .multilineTextAlignment(.center)
+                                                .padding(.horizontal)
+                                        }
                                     }
-                                    .overlay{
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .stroke(.black)
-                                            .opacity(0.2)
-                                    }
-                            Spacer()
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 15)
                                     .foregroundColor(.blue)
-                                    .frame(height: 50)
-                                    .padding(.horizontal, 45)
-                                    .opacity(0.5)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .stroke(.blue, lineWidth: 4)
-                                            .padding(.horizontal, 45)
-                                    )
-                                HStack{
-                                    Image(systemName: "arrow.turn.left.down")
-                                        .font(.body)
-                                        .padding(.leading, 50)
-                                    Text("Tap here to start translating!")
-                                        .padding(.bottom, 15)
-                                    Spacer()
+                                }
+                                Image(systemName: "arrow.right")
+                                    .foregroundColor(.accentColor)
+                                Button {
+                                    toFromDirection = true
+                                    didTapSelector()
+                                } label: {
+                                    ZStack {
+                                        Color.offWhite
+                                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .stroke(.black)
+                                                    .opacity(0.3)
+                                            )
+                                        if languageB.name.isEmpty {
+                                            Text("languageSelectors_to".localized)
+                                                .padding()
+                                        }
+                                        Text(languageB.name)
+                                            .fixedSize(horizontal: false, vertical: true)
+                                            .multilineTextAlignment(.center)
+                                            .padding(.horizontal)
+                                    }
+                                    .foregroundColor(.blue)
                                 }
                             }
-                            .opacity(0.7)
-                            .padding(.bottom)
-                            .padding(.trailing)
+                            .frame(height: 50)
+                            .padding()
+                            .buttonStyle(.borderless)
                         }
-                    }
-                    else {
-                        ScrollView {
-                            if tapFilter{
-                                    ZStack{
-                                        Color.clear.opacity(0.3)
-                                            .background(.ultraThinMaterial)
-                                            .saturation(0.0)
-                                            .frame(height: 90)
-                                        HStack{
-                                            Button {
-                                                toFromDirection = false
-                                                didTapSelector()
-                                            } label: {
-                                                ZStack {
-                                                    Color.offWhite
-                                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                                        .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                                        .overlay(
-                                                            RoundedRectangle(cornerRadius: 15)
-                                                                .stroke(.black)
-                                                                .opacity(0.3)
-                                                        )
-                                                    if languageA.name.isEmpty {
-                                                        Text("languageSelectors_from".localized)
-                                                            .padding()
-                                                    } else {
-                                                        Text(languageA.name)
-                                                            .fixedSize(horizontal: false, vertical: true)
-                                                            .multilineTextAlignment(.center)
-                                                            .padding(.horizontal)
+                        LazyVStack{
+                            ForEach(filteredFlashCards, id: \.id) { flashCard in
+                                Section("") {
+                                    FlashCardView(flashCard: flashCard)
+                                        .overlay(alignment: .topTrailing) {
+                                            if tapDelete {
+                                                Button {
+                                                    flashCardStorage.removeCard(selectedCard: flashCard)
+                                                } label: {
+                                                    ZStack{
+                                                        Image(systemName: "minus.circle.fill")
+                                                            .resizable()
+                                                            .foregroundColor(Color.red)
+                                                            .frame(width: 25, height: 25)
+                                                            .opacity(0.8)
+                                                            .animation(.easeIn(duration: 2)
+                                                                .repeatForever(autoreverses: false),
+                                                                       value: animationAmount)
                                                     }
+                                                    .padding(.trailing, 4)
+                                                    .padding(.top, 4)
                                                 }
-                                                .foregroundColor(.blue)
-                                            }
-                                            Image(systemName: "arrow.right")
-                                                .foregroundColor(.accentColor)
-                                            Button {
-                                                toFromDirection = true
-                                                didTapSelector()
-                                            } label: {
-                                                ZStack {
-                                                    Color.offWhite
-                                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                                        .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                                        .overlay(
-                                                            RoundedRectangle(cornerRadius: 15)
-                                                                .stroke(.black)
-                                                                .opacity(0.3)
-                                                        )
-                                                    if languageB.name.isEmpty {
-                                                        Text("languageSelectors_to".localized)
-                                                            .padding()
-                                                    }
-                                                    Text(languageB.name)
-                                                        .fixedSize(horizontal: false, vertical: true)
-                                                        .multilineTextAlignment(.center)
-                                                        .padding(.horizontal)
-                                                }
-                                                .foregroundColor(.blue)
                                             }
                                         }
-                                        .frame(height: 50)
-                                        .padding()
-                                        .buttonStyle(.borderless)
-                                    }
-                            }
-                            LazyVStack{
-                                ForEach(filteredFlashCards, id: \.id) { flashCard in
-                                    Section("") {
-                                        FlashCardView(flashCard: flashCard)
-                                            .overlay(alignment: .topTrailing) {
-                                                if tapDelete {
-                                                    Button {
-                                                        flashCardStorage.removeCard(selectedCard: flashCard)
-                                                    } label: {
-                                                        ZStack{
-                                                            Image(systemName: "minus.circle.fill")
-                                                                .resizable()
-                                                                .foregroundColor(Color.red)
-                                                                .frame(width: 25, height: 25)
-                                                                .opacity(0.8)
-                                                                .animation(.easeIn(duration: 2)
-                                                                    .repeatForever(autoreverses: false),
-                                                                           value: animationAmount)
-                                                        }
-                                                        .padding(.trailing, 4)
-                                                        .padding(.top, 4)
-                                                    }
-                                                }
-                                            }
-                                            .padding(.horizontal, 50)
-                                    }
+                                        .padding(.horizontal, 50)
                                 }
                             }
-                            .environment(\.defaultMinListRowHeight, 50)
-                            .onChange(of: flashCardStorage.flashCards) { _ in
-                                filterFlashCards()
-                            }
+                        }
+                        .environment(\.defaultMinListRowHeight, 50)
+                        .onChange(of: flashCardStorage.flashCards) { _ in
+                            filterFlashCards()
                         }
                     }
                 }
             }
+            .background(Color.offWhite.opacity(0.5))
             .toolbar {
                 ToolbarItemGroup(placement: .automatic) {
                     Button {
@@ -205,7 +243,7 @@ struct CardsView: View {
                         } else {
                             Text("Cancel")
                                 .foregroundColor(.red)
-
+                            
                         }
                     }
                 }

@@ -45,6 +45,7 @@ struct FlashCardView: View {
         .multilineTextAlignment(.leading)
         .padding()
         .border(Color.black.opacity(0.4))
+        .background(Color.white)
     }
 }
 
