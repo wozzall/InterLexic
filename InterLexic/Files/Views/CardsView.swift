@@ -41,16 +41,50 @@ struct CardsView: View {
                         Text("No translations saved!")
                             .multilineTextAlignment(.center)
                             .font(.body)
+                            .foregroundColor(.red.opacity(0.7))
                             .padding()
-                            .background {
-                            Color.red.opacity(0.3)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(lineWidth: 2)
-                                        .foregroundColor(.red)
-                                }
+//                            .background {
+//                            Color.red.opacity(0.3)
+//                                .clipShape(RoundedRectangle(cornerRadius: 15))
+//                                .overlay {
+//                                    RoundedRectangle(cornerRadius: 15)
+//                                        .stroke(lineWidth: 2)
+//                                        .foregroundColor(.red)
+//                                }
+//                        }
+                        HStack {
+                            Text("Tap the")
+                            Image(systemName: "character.bubble.fill")
+                            Text("tab to start translating!")
                         }
+                        .font(.body)
+                        .foregroundColor(.gray.opacity(0.8))
+                        Spacer()
+//                            HStack{
+//                                Text("👇")
+//                                    .padding(.leading, 50)
+//                                    .font(.title)
+//                                Text("Tap here to start translating!")
+//                                    .padding(.bottom, 15)
+//                                Spacer()
+//                            }
+//                        .opacity(0.7)
+//                        .padding(.bottom)
+//                        .padding(.trailing)
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                } else if filteredFlashCards.isEmpty {
+                    VStack{
+                        Spacer()
+                        Text("No cards found using these filters!")
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                            .font(.body)
+                            .padding()
+                      
+                            
+                        
                         Spacer()
 //                        ZStack{
 //                            RoundedRectangle(cornerRadius: 15)
@@ -63,62 +97,20 @@ struct CardsView: View {
 //                                        .stroke(.blue, lineWidth: 4)
 //                                        .padding(.horizontal, 45)
 //                                )
-                            HStack{
-                                Text("👇")
-                                    .padding(.leading, 50)
-                                    .font(.title)
-                                Text("Tap here to start translating!")
-                                    .padding(.bottom, 15)
-                                Spacer()
-                            }
+//                            HStack{
+//                                Image(systemName: "arrow.turn.left.down")
+//                                    .font(.body)
+//                                    .padding(.leading, 50)
+//                                Text("Tap here to start translating!")
+//                                    .padding(.bottom, 15)
+//                                Spacer()
+//                            }
 //                        }
-                        .opacity(0.7)
-                        .padding(.bottom)
-                        .padding(.trailing)
+//                        .opacity(0.7)
+//                        .padding(.bottom)
+//                        .padding(.trailing)
                     }
-                } else if filteredFlashCards.isEmpty {
-                    VStack{
-                        Spacer()
-                        Text("No filter results found!")
-                            .multilineTextAlignment(.center)
-                            .font(.body)
-                            .padding()
-                            .background
-                        {
-                            Color.red.opacity(0.3)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(lineWidth: 2)
-                                        .foregroundColor(.red)
-                                }
-                        }
-                        
-                        Spacer()
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(.blue)
-                                .frame(height: 50)
-                                .padding(.horizontal, 45)
-                                .opacity(0.5)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(.blue, lineWidth: 4)
-                                        .padding(.horizontal, 45)
-                                )
-                            HStack{
-                                Image(systemName: "arrow.turn.left.down")
-                                    .font(.body)
-                                    .padding(.leading, 50)
-                                Text("Tap here to start translating!")
-                                    .padding(.bottom, 15)
-                                Spacer()
-                            }
-                        }
-                        .opacity(0.7)
-                        .padding(.bottom)
-                        .padding(.trailing)
-                    }
+                    .frame(maxWidth: .infinity)
                 }
                 
                 else {
