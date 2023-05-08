@@ -37,7 +37,7 @@ struct TranslatorView: View {
     @State var showAlert: Bool = false
     
     @FocusState private var focusedField: Field?
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -110,9 +110,13 @@ struct TranslatorView: View {
                 ZStack{
                     VStack{
                         TextEditor(text: $translatableText)
-                            .border(Color.black.opacity(0.3))
-                            .padding()
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
                             .multilineTextAlignment(.leading)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color.black.opacity(0.5), lineWidth: 1)
+                            )
+                            .padding()
                             .textFieldStyle(.roundedBorder)
                             .focused($focusedField, equals: .sourceText)
                     }
@@ -198,13 +202,18 @@ struct TranslatorView: View {
                 .foregroundColor(Color.white)
                 
                 TextEditor(text: $viewModel.translatedString)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
                     .multilineTextAlignment(.leading)
-                    .border(Color.black.opacity(0.4))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.black.opacity(0.5), lineWidth: 1)
+                    )
                     .padding()
-                    .textFieldStyle(.roundedBorder)
                     .frame(height: UIScreen.main.bounds.height * 0.3)
                     .focused($focusedField, equals: .targetText)
                     .toast(isPresenting: $tappedSave, message: "Translation saved!")
+                    
+
                 
                 HStack {
                     Spacer()
@@ -217,10 +226,8 @@ struct TranslatorView: View {
             }
             .navigationBarTitle("TabView_Translate".localized)
             .navigationBarHidden(true)
-            .background(
-                Color.gray
-                    .opacity(0.1)
-            )
+            .background(Color.offWhite.opacity(0.5))
+            
             .onAppear {
 //                assignDefaultLanguages()
                 manager.fetchLanguages()
