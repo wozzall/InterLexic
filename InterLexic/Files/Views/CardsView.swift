@@ -206,40 +206,41 @@ struct CardsView: View {
                             filterFlashCards()
                         }
                     }
+                    .toolbar {
+                        ToolbarItemGroup(placement: .automatic) {
+                            Button {
+                                tapFilter.toggle()
+                            } label: {
+                                if tapFilter {
+                                    Text("Hide Filter")
+                                } else {
+                                    Text("Filter")
+                                }
+                            }
+                            if tapFilter {
+                                Button("Clear Filters") {
+                                    languageA = didTapClear()
+                                    languageB = didTapClear()
+                                }
+                            }
+                            Button {
+                                tapDelete.toggle()
+                            } label: {
+                                if tapDelete == false {
+                                    Text("Delete")
+                                        .foregroundColor(.red)
+                                } else {
+                                    Text("Cancel")
+                                        .foregroundColor(.red)
+                                    
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .background(Color.offWhite.opacity(0.5))
-            .toolbar {
-                ToolbarItemGroup(placement: .automatic) {
-                    Button {
-                        tapFilter.toggle()
-                    } label: {
-                        if tapFilter {
-                            Text("Hide Filter")
-                        } else {
-                            Text("Filter")
-                        }
-                    }
-                    if tapFilter {
-                        Button("Clear Filters") {
-                            languageA = didTapClear()
-                            languageB = didTapClear()
-                        }
-                    }
-                    Button {
-                        tapDelete.toggle()
-                    } label: {
-                        if tapDelete == false {
-                            Text("Delete")
-                                .foregroundColor(.red)
-                        } else {
-                            Text("Cancel")
-                                .foregroundColor(.red)
-                            
-                        }
-                    }
-                }
-            }
+            
             .onAppear{
                 filterFlashCards()
                 animationAmount = 2
