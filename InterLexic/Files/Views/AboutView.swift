@@ -30,12 +30,14 @@ struct AboutView: View {
 
     
     init() {
-        biography = "Linguist turning iOS Developer.\n Currently working on: \n-> iOS App InterLexic \n-> tvOS App Frikanalen."
+        biography = """
+                Tech enthusiast linguist turning iOS Developer.\n\n Find me on:
+                """
         acknowledgements = [
-                
-                Acknowledgement(id: UUID(), name: "Google Cloud Translate API", uRL: "https://cloud.google.com/translate/", disclaimer: "THIS SERVICE MAY CONTAIN TRANSLATIONS POWERED BY GOOGLE. GOOGLE DISCLAIMS ALL WARRANTIES RELATED TO THE TRANSLATIONS, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTIES OF ACCURACY, RELIABILITY, AND ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT."),
-                
-                Acknowledgement(id: UUID(), name: "SDWebImageSwiftUI", uRL: "https://github.com/SDWebImage/SDWebImageSwiftUI", version: "2.2.1", disclaimer: """
+            
+            Acknowledgement(id: UUID(), name: "Google Cloud Translate API", uRL: "https://cloud.google.com/translate/", disclaimer: "THIS SERVICE MAY CONTAIN TRANSLATIONS POWERED BY GOOGLE. GOOGLE DISCLAIMS ALL WARRANTIES RELATED TO THE TRANSLATIONS, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTIES OF ACCURACY, RELIABILITY, AND ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT."),
+            
+            Acknowledgement(id: UUID(), name: "SDWebImageSwiftUI", uRL: "https://github.com/SDWebImage/SDWebImageSwiftUI", version: "2.2.1", disclaimer: """
                                 Copyright (c) 2019 lizhuoli1126@126.com <lizhuoli1126@126.com>
                                 
                                 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -56,8 +58,8 @@ struct AboutView: View {
                                 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
                                 THE SOFTWARE.
                                 """),
-                
-                Acknowledgement(id: UUID(), name: "ToastSwiftUI", uRL: "https://github.com/huynguyencong/ToastSwiftUI", version: "0.3.4", disclaimer: """
+            
+            Acknowledgement(id: UUID(), name: "ToastSwiftUI", uRL: "https://github.com/huynguyencong/ToastSwiftUI", version: "0.3.4", disclaimer: """
                                 MIT License
                                 
                                 Copyright (c) 2020 Huy Nguyen
@@ -80,30 +82,33 @@ struct AboutView: View {
                                 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
                                 SOFTWARE.
                                 """)
-            ]
+        ]
     }
     
     var body: some View {
         NavigationView{
             List{
                 Section("Developer") {
-                    VStack(spacing: 5) {
-                        WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
-                            .resizable()
-                            .frame(width: 150, height: 150, alignment: .center)
-                            .clipShape(Circle())
-                            .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                            .padding()
-                        Text("George Worrall")
-                            .multilineTextAlignment(.center)
-                            .font(.title)
+                    VStack {
+                            WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
+                                .resizable()
+                                .frame(width: 100, height: 100, alignment: .leading)
+                                .clipShape(Circle())
+                                .shadow(color: .gray, radius: 2, x: 1, y: 1)
+                            
+                            
+                            
+                            Text("George Worrall")
+                                .multilineTextAlignment(.center)
+                                .font(.title)
+                                .padding(.top)
+                        
                         Text(biography)
+                            .opacity(0.8)
                             .multilineTextAlignment(.center)
                             .padding()
                             .frame(width: UIScreen.main.bounds.width * 0.8)
-                        
-                        HStack(spacing: 40){
-                            Spacer()
+                        HStack(alignment: .center, spacing: 20) {
                             Button {
                                 didTapGitHub()
                             } label: {
@@ -111,12 +116,12 @@ struct AboutView: View {
                                     Image("github-mark")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 35, height: 35)
+                                        .frame(width: 25, height: 25)
                                         .clipped()
                                     Image("GitHub_Logo")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 60, height: 25)
+                                        .frame(width: 50, height: 20)
                                         .clipped()
                                 }
                             }
@@ -125,10 +130,10 @@ struct AboutView: View {
                             Button {
                                 didTapLinkedIn()
                             } label: {
-                                    Image("LI-In-Bug")
+                                Image("LI-In-Bug")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 50, height: 50)
+                                    .frame(width: 40, height: 40)
                                     .clipped()
                             }
                             .buttonStyle(.borderless)
@@ -140,30 +145,26 @@ struct AboutView: View {
                                     presentingAlert = true
                                 }
                             } label: {
-                                HStack(spacing: 0){
-                                    Image(systemName: "envelope.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 35, height: 35)
-                                        .clipped()
-                                }
-
+                                Image(systemName: "envelope.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                    .clipped()
                             }
                             .buttonStyle(.borderless)
                             .padding(.leading)
                             Spacer()
-                            .sheet(isPresented: $showMailView) {
-                                MailViewRepresentative(data: $mailData) { result in
-                                    print(result)
+                                .sheet(isPresented: $showMailView) {
+                                    MailViewRepresentative(data: $mailData) { result in
+                                        print(result)
+                                    }
                                 }
-                            }
-                            .alert(isPresented: $presentingAlert) {
-                                Alert(title: Text("Error!"), message: Text("There is no mail client setup on this device. Please set up email and try again!"), dismissButton: .default(Text("Dismiss")))
-                            }
+                                .alert(isPresented: $presentingAlert) {
+                                    Alert(title: Text("Error!"), message: Text("There is no mail client setup on this device. Please set up email and try again!"), dismissButton: .default(Text("Dismiss")))
+                                }
                         }
                         .frame(height: 50)
-                        .padding()
-                        
+                        .padding(.leading, 50)
                     }
                 }
                 Section("Licenses") {
