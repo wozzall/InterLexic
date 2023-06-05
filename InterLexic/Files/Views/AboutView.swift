@@ -31,7 +31,7 @@ struct AboutView: View {
     
     init() {
         biography = """
-                Tech enthusiast linguist turning iOS Developer.\n\n Find me on:
+                Tech enthusiast linguist turning iOS Developer.
                 """
         acknowledgements = [
             
