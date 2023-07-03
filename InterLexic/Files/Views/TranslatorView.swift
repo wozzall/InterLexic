@@ -120,10 +120,12 @@ struct TranslatorView: View {
                             .textFieldStyle(.roundedBorder)
                             .focused($focusedField, equals: .sourceText)
                             .onChange(of: translatableText) { _ in
-                                manager.detectLanguage(forText: translatableText) { result in
-                                    for language in manager.supportedLanguages {
-                                        if manager.sourceLanguageCode == language.translatorID {
-                                            languageA = language
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
+                                    manager.detectLanguage(forText: translatableText) { result in
+                                        for language in manager.supportedLanguages {
+                                            if manager.sourceLanguageCode == language.translatorID {
+                                                languageA = language
+                                            }
                                         }
                                     }
                                 }
