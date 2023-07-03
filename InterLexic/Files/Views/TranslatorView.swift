@@ -119,7 +119,16 @@ struct TranslatorView: View {
                             .padding()
                             .textFieldStyle(.roundedBorder)
                             .focused($focusedField, equals: .sourceText)
-                    }
+                            .onChange(of: translatableText) { _ in
+                                manager.detectLanguage(forText: translatableText) { result in
+                                    for language in manager.supportedLanguages {
+                                        if manager.sourceLanguageCode == language.translatorID {
+                                            languageA = language
+                                        }
+                                    }
+                                }
+                            }
+                                                }
                     if translatableText.isEmpty {
                         VStack{
                             HStack{
