@@ -13,7 +13,7 @@ struct FlashCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .center) {
+            HStack {
                 Text(flashCard.sourceLanguage)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(width: UIScreen.main.bounds.width * 0.35)
@@ -27,24 +27,24 @@ struct FlashCardView: View {
                 
             }
             .foregroundColor(.gray)
+            .padding()
             
             Divider()
             
             Text(flashCard.sourceString)
                 .font(Font.body.weight(.light))
                 .textSelection(.enabled)
-                .padding()
+                .padding(.horizontal)
             
             Divider()
-            
+
             Text(flashCard.targetString)
                 .font(Font.body.weight(.bold))
                 .textSelection(.enabled)
-                .padding()
+                .padding(.horizontal)
         }
         .multilineTextAlignment(.leading)
-        .padding()
-        .border(Color.black.opacity(0.4))
+//        .border(Color.black.opacity(0.4))
         .background(Color.white)
     }
 }

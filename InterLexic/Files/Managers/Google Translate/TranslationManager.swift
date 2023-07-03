@@ -15,8 +15,6 @@ enum TranslationManagerError: Error {
     
 }
 
-
-
 class TranslationManager: NSObject, ObservableObject {
         
     let network = Monitor()
@@ -25,7 +23,7 @@ class TranslationManager: NSObject, ObservableObject {
     
     private let apiKey = "AIzaSyATkpxkaYc59u0TuYmD2f5Xdwe0z1V2WEs"
 
-    @Published var supportedLanguages: Array<Language> = []
+    var supportedLanguages: Array<Language> = []
     
     var sourceLanguageCode: String?
     
