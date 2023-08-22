@@ -44,6 +44,7 @@
 		AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */; };
 		AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752569286DEFDA00CD30A7 /* ExtensionView.swift */; };
 		AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8259D72811BC0B00CA9805 /* Translation API.swift */; };
+		AD8C7A2F2A558CE70080D53A /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8C7A2E2A558CE70080D53A /* TextToSpeech.swift */; };
 		ADA3A2B52875E4C700193F87 /* InterLexic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADA3A2B32875E4C700193F87 /* InterLexic.xcdatamodeld */; };
 		ADDF80AD292299F50040B93F /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF80AC292299F50040B93F /* CardsView.swift */; };
 		ADDF80AF292699F80040B93F /* SupportedLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF80AE292699F80040B93F /* SupportedLanguages.swift */; };
@@ -110,6 +111,7 @@
 		AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectorView.swift; sourceTree = "<group>"; };
 		AD752569286DEFDA00CD30A7 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		AD8259D72811BC0B00CA9805 /* Translation API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translation API.swift"; sourceTree = "<group>"; };
+		AD8C7A2E2A558CE70080D53A /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		ADA3A2B42875E4C700193F87 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		ADDF80AC292299F50040B93F /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
 		ADDF80AE292699F80040B93F /* SupportedLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedLanguages.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */,
+				AD8C7A2E2A558CE70080D53A /* TextToSpeech.swift */,
 			);
 			path = Viewmodels;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				AD05604628D4C590004AE5B9 /* MailDelegate.swift in Sources */,
 				AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */,
 				ADDF80AD292299F50040B93F /* CardsView.swift in Sources */,
+				AD8C7A2F2A558CE70080D53A /* TextToSpeech.swift in Sources */,
 				ADA3A2B52875E4C700193F87 /* InterLexic.xcdatamodeld in Sources */,
 				AD24DD882910144800793B85 /* Acknowledgement.swift in Sources */,
 				AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */,
@@ -682,7 +686,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 009;
+				CURRENT_PROJECT_VERSION = 010;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
@@ -715,7 +719,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 009;
+				CURRENT_PROJECT_VERSION = 010;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;

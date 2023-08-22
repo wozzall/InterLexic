@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import AVFoundation
 import ToastSwiftUI
 
 private enum Field: Int, CaseIterable {
@@ -21,6 +22,7 @@ struct TranslatorView: View {
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     
     @ObservedObject var viewModel = TranslatorViewModel()
+    @ObservedObject var textToSpeech = TextToSpeech()
     
     @State private var translatableText: String = String()
     let textEditorPlaceHolder: String = "Type text to translate here"
@@ -54,10 +56,10 @@ struct TranslatorView: View {
                         ZStack {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
                                 .overlay(
                                         RoundedRectangle(cornerRadius: 15)
-                                            .stroke(.black)
+                                            .stroke(.black.opacity(0.5))
                                             .opacity(0.3)
                                     )
                             if languageA.name == "" {
@@ -82,10 +84,10 @@ struct TranslatorView: View {
                         ZStack {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                                .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
                                 .overlay(
                                         RoundedRectangle(cornerRadius: 15)
-                                            .stroke(.black)
+                                            .stroke(.black.opacity(0.5))
                                             .opacity(0.3)
                                     )
                             if languageB.name == "" {
@@ -109,27 +111,62 @@ struct TranslatorView: View {
                 
                 ZStack{
                     VStack{
-                        TextEditor(text: $translatableText)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .multilineTextAlignment(.leading)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .stroke(Color.black.opacity(0.5), lineWidth: 1)
-                            )
-                            .padding()
-                            .textFieldStyle(.roundedBorder)
-                            .focused($focusedField, equals: .sourceText)
-                            .onChange(of: translatableText) { _ in
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
-                                    manager.detectLanguage(forText: translatableText) { result in
-                                        for language in manager.supportedLanguages {
-                                            if manager.sourceLanguageCode == language.translatorID {
-                                                languageA = language
+                        if languageA.name == "Detect" {
+                            TextEditor(text: $translatableText)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                .multilineTextAlignment(.leading)
+                                .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(Color.black.opacity(0.5), lineWidth: 1))
+                                .overlay(alignment: .bottomTrailing) {
+                                    Button {
+                                        textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                                    } label: {
+                                        Image(systemName: "speaker.wave.2.fill")
+                                            .foregroundColor(.blue.opacity(0.8))
+                                            .font(.title3)
+                                    }
+                                    .padding(.bottom, 8)
+                                    .padding(.trailing, 8)
+                                }
+                                .padding()
+                                .textFieldStyle(.roundedBorder)
+                                .focused($focusedField, equals: .sourceText)
+                                .onChange(of: translatableText) { _ in
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
+                                        manager.detectLanguage(forText: translatableText) { result in
+                                            for language in manager.supportedLanguages {
+                                                if manager.sourceLanguageCode == language.translatorID {
+                                                    languageA = language
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
+                        } else {
+                            TextEditor(text: $translatableText)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                .multilineTextAlignment(.leading)
+                                .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(Color.black.opacity(0.5), lineWidth: 1))
+                                .overlay(alignment: .bottomTrailing) {
+                                    Button {
+                                        textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                                    } label: {
+                                        Image(systemName: "speaker.wave.2.fill")
+                                            .foregroundColor(.blue.opacity(0.8))
+                                            .font(.title3)
+                                    }
+                                    .padding(.bottom, 8)
+                                    .padding(.trailing, 8)
+                                }
+                                .padding()
+                                .textFieldStyle(.roundedBorder)
+                                .focused($focusedField, equals: .sourceText)
+                        }
                                                 }
                     if translatableText.isEmpty {
                         VStack{
@@ -190,7 +227,7 @@ struct TranslatorView: View {
                         else {
                             Color.yellow
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 2)
+                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
                                 .overlay(
                                         RoundedRectangle(cornerRadius: 15)
                                             .stroke(.white)
@@ -215,6 +252,7 @@ struct TranslatorView: View {
                 TextEditor(text: $viewModel.translatedString)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .multilineTextAlignment(.leading)
+                    .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)
                             .stroke(Color.black.opacity(0.5), lineWidth: 1)

@@ -108,6 +108,7 @@ struct AboutView: View {
                             .multilineTextAlignment(.center)
                             .padding()
                             .frame(width: UIScreen.main.bounds.width * 0.8)
+                        Divider()
                         HStack(alignment: .center, spacing: 20) {
                             Button {
                                 didTapGitHub()

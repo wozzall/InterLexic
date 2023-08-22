@@ -42,10 +42,18 @@ struct FlashCardView: View {
                 .font(Font.body.weight(.bold))
                 .textSelection(.enabled)
                 .padding(.horizontal)
+                .padding(.bottom)
         }
         .multilineTextAlignment(.leading)
 //        .border(Color.black.opacity(0.4))
         .background(Color.white)
+        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 15, height: 15)))
+        .shadow(color: .black.opacity(0.6), radius: 3, x: 2, y: 2)
+        .overlay {
+            RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
+                .stroke(lineWidth: 2)
+                .opacity(0.5)
+        }
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct LanguageSelectorView: View {
     
@@ -22,24 +23,49 @@ struct LanguageSelectorView: View {
     @State var filteredLanguages: Array<Language>?
     
     var body: some View {
-        List{
+        ScrollView{
+            VStack(alignment: .leading){
+                Button {
+                    languageA.name = "Detect"
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack{
+                        Text("Detect language")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                }
+                .foregroundColor(.red)
+                .frame(height: 30)
+                Divider()
+                    .foregroundColor(.red)
+            }
+            .padding(.horizontal)
             ForEach(Array(Set(filteredLanguages ?? manager.supportedLanguages).sorted())) { language in
-                ZStack {
+                VStack(alignment: .leading){
                     Button {
                         didTapLanguage(tapped: language, direction: toFromDirection)
                         presentationMode.wrappedValue.dismiss()
                     } label: {
-                        Text(language.name)
-                    }
+                        HStack{
+                            Text(language.name)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                        }
+                        .frame(height: 30)
+                        Spacer()
+                    Divider()
                 }
+                .padding(.horizontal)
             }
-        }
-        .searchable(text: $searchQuery)
-        .onChange(of: searchQuery) { _ in
-            filterLanguages()
-        }
-        .onSubmit(of: .search) {
-            filterLanguages()
+            .searchable(text: $searchQuery)
+            .onChange(of: searchQuery) { _ in
+                filterLanguages()
+            }
+            .onSubmit(of: .search) {
+                filterLanguages()
+            }
         }
         .overlay(
             ProgressView("ProgressView_Loading".localized)
@@ -52,11 +78,8 @@ struct LanguageSelectorView: View {
         }
         .alert(isPresented: $manager.isShowingAlert) {
             Alert(title: Text("NetworkError_Error".localized), message: Text("NetworkError_NoConnection".localized), dismissButton: .destructive(Text("Ok!"), action: {
-                presentationMode.wrappedValue.dismiss()
-            })
+                presentationMode.wrappedValue.dismiss()})
             )}
-        
-        
     }
     
     func didTapLanguage(tapped language: Language, direction: Bool) {
@@ -67,7 +90,6 @@ struct LanguageSelectorView: View {
     private func testLanguageSelection() {
         print(languageA)
         print(languageB)
-        print(manager.supportedLanguages)
         toFromDirection = false
     }
     //MARK - Prints out languages selected for testing ease-of-viewing.
@@ -121,3 +143,5 @@ struct LanguageSelectorView: View {
 //        LanguageSelectorView(toFromLanguage: true, languageA: $viewModel.languageA, languageB: $viewModel.languageB)
 //    }
 //}
+
+//
