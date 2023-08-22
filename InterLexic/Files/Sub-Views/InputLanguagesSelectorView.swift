@@ -19,7 +19,7 @@ struct InputLanguagesSelectorView: View {
     var body: some View {
         NavigationView {
             NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $toFromDirection)
+                LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $toFromDirection, languageDetectionRequired: false)
             } label: {
                 EmptyView()
             }

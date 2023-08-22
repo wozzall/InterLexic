@@ -21,51 +21,40 @@ struct LanguageSelectorView: View {
     @State var hasLoaded: Bool = false
     @State var searchQuery = ""
     @State var filteredLanguages: Array<Language>?
+    var languageDetectionRequired: Bool
+    
+    var languageList: Array<Language> {
+        Array(Set(filteredLanguages ?? manager.supportedLanguages)).sorted()
+    }
     
     var body: some View {
-        ScrollView{
-            VStack(alignment: .leading){
-                Button {
-                    languageA.name = "Detect"
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    HStack{
-                        Text("Detect language")
-                        Spacer()
-                        Image(systemName: "chevron.right")
+        List {
+            if languageDetectionRequired{
+                Section{
+                    Button("Detect") {
+                        languageA = Language(name: "Detect", translatorID: "")
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
-                .foregroundColor(.red)
-                .frame(height: 30)
-                Divider()
-                    .foregroundColor(.red)
             }
-            .padding(.horizontal)
-            ForEach(Array(Set(filteredLanguages ?? manager.supportedLanguages).sorted())) { language in
-                VStack(alignment: .leading){
+            Section{
+                ForEach(languageList) { language in
                     Button {
                         didTapLanguage(tapped: language, direction: toFromDirection)
                         presentationMode.wrappedValue.dismiss()
                     } label: {
-                        HStack{
-                            Text(language.name)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
-                        }
-                        .frame(height: 30)
-                        Spacer()
-                    Divider()
+                        Text(language.name)
+                    }
                 }
-                .padding(.horizontal)
             }
-            .searchable(text: $searchQuery)
-            .onChange(of: searchQuery) { _ in
-                filterLanguages()
-            }
-            .onSubmit(of: .search) {
-                filterLanguages()
-            }
+            
+        }
+        .searchable(text: $searchQuery, placement: .navigationBarDrawer(displayMode: .always))
+        .onChange(of: searchQuery) { _ in
+            filterLanguages()
+        }
+        .onSubmit(of: .search) {
+            filterLanguages()
         }
         .overlay(
             ProgressView("ProgressView_Loading".localized)

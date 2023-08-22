@@ -37,6 +37,7 @@ struct TranslatorView: View {
     @State var tappedSave: Bool = false
     @State var disabledSave: Bool = true
     @State var showAlert: Bool = false
+    @State var languageDetectionRequired = false
     
     @FocusState private var focusedField: Field?
 
@@ -44,14 +45,14 @@ struct TranslatorView: View {
         NavigationView {
             ScrollView {
                 NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                    LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection)
+                    LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection, languageDetectionRequired: languageDetectionRequired)
                 } label: {
                     EmptyView()
                 }
                 HStack {
                     Button {
                         viewModel.setDirection(direction: false)
-                        didTapSelector()
+                        didTapSelector(isLanguageDetectionRequired: true)
                     } label: {
                         ZStack {
                             Color.offWhite
@@ -79,7 +80,7 @@ struct TranslatorView: View {
                         .foregroundColor(.accentColor)
                     Button {
                         viewModel.setDirection(direction: true)
-                        didTapSelector()
+                        didTapSelector(isLanguageDetectionRequired: false)
                     } label: {
                         ZStack {
                             Color.offWhite
@@ -296,8 +297,9 @@ struct TranslatorView: View {
         return false
     }
     
-    private func didTapSelector() {
+    private func didTapSelector(isLanguageDetectionRequired: Bool) {
         self.selectedNavigation = nil
+        self.languageDetectionRequired = isLanguageDetectionRequired
         self.selectedNavigation = LanguageSelectorView.navigation
     }
     
