@@ -35,6 +35,7 @@ struct LanguageSelectorView: View {
                         languageA = Language(name: "Detect", translatorID: "")
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .foregroundColor(Color.green)
                 }
             }
             Section{

@@ -23,19 +23,12 @@ class TextToSpeech: NSObject, ObservableObject {
         languageRecognizer.processString(inputString)
         
         if let appleRecognisedLanguage = languageRecognizer.dominantLanguage?.rawValue {
-            
-//            let voices = AVSpeechSynthesisVoice.speechVoices()
-//            for	voice in voices {
-//                print(voice.language)
-//                if voice.language.contains(appleRecognisedLanguage) {
-//                    return voice.language
-//                }
-//            }
-            for language in availableLanguages {
-                print(language)
-                if language.contains(appleRecognisedLanguage) {
-                    return language
-                }
+            let languageCode = appleRecognisedLanguage.prefix(2)
+            let voices = AVSpeechSynthesisVoice.speechVoices()
+            for	voice in voices where voice.language.contains(languageCode) {
+                print(voice.language + voice.name)
+                languageRecognizer.reset()
+                return voice.language
             }
         }
         return String("Error!")
@@ -51,5 +44,6 @@ class TextToSpeech: NSObject, ObservableObject {
         
         speechSynthesizer.speak(utterance)
     }
+    
     
 }

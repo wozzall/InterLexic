@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import AVFoundation
+import NaturalLanguage
 import ToastSwiftUI
 
 private enum Field: Int, CaseIterable {
@@ -23,6 +24,8 @@ struct TranslatorView: View {
     
     @ObservedObject var viewModel = TranslatorViewModel()
     @ObservedObject var textToSpeech = TextToSpeech()
+    @State var synthesizer = AVSpeechSynthesizer()
+	
     
     @State private var translatableText: String = String()
     let textEditorPlaceHolder: String = "Type text to translate here"
@@ -122,7 +125,7 @@ struct TranslatorView: View {
                                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
                                 .overlay(alignment: .bottomTrailing) {
                                     Button {
-                                        textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                                        synthesizeSpeech(inputMessage: translatableText)
                                     } label: {
                                         Image(systemName: "speaker.wave.2.fill")
                                             .foregroundColor(.blue.opacity(0.8))
@@ -155,6 +158,7 @@ struct TranslatorView: View {
                                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
                                 .overlay(alignment: .bottomTrailing) {
                                     Button {
+//                                        voiceTest()
                                         textToSpeech.synthesizeSpeech(inputMessage: translatableText)
                                     } label: {
                                         Image(systemName: "speaker.wave.2.fill")
@@ -186,7 +190,6 @@ struct TranslatorView: View {
                 }
                 .frame(height: UIScreen.main.bounds.height * 0.3)
                 
-                
                 HStack(spacing: 35){
                     ZStack{
                         RoundedRectangle(cornerRadius: 15)
@@ -204,18 +207,11 @@ struct TranslatorView: View {
                         }
                         .buttonStyle(.borderless)
                     }
-                    
                     ZStack{
                         if disabledSave {
                             Color.offWhite
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .opacity(0.6)
-//                                .overlay(
-//                                        RoundedRectangle(cornerRadius: 15)
-//                                            .stroke(.black)
-//                                            .opacity(0.1)
-//                                    )
-                            
                             Button(action: {
                                 saveButton()
                             }) {
@@ -234,7 +230,6 @@ struct TranslatorView: View {
                                             .stroke(.white)
                                             .opacity(0.3)
                                     )
-                            
                             Button(action: {
                                 saveButton()
                                 self.disabledSave = true
@@ -258,21 +253,29 @@ struct TranslatorView: View {
                         RoundedRectangle(cornerRadius: 15)
                             .stroke(Color.black.opacity(0.5), lineWidth: 1)
                     )
+                    .overlay(alignment: .bottomTrailing) {
+                        Button {
+                            voiceTest()
+//                            synthesizeSpeech(inputMessage: viewModel.translatedString)
+                        } label: {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .foregroundColor(.blue.opacity(0.8))
+                                .font(.title3)
+                        }
+                        .padding(.bottom, 8)
+                        .padding(.trailing, 8)
+                    }
                     .padding()
                     .frame(height: UIScreen.main.bounds.height * 0.3)
                     .focused($focusedField, equals: .targetText)
                     .toast(isPresenting: $tappedSave, message: "Translation saved!")
-                    
 
-                
                 HStack {
                     Spacer()
                     Image("color-short")
                         .padding(.bottom)
                         .padding(.trailing)
                 }
-                
-                
             }
             .navigationBarTitle("TabView_Translate".localized)
             .navigationBarHidden(true)
@@ -329,8 +332,28 @@ struct TranslatorView: View {
             flashCardStorage.flashCardDecks = flashCardStorage.sortIntoDecks()
             print(flashCardStorage.flashCardDecks)
         }
-        else {
-            return
+        return
+    }
+    
+    func synthesizeSpeech(inputMessage: String) {
+        
+        let languageCode = textToSpeech.isLanguageCodeAvailable(inputString: inputMessage)
+        let utterance = AVSpeechUtterance(string: inputMessage)
+        utterance.pitchMultiplier = 1.0
+        utterance.rate = 0.5
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+
+        synthesizer.speak(utterance)
+    }
+    
+    func voiceTest() {
+        let voices = AVSpeechSynthesisVoice.speechVoices()
+        for voice in voices where voice.language == "en-GB" {
+            print("\(voice.language) - \(voice.name) - \(voice.quality.rawValue) [\(voice.identifier)]")
+            let phrase = "The voice you're now listening to is the one called \(voice.name)."
+            let utterance = AVSpeechUtterance(string: phrase)
+            utterance.voice = voice
+            synthesizer.speak(utterance)
         }
     }
 }
