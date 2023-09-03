@@ -6,31 +6,25 @@
   
 */
 
+//MARK - SplashScreenView Labels
+
+"SplashScreenView_Interlexic" = "Interlexic";
+
+"SplashScreenView_Name" = "©2022 George Worrall";
+
 //MARK - TabView Labels
 
 "TabView_Translate" = "Translate";
 
-"TabView_Favorites" = "Favorites";
+"TabView_FlashCards" = "Favorites";
 
 "TabView_About" = "About";
 
-//MARK - Sample Sentences
-
-"welcome_screen_title" = "欢迎使用InterLexic！";
-
-"welcome_screen_explanation" = "InterLexic帮您更容易地寻找外语词汇。";
-
-"welcome_screen_user_start" = "首先给您创建一个帐户！";
-
-"welcome_screen_user_languages" = "请选择您最使用的语言：";
-
-"welcome_screen_user_acknowledgement" = "厉害！";
-
 //MARK - Translate Function Text
 
-"welcome_screen_textField" = "请输入文字去翻译!";
+"translatorView_textField" = "请输入文字去翻译!";
 
-"welcome_screen_languageSelector" = "您想翻译成哪种语言?";
+"translatorView_languageSelector" = "您想翻译成哪种语言?";
 
 "welcome_screen_translateButton" = "翻译";
 

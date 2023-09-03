@@ -6,31 +6,25 @@
   
 */
 
+//MARK - SplashScreenView Labels
+
+"SplashScreenView_Interlexic" = "Interlexic";
+
+"SplashScreenView_Name" = "©2022 George Worrall";
+
 //MARK - TabView Labels
 
 "TabView_Translate" = "Translate";
 
-"TabView_Favorites" = "Favorites";
+"TabView_FlashCards" = "Favorites";
 
 "TabView_About" = "About";
 
-//MARK - Sample Sentences
-
-"welcome_screen_title" = "Bienvenue à InterLexic!";
-
-"welcome_screen_explanation" = "InterLexic vous aide à chercher facilement vocabulaire en langues étrangères!";
-
-"welcome_screen_user_start" = "Créons d'abord un compte!";
-
-"welcome_screen_user_languages" = "Sélectionnez vos langues les plus utilisées:";
-
-"welcome_screen_user_acknowledgement" = "Génial!";
-
 //MARK - Translate Function Text
 
-"welcome_screen_textField" = "Tapez le texte à traduire!";
+"translatorView_textField" = "Tapez le texte à traduire!";
 
-"welcome_screen_languageSelector" = "À quelle langue voulez-vous traduire?";
+"translatorView_languageSelector" = "À quelle langue voulez-vous traduire?";
 
 "welcome_screen_translateButton" = "Traduire";
 

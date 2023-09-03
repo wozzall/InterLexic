@@ -6,10 +6,17 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct FlashCardView: View {
     
+    @ObservedObject var textToSpeech = TextToSpeech()
+    @State var synthesizer = AVSpeechSynthesizer()
+    
     var flashCard: FlashCard
+    
+    
+    
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -30,19 +37,45 @@ struct FlashCardView: View {
             .padding()
             
             Divider()
-            
-            Text(flashCard.sourceString)
-                .font(Font.body.weight(.light))
-                .textSelection(.enabled)
-                .padding(.horizontal)
-            
-            Divider()
+                .padding(.leading, 30)
 
-            Text(flashCard.targetString)
-                .font(Font.body.weight(.bold))
-                .textSelection(.enabled)
-                .padding(.horizontal)
-                .padding(.bottom)
+            
+            HStack{
+                Text(flashCard.sourceString)
+                    .font(Font.body.weight(.light))
+                    .textSelection(.enabled)
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+
+            Spacer()
+                Button {
+                    textToSpeech.languageRecognizer.reset()
+                    textToSpeech.synthesizeSpeech(inputMessage: flashCard.sourceString)
+                } label: {
+                    Image(systemName: "speaker.wave.2.fill")
+                        .foregroundColor(.blue.opacity(0.8))
+                        .font(.title3)
+                }
+            }
+            Divider()
+                .padding(.leading, 30)
+            HStack{
+                Text(flashCard.targetString)
+                    .font(Font.body.weight(.bold))
+                    .textSelection(.enabled)
+                    .padding(.horizontal)
+                    .padding(.bottom, 15)
+
+                Spacer()
+                Button {
+                    textToSpeech.languageRecognizer.reset()
+                    textToSpeech.synthesizeSpeech(inputMessage: flashCard.targetString)
+                } label: {
+                    Image(systemName: "speaker.wave.2.fill")
+                        .foregroundColor(.blue.opacity(0.8))
+                        .font(.title3)
+                }
+            }
         }
         .multilineTextAlignment(.leading)
 //        .border(Color.black.opacity(0.4))
@@ -54,6 +87,19 @@ struct FlashCardView: View {
                 .stroke(lineWidth: 2)
                 .opacity(0.5)
         }
+        
+        
+    }
+    
+    func synthesizeSpeech(inputMessage: String) {
+        
+        let languageCode = textToSpeech.isLanguageCodeAvailable(inputString: inputMessage)
+        let utterance = AVSpeechUtterance(string: inputMessage)
+        utterance.pitchMultiplier = 1.0
+        utterance.rate = 0.5
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+
+        synthesizer.speak(utterance)
     }
 }
 

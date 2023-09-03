@@ -7,13 +7,14 @@
 
 import SwiftUI
 import Foundation
-
+import AVFoundation
 
 struct CardsView: View {
     
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     @EnvironmentObject var manager: TranslationManager
-    
+    @ObservedObject var textToSpeech = TextToSpeech()
+    @State var synthesizer = AVSpeechSynthesizer()
     @State var languageA: Language
     @State var languageB: Language
     @State var hasLoaded: Bool = false
@@ -199,6 +200,7 @@ struct CardsView: View {
                                         }
                                         .padding(.horizontal, 50)
                                 }
+                                
                             }
                         }
                         .environment(\.defaultMinListRowHeight, 50)
@@ -237,9 +239,9 @@ struct CardsView: View {
                             }
                         }
                     }
+                    .background(Color.offWhite.opacity(0.5))
                 }
             }
-            .background(Color.offWhite.opacity(0.5))
             
             .onAppear{
                 filterFlashCards()
@@ -264,6 +266,8 @@ struct CardsView: View {
         let clearedLanguage = Language(name: "", translatorID: "")
         return clearedLanguage
     }
+    
+
     
     func filterFlashCards() {
         

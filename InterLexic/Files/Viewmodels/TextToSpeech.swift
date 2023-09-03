@@ -38,12 +38,10 @@ class TextToSpeech: NSObject, ObservableObject {
     func synthesizeSpeech(inputMessage: String) {
         
         do {
-                try AVAudioSession.sharedInstance().setCategory(.playback,mode: .default)
-
-            } catch let error {
-                print("This error message from SpeechSynthesizer \(error.localizedDescription)")
-            }
-        
+            try AVAudioSession.sharedInstance().setCategory(.playback,mode: .default)
+        } catch let error {
+            print("This error message from SpeechSynthesizer \(error.localizedDescription)")
+        }
         let languageCode = isLanguageCodeAvailable(inputString: inputMessage)
         let utterance = AVSpeechUtterance(string: inputMessage)
         utterance.pitchMultiplier = 1.0

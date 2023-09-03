@@ -190,8 +190,8 @@
             filePath = "InterLexic/Files/Views/CardsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -238,8 +238,8 @@
             filePath = "InterLexic/Files/Persistence/FlashCardStorage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "removeCard(selectedCard:)"
             landmarkType = "7">
             <Locations>

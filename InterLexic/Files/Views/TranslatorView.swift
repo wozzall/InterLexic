@@ -374,16 +374,16 @@ struct TranslatorView: View {
         synthesizer.speak(utterance)
     }
     
-    func voiceTest() {
-        let voices = AVSpeechSynthesisVoice.speechVoices()
-        for voice in voices where voice.language == "en-GB" {
-            print("\(voice.language) - \(voice.name) - \(voice.quality.rawValue) [\(voice.identifier)]")
-            let phrase = "The voice you're now listening to is the one called \(voice.name)."
-            let utterance = AVSpeechUtterance(string: phrase)
-            utterance.voice = voice
-            synthesizer.speak(utterance)
-        }
-    }
+//    func voiceTest() {
+//        let voices = AVSpeechSynthesisVoice.speechVoices()
+//        for voice in voices where voice.language == "en-GB" {
+//            print("\(voice.language) - \(voice.name) - \(voice.quality.rawValue) [\(voice.identifier)]")
+//            let phrase = "The voice you're now listening to is the one called \(voice.name)."
+//            let utterance = AVSpeechUtterance(string: phrase)
+//            utterance.voice = voice
+//            synthesizer.speak(utterance)
+//        }
+//    }
 }
 
 //struct TranslatorView_Previews: PreviewProvider {
