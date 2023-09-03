@@ -39,7 +39,7 @@ struct CardsView: View {
                 if flashCardStorage.flashCards.isEmpty {
                     VStack{
                         Spacer()
-                        Text("No translations saved!")
+                        Text("cardsView_noTranslationsSaved".localized)
                             .multilineTextAlignment(.center)
                             .font(.body)
                             .foregroundColor(.red.opacity(0.7))
@@ -54,9 +54,9 @@ struct CardsView: View {
 //                                }
 //                        }
                         HStack {
-                            Text("Tap the")
+                            Text("cardsView_tap".localized)
                             Image(systemName: "character.bubble.fill")
-                            Text("tab to start translating!")
+                            Text("cardsView_tapFinish".localized)
                         }
                         .font(.body)
                         .foregroundColor(.gray.opacity(0.8))
@@ -78,7 +78,7 @@ struct CardsView: View {
                 } else if filteredFlashCards.isEmpty {
                     VStack{
                         Spacer()
-                        Text("No cards found using these filters!")
+                        Text("cardsView_noCards".localized)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.gray)
                             .font(.body)
@@ -214,13 +214,13 @@ struct CardsView: View {
                                 tapFilter.toggle()
                             } label: {
                                 if tapFilter {
-                                    Text("Hide Filter")
+                                    Text("cardsView_hideFilterButton".localized)
                                 } else {
-                                    Text("Filter")
+                                    Text("cardsView_filterButton".localized)
                                 }
                             }
                             if tapFilter {
-                                Button("Clear Filters") {
+                                Button("cardsView_clearFilterButton".localized) {
                                     languageA = didTapClear()
                                     languageB = didTapClear()
                                 }
@@ -229,10 +229,10 @@ struct CardsView: View {
                                 tapDelete.toggle()
                             } label: {
                                 if tapDelete == false {
-                                    Text("Delete")
+                                    Text("cardsView_deleteButton".localized)
                                         .foregroundColor(.red)
                                 } else {
-                                    Text("Cancel")
+                                    Text("cardsView_cancelButton".localized)
                                         .foregroundColor(.red)
                                     
                                 }
@@ -254,7 +254,7 @@ struct CardsView: View {
                 filterFlashCards()
             }
         }
-        .navigationTitle(Text("Flashcards"))
+        .navigationTitle(Text("TabView_FlashCards".localized))
     }
     
     private func didTapSelector() {

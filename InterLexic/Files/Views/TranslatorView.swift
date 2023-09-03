@@ -69,7 +69,7 @@ struct TranslatorView: View {
                                             .opacity(0.3)
                                     )
                             if languageA.name == "" {
-                                Text("languageSelectors_from".localized)
+                                Text("languageSelectorView_from".localized)
                                     .padding()
                             }
                             else {
@@ -97,7 +97,7 @@ struct TranslatorView: View {
                                             .opacity(0.3)
                                     )
                             if languageB.name == "" {
-                                Text("languageSelectors_to".localized)
+                                Text("languageSelectorView_to".localized)
                                     .padding()
                             }
                             else {
@@ -140,14 +140,14 @@ struct TranslatorView: View {
                                     .overlay(alignment: .bottomLeading) {
                                         if detectedLanguage?.name != ""{
                                             HStack(spacing: 0){
-                                                Text("\(detectedLanguage?.name ?? "ERROR")")
+                                                Text("\(detectedLanguage?.name ?? "TMerror_error".localized)")
                                                     .foregroundColor(.blue)
                                                     .onTapGesture {
                                                         languageA = detectedLanguage ?? Language(name: "None Detected", translatorID: "", id: UUID())
                                                         languageDetectionRequired = false
                                                     }
                                                     .padding(.trailing, 4)
-                                                Text("detected. Tap to select!")
+                                                Text("translatorView_detected".localized)
                                                     .foregroundColor(.gray.opacity(0.8))
 
                                             }
@@ -225,7 +225,7 @@ struct TranslatorView: View {
                         Button(action: {
                             didTapTranslate()
                         }) {
-                            Text("welcome_screen_translateButton".localized)
+                            Text("translatorView_translateButton".localized)
                         }
                         .buttonStyle(.borderless)
                     }
@@ -237,7 +237,7 @@ struct TranslatorView: View {
                             Button(action: {
                                 saveButton()
                             }) {
-                                Text("Save")
+                                Text("translatorView_saveButton".localized)
                                     .foregroundColor(.gray)
                             }
                             .buttonStyle(.borderless)
@@ -256,7 +256,7 @@ struct TranslatorView: View {
                                 saveButton()
                                 self.disabledSave = true
                             }) {
-                                Text("Save")
+                                Text("translatorView_saveButton".localized)
                                     .foregroundColor(.white)
                             }
                             .buttonStyle(.borderless)
@@ -290,7 +290,7 @@ struct TranslatorView: View {
                     .padding()
                     .frame(height: UIScreen.main.bounds.height * 0.3)
                     .focused($focusedField, equals: .targetText)
-                    .toast(isPresenting: $tappedSave, message: "Translation saved!")
+                    .toast(isPresenting: $tappedSave, message: "translatorView_translationSaved".localized)
 
                 HStack {
                     Spacer()

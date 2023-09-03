@@ -26,26 +26,70 @@
 
 "translatorView_languageSelector" = "ما اللغة التي تريد الترجمة إليها؟";
 
-"welcome_screen_translateButton" = "يترجم";
+"translatorView_translateButton" = "يترجم";
 
-"welcome_screen_saveButton" = "Save";
+"translatorView_saveButton" = "Save";
+
+"translatorView_textEditorPlaceholder" = "Type text here to detect language or to translate!";
+
+"translatorView_detected" = "detected! Tap to select!";
+
+"translatorView_translationSaved" = "Translation saved!";
 
 
-//MARK - Language Selectors Buttons
+//MARK - Language Selector View
 
-"languageSelectors_chooseLanguage" = "Choose a language:";
+"languageSelectorView_chooseLanguage" = "Choose a language:";
 
-"languageSelectors_from" = "From";
+"languageSelectorView_from" = "From";
 
-"languageSelectors_to" = "To";
+"languageSelectorView_to" = "To";
 
-"languageSelectors_English" = "English";
+"languageSelectorView_detect" = "Detect";
 
-"languageSelectors_ChineseSimp" = "Chinese";
+//MARK - Cards View
+
+"cardsView_tap" = "Tap the icon";
+
+"cardsView_tapFinish" = "to start translating!";
+
+"cardsView_noCards" = "No cards found using these filters!";
+
+"cardsView_filterButton" = "Filter";
+
+"cardsView_hideFilterButton" = "Hide Filter";
+
+"cardsView_clearFilterButton" = "Clear Filters";
+
+"cardsView_deleteButton" = "Delete";
+
+"cardsView_cancelButton" = "Cancel";
+
+//MARK - Settings View
+
+"settingsView_Licenses" = "Licenses";
+
+//MARK - About View
+
+"aboutView_sectionTitleDeveloper" = "Developer";
+
+//MARK - Acknowledgements View
+
+"acknowledgementsView_noDisclaimer" = "No disclaimer available!";
+
+//MARK - Mail Error
+
+"mailError_error" = "Error!";
+
+"mailError_noMailClient" = "There is no mail client setup on this device. Please set up Mail and try again!";
+
+"mailError_dismiss" = "Dismiss";
 
 //MARK - Translation Manager Error Handler
 
 "TMerror_error" = "Error!";
+
+"TMerror_ok" = "Ok!";
 
 "TMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";
 

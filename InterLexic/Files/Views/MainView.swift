@@ -27,7 +27,7 @@ struct MainView: View {
             
             CardsView(languageA: Language(name: "", translatorID: ""), languageB: Language(name: "", translatorID: ""))
                 .tabItem {
-                    Label("Flashcards", systemImage: "star.fill")
+                    Label("TabView_FlashCards".localized, systemImage: "star.fill")
                 }
                 .tag(2)
             

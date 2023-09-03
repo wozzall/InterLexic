@@ -27,7 +27,7 @@ struct SettingsView: View {
                         AcknowledgementsMenuView()
                     } label: {
                         HStack{
-                            Text("Licenses")
+                            Text("settingsView_Licenses".localized)
                         }
                     }
                 }

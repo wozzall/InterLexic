@@ -55,6 +55,11 @@ struct FlashCardView: View {
                     Image(systemName: "speaker.wave.2.fill")
                         .foregroundColor(.blue.opacity(0.8))
                         .font(.title3)
+                        .background{
+                            Color.gray.opacity(0.1)
+                                .clipShape(Circle())
+                                .frame(width: 30, height: 30)
+                        }
                 }
             }
             Divider()
@@ -74,6 +79,11 @@ struct FlashCardView: View {
                     Image(systemName: "speaker.wave.2.fill")
                         .foregroundColor(.blue.opacity(0.8))
                         .font(.title3)
+                        .background{
+                            Color.gray.opacity(0.1)
+                                .clipShape(Circle())
+                                .frame(width: 30, height: 30)
+                        }
                 }
             }
         }

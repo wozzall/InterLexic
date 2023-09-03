@@ -88,7 +88,7 @@ struct AboutView: View {
     var body: some View {
         NavigationView{
             List{
-                Section("Developer") {
+                Section("aboutView_sectionTitleDeveloper".localized) {
                     VStack {
                             WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
                                 .resizable()
@@ -161,14 +161,14 @@ struct AboutView: View {
                                     }
                                 }
                                 .alert(isPresented: $presentingAlert) {
-                                    Alert(title: Text("Error!"), message: Text("There is no mail client setup on this device. Please set up email and try again!"), dismissButton: .default(Text("Dismiss")))
+                                    Alert(title: Text("mailError_error".localized), message: Text("mailError_noMailClient".localized), dismissButton: .default(Text("mailError_dismiss".localized)))
                                 }
                         }
                         .frame(height: 50)
                         .padding(.leading, 50)
                     }
                 }
-                Section("Licenses") {
+                Section("settingsView_Licenses".localized) {
                     ForEach(acknowledgements) { acknowledgement in
                         NavigationLink(acknowledgement.name) {
                             AcknowledgmentsCellView(info: acknowledgement)

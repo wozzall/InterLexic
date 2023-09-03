@@ -21,7 +21,7 @@ struct AcknowledgmentsCellView: View {
                         Text(info.uRL)
                     }
                     Divider()
-                    Text(info.disclaimer ?? "No disclaimer available!")
+                    Text(info.disclaimer ?? "acknowledgementsView_noDisclaimer".localized)
                         .opacity(0.6)
                 }
                 .buttonStyle(.borderless)
