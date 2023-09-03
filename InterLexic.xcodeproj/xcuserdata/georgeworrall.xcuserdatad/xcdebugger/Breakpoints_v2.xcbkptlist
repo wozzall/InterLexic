@@ -158,8 +158,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "TranslatorView"
             landmarkType = "14">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "TranslatorView"
             landmarkType = "14">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "voiceTest()"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
             landmarkName = "voiceTest()"
             landmarkType = "7">
          </BreakpointContent>
@@ -368,7 +368,54 @@
                   endingLineNumber = "28"
                   offsetFromSymbolStart = "620">
                </Location>
+               <Location
+                  uuid = "502DAE37-8676-48B1-ACE7-93C6C952243D - 9c47c9fd8409d7ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TextToSpeech.isLanguageCodeAvailable(inputString: Swift.String) -&gt; Swift.String"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Documents/GitHub/InterLexic/InterLexic/Files/Viewmodels/TextToSpeech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "660">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DB99BE62-5306-4823-8648-1539749E5B2E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Views/TranslatorView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75A626C1-9994-4E2F-9855-41D1699D6065"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Views/TranslatorView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
