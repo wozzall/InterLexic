@@ -35,12 +35,14 @@ struct TranslatorView: View {
     
     @State var languageA: Language
     @State var languageB: Language
+    @State var detectedLanguage: Language?
     
     @State var sameLanguage: Bool = false
     @State var tappedSave: Bool = false
     @State var disabledSave: Bool = true
     @State var showAlert: Bool = false
     @State var languageDetectionRequired = false
+    
     
     @FocusState private var focusedField: Field?
 
@@ -115,7 +117,7 @@ struct TranslatorView: View {
                 
                 ZStack{
                     VStack{
-                        if languageA.name == "Detect" {
+                        if languageDetectionRequired(trigger: languageA.name) {
                             TextEditor(text: $translatableText)
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .multilineTextAlignment(.leading)
@@ -125,6 +127,7 @@ struct TranslatorView: View {
                                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
                                 .overlay(alignment: .bottomTrailing) {
                                     Button {
+                                        textToSpeech.languageRecognizer.reset()
                                         synthesizeSpeech(inputMessage: translatableText)
                                     } label: {
                                         Image(systemName: "speaker.wave.2.fill")
@@ -134,15 +137,28 @@ struct TranslatorView: View {
                                     .padding(.bottom, 8)
                                     .padding(.trailing, 8)
                                 }
+                                    .overlay(alignment: .bottomLeading) {
+                                        if detectedLanguage?.name != ""{
+                                            HStack(spacing: 0){
+                                                Text("\(detectedLanguage?.name ?? "ERROR")")
+                                                    .foregroundColor(.blue)
+                                                    .onTapGesture {
+                                                        languageA = detectedLanguage ?? Language(name: "None Detected", translatorID: "", id: UUID())
+                                                    }
+                                                Text("detected. Tap to select!")
+                                            }
+                                            .padding(.bottom)
+                                        }
+                                }
                                 .padding()
                                 .textFieldStyle(.roundedBorder)
                                 .focused($focusedField, equals: .sourceText)
                                 .onChange(of: translatableText) { _ in
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                         manager.detectLanguage(forText: translatableText) { result in
                                             for language in manager.supportedLanguages {
                                                 if manager.sourceLanguageCode == language.translatorID {
-                                                    languageA = language
+                                                    detectedLanguage = language
                                                 }
                                             }
                                         }
@@ -158,7 +174,6 @@ struct TranslatorView: View {
                                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
                                 .overlay(alignment: .bottomTrailing) {
                                     Button {
-//                                        voiceTest()
                                         textToSpeech.synthesizeSpeech(inputMessage: translatableText)
                                     } label: {
                                         Image(systemName: "speaker.wave.2.fill")
@@ -255,8 +270,8 @@ struct TranslatorView: View {
                     )
                     .overlay(alignment: .bottomTrailing) {
                         Button {
-                            voiceTest()
-//                            synthesizeSpeech(inputMessage: viewModel.translatedString)
+                            textToSpeech.languageRecognizer.reset()
+                            synthesizeSpeech(inputMessage: viewModel.translatedString)
                         } label: {
                             Image(systemName: "speaker.wave.2.fill")
                                 .foregroundColor(.blue.opacity(0.8))
@@ -289,6 +304,12 @@ struct TranslatorView: View {
                 focusedField = nil
             }
         }
+    }
+    private func languageDetectionRequired(trigger:String) -> Bool {
+        if trigger == "Detect" {
+            return true
+        }
+        return false
     }
     
     

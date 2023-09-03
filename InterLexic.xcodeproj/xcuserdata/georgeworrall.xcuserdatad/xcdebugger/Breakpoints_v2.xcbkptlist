@@ -158,8 +158,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "TranslatorView"
             landmarkType = "14">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "TranslatorView"
             landmarkType = "14">
          </BreakpointContent>
@@ -279,22 +279,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B311FDCF-F01C-4EDA-8E94-263966E2D397"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "InterLexic/Files/Viewmodels/TextToSpeech.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "isLanguageCodeAvailable(inputString:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "5A89711C-6BE8-4F7B-8334-5486E0A1534E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -302,8 +286,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "351"
-            endingLineNumber = "351"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "voiceTest()"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +302,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
             landmarkName = "voiceTest()"
             landmarkType = "7">
          </BreakpointContent>
@@ -334,8 +318,8 @@
             filePath = "InterLexic/Files/Viewmodels/TextToSpeech.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "isLanguageCodeAvailable(inputString:)"
             landmarkType = "7">
             <Locations>

@@ -20,6 +20,8 @@ class TextToSpeech: NSObject, ObservableObject {
     
     func isLanguageCodeAvailable(inputString: String) ->  String {
         
+        languageRecognizer.reset()
+
         languageRecognizer.processString(inputString)
         
         if let appleRecognisedLanguage = languageRecognizer.dominantLanguage?.rawValue {
@@ -27,7 +29,6 @@ class TextToSpeech: NSObject, ObservableObject {
             let voices = AVSpeechSynthesisVoice.speechVoices()
             for	voice in voices where voice.language.contains(languageCode) {
                 print(voice.language + voice.name)
-                languageRecognizer.reset()
                 return voice.language
             }
         }
@@ -36,6 +37,13 @@ class TextToSpeech: NSObject, ObservableObject {
     
     func synthesizeSpeech(inputMessage: String) {
         
+        do {
+                try AVAudioSession.sharedInstance().setCategory(.playback,mode: .default)
+
+            } catch let error {
+                print("This error message from SpeechSynthesizer \(error.localizedDescription)")
+            }
+        
         let languageCode = isLanguageCodeAvailable(inputString: inputMessage)
         let utterance = AVSpeechUtterance(string: inputMessage)
         utterance.pitchMultiplier = 1.0
@@ -43,6 +51,7 @@ class TextToSpeech: NSObject, ObservableObject {
         utterance.voice = AVSpeechSynthesisVoice(language: languageCode)
         
         speechSynthesizer.speak(utterance)
+    
     }
     
     
