@@ -25,7 +25,7 @@
 
 "translatorView_languageSelector" = "Which language would you like to translate to?";
 
-"translatorView_translateButton" = "Translate with Google";
+"translatorView_translateButton" = "Translate";
 
 "translatorView_saveButton" = "Save";
 

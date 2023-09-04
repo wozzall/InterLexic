@@ -126,16 +126,25 @@ struct TranslatorView: View {
                                     RoundedRectangle(cornerRadius: 15)
                                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
                                 .overlay(alignment: .bottomTrailing) {
-                                    Button {
-                                        textToSpeech.languageRecognizer.reset()
-                                        synthesizeSpeech(inputMessage: translatableText)
-                                    } label: {
-                                        Image(systemName: "speaker.wave.2.fill")
-                                            .foregroundColor(.blue.opacity(0.8))
-                                            .font(.title3)
+                                    if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
+                                        Button {
+                                            textToSpeech.languageRecognizer.reset()
+                                            textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                                        } label: {
+                                            Image(systemName: "speaker.wave.2.fill")
+                                                .foregroundColor(.blue.opacity(0.8))
+                                                .font(.title3)
+                                        }
+                                        .padding(.bottom, 8)
+                                        .padding(.trailing, 8)
                                     }
-                                    .padding(.bottom, 8)
-                                    .padding(.trailing, 8)
+                                    else {
+                                        Image(systemName: "speaker.slash.fill")
+                                            .foregroundColor(.gray.opacity(0.2))
+                                            .font(.title3)
+                                            .padding(.bottom, 8)
+                                            .padding(.trailing, 8)
+                                    }
                                 }
                                     .overlay(alignment: .bottomLeading) {
                                         if detectedLanguage?.name != ""{
@@ -179,16 +188,24 @@ struct TranslatorView: View {
                                     RoundedRectangle(cornerRadius: 15)
                                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
                                 .overlay(alignment: .bottomTrailing) {
-                                    Button {
-                                        textToSpeech.languageRecognizer.reset()
-                                        textToSpeech.synthesizeSpeech(inputMessage: translatableText)
-                                    } label: {
-                                        Image(systemName: "speaker.wave.2.fill")
-                                            .foregroundColor(.blue.opacity(0.8))
+                                    if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
+                                        Button {
+                                            textToSpeech.languageRecognizer.reset()
+                                            textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                                        } label: {
+                                            Image(systemName: "speaker.wave.2.fill")
+                                                .foregroundColor(.blue.opacity(0.8))
+                                                .font(.title3)
+                                        }
+                                        .padding(.bottom, 8)
+                                        .padding(.trailing, 8)
+                                    } else {
+                                        Image(systemName: "speaker.slash.fill")
+                                            .foregroundColor(.gray.opacity(0.2))
                                             .font(.title3)
+                                            .padding(.bottom, 8)
+                                            .padding(.trailing, 8)
                                     }
-                                    .padding(.bottom, 8)
-                                    .padding(.trailing, 8)
                                 }
                                 .padding()
                                 .textFieldStyle(.roundedBorder)
@@ -200,7 +217,7 @@ struct TranslatorView: View {
                             HStack{
                                 Text(textEditorPlaceHolder)
                                     .padding(.top, 10)
-                                    .padding(.leading, 2)
+                                    .padding(.leading, 10)
                                     .opacity(0.4)
                                     .allowsHitTesting(false)
                                 Spacer()
@@ -278,7 +295,7 @@ struct TranslatorView: View {
                     .overlay(alignment: .bottomTrailing) {
                         Button {
                             textToSpeech.languageRecognizer.reset()
-                            synthesizeSpeech(inputMessage: viewModel.translatedString)
+                            textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString)
                         } label: {
                             Image(systemName: "speaker.wave.2.fill")
                                 .foregroundColor(.blue.opacity(0.8))
@@ -294,7 +311,7 @@ struct TranslatorView: View {
 
                 HStack {
                     Spacer()
-                    Image("color-short")
+                    Image("color-regular")
                         .padding(.bottom)
                         .padding(.trailing)
                 }
@@ -362,17 +379,7 @@ struct TranslatorView: View {
         }
         return
     }
-    
-    func synthesizeSpeech(inputMessage: String) {
-        
-        let languageCode = textToSpeech.isLanguageCodeAvailable(inputString: inputMessage)
-        let utterance = AVSpeechUtterance(string: inputMessage)
-        utterance.pitchMultiplier = 1.0
-        utterance.rate = 0.5
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
 
-        synthesizer.speak(utterance)
-    }
     
 //    func voiceTest() {
 //        let voices = AVSpeechSynthesisVoice.speechVoices()

@@ -35,6 +35,20 @@ class TextToSpeech: NSObject, ObservableObject {
         return String("Error!")
     }
     
+    func audioAvailable(inputString: String, googleLanguageCode: String) -> Bool {
+        
+        languageRecognizer.processString(inputString)
+        
+        if let appleRecognizedLanguage = languageRecognizer.dominantLanguage?.rawValue {
+            let appleCode = appleRecognizedLanguage.prefix(2)
+            let googleCode = googleLanguageCode.prefix(2)
+            if appleCode == googleCode {
+                return true
+            }
+        }
+        return false
+    }
+    
     func synthesizeSpeech(inputMessage: String) {
         
         do {

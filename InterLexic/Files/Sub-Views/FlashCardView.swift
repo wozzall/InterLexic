@@ -97,19 +97,6 @@ struct FlashCardView: View {
                 .stroke(lineWidth: 2)
                 .opacity(0.5)
         }
-        
-        
-    }
-    
-    func synthesizeSpeech(inputMessage: String) {
-        
-        let languageCode = textToSpeech.isLanguageCodeAvailable(inputString: inputMessage)
-        let utterance = AVSpeechUtterance(string: inputMessage)
-        utterance.pitchMultiplier = 1.0
-        utterance.rate = 0.5
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
-
-        synthesizer.speak(utterance)
     }
 }
 
