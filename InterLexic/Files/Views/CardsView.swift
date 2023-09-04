@@ -15,8 +15,8 @@ struct CardsView: View {
     @EnvironmentObject var manager: TranslationManager
     @ObservedObject var textToSpeech = TextToSpeech()
     @State var synthesizer = AVSpeechSynthesizer()
-    @State var languageA: Language
-    @State var languageB: Language
+    @State var languageA: Language = Language(name: "", translatorID: "")
+    @State var languageB: Language = Language(name: "", translatorID: "")
     @State var hasLoaded: Bool = false
     @State var toFromDirection: Bool = false
     // MARK - True = to, False = from

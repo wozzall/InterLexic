@@ -33,8 +33,8 @@ struct TranslatorView: View {
     @State private var languagesSupported: Array<Language> = []
     @State var selectedNavigation: String?
     
-    @State var languageA: Language
-    @State var languageB: Language
+    @State var languageA: Language = Language(name: "", translatorID: "")
+    @State var languageB: Language = Language(name: "", translatorID: "")
     @State var detectedLanguage: Language?
     
     @State var sameLanguage: Bool = false
@@ -46,6 +46,12 @@ struct TranslatorView: View {
     
     @FocusState private var focusedField: Field?
 
+    init() {
+        UITextView.appearance().textContainerInset =
+                 UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 12)
+        }
+    
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -121,6 +127,7 @@ struct TranslatorView: View {
                             TextEditor(text: $translatableText)
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .multilineTextAlignment(.leading)
+                                .lineSpacing(3)
                                 .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 15)
@@ -183,7 +190,10 @@ struct TranslatorView: View {
                             TextEditor(text: $translatableText)
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .multilineTextAlignment(.leading)
+                                .lineSpacing(3)
+
                                 .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
+                            
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 15)
                                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
@@ -287,6 +297,7 @@ struct TranslatorView: View {
                 TextEditor(text: $viewModel.translatedString)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .multilineTextAlignment(.leading)
+                    .lineSpacing(3)
                     .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)

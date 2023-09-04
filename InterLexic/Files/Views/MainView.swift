@@ -19,13 +19,13 @@ struct MainView: View {
     var body: some View {
         TabView(selection: $selection){
             
-            TranslatorView(languageA: Language(name: String(), translatorID: String(), id: UUID()), languageB: Language(name: String(), translatorID: String(), id: UUID()), detectedLanguage: Language(name: String(), translatorID: String()) )
+            TranslatorView()
                 .tabItem {
                     Label("TabView_Translate".localized, systemImage: "character.bubble.fill")
                 }
                 .tag(1)
             
-            CardsView(languageA: Language(name: "", translatorID: ""), languageB: Language(name: "", translatorID: ""))
+            CardsView()
                 .tabItem {
                     Label("TabView_FlashCards".localized, systemImage: "star.fill")
                 }
