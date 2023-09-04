@@ -9,16 +9,16 @@ import Foundation
 
 struct FlashCard: Identifiable, Hashable, Codable, Comparable, Equatable {
     
-    var sourceLanguage: String
+    var sourceLanguage: Language
     var sourceString: String
-    var targetLanguage: String
+    var targetLanguage: Language
     var targetString: String
     
     
     var id: UUID
     
     static func < (lhs: FlashCard, rhs: FlashCard) -> Bool {
-        (lhs.sourceLanguage + lhs.targetLanguage) < (rhs.sourceLanguage + rhs.targetLanguage)
+        (lhs.sourceLanguage.name + lhs.targetLanguage.name) < (rhs.sourceLanguage.name + rhs.targetLanguage.name)
     }
 }
 

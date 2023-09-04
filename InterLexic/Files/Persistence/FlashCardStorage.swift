@@ -25,7 +25,7 @@ class FlashCardStorage: ObservableObject {
                 return
             }
         }
-        let sampleCard = FlashCard(sourceLanguage: "English", sourceString: "This is a sample flashcard", targetLanguage: "Chinese (Simplified)", targetString: "这是闪卡例子", id: UUID())
+        let sampleCard = FlashCard(sourceLanguage: Language(name: "English", translatorID: "en-GB"), sourceString: "This is a sample flashcard", targetLanguage: Language(name: "Chinese (Simplified)", translatorID: "zh-CN"), targetString: "这是闪卡例子", id: UUID())
         flashCards = [sampleCard]
     }
     
@@ -34,13 +34,13 @@ class FlashCardStorage: ObservableObject {
         let decks: Array<FlashCardDeck> = []
         for flashCard in flashCards {
             for var deck in decks {
-                let cardPair: String = flashCard.sourceLanguage + flashCard.targetString
+                let cardPair: String = flashCard.sourceLanguage.name + flashCard.targetString
                 let deckPair: String = deck.sourceLanguage + deck.targetLanguage
                 
                 if !deck.flashCards.contains(flashCard) {
-                    flashCardDecks.append(FlashCardDeck(id: UUID(), name: flashCard.sourceLanguage + " -> " + flashCard.targetLanguage, sourceLanguage: flashCard.sourceLanguage, targetLanguage: flashCard.targetLanguage, flashCards: [flashCard]))
-                    if !sectionNames.contains(flashCard.sourceLanguage) {
-                        sectionNames.append(flashCard.sourceLanguage)
+                    flashCardDecks.append(FlashCardDeck(id: UUID(), name: flashCard.sourceLanguage.name + " -> " + flashCard.targetLanguage.name, sourceLanguage: flashCard.sourceLanguage.name, targetLanguage: flashCard.targetLanguage.name, flashCards: [flashCard]))
+                    if !sectionNames.contains(flashCard.sourceLanguage.name) {
+                        sectionNames.append(flashCard.sourceLanguage.name)
                     }
                 } else if cardPair == deckPair {
                     deck.flashCards.append(flashCard)

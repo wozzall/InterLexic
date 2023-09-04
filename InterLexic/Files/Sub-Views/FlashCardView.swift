@@ -18,12 +18,12 @@ struct FlashCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text(flashCard.sourceLanguage)
+                Text(flashCard.sourceLanguage.name)
                     .frame(width: UIScreen.main.bounds.width * 0.35)
                     .font(Font.body.weight(.light))
                 Image(systemName: "arrow.right")
                     .opacity(0.5)
-                Text(flashCard.targetLanguage)
+                Text(flashCard.targetLanguage.name)
                     .frame(width: UIScreen.main.bounds.width * 0.35)
                     .font(Font.body.weight(.bold))
             }
@@ -38,22 +38,27 @@ struct FlashCardView: View {
                     .font(Font.body.weight(.light))
                     .textSelection(.enabled)
                     .padding(.horizontal)
-
-                    
-
-            Spacer()
-                Button {
-                    textToSpeech.languageRecognizer.reset()
-                    textToSpeech.synthesizeSpeech(inputMessage: flashCard.sourceString)
-                } label: {
-                    Image(systemName: "speaker.wave.2.fill")
-                        .foregroundColor(.blue.opacity(0.8))
+                
+                
+                
+                Spacer()
+                if textToSpeech.audioAvailable(inputString: flashCard.sourceString, googleLanguageCode: flashCard.sourceLanguage.translatorID){
+                    Button {
+                        textToSpeech.languageRecognizer.reset()
+                        textToSpeech.synthesizeSpeech(inputMessage: flashCard.sourceString)
+                    } label: {
+                        Image(systemName: "speaker.wave.2.fill")
+                            .foregroundColor(.blue.opacity(0.8))
+                            .font(.title3)
+                    }
+                    .padding(.bottom, 8)
+                    .padding(.trailing, 8)
+                } else {
+                    Image(systemName: "speaker.slash.fill")
+                        .foregroundColor(.gray.opacity(0.2))
                         .font(.title3)
-                        .background{
-                            Color.gray.opacity(0.1)
-                                .clipShape(Circle())
-                                .frame(width: 30, height: 30)
-                        }
+                        .padding(.bottom, 8)
+                        .padding(.trailing, 15)
                 }
             }
             .padding(15)
@@ -64,22 +69,27 @@ struct FlashCardView: View {
                     .font(Font.body.weight(.bold))
                     .textSelection(.enabled)
                     .padding(.horizontal)
-
+                
                 Spacer()
-                Button {
-                    textToSpeech.languageRecognizer.reset()
-                    textToSpeech.synthesizeSpeech(inputMessage: flashCard.targetString)
-                } label: {
-                    Image(systemName: "speaker.wave.2.fill")
-                        .foregroundColor(.blue.opacity(0.8))
+                if textToSpeech.audioAvailable(inputString: flashCard.targetString, googleLanguageCode: flashCard.targetLanguage.translatorID){
+                    Button {
+                        textToSpeech.languageRecognizer.reset()
+                        textToSpeech.synthesizeSpeech(inputMessage: flashCard.targetString)
+                    } label: {
+                        Image(systemName: "speaker.wave.2.fill")
+                            .foregroundColor(.blue.opacity(0.8))
+                            .font(.title3)
+                    }
+                    .padding(.bottom, 8)
+                    .padding(.trailing, 8)
+                } else {
+                    Image(systemName: "speaker.slash.fill")
+                        .foregroundColor(.gray.opacity(0.2))
                         .font(.title3)
-                        .background{
-                            Color.gray.opacity(0.1)
-                                .clipShape(Circle())
-                                .frame(width: 30, height: 30)
-                        }
+                            .padding(.bottom, 8)
+                            .padding(.trailing, 15)
+                    }
                 }
-            }
             .padding(15)
         }
         .multilineTextAlignment(.leading)

@@ -132,7 +132,7 @@ struct CardsView: View {
                                                     .opacity(0.3)
                                             )
                                         if languageA.name.isEmpty {
-                                            Text("languageSelectors_from".localized)
+                                            Text("languageSelectorView_from".localized)
                                                 .padding()
                                         } else {
                                             Text(languageA.name)
@@ -159,7 +159,7 @@ struct CardsView: View {
                                                     .opacity(0.3)
                                             )
                                         if languageB.name.isEmpty {
-                                            Text("languageSelectors_to".localized)
+                                            Text("languageSelectorView_to".localized)
                                                 .padding()
                                         }
                                         Text(languageB.name)
@@ -276,15 +276,15 @@ struct CardsView: View {
         print(filteredFlashCards)
         withAnimation {
             if !languageA.name.isEmpty && languageB.name.isEmpty {
-                self.filteredFlashCards.removeAll { $0.sourceLanguage != languageA.name }
+                self.filteredFlashCards.removeAll { $0.sourceLanguage.name != languageA.name }
             }
             
             if languageA.name.isEmpty && !languageB.name.isEmpty {
-                self.filteredFlashCards.removeAll { $0.targetLanguage != languageB.name}
+                self.filteredFlashCards.removeAll { $0.targetLanguage.name != languageB.name}
             }
             
             if !languageA.name.isEmpty && !languageB.name.isEmpty {
-                self.filteredFlashCards.removeAll { ($0.sourceLanguage + $0.targetLanguage) != (languageA.name + languageB.name)}
+                self.filteredFlashCards.removeAll { ($0.sourceLanguage.name + $0.targetLanguage.name) != (languageA.name + languageB.name)}
             }
         }
     }

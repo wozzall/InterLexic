@@ -293,16 +293,24 @@ struct TranslatorView: View {
                             .stroke(Color.black.opacity(0.5), lineWidth: 1)
                     )
                     .overlay(alignment: .bottomTrailing) {
-                        Button {
-                            textToSpeech.languageRecognizer.reset()
-                            textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString)
-                        } label: {
-                            Image(systemName: "speaker.wave.2.fill")
-                                .foregroundColor(.blue.opacity(0.8))
+                        if textToSpeech.audioAvailable(inputString: viewModel.translatedString, googleLanguageCode: languageB.translatorID){
+                            Button {
+                                textToSpeech.languageRecognizer.reset()
+                                textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString)
+                            } label: {
+                                Image(systemName: "speaker.wave.2.fill")
+                                    .foregroundColor(.blue.opacity(0.8))
+                                    .font(.title3)
+                            }
+                            .padding(.bottom, 8)
+                            .padding(.trailing, 8)
+                        } else {
+                            Image(systemName: "speaker.slash.fill")
+                                .foregroundColor(.gray.opacity(0.2))
                                 .font(.title3)
+                                .padding(.bottom, 8)
+                                .padding(.trailing, 8)
                         }
-                        .padding(.bottom, 8)
-                        .padding(.trailing, 8)
                     }
                     .padding()
                     .frame(height: UIScreen.main.bounds.height * 0.3)
@@ -321,7 +329,6 @@ struct TranslatorView: View {
             .background(Color.offWhite.opacity(0.5))
             
             .onAppear {
-//                assignDefaultLanguages()
                 manager.fetchLanguages()
             }
             .onTapGesture {
@@ -371,7 +378,7 @@ struct TranslatorView: View {
     
     private func saveButton() {
         if tappedSave != true {
-            let newFlashCard = FlashCard(sourceLanguage: languageA.name, sourceString: translatableText, targetLanguage: languageB.name, targetString: viewModel.translatedString, id: UUID())
+            let newFlashCard = FlashCard(sourceLanguage: languageA, sourceString: translatableText, targetLanguage: languageB, targetString: viewModel.translatedString, id: UUID())
             flashCardStorage.add(newFlashCard)
             tappedSave = true
             flashCardStorage.flashCardDecks = flashCardStorage.sortIntoDecks()
