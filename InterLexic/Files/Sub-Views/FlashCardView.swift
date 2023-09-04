@@ -15,29 +15,22 @@ struct FlashCardView: View {
     
     var flashCard: FlashCard
     
-    
-    
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text(flashCard.sourceLanguage)
-                    .fixedSize(horizontal: false, vertical: true)
                     .frame(width: UIScreen.main.bounds.width * 0.35)
                     .font(Font.body.weight(.light))
                 Image(systemName: "arrow.right")
                     .opacity(0.5)
                 Text(flashCard.targetLanguage)
-                    .fixedSize(horizontal: false, vertical: true)
                     .frame(width: UIScreen.main.bounds.width * 0.35)
                     .font(Font.body.weight(.bold))
-                
             }
             .foregroundColor(.gray)
-            .padding()
+            .padding(15)
             
             Divider()
-                .padding(.leading, 30)
 
             
             HStack{
@@ -45,7 +38,8 @@ struct FlashCardView: View {
                     .font(Font.body.weight(.light))
                     .textSelection(.enabled)
                     .padding(.horizontal)
-                    .padding(.vertical, 10)
+
+                    
 
             Spacer()
                 Button {
@@ -62,14 +56,14 @@ struct FlashCardView: View {
                         }
                 }
             }
+            .padding(15)
+            
             Divider()
-                .padding(.leading, 30)
             HStack{
                 Text(flashCard.targetString)
                     .font(Font.body.weight(.bold))
                     .textSelection(.enabled)
                     .padding(.horizontal)
-                    .padding(.bottom, 15)
 
                 Spacer()
                 Button {
@@ -86,6 +80,7 @@ struct FlashCardView: View {
                         }
                 }
             }
+            .padding(15)
         }
         .multilineTextAlignment(.leading)
 //        .border(Color.black.opacity(0.4))
