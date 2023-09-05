@@ -14,11 +14,11 @@
 
 //MARK - TabView Labels
 
-"TabView_Translate" = "Translate";
+"TabView_Translate" = "يترجم";
 
-"TabView_FlashCards" = "Favorites";
+"TabView_FlashCards" = "المفضلة";
 
-"TabView_About" = "About";
+"TabView_About" = "عن";
 
 //MARK - Translate Function Text
 
@@ -28,85 +28,85 @@
 
 "translatorView_translateButton" = "يترجم";
 
-"translatorView_saveButton" = "Save";
+"translatorView_saveButton" = "حفظ";
 
-"translatorView_textEditorPlaceholder" = "Type text here to detect language or to translate!";
+"translatorView_textEditorPlaceholder" = "اكتب النص هنا لاكتشاف اللغة أو للترجمة!";
 
-"translatorView_detected" = "detected! Tap to select!";
+"translatorView_detected" = "تم اكتشاف اللغة! انقر لتحديد!";
 
-"translatorView_translationSaved" = "Translation saved!";
+"translatorView_translationSaved" = "تم حفظ الترجمة!";
 
 
 //MARK - Language Selector View
 
-"languageSelectorView_chooseLanguage" = "Choose a language:";
+"languageSelectorView_chooseLanguage" = "اختر لغة:";
 
-"languageSelectorView_from" = "From";
+"languageSelectorView_from" = "من";
 
-"languageSelectorView_to" = "To";
+"languageSelectorView_to" = "إلى";
 
-"languageSelectorView_detect" = "Detect";
+"languageSelectorView_detect" = "يكشف";
 
 //MARK - Cards View
 
-"cardsView_tap" = "Tap the icon";
+"cardsView_tap" = "اضغط على الزر";
 
-"cardsView_tapFinish" = "to start translating!";
+"cardsView_tapFinish" = "لبدء الترجمة!";
 
-"cardsView_noCards" = "No cards found using these filters!";
+"cardsView_noCards" = "لم يتم العثور على بطاقات تعليمية باستخدام هذه المرشحات!";
 
-"cardsView_filterButton" = "Filter";
+"cardsView_filterButton" = "تصفية البحث";
 
-"cardsView_hideFilterButton" = "Hide Filter";
+"cardsView_hideFilterButton" = "إخفاء مرشح البحث";
 
-"cardsView_clearFilterButton" = "Clear Filters";
+"cardsView_clearFilterButton" = "مسح مرشحات البحث";
 
-"cardsView_deleteButton" = "Delete";
+"cardsView_deleteButton" = "يمسح";
 
-"cardsView_cancelButton" = "Cancel";
+"cardsView_cancelButton" = "يلغي";
 
 //MARK - Settings View
 
-"settingsView_Licenses" = "Licenses";
+"settingsView_Licenses" = "التراخيص";
 
 //MARK - About View
 
-"aboutView_sectionTitleDeveloper" = "Developer";
+"aboutView_sectionTitleDeveloper" = "مطور";
 
 //MARK - Acknowledgements View
 
-"acknowledgementsView_noDisclaimer" = "No disclaimer available!";
+"acknowledgementsView_noDisclaimer" = "لا يوجد إخلاء المسؤولية المتاحة!";
 
 //MARK - Mail Error
 
-"mailError_error" = "Error!";
+"mailError_error" = "خطأ!";
 
-"mailError_noMailClient" = "There is no mail client setup on this device. Please set up Mail and try again!";
+"mailError_noMailClient" = "لا يوجد إعداد عميل بريد على هذا الجهاز. الرجاء إعداد البريد والمحاولة مرة أخرى!";
 
-"mailError_dismiss" = "Dismiss";
+"mailError_dismiss" = "رفض";
 
 //MARK - Translation Manager Error Handler
 
-"TMerror_error" = "Error!";
+"TMerror_error" = "خطأ!";
 
-"TMerror_ok" = "Ok!";
+"TMerror_ok" = "نعم!";
 
-"TMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";
+"TMError_fetchLanguages" = "غير قادر على جلب اللغات المدعومة من الخادم. حاول مرة اخرى!";
 
 //MARK - Network Errors
 
-"NetworkError_Error" = "Error!";
+"NetworkError_Error" = "خطأ!";
 
-"NetworkError_NoConnection" = "Unable to connect to the internet! Configure network settings and try again.";
+"NetworkError_NoConnection" = "غير قادر على الاتصال بالانترنت! قم بتكوين إعدادات الشبكة وحاول مرة أخرى.";
 
 //MARK - Progress View
 
-"ProgressView_Loading" = "Loading";
+"ProgressView_Loading" = "تحميل";
 
 //MARK - Settings Labels
 
-"Settings_section_acknowledgements" = "Acknowledgements";
+"Settings_section_acknowledgements" = "شكر وتقدير";
 
-"Settings_Credits" = "Credits";
+"Settings_Credits" = "لفة الاعتمادات";
 
-"Settings_License" = "API License";
+"Settings_License" = "ترخيص واجهة برمجة التطبيقات";

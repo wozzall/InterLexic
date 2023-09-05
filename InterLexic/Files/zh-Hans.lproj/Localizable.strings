@@ -14,11 +14,11 @@
 
 //MARK - TabView Labels
 
-"TabView_Translate" = "Translate";
+"TabView_Translate" = "翻译";
 
-"TabView_FlashCards" = "Favorites";
+"TabView_FlashCards" = "收藏夹";
 
-"TabView_About" = "About";
+"TabView_About" = "关于";
 
 //MARK - Translate Function Text
 
@@ -28,84 +28,84 @@
 
 "translatorView_translateButton" = "翻译";
 
-"translatorView_saveButton" = "Save";
+"translatorView_saveButton" = "保存";
 
-"translatorView_textEditorPlaceholder" = "Type text here to detect language or to translate!";
+"translatorView_textEditorPlaceholder" = "在此处输入文本以检测语言或进行翻译!";
 
-"translatorView_detected" = "detected! Tap to select!";
+"translatorView_detected" = "检测到了！点击选择";
 
-"translatorView_translationSaved" = "Translation saved!";
+"translatorView_translationSaved" = "翻译已保存";
 
 //MARK - Language Selector View
 
-"languageSelectorView_chooseLanguage" = "Choose a language:";
+"languageSelectorView_chooseLanguage" = "选择语言:";
 
-"languageSelectorView_from" = "From";
+"languageSelectorView_from" = "从";
 
-"languageSelectorView_to" = "To";
+"languageSelectorView_to" = "翻译成";
 
-"languageSelectorView_detect" = "Detect";
+"languageSelectorView_detect" = "探测语言";
 
 //MARK - Cards View
 
-"cardsView_tap" = "Tap the icon";
+"cardsView_tap" = "点击图标";
 
-"cardsView_tapFinish" = "to start translating!";
+"cardsView_tapFinish" = "开始翻译";
 
-"cardsView_noCards" = "No cards found using these filters!";
+"cardsView_noCards" = "使用这些过滤器未找到任何卡片！";
 
-"cardsView_filterButton" = "Filter";
+"cardsView_filterButton" = "过滤器";
 
-"cardsView_hideFilterButton" = "Hide Filter";
+"cardsView_hideFilterButton" = "隐藏过滤器";
 
-"cardsView_clearFilterButton" = "Clear Filters";
+"cardsView_clearFilterButton" = "清除过滤器";
 
-"cardsView_deleteButton" = "Delete";
+"cardsView_deleteButton" = "删除";
 
-"cardsView_cancelButton" = "Cancel";
+"cardsView_cancelButton" = "取消";
 
 //MARK - Settings View
 
-"settingsView_Licenses" = "Licenses";
+"settingsView_Licenses" = "许可证";
 
 //MARK - About View
 
-"aboutView_sectionTitleDeveloper" = "Developer";
+"aboutView_sectionTitleDeveloper" = "开发者";
 
 //MARK - Acknowledgements View
 
-"acknowledgementsView_noDisclaimer" = "No disclaimer available!";
+"acknowledgementsView_noDisclaimer" = "没有可用的免责声明！";
 
 //MARK - Mail Error
 
-"mailError_error" = "Error!";
+"mailError_error" = "错误！";
 
-"mailError_noMailClient" = "There is no mail client setup on this device. Please set up Mail and try again!";
+"mailError_noMailClient" = "此设备上没有邮件客户端设置。请设置邮件并重试！";
 
-"mailError_dismiss" = "Dismiss";
+"mailError_dismiss" = "关闭";
 
 //MARK - Translation Manager Error Handler
 
-"TMerror_error" = "Error!";
+"TMerror_error" = "错误！";
 
 "TMerror_ok" = "Ok!";
 
-"TMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";
+"TMError_fetchLanguages" = "无法从服务器获取支持的语言。请再试一次！";
 
 //MARK - Network Errors
 
-"NetworkError_Error" = "Error!";
+"NetworkError_Error" = "错误！";
 
-"NetworkError_NoConnection" = "Unable to connect to the internet! Configure network settings and try again.";
+"NetworkError_NoConnection" = "无法连接到互联网！配置网络设置并重试。";
 
 //MARK - Progress View
 
-"ProgressView_Loading" = "Loading";
+"ProgressView_Loading" = "加载中";
 
 //MARK - Settings Labels
 
-"Settings_section_acknowledgements" = "Acknowledgements";
+"Settings_section_acknowledgements" = "致谢";
 
-"Settings_Credits" = "Credits";
+"Settings_Credits" = "片尾字幕";
 
-"Settings_License" = "API License";
+"Settings_License" = "API许可证";

@@ -14,11 +14,11 @@
 
 //MARK - TabView Labels
 
-"TabView_Translate" = "Translate";
+"TabView_Translate" = "Traducir";
 
-"TabView_FlashCards" = "Favorites";
+"TabView_FlashCards" = "Favoritos";
 
-"TabView_About" = "About";
+"TabView_About" = "Acerca de";
 
 //MARK - Translate Function Text
 
@@ -28,61 +28,61 @@
 
 "translatorView_translateButton" = "Traducir";
 
-"translatorView_saveButton" = "Save";
+"translatorView_saveButton" = "Guardar";
 
-"translatorView_textEditorPlaceholder" = "Type text here to detect language or to translate!";
+"translatorView_textEditorPlaceholder" = "Escriba aquí el texto para detectar el idioma o para traducir.";
 
-"translatorView_detected" = "detected! Tap to select!";
+"translatorView_detected" = "detectado! Pulse para seleccionar.";
 
-"translatorView_translationSaved" = "Translation saved!";
+"translatorView_translationSaved" = "¡Traducción guardada!";
 
 //MARK - Language Selector View
 
-"languageSelectorView_chooseLanguage" = "Choose a language:";
+"languageSelectorView_chooseLanguage" = "Elige un idioma:";
 
-"languageSelectorView_from" = "From";
+"languageSelectorView_from" = "De";
 
-"languageSelectorView_to" = "To";
+"languageSelectorView_to" = "a";
 
-"languageSelectorView_detect" = "Detect";
+"languageSelectorView_detect" = "Detectar";
 
 //MARK - Cards View
 
-"cardsView_tap" = "Tap the icon";
+"cardsView_tap" = "Pulse el icono";
 
-"cardsView_tapFinish" = "to start translating!";
+"cardsView_tapFinish" = "para empezar a traducir";
 
-"cardsView_noCards" = "No cards found using these filters!";
+"cardsView_noCards" = "No se han encontrado tarjetas con estos filtros.";
 
-"cardsView_filterButton" = "Filter";
+"cardsView_filterButton" = "Filtrar";
 
-"cardsView_hideFilterButton" = "Hide Filter";
+"cardsView_hideFilterButton" = "Ocultar filtros";
 
-"cardsView_clearFilterButton" = "Clear Filters";
+"cardsView_clearFilterButton" = "Borrar filtros";
 
-"cardsView_deleteButton" = "Delete";
+"cardsView_deleteButton" = "Borrar";
 
-"cardsView_cancelButton" = "Cancel";
+"cardsView_cancelButton" = "Anular";
 
 //MARK - Settings View
 
-"settingsView_Licenses" = "Licenses";
+"settingsView_Licenses" = "Licencias";
 
 //MARK - About View
 
-"aboutView_sectionTitleDeveloper" = "Developer";
+"aboutView_sectionTitleDeveloper" = "Desarrollador";
 
 //MARK - Acknowledgements View
 
-"acknowledgementsView_noDisclaimer" = "No disclaimer available!";
+"acknowledgementsView_noDisclaimer" = "No hay descargo de responsabilidad";
 
 //MARK - Mail Error
 
 "mailError_error" = "Error!";
 
-"mailError_noMailClient" = "There is no mail client setup on this device. Please set up Mail and try again!";
+"mailError_noMailClient" = "No hay ningún cliente de correo configurado en este dispositivo. Configure Mail e inténtelo de nuevo.";
 
-"mailError_dismiss" = "Dismiss";
+"mailError_dismiss" = "Descartar";
 
 //MARK - Translation Manager Error Handler
 
@@ -90,22 +90,22 @@
 
 "TMerror_ok" = "Ok!";
 
-"TMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";
+"TMError_fetchLanguages" = "No se han podido recuperar los idiomas del servidor. Inténtelo de nuevo.";
 
 //MARK - Network Errors
 
 "NetworkError_Error" = "Error!";
 
-"NetworkError_NoConnection" = "Unable to connect to the internet! Configure network settings and try again.";
+"NetworkError_NoConnection" = "No se puede conectar a Internet. Configure los ajustes de red e inténtelo de nuevo.";
 
 //MARK - Progress View
 
-"ProgressView_Loading" = "Loading";
+"ProgressView_Loading" = "Cargando...";
 
 //MARK - Settings Labels
 
-"Settings_section_acknowledgements" = "Acknowledgements";
+"Settings_section_acknowledgements" = "Agradecimientos";
 
-"Settings_Credits" = "Credits";
+"Settings_Credits" = "Créditos";
 
-"Settings_License" = "API License";
+"Settings_License" = "Licencia API";

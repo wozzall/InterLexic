@@ -14,98 +14,98 @@
 
 //MARK - TabView Labels
 
-"TabView_Translate" = "Translate";
+"TabView_Translate" = "Traduire";
 
-"TabView_FlashCards" = "Favorites";
+"TabView_FlashCards" = "Favoris";
 
-"TabView_About" = "About";
+"TabView_About" = "À propos";
 
 //MARK - Translate Function Text
 
-"translatorView_textField" = "Tapez le texte à traduire!";
+"translatorView_textField" = "Tapez le texte à traduire !";
 
-"translatorView_languageSelector" = "À quelle langue voulez-vous traduire?";
+"translatorView_languageSelector" = "À quelle langue voulez-vous traduire ?";
 
 "translatorView_translateButton" = "Traduire";
 
-"translatorView_saveButton" = "Save";
+"translatorView_saveButton" = "Enregistrer";
 
-"translatorView_textEditorPlaceholder" = "Type text here to detect language or to translate!";
+"translatorView_textEditorPlaceholder" = "Tapez du texte ici pour détecter la langue ou pour traduire !";
 
-"translatorView_detected" = "detected! Tap to select!";
+"translatorView_detected" = "détecté ! Tapez pour sélectionner !";
 
-"translatorView_translationSaved" = "Translation saved!";
+"translatorView_translationSaved" = "Traduction sauvée !";
 
 //MARK - Language Selector View
 
-"languageSelectorView_chooseLanguage" = "Choose a language:";
+"languageSelectorView_chooseLanguage" = "Choisissez une langue :";
 
-"languageSelectorView_from" = "From";
+"languageSelectorView_from" = "De";
 
-"languageSelectorView_to" = "To";
+"languageSelectorView_to" = "à";
 
-"languageSelectorView_detect" = "Detect";
+"languageSelectorView_detect" = "Détecter";
 
 //MARK - Cards View
 
-"cardsView_tap" = "Tap the icon";
+"cardsView_tap" = "Appuyez sur l'icône";
 
-"cardsView_tapFinish" = "to start translating!";
+"cardsView_tapFinish" = "pour commencer à traduire !";
 
-"cardsView_noCards" = "No cards found using these filters!";
+"cardsView_noCards" = "Aucune flashcard n'a été trouvée en utilisant ces filtres !";
 
-"cardsView_filterButton" = "Filter";
+"cardsView_filterButton" = "Filtrer";
 
-"cardsView_hideFilterButton" = "Hide Filter";
+"cardsView_hideFilterButton" = "Cacher les filtres";
 
-"cardsView_clearFilterButton" = "Clear Filters";
+"cardsView_clearFilterButton" = "Effacer les filtres";
 
-"cardsView_deleteButton" = "Delete";
+"cardsView_deleteButton" = "Supprimer";
 
-"cardsView_cancelButton" = "Cancel";
+"cardsView_cancelButton" = "Annuler";
 
 //MARK - Settings View
 
-"settingsView_Licenses" = "Licenses";
+"settingsView_Licenses" = "Licences";
 
 //MARK - About View
 
-"aboutView_sectionTitleDeveloper" = "Developer";
+"aboutView_sectionTitleDeveloper" = "Développeur";
 
 //MARK - Acknowledgements View
 
-"acknowledgementsView_noDisclaimer" = "No disclaimer available!";
+"acknowledgementsView_noDisclaimer" = "Aucune clause de non-responsabilité n'est disponible !";
 
 //MARK - Mail Error
 
-"mailError_error" = "Error!";
+"mailError_error" = "Erreur!";
 
-"mailError_noMailClient" = "There is no mail client setup on this device. Please set up Mail and try again!";
+"mailError_noMailClient" = "Aucun client de messagerie n'est configuré sur cet appareil. Veuillez configurer Mail et réessayer !";
 
-"mailError_dismiss" = "Dismiss";
+"mailError_dismiss" = "Fermer";
 
 //MARK - Translation Manager Error Handler
 
-"TMerror_error" = "Error!";
+"TMerror_error" = "Erreur!";
 
 "TMerror_ok" = "Ok!";
 
-"TMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";
+"TMError_fetchLanguages" = "Impossible de récupérer les langues prises en charge sur le serveur. Veuillez réessayer !";
 
 //MARK - Network Errors
 
-"NetworkError_Error" = "Error!";
+"NetworkError_Error" = "Erreur!";
 
-"NetworkError_NoConnection" = "Unable to connect to the internet! Configure network settings and try again.";
+"NetworkError_NoConnection" = "Impossible de se connecter à l'internet ! Configurez les paramètres du réseau et réessayez.";
 
 //MARK - Progress View
 
-"ProgressView_Loading" = "Loading";
+"ProgressView_Loading" = "Chargement...";
 
 //MARK - Settings Labels
 
-"Settings_section_acknowledgements" = "Acknowledgements";
+"Settings_section_acknowledgements" = "Remerciements";
 
-"Settings_Credits" = "Credits";
+"Settings_Credits" = "Crédits";
 
-"Settings_License" = "API License";
+"Settings_License" = "Licence API";
