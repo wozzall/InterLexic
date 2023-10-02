@@ -25,7 +25,7 @@ struct TranslatorView: View {
     @ObservedObject var viewModel = TranslatorViewModel()
     @ObservedObject var textToSpeech = TextToSpeech()
     @State var synthesizer = AVSpeechSynthesizer()
-	
+    
     
     @State private var translatableText: String = String()
     let textEditorPlaceHolder: String = "Type text here to detect language or to translate!"
@@ -45,308 +45,47 @@ struct TranslatorView: View {
     
     
     @FocusState private var focusedField: Field?
-
+    
     init() {
         UITextView.appearance().textContainerInset =
-                 UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 12)
-        }
+        UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 12)
+    }
     
     
     var body: some View {
-        NavigationView {
+        NavigationView{
             ScrollView {
                 NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                    LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection, languageDetectionRequired: languageDetectionRequired)
+                    LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection, languageDetectionRequired: false)
                 } label: {
                     EmptyView()
                 }
-                HStack {
-                    Button {
-                        viewModel.setDirection(direction: false)
-                        didTapSelector(isLanguageDetectionRequired: true)
-                    } label: {
-                        ZStack {
-                            Color.offWhite
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
-                                .overlay(
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .stroke(.black.opacity(0.5))
-                                            .opacity(0.3)
-                                    )
-                            if languageA.name == "" {
-                                Text("languageSelectorView_from".localized)
-                                    .padding()
-                            }
-                            else {
-                                Text(languageA.name)
-                                    .fixedSize(horizontal: false, vertical: true)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.horizontal)
-                            }
-                        }
-                        .foregroundColor(.blue)
-                    }
-                    Image(systemName: "arrow.right")
-                        .foregroundColor(.accentColor)
-                    Button {
-                        viewModel.setDirection(direction: true)
-                        didTapSelector(isLanguageDetectionRequired: false)
-                    } label: {
-                        ZStack {
-                            Color.offWhite
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
-                                .overlay(
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .stroke(.black.opacity(0.5))
-                                            .opacity(0.3)
-                                    )
-                            if languageB.name == "" {
-                                Text("languageSelectorView_to".localized)
-                                    .padding()
-                            }
-                            else {
-                                Text(languageB.name)
-                                    .fixedSize(horizontal: false, vertical: true)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.horizontal)
-                            }
-                        }
-                        .foregroundColor(.blue)
-                    }
-                }
-                .frame(height: 50)
-                .padding(.horizontal)
-                .padding(.top, 30)
-                .buttonStyle(.borderless)
                 
-                ZStack{
-                    VStack{
-                        if languageDetectionRequired {
-                            TextEditor(text: $translatableText)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .multilineTextAlignment(.leading)
-                                .lineSpacing(3)
-                                .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(Color.black.opacity(0.5), lineWidth: 1))
-                                .overlay(alignment: .bottomTrailing) {
-                                    if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
-                                        Button {
-                                            textToSpeech.languageRecognizer.reset()
-                                            textToSpeech.synthesizeSpeech(inputMessage: translatableText)
-                                        } label: {
-                                            Image(systemName: "speaker.wave.2.fill")
-                                                .foregroundColor(.blue.opacity(0.8))
-                                                .font(.title3)
-                                        }
-                                        .padding(.bottom, 8)
-                                        .padding(.trailing, 8)
-                                    }
-                                    else {
-                                        Image(systemName: "speaker.slash.fill")
-                                            .foregroundColor(.gray.opacity(0.2))
-                                            .font(.title3)
-                                            .padding(.bottom, 8)
-                                            .padding(.trailing, 8)
-                                    }
-                                }
-                                    .overlay(alignment: .bottomLeading) {
-                                        if translatableText.isEmpty == false {
-                                            if detectedLanguage?.name != ""{
-                                                HStack(spacing: 0){
-                                                    Text("\(detectedLanguage?.name ?? "".localized)")
-                                                        .foregroundColor(.blue)
-                                                        .onTapGesture {
-                                                            languageA = detectedLanguage ?? Language(name: "None Detected", translatorID: "", id: UUID())
-                                                            languageDetectionRequired = false
-                                                        }
-                                                        .padding(.trailing, 4)
-                                                    Text("translatorView_detected".localized)
-                                                        .foregroundColor(.gray.opacity(0.8))
-                                                    
-                                                }
-                                                .padding(.bottom)
-                                                .padding(.leading)
-                                            }
-                                        }
-                                    }
-                                    .padding()
-                                    .textFieldStyle(.roundedBorder)
-                                    .focused($focusedField, equals: .sourceText)
-                                    .onChange(of: translatableText) { _ in
-                                            languageDetectionRequired = true
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
-                                                manager.detectLanguage(forText: translatableText) { result in
-                                                    for language in manager.supportedLanguages {
-                                                        if manager.sourceLanguageCode == language.translatorID {
-                                                            detectedLanguage = language
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                        } else {
-                            TextEditor(text: $translatableText)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .multilineTextAlignment(.leading)
-                                .lineSpacing(3)
-
-                                .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
-                            
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(Color.black.opacity(0.5), lineWidth: 1))
-                                .overlay(alignment: .bottomTrailing) {
-                                    if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
-                                        Button {
-                                            textToSpeech.languageRecognizer.reset()
-                                            textToSpeech.synthesizeSpeech(inputMessage: translatableText)
-                                        } label: {
-                                            Image(systemName: "speaker.wave.2.fill")
-                                                .foregroundColor(.blue.opacity(0.8))
-                                                .font(.title3)
-                                        }
-                                        .padding(.bottom, 8)
-                                        .padding(.trailing, 8)
-                                    } else {
-                                        Image(systemName: "speaker.slash.fill")
-                                            .foregroundColor(.gray.opacity(0.2))
-                                            .font(.title3)
-                                            .padding(.bottom, 8)
-                                            .padding(.trailing, 8)
-                                    }
-                                }
-                                .padding()
-                                .textFieldStyle(.roundedBorder)
-                                .focused($focusedField, equals: .sourceText)
-                        }
-                    }
-                    if translatableText.isEmpty {
-                        VStack{
-                            HStack{
-                                Text(textEditorPlaceHolder)
-                                    .padding(.top, 10)
-                                    .padding(.leading, 10)
-                                    .opacity(0.4)
-                                    .allowsHitTesting(false)
-                                Spacer()
-                            }
-                            .padding()
-                            Spacer()
-                        }
-                    }
-                }
-                .frame(height: UIScreen.main.bounds.height * 0.3)
+                languageSelectorButtonsView
                 
+                if languageDetectionRequired {
+                    textEditorWithDetectionView
+                } else {
+                    textEditorView
+                }
                 HStack(spacing: 35){
                     if !languagesAreSelected() {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color.offWhite.opacity(0.6))
-                               
-                            Button(action: {
-                                didTapTranslate()
-                            }) {
-                                Text("translatorView_translateButton".localized)
-                            }
-                            .foregroundColor(.gray)
-                            .buttonStyle(.borderless)
-                            .disabled(true)
-                        }
-
+                        translateButton
                     } else {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.blue)
-                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(.black)
-                                        .opacity(0.4)
-                                )
-                            Button(action: {
-                                didTapTranslate()
-                            }) {
-                                Text("translatorView_translateButton".localized)
-                            }
-                            .buttonStyle(.borderless)
-                        }
+                        translateGreyedOutButton
                     }
-                    ZStack{
-                        if disabledSave {
-                            Color.offWhite
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .opacity(0.6)
-                            Button(action: {
-                                saveButton()
-                            }) {
-                                Text("translatorView_saveButton".localized)
-                                    .foregroundColor(.gray)
-                            }
-                            .buttonStyle(.borderless)
-                            .disabled(disabledSave)
-                        }
-                        else {
-                            Color.yellow
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                .overlay(
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .stroke(.white)
-                                            .opacity(0.3)
-                                    )
-                            Button(action: {
-                                saveButton()
-                                self.disabledSave = true
-                            }) {
-                                Text("translatorView_saveButton".localized)
-                                    .foregroundColor(.white)
-                            }
-                            .buttonStyle(.borderless)
-                        }
+                    if disabledSave {
+                        disabledSaveButton
+                    } else {
+                        saveTranslationButton
                     }
                 }
                 .frame(height: 50)
                 .padding(.horizontal)
                 .foregroundColor(Color.white)
                 
-                TextEditor(text: $viewModel.translatedString)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    .multilineTextAlignment(.leading)
-                    .lineSpacing(3)
-                    .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.black.opacity(0.5), lineWidth: 1)
-                    )
-                    .overlay(alignment: .bottomTrailing) {
-                        if textToSpeech.audioAvailable(inputString: viewModel.translatedString, googleLanguageCode: languageB.translatorID){
-                            Button {
-                                textToSpeech.languageRecognizer.reset()
-                                textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString)
-                            } label: {
-                                Image(systemName: "speaker.wave.2.fill")
-                                    .foregroundColor(.blue.opacity(0.8))
-                                    .font(.title3)
-                            }
-                            .padding(.bottom, 8)
-                            .padding(.trailing, 8)
-                        } else {
-                            Image(systemName: "speaker.slash.fill")
-                                .foregroundColor(.gray.opacity(0.2))
-                                .font(.title3)
-                                .padding(.bottom, 8)
-                                .padding(.trailing, 8)
-                        }
-                    }
-                    .padding()
-                    .frame(height: UIScreen.main.bounds.height * 0.3)
-                    .focused($focusedField, equals: .targetText)
-                    .toast(isPresenting: $tappedSave, message: "translatorView_translationSaved".localized)
-
+                receivedTranslationEditor
+                
                 HStack {
                     Spacer()
                     Image("color-regular")
@@ -366,6 +105,349 @@ struct TranslatorView: View {
             }
         }
     }
+        
+    var languageSelectorButtonsView: some View {
+        HStack {
+            Button {
+                viewModel.setDirection(direction: false)
+                didTapSelector(isLanguageDetectionRequired: true)
+            } label: {
+                ZStack {
+                    Color.offWhite
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(.black.opacity(0.5))
+                                .opacity(0.3)
+                        )
+                    if languageA.name == "" {
+                        Text("languageSelectorView_from".localized)
+                            .padding()
+                    }
+                    else {
+                        Text(languageA.name)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
+                }
+                .foregroundColor(.blue)
+            }
+            Image(systemName: "arrow.right")
+                .foregroundColor(.accentColor)
+            Button {
+                viewModel.setDirection(direction: true)
+                didTapSelector(isLanguageDetectionRequired: false)
+            } label: {
+                ZStack {
+                    Color.offWhite
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(.black.opacity(0.5))
+                                .opacity(0.3)
+                        )
+                    if languageB.name == "" {
+                        Text("languageSelectorView_to".localized)
+                            .padding()
+                    }
+                    else {
+                        Text(languageB.name)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
+                }
+                .foregroundColor(.blue)
+            }
+        }
+        .frame(height: 50)
+        .padding(.horizontal)
+        .padding(.top, 30)
+        .buttonStyle(.borderless)
+    }
+    
+    var textEditorWithDetectionView: some View {
+        ZStack {
+            TextEditor(text: $translatableText)
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .multilineTextAlignment(.leading)
+                .lineSpacing(3)
+                .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black.opacity(0.5), lineWidth: 1))
+            
+                .overlay(alignment: .topTrailing) {
+                    if !translatableText.isEmpty{
+                    Button {
+                        translatableText = String()
+                    } label: {
+                        Image(systemName: "x.circle.fill")
+                            .foregroundColor(.black.opacity(0.2))
+                    }
+                    .padding(.trailing, 10)
+                    .padding(.top, 10)
+                    
+                }
+            }
+                .overlay(alignment: .bottomTrailing) {
+                    if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
+                        Button {
+                            textToSpeech.languageRecognizer.reset()
+                            textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                        } label: {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .foregroundColor(.blue.opacity(0.8))
+                                .font(.title3)
+                        }
+                        .padding(.bottom, 8)
+                        .padding(.trailing, 8)
+                    } else {
+                        Image(systemName: "speaker.slash.fill")
+                            .foregroundColor(.gray.opacity(0.2))
+                            .font(.title3)
+                            .padding(.bottom, 8)
+                            .padding(.trailing, 8)
+                    }
+                }
+                .overlay(alignment: .bottomLeading) {
+                    if translatableText.isEmpty == false {
+                        if detectedLanguage?.name != ""{
+                            HStack(spacing: 0){
+                                Text("\(detectedLanguage?.name ?? "".localized)")
+                                    .foregroundColor(.blue)
+                                    .onTapGesture {
+                                        languageA = detectedLanguage ?? Language(name: "None Detected", translatorID: "", id: UUID())
+                                        languageDetectionRequired = false
+                                    }
+                                    .padding(.trailing, 4)
+                                Text("translatorView_detected".localized)
+                                    .foregroundColor(.gray.opacity(0.8))
+                                
+                            }
+                            .padding(.bottom)
+                            .padding(.leading)
+                        }
+                    }
+                }
+                .padding()
+                .textFieldStyle(.roundedBorder)
+                .focused($focusedField, equals: .sourceText)
+                .onChange(of: translatableText) { _ in
+                    languageDetectionRequired = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
+                        manager.detectLanguage(forText: translatableText) { result in
+                            for language in manager.supportedLanguages {
+                                if manager.sourceLanguageCode == language.translatorID {
+                                    detectedLanguage = language
+                                }
+                            }
+                        }
+                    }
+                }
+                .frame(height: UIScreen.main.bounds.height * 0.3)
+            if translatableText.isEmpty {
+                VStack{
+                    HStack{
+                        Text(textEditorPlaceHolder)
+                            .padding(.top, 10)
+                            .padding(.leading, 10)
+                            .opacity(0.4)
+                            .allowsHitTesting(false)
+                        Spacer()
+                    }
+                    .padding()
+                    Spacer()
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    var textEditorView: some View {
+        ZStack {
+            TextEditor(text: $translatableText)
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .multilineTextAlignment(.leading)
+                .lineSpacing(3)
+            
+                .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
+            
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black.opacity(0.5), lineWidth: 1))
+                .overlay(alignment: .topTrailing) {
+                    if !translatableText.isEmpty{
+                    Button {
+                        translatableText = String()
+                    } label: {
+                        Image(systemName: "x.circle.fill")
+                            .foregroundColor(.black.opacity(0.2))
+                    }
+                    .padding(.trailing, 10)
+                    .padding(.top, 10)
+                    
+                }
+            }
+
+                .overlay(alignment: .bottomTrailing) {
+                    if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
+                        Button {
+                            textToSpeech.languageRecognizer.reset()
+                            textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                        } label: {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .foregroundColor(.blue.opacity(0.8))
+                                .font(.title3)
+                        }
+                        .padding(.bottom, 8)
+                        .padding(.trailing, 8)
+                    } else {
+                        Image(systemName: "speaker.slash.fill")
+                            .foregroundColor(.gray.opacity(0.2))
+                            .font(.title3)
+                            .padding(.bottom, 8)
+                            .padding(.trailing, 8)
+                    }
+                }
+                .padding()
+                .textFieldStyle(.roundedBorder)
+                .focused($focusedField, equals: .sourceText)
+                .frame(height: UIScreen.main.bounds.height * 0.3)
+            
+            if translatableText.isEmpty {
+                VStack{
+                    HStack{
+                        Text(textEditorPlaceHolder)
+                            .padding(.top, 10)
+                            .padding(.leading, 10)
+                            .opacity(0.4)
+                            .allowsHitTesting(false)
+                        Spacer()
+                    }
+                    .padding()
+                    Spacer()
+                }
+            }
+        }
+        
+    }
+    
+    var translateButton: some View {
+        
+        ZStack{
+            RoundedRectangle(cornerRadius: 15)
+                .fill(Color.offWhite.opacity(0.6))
+            
+            Button(action: {
+                didTapTranslate()
+            }) {
+                Text("translatorView_translateButton".localized)
+            }
+            .foregroundColor(.gray)
+            .buttonStyle(.borderless)
+            .disabled(true)
+        }
+    }
+    
+    var translateGreyedOutButton: some View{
+        
+        ZStack{
+            RoundedRectangle(cornerRadius: 15)
+                .fill(.blue)
+                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(.black)
+                        .opacity(0.4)
+                )
+            Button(action: {
+                didTapTranslate()
+            }) {
+                Text("translatorView_translateButton".localized)
+            }
+            .buttonStyle(.borderless)
+        }
+    }
+    
+    var saveTranslationButton: some View {
+        ZStack{
+            RoundedRectangle(cornerRadius: 15)
+                .foregroundColor(.yellow)
+                .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(.white)
+                        .opacity(0.3)
+                )
+            Button(action: {
+                saveButton()
+                self.disabledSave = true
+            }) {
+                Text("translatorView_saveButton".localized)
+                    .foregroundColor(.white)
+            }
+            .buttonStyle(.borderless)
+        }
+    }
+    
+    var disabledSaveButton: some View {
+        ZStack{
+            RoundedRectangle(cornerRadius: 15)
+                .foregroundColor(Color.offWhite)
+                .opacity(0.6)
+            Button(action: {
+                saveButton()
+            }) {
+                Text("translatorView_saveButton".localized)
+                    .foregroundColor(.gray)
+            }
+            .buttonStyle(.borderless)
+            .disabled(disabledSave)
+        }
+    }
+    
+    var receivedTranslationEditor: some View {
+        TextEditor(text: $viewModel.translatedString)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .multilineTextAlignment(.leading)
+            .lineSpacing(3)
+            .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(Color.black.opacity(0.5), lineWidth: 1)
+            )
+            .overlay(alignment: .bottomTrailing) {
+                if textToSpeech.audioAvailable(inputString: viewModel.translatedString, googleLanguageCode: languageB.translatorID){
+                    Button {
+                        textToSpeech.languageRecognizer.reset()
+                        textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString)
+                    } label: {
+                        Image(systemName: "speaker.wave.2.fill")
+                            .foregroundColor(.blue.opacity(0.8))
+                            .font(.title3)
+                    }
+                    .padding(.bottom, 8)
+                    .padding(.trailing, 8)
+                } else {
+                    Image(systemName: "speaker.slash.fill")
+                        .foregroundColor(.gray.opacity(0.2))
+                        .font(.title3)
+                        .padding(.bottom, 8)
+                        .padding(.trailing, 8)
+                }
+            }
+            .padding()
+            .frame(height: UIScreen.main.bounds.height * 0.3)
+            .focused($focusedField, equals: .targetText)
+            .toast(isPresenting: $tappedSave, message: "translatorView_translationSaved".localized)
+    }
+    
     
     private func isDetectionRequired() {
         if languageA == detectedLanguage {
@@ -395,16 +477,6 @@ struct TranslatorView: View {
         self.selectedNavigation = LanguageSelectorView.navigation
     }
     
-//    private func assignDefaultLanguages() {
-//
-//        if languageA.name.isEmpty && languageB.name.isEmpty {
-//            languageA = manager.supportedLanguages.first(where: { $0.name == "English"}) ?? Language(name: "Error", translatorID: "en")
-//            languageB = manager.supportedLanguages.first(where: { $0.name == "Chinese (Simplified)"}) ?? Language(name: "Error", translatorID: "zh-CN")
-//        }
-//        viewModel.toFromDirection = false
-//    }
-
-    
     private func didTapTranslate() {
         viewModel.defaultLanguageSelector(A: languageA, B: languageB)
         viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
@@ -423,19 +495,8 @@ struct TranslatorView: View {
         }
         return
     }
-
-    
-//    func voiceTest() {
-//        let voices = AVSpeechSynthesisVoice.speechVoices()
-//        for voice in voices where voice.language == "en-GB" {
-//            print("\(voice.language) - \(voice.name) - \(voice.quality.rawValue) [\(voice.identifier)]")
-//            let phrase = "The voice you're now listening to is the one called \(voice.name)."
-//            let utterance = AVSpeechUtterance(string: phrase)
-//            utterance.voice = voice
-//            synthesizer.speak(utterance)
-//        }
-//    }
 }
+
 
 //struct TranslatorView_Previews: PreviewProvider {
 //    static var previews: some View {
