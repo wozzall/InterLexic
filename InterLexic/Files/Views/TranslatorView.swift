@@ -25,6 +25,7 @@ struct TranslatorView: View {
     @ObservedObject var viewModel = TranslatorViewModel()
     @ObservedObject var textToSpeech = TextToSpeech()
     @State var synthesizer = AVSpeechSynthesizer()
+    var delegate: AVSpeechSynthesizerDelegate?
     
     
     @State private var translatableText: String = String()
@@ -196,8 +197,8 @@ struct TranslatorView: View {
                 .overlay(alignment: .bottomTrailing) {
                     if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
                         Button {
-                            textToSpeech.languageRecognizer.reset()
-                            textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                                textToSpeech.languageRecognizer.reset()
+                                textToSpeech.synthesizeSpeech(inputMessage: translatableText)
                         } label: {
                             Image(systemName: "speaker.wave.2.fill")
                                 .foregroundColor(.blue.opacity(0.8))
@@ -298,8 +299,8 @@ struct TranslatorView: View {
                 .overlay(alignment: .bottomTrailing) {
                     if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
                         Button {
-                            textToSpeech.languageRecognizer.reset()
-                            textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                                textToSpeech.languageRecognizer.reset()
+                                textToSpeech.synthesizeSpeech(inputMessage: translatableText)
                         } label: {
                             Image(systemName: "speaker.wave.2.fill")
                                 .foregroundColor(.blue.opacity(0.8))
@@ -466,6 +467,13 @@ struct TranslatorView: View {
     private func sameLanguageChecker() -> Bool {
         // MARK -- Checks to see if Language A and B are still empty values of type Language. Loads the translate function with default values, in this case English as Language A and Chinese (Simplified) as Language B.
         if languageA == languageB {
+            return true
+        }
+        return false
+    }
+    
+    private func didTapAudio() -> Bool {
+        if synthesizer.isSpeaking {
             return true
         }
         return false

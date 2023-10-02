@@ -62,6 +62,7 @@ class TextToSpeech: NSObject, ObservableObject {
         utterance.rate = 0.5
         utterance.voice = AVSpeechSynthesisVoice(language: languageCode)
         
+        speechSynthesizer.stopSpeaking(at: .immediate)
         speechSynthesizer.speak(utterance)
     
     }
