@@ -29,7 +29,6 @@
 		AD24DD8429100DDA00793B85 /* AcknowledgementsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD8329100DDA00793B85 /* AcknowledgementsMenuView.swift */; };
 		AD24DD882910144800793B85 /* Acknowledgement.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD872910144800793B85 /* Acknowledgement.swift */; };
 		AD24DD8E2910304D00793B85 /* SupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD8D2910304D00793B85 /* SupportEmail.swift */; };
-		AD24DD90291AAA2E00793B85 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD8F291AAA2E00793B85 /* MailView.swift */; };
 		AD24DD92291AAA8E00793B85 /* ComposeMailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD24DD91291AAA8E00793B85 /* ComposeMailData.swift */; };
 		AD27CBAD296C5FFF0051C5EF /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = AD27CBAC296C5FFF0051C5EF /* PopupView */; };
 		AD4B85EA280089B800030EF2 /* Translator_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */; };
@@ -97,7 +96,6 @@
 		AD24DD8329100DDA00793B85 /* AcknowledgementsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsMenuView.swift; sourceTree = "<group>"; };
 		AD24DD872910144800793B85 /* Acknowledgement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acknowledgement.swift; sourceTree = "<group>"; };
 		AD24DD8D2910304D00793B85 /* SupportEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportEmail.swift; sourceTree = "<group>"; };
-		AD24DD8F291AAA2E00793B85 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		AD24DD91291AAA8E00793B85 /* ComposeMailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMailData.swift; sourceTree = "<group>"; };
 		AD4B85E9280089B700030EF2 /* Translator_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator_ViewModel.swift; sourceTree = "<group>"; };
 		AD4B85ED280089E200030EF2 /* TranslationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				AD183138287F2D3800C04EAA /* FlashCardView.swift */,
-				AD24DD8F291AAA2E00793B85 /* MailView.swift */,
 				ADF408C8292D32DF00058C12 /* InputLanguagesSelectorView.swift */,
 				ADF408CA292D33C800058C12 /* ClearLanguagesSelectorView.swift */,
 			);
@@ -499,7 +496,6 @@
 				ADF408C9292D32DF00058C12 /* InputLanguagesSelectorView.swift in Sources */,
 				AD642C7528A299F400D1638E /* SplashScreenView.swift in Sources */,
 				ADF408CB292D33C800058C12 /* ClearLanguagesSelectorView.swift in Sources */,
-				AD24DD90291AAA2E00793B85 /* MailView.swift in Sources */,
 				AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */,
 				AD183134287EEC7300C04EAA /* FlashCardStorage.swift in Sources */,
 				AD05604628D4C590004AE5B9 /* MailDelegate.swift in Sources */,
