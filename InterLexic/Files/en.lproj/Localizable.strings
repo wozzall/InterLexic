@@ -7,17 +7,17 @@
 */
 //MARK - SplashScreenView Labels
 
-"SplashScreenView_Interlexic" = "Interlexic";
+"splashScreenView_interlexic" = "Interlexic";
 
-"SplashScreenView_Name" = "©2023 George Worrall";
+"splashScreenView_name" = "©2023 George Worrall";
 
 //MARK - TabView Labels
 
-"TabView_Translate" = "Translate";
+"tabView_translate" = "Translate";
 
-"TabView_FlashCards" = "Flashcards";
+"tabView_flashCards" = "Flashcards";
 
-"TabView_About" = "About";
+"tabView_about" = "About";
 
 //MARK - Translate Function Text
 
@@ -68,7 +68,7 @@
 
 //MARK - Settings View
 
-"settingsView_Licenses" = "Licenses";
+"settingsView_licenses" = "Licenses";
 
 //MARK - About View
 
@@ -88,26 +88,26 @@
 
 //MARK - Translation Manager Error Handler
 
-"TMerror_error" = "Error!";
+"tMError_error" = "Error!";
 
-"TMerror_ok" = "Ok!";
+"tMError_ok" = "Ok!";
 
-"TMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";
+"tMError_fetchLanguages" = "Unable to fetch supported languages from server. Please try again!";
 
 //MARK - Network Errors
 
-"NetworkError_Error" = "Error!";
+"networkError_error" = "Error!";
 
-"NetworkError_NoConnection" = "Unable to connect to the internet! Configure network settings and try again.";
+"networkError_noConnection" = "Unable to connect to the internet! Configure network settings and try again.";
 
 //MARK - Progress View
 
-"ProgressView_Loading" = "Loading";
+"progressView_loading" = "Loading";
 
 //MARK - Settings Labels
 
-"Settings_section_acknowledgements" = "Acknowledgements";
+"settings_section_acknowledgements" = "Acknowledgements";
 
-"Settings_Credits" = "Credits";
+"settings_credits" = "Credits";
 
-"Settings_License" = "API License";
+"settings_license" = "API License";

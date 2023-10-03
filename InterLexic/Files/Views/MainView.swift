@@ -21,19 +21,19 @@ struct MainView: View {
             
             TranslatorView()
                 .tabItem {
-                    Label("TabView_Translate".localized, systemImage: "character.bubble.fill")
+                    Label("tabView_translate".localized, systemImage: "character.bubble.fill")
                 }
                 .tag(1)
             
             CardsView()
                 .tabItem {
-                    Label("TabView_FlashCards".localized, systemImage: "star.fill")
+                    Label("tabView_flashCards".localized, systemImage: "star.fill")
                 }
                 .tag(2)
             
             AboutView()
                 .tabItem {
-                    Label("TabView_About".localized, systemImage: "questionmark.circle")
+                    Label("tabView_about".localized, systemImage: "questionmark.circle")
                 }
                 .tag(3)
         }

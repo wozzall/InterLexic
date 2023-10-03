@@ -58,16 +58,16 @@ struct LanguageSelectorView: View {
             filterLanguages()
         }
         .overlay(
-            ProgressView("ProgressView_Loading".localized)
+            ProgressView("progressView_loading".localized)
                 .opacity(manager.isLoading ? 1 : 0)
         )
         .navigationTitle("languageSelectorView_chooseLanguage".localized)
         .onDisappear(perform: testLanguageSelection)
         .alert(isPresented: $manager.isShowingAlert) {
-            Alert(title: Text("TMerror_error".localized), message: Text("TMError_fetchLanguages".localized), dismissButton: .default(Text("TMerror_ok".localized)))
+            Alert(title: Text("tMError_error".localized), message: Text("tMError_fetchLanguages".localized), dismissButton: .default(Text("tMerror_ok".localized)))
         }
         .alert(isPresented: $manager.isShowingAlert) {
-            Alert(title: Text("NetworkError_Error".localized), message: Text("NetworkError_NoConnection".localized), dismissButton: .destructive(Text("TMerror_ok".localized), action: {
+            Alert(title: Text("networkError_error".localized), message: Text("networkError_noConnection".localized), dismissButton: .destructive(Text("tMError_ok".localized), action: {
                 presentationMode.wrappedValue.dismiss()})
             )}
     }

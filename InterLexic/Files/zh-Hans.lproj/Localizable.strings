@@ -8,17 +8,17 @@
 
 //MARK - SplashScreenView Labels
 
-"SplashScreenView_Interlexic" = "Interlexic";
+"splashScreenView_interlexic" = "Interlexic";
 
-"SplashScreenView_Name" = "©2022 George Worrall";
+"splashScreenView_name" = "©2022 George Worrall";
 
 //MARK - TabView Labels
 
-"TabView_Translate" = "翻译";
+"tabView_translate" = "翻译";
 
-"TabView_FlashCards" = "收藏夹";
+"tabView_flashCards" = "收藏夹";
 
-"TabView_About" = "关于";
+"tabView_about" = "关于";
 
 //MARK - Translate Function Text
 
@@ -66,7 +66,7 @@
 
 //MARK - Settings View
 
-"settingsView_Licenses" = "许可证";
+"settingsView_licenses" = "许可证";
 
 //MARK - About View
 
@@ -86,26 +86,26 @@
 
 //MARK - Translation Manager Error Handler
 
-"TMerror_error" = "错误！";
+"tMError_error" = "错误！";
 
-"TMerror_ok" = "Ok!";
+"tMError_ok" = "Ok!";
 
-"TMError_fetchLanguages" = "无法从服务器获取支持的语言。请再试一次！";
+"tMError_fetchLanguages" = "无法从服务器获取支持的语言。请再试一次！";
 
 //MARK - Network Errors
 
-"NetworkError_Error" = "错误！";
+"networkError_error" = "错误！";
 
-"NetworkError_NoConnection" = "无法连接到互联网！配置网络设置并重试。";
+"networkError_noConnection" = "无法连接到互联网！配置网络设置并重试。";
 
 //MARK - Progress View
 
-"ProgressView_Loading" = "加载中";
+"progressView_loading" = "加载中";
 
 //MARK - Settings Labels
 
-"Settings_section_acknowledgements" = "致谢";
+"settings_section_acknowledgements" = "致谢";
 
-"Settings_Credits" = "片尾字幕";
+"settings_credits" = "片尾字幕";
 
-"Settings_License" = "API许可证";
+"settings_license" = "API许可证";

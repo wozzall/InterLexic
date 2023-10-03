@@ -15,6 +15,10 @@ enum NetworkStatus: String {
     case disconnected
 }
 
+enum NetworkError: Error {
+    case noConnection
+}
+
 class Monitor: ObservableObject {
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue(label: "Monitor")

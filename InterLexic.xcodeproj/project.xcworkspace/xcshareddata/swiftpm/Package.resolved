@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/exyte/PopupView",
       "state" : {
-        "revision" : "87f3bf660ba23e8ee49ea2b503e86dfdf8e61ca7",
-        "version" : "2.6.1"
+        "revision" : "7cfd26db6cc8a4aedb1a80a5df669019a417bfd2",
+        "version" : "2.7.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "633996a807442ec28df9d33b0f88ce57a0e2fdbf",
-        "version" : "5.17.0"
+        "revision" : "936f1c7067728d16c362ba4fb93c17df78b5fd79",
+        "version" : "5.18.2"
       }
     },
     {

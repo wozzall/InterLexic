@@ -8,17 +8,17 @@
 
 //MARK - SplashScreenView Labels
 
-"SplashScreenView_Interlexic" = "Interlexic";
+"splashScreenView_interlexic" = "Interlexic";
 
-"SplashScreenView_Name" = "©2022 George Worrall";
+"splashScreenView_name" = "©2022 George Worrall";
 
 //MARK - TabView Labels
 
-"TabView_Translate" = "Traducir";
+"tabView_translate" = "Traducir";
 
-"TabView_FlashCards" = "Favoritos";
+"tabView_flashCards" = "Favoritos";
 
-"TabView_About" = "Acerca de";
+"tabView_about" = "Acerca de";
 
 //MARK - Translate Function Text
 
@@ -66,7 +66,7 @@
 
 //MARK - Settings View
 
-"settingsView_Licenses" = "Licencias";
+"settingsView_licenses" = "Licencias";
 
 //MARK - About View
 
@@ -86,26 +86,26 @@
 
 //MARK - Translation Manager Error Handler
 
-"TMerror_error" = "Error!";
+"tMError_error" = "Error!";
 
-"TMerror_ok" = "Ok!";
+"tMError_ok" = "Ok!";
 
-"TMError_fetchLanguages" = "No se han podido recuperar los idiomas del servidor. Inténtelo de nuevo.";
+"tMError_fetchLanguages" = "No se han podido recuperar los idiomas del servidor. Inténtelo de nuevo.";
 
 //MARK - Network Errors
 
-"NetworkError_Error" = "Error!";
+"networkError_error" = "Error!";
 
-"NetworkError_NoConnection" = "No se puede conectar a Internet. Configure los ajustes de red e inténtelo de nuevo.";
+"networkError_noConnection" = "No se puede conectar a Internet. Configure los ajustes de red e inténtelo de nuevo.";
 
 //MARK - Progress View
 
-"ProgressView_Loading" = "Cargando...";
+"progressView_loading" = "Cargando...";
 
 //MARK - Settings Labels
 
-"Settings_section_acknowledgements" = "Agradecimientos";
+"settings_section_acknowledgements" = "Agradecimientos";
 
-"Settings_Credits" = "Créditos";
+"settings_credits" = "Créditos";
 
-"Settings_License" = "Licencia API";
+"settings_license" = "Licencia API";

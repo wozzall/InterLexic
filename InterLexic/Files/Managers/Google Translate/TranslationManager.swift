@@ -9,10 +9,15 @@ import Foundation
 import SwiftUI
 import Network
 
-enum TranslationManagerError: Error {
+enum TranslationManagerError: String, Error {
     
-    case failToFetch
+    case fetchLanguages
     
+    var errorDescription: String {
+        "TranslationManagerError.\(self)".localized
+        
+        }
+
 }
 
 class TranslationManager: NSObject, ObservableObject {
@@ -46,6 +51,7 @@ class TranslationManager: NSObject, ObservableObject {
     }
     
     private func makeRequest(usingTranslationAPI api: TranslationAPI, urlParams: [String: String], completion: @escaping (_ results: [String:Any]?) -> Void) {
+        
         
         if var components = URLComponents(string: api.getURL()) {
             components.queryItems = [URLQueryItem]()
@@ -122,7 +128,7 @@ class TranslationManager: NSObject, ObservableObject {
         DispatchQueue.main.async { [self] in
             
             makeRequest(usingTranslationAPI: .supportedLanguages, urlParams: urlParams) { [self] (results) in
-                guard let results = results else { completion(.failure(.failToFetch)); return }
+                guard let results = results else { completion(.failure(.fetchLanguages)); return }
                 
                 if let data = results["data"] as? [String: Any], let languages = data["languages"] as? [[String: Any]] {
                     if self.supportedLanguages.isEmpty {
@@ -146,7 +152,7 @@ class TranslationManager: NSObject, ObservableObject {
                         self.isLoading = false
                     }
                 } else {
-                    completion(.failure(.failToFetch))
+                    completion(.failure(.fetchLanguages))
                     self.isShowingAlert = true
                 }
             }

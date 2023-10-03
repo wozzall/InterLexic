@@ -44,15 +44,7 @@ struct CardsView: View {
                             .font(.body)
                             .foregroundColor(.red.opacity(0.7))
                             .padding()
-//                            .background {
-//                            Color.red.opacity(0.3)
-//                                .clipShape(RoundedRectangle(cornerRadius: 15))
-//                                .overlay {
-//                                    RoundedRectangle(cornerRadius: 15)
-//                                        .stroke(lineWidth: 2)
-//                                        .foregroundColor(.red)
-//                                }
-//                        }
+
                         HStack {
                             Text("cardsView_tap".localized)
                             Image(systemName: "character.bubble.fill")
@@ -61,17 +53,7 @@ struct CardsView: View {
                         .font(.body)
                         .foregroundColor(.gray.opacity(0.8))
                         Spacer()
-//                            HStack{
-//                                Text("👇")
-//                                    .padding(.leading, 50)
-//                                    .font(.title)
-//                                Text("Tap here to start translating!")
-//                                    .padding(.bottom, 15)
-//                                Spacer()
-//                            }
-//                        .opacity(0.7)
-//                        .padding(.bottom)
-//                        .padding(.trailing)
+
                     }
                     .frame(maxWidth: .infinity)
                     
@@ -83,33 +65,7 @@ struct CardsView: View {
                             .foregroundColor(.gray)
                             .font(.body)
                             .padding()
-                      
-                            
-                        
                         Spacer()
-//                        ZStack{
-//                            RoundedRectangle(cornerRadius: 15)
-//                                .foregroundColor(.blue)
-//                                .frame(height: 50)
-//                                .padding(.horizontal, 45)
-//                                .opacity(0.5)
-//                                .overlay(
-//                                    RoundedRectangle(cornerRadius: 15)
-//                                        .stroke(.blue, lineWidth: 4)
-//                                        .padding(.horizontal, 45)
-//                                )
-//                            HStack{
-//                                Image(systemName: "arrow.turn.left.down")
-//                                    .font(.body)
-//                                    .padding(.leading, 50)
-//                                Text("Tap here to start translating!")
-//                                    .padding(.bottom, 15)
-//                                Spacer()
-//                            }
-//                        }
-//                        .opacity(0.7)
-//                        .padding(.bottom)
-//                        .padding(.trailing)
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -239,9 +195,11 @@ struct CardsView: View {
                             }
                         }
                     }
-                    .background(Color.offWhite.opacity(0.5))
+//                    .background(Color.offWhite.opacity(0.7))
                 }
             }
+            .background(Color.offWhite.opacity(0.7))
+
             
             .onAppear{
                 filterFlashCards()
@@ -254,7 +212,7 @@ struct CardsView: View {
                 filterFlashCards()
             }
         }
-        .navigationTitle(Text("TabView_FlashCards".localized))
+        .navigationTitle(Text("tabView_flashCards".localized))
     }
     
     private func didTapSelector() {

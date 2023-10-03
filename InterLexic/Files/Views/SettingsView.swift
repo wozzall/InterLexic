@@ -15,19 +15,19 @@ struct SettingsView: View {
     var body: some View {
         NavigationView{
             List {
-                Section(header: Text("Settings_section_acknowledgements".localized)) {
+                Section(header: Text("settings_section_acknowledgements".localized)) {
                     NavigationLink(tag: AboutView.navigation, selection: $selectedNavigation) {
                         AboutView()
                     } label: {
                         HStack{
-                            Text("Settings_Credits".localized)
+                            Text("settings_credits".localized)
                         }
                     }
                     NavigationLink(tag: AcknowledgementsMenuView.navigation, selection: $selectedNavigation) {
                         AcknowledgementsMenuView()
                     } label: {
                         HStack{
-                            Text("settingsView_Licenses".localized)
+                            Text("settingsView_licenses".localized)
                         }
                     }
                 }

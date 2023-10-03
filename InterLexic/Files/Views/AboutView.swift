@@ -200,9 +200,8 @@ struct AboutView: View {
             }
         }
         .background(
-            Color.gray
-                .opacity(0.1)
-        )
+            Color.offWhite.opacity(0.7)
+            )
         
     }
     

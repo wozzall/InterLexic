@@ -94,9 +94,9 @@ struct TranslatorView: View {
                         .padding(.trailing)
                 }
             }
-            .navigationBarTitle("TabView_Translate".localized)
+            .navigationBarTitle("tabView_translate".localized)
             .navigationBarHidden(true)
-            .background(Color.offWhite.opacity(0.5))
+            .background(Color.offWhite.opacity(0.7))
             
             .onAppear {
                 manager.fetchLanguages()

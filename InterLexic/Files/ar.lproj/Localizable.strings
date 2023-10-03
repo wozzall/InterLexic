@@ -8,17 +8,17 @@
 
 //MARK - SplashScreenView Labels
 
-"SplashScreenView_Interlexic" = "Interlexic";
+"splashScreenView_interlexic" = "Interlexic";
 
-"SplashScreenView_Name" = "©2022 George Worrall";
+"splashScreenView_name" = "©2022 George Worrall";
 
 //MARK - TabView Labels
 
-"TabView_Translate" = "يترجم";
+"tabView_translate" = "يترجم";
 
-"TabView_FlashCards" = "المفضلة";
+"tabView_flashCards" = "المفضلة";
 
-"TabView_About" = "عن";
+"tabView_about" = "عن";
 
 //MARK - Translate Function Text
 
@@ -67,7 +67,7 @@
 
 //MARK - Settings View
 
-"settingsView_Licenses" = "التراخيص";
+"settingsView_licenses" = "التراخيص";
 
 //MARK - About View
 
@@ -87,26 +87,26 @@
 
 //MARK - Translation Manager Error Handler
 
-"TMerror_error" = "خطأ!";
+"tMError_error" = "خطأ!";
 
-"TMerror_ok" = "نعم!";
+"tMError_ok" = "نعم!";
 
-"TMError_fetchLanguages" = "غير قادر على جلب اللغات المدعومة من الخادم. حاول مرة اخرى!";
+"tMError_fetchLanguages" = "غير قادر على جلب اللغات المدعومة من الخادم. حاول مرة اخرى!";
 
 //MARK - Network Errors
 
-"NetworkError_Error" = "خطأ!";
+"networkError_error" = "خطأ!";
 
-"NetworkError_NoConnection" = "غير قادر على الاتصال بالانترنت! قم بتكوين إعدادات الشبكة وحاول مرة أخرى.";
+"networkError_noConnection" = "غير قادر على الاتصال بالانترنت! قم بتكوين إعدادات الشبكة وحاول مرة أخرى.";
 
 //MARK - Progress View
 
-"ProgressView_Loading" = "تحميل";
+"progressView_loading" = "تحميل";
 
 //MARK - Settings Labels
 
-"Settings_section_acknowledgements" = "شكر وتقدير";
+"settings_section_acknowledgements" = "شكر وتقدير";
 
-"Settings_Credits" = "لفة الاعتمادات";
+"settings_credits" = "لفة الاعتمادات";
 
-"Settings_License" = "ترخيص واجهة برمجة التطبيقات";
+"settings_license" = "ترخيص واجهة برمجة التطبيقات";

@@ -8,17 +8,17 @@
 
 //MARK - SplashScreenView Labels
 
-"SplashScreenView_Interlexic" = "Interlexic";
+"splashScreenView_interlexic" = "Interlexic";
 
-"SplashScreenView_Name" = "©2022 George Worrall";
+"splashScreenView_name" = "©2022 George Worrall";
 
 //MARK - TabView Labels
 
-"TabView_Translate" = "Traduire";
+"tabView_translate" = "Traduire";
 
-"TabView_FlashCards" = "Favoris";
+"tabView_flashCards" = "Favoris";
 
-"TabView_About" = "À propos";
+"tabView_about" = "À propos";
 
 //MARK - Translate Function Text
 
@@ -66,7 +66,7 @@
 
 //MARK - Settings View
 
-"settingsView_Licenses" = "Licences";
+"settingsView_licenses" = "Licences";
 
 //MARK - About View
 
@@ -86,26 +86,26 @@
 
 //MARK - Translation Manager Error Handler
 
-"TMerror_error" = "Erreur!";
+"tMError_error" = "Erreur!";
 
-"TMerror_ok" = "Ok!";
+"tMError_ok" = "Ok!";
 
-"TMError_fetchLanguages" = "Impossible de récupérer les langues prises en charge sur le serveur. Veuillez réessayer !";
+"tMError_fetchLanguages" = "Impossible de récupérer les langues prises en charge sur le serveur. Veuillez réessayer !";
 
 //MARK - Network Errors
 
-"NetworkError_Error" = "Erreur!";
+"networkError_error" = "Erreur!";
 
-"NetworkError_NoConnection" = "Impossible de se connecter à l'internet ! Configurez les paramètres du réseau et réessayez.";
+"networkError_noConnection" = "Impossible de se connecter à l'internet ! Configurez les paramètres du réseau et réessayez.";
 
 //MARK - Progress View
 
-"ProgressView_Loading" = "Chargement...";
+"progressView_Loading" = "Chargement...";
 
 //MARK - Settings Labels
 
-"Settings_section_acknowledgements" = "Remerciements";
+"settings_section_acknowledgements" = "Remerciements";
 
-"Settings_Credits" = "Crédits";
+"settings_credits" = "Crédits";
 
-"Settings_License" = "Licence API";
+"settings_license" = "Licence API";
