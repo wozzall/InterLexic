@@ -43,6 +43,7 @@ struct TranslatorView: View {
     @State var disabledSave: Bool = true
     @State var showAlert: Bool = false
     @State var languageDetectionRequired = true
+    @State var hasTranslated: Bool = false
     
     
     @FocusState private var focusedField: Field?
@@ -103,6 +104,12 @@ struct TranslatorView: View {
             }
             .onTapGesture {
                 focusedField = nil
+            }
+            .onChange(of: languageB) { newLanguage in
+                if hasTranslated {
+                    viewModel.translatedString = String()
+                    hasTranslated = false
+                }
             }
         }
     }
@@ -463,7 +470,6 @@ struct TranslatorView: View {
         return true
     }
     
-    
     private func sameLanguageChecker() -> Bool {
         // MARK -- Checks to see if Language A and B are still empty values of type Language. Loads the translate function with default values, in this case English as Language A and Chinese (Simplified) as Language B.
         if languageA == languageB {
@@ -491,6 +497,7 @@ struct TranslatorView: View {
         self.disabledSave = false
         self.focusedField = nil
         self.tappedSave = false
+        self.hasTranslated = true
     }
     
     private func saveButton() {
