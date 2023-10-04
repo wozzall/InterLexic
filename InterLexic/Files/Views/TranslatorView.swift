@@ -44,7 +44,7 @@ struct TranslatorView: View {
     @State var showAlert: Bool = false
     @State var languageDetectionRequired = true
     @State var hasTranslated: Bool = false
-    
+    @State var hasDetected: Bool = false
     
     @FocusState private var focusedField: Field?
     
@@ -195,9 +195,12 @@ struct TranslatorView: View {
                     } label: {
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.black.opacity(0.2))
+                            .frame(width: 20, height: 20)
                     }
                     .padding(.trailing, 10)
                     .padding(.top, 10)
+                    .buttonStyle(.borderless)
+                        
                     
                 }
             }
@@ -223,21 +226,32 @@ struct TranslatorView: View {
                 }
                 .overlay(alignment: .bottomLeading) {
                     if translatableText.isEmpty == false {
-                        if detectedLanguage?.name != ""{
+                        if hasDetected {
+                            
                             HStack(spacing: 0){
                                 Text("\(detectedLanguage?.name ?? "".localized)")
                                     .foregroundColor(.blue)
-                                    .onTapGesture {
-                                        languageA = detectedLanguage ?? Language(name: "None Detected", translatorID: "", id: UUID())
-                                        languageDetectionRequired = false
-                                    }
+                                    
                                     .padding(.trailing, 4)
                                 Text("translatorView_detected".localized)
                                     .foregroundColor(.gray.opacity(0.8))
                                 
                             }
-                            .padding(.bottom)
-                            .padding(.leading)
+                            .padding()
+                            .onTapGesture {
+                                languageA = detectedLanguage ?? Language(name: "None Detected", translatorID: "", id: UUID())
+                                languageDetectionRequired = false
+                                hasDetected = false
+                            }
+                            .background {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(.blue.opacity(0.1))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(Color.black.opacity(0.2), lineWidth: 1)
+                                    )
+                                    .padding(7)
+                            }
                         }
                     }
                 }
@@ -246,11 +260,14 @@ struct TranslatorView: View {
                 .focused($focusedField, equals: .sourceText)
                 .onChange(of: translatableText) { _ in
                     languageDetectionRequired = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
-                        manager.detectLanguage(forText: translatableText) { result in
-                            for language in manager.supportedLanguages {
-                                if manager.sourceLanguageCode == language.translatorID {
-                                    detectedLanguage = language
+                    if detectedLanguage != languageA {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
+                            manager.detectLanguage(forText: translatableText) { result in
+                                for language in manager.supportedLanguages {
+                                    if manager.sourceLanguageCode == language.translatorID {
+                                        hasDetected = true
+                                        detectedLanguage = language
+                                    }
                                 }
                             }
                         }
@@ -296,10 +313,12 @@ struct TranslatorView: View {
                     } label: {
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.black.opacity(0.2))
+                            .frame(width: 20, height: 20)
+
                     }
                     .padding(.trailing, 10)
                     .padding(.top, 10)
-                    
+                    .buttonStyle(.borderless)
                 }
             }
 
