@@ -183,27 +183,29 @@ struct TranslatorView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .multilineTextAlignment(.leading)
                 .lineSpacing(3)
+                .modifier(TextEditorClearButton(text: $translatableText))
+//                .modifier(AudioButton(language: languageA, text: $translatableText))
                 .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
             
-                .overlay(alignment: .topTrailing) {
-                    if !translatableText.isEmpty{
-                    Button {
-                        translatableText = String()
-                    } label: {
-                        Image(systemName: "x.circle.fill")
-                            .foregroundColor(.black.opacity(0.2))
-                            .frame(width: 20, height: 20)
-                    }
-                    .padding(.trailing, 10)
-                    .padding(.top, 10)
-                    .buttonStyle(.borderless)
-                        
-                    
-                }
-            }
+//                .overlay(alignment: .topTrailing) {
+//                    if !translatableText.isEmpty{
+//                    Button {
+//                        translatableText = String()
+//                    } label: {
+//                        Image(systemName: "x.circle.fill")
+//                            .foregroundColor(.black.opacity(0.2))
+//                            .frame(width: 20, height: 20)
+//                    }
+//                    .padding(.trailing, 10)
+//                    .padding(.top, 10)
+//                    .buttonStyle(.borderless)
+//                        
+//                    
+//                }
+//            }
                 .overlay(alignment: .bottomTrailing) {
                     if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
                         Button {
@@ -259,8 +261,9 @@ struct TranslatorView: View {
                 .textFieldStyle(.roundedBorder)
                 .focused($focusedField, equals: .sourceText)
                 .onChange(of: translatableText) { _ in
-                    languageDetectionRequired = true
-                    if detectedLanguage != languageA {
+                    if detectedLanguage == languageA {
+                        return
+                    }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
                             manager.detectLanguage(forText: translatableText) { result in
                                 for language in manager.supportedLanguages {
@@ -271,7 +274,7 @@ struct TranslatorView: View {
                                 }
                             }
                         }
-                    }
+    
                 }
                 .frame(height: UIScreen.main.bounds.height * 0.3)
             if translatableText.isEmpty {
