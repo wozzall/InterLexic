@@ -186,6 +186,8 @@ struct TranslatorView: View {
                 .modifier(TextEditorClearButton(text: $translatableText))
 //                .modifier(AudioButton(language: languageA, text: $translatableText))
                 .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
+                .focused($focusedField, equals: .sourceText)
+
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
@@ -259,7 +261,6 @@ struct TranslatorView: View {
                 }
                 .padding()
                 .textFieldStyle(.roundedBorder)
-                .focused($focusedField, equals: .sourceText)
                 .onChange(of: translatableText) { _ in
                     if detectedLanguage == languageA {
                         return
@@ -305,7 +306,8 @@ struct TranslatorView: View {
                 .lineSpacing(3)
             
                 .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
-            
+                .focused($focusedField, equals: .sourceText)
+
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
@@ -347,7 +349,6 @@ struct TranslatorView: View {
                 }
                 .padding()
                 .textFieldStyle(.roundedBorder)
-                .focused($focusedField, equals: .sourceText)
                 .frame(height: UIScreen.main.bounds.height * 0.3)
             
             if translatableText.isEmpty {
