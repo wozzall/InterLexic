@@ -12,7 +12,9 @@ import NaturalLanguage
 import ToastSwiftUI
 
 private enum Field: Int, CaseIterable {
-    case sourceText, targetText
+    case sourceTextWithDetection
+    case sourceText
+    case targetText
 }
 
 struct TranslatorView: View {
@@ -30,6 +32,8 @@ struct TranslatorView: View {
     
     @State private var translatableText: String = String()
     let textEditorPlaceHolder: String = "Type text here to detect language or to translate!"
+    let textEditorCharLimit = 250
+    @State var textEditorCharCount = 0
     @State private var translationEdit: String = String()
     @State private var languagesSupported: Array<Language> = []
     @State var selectedNavigation: String?
@@ -49,8 +53,7 @@ struct TranslatorView: View {
     @FocusState private var focusedField: Field?
     
     init() {
-        UITextView.appearance().textContainerInset =
-        UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 12)
+        UITextView.appearance().textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 12)
     }
     
     
@@ -186,47 +189,66 @@ struct TranslatorView: View {
                 .modifier(TextEditorClearButton(text: $translatableText))
 //                .modifier(AudioButton(language: languageA, text: $translatableText))
                 .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
-                .focused($focusedField, equals: .sourceText)
-
+                .focused($focusedField, equals: .sourceTextWithDetection)
+                .textSelection(.enabled)
+                .onChange(of: translatableText) { _ in
+                        translatableText = String(translatableText.prefix(textEditorCharLimit))
+                        textEditorCharCount = translatableText.count
+                    }
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
             
-//                .overlay(alignment: .topTrailing) {
-//                    if !translatableText.isEmpty{
-//                    Button {
-//                        translatableText = String()
-//                    } label: {
-//                        Image(systemName: "x.circle.fill")
-//                            .foregroundColor(.black.opacity(0.2))
-//                            .frame(width: 20, height: 20)
-//                    }
-//                    .padding(.trailing, 10)
-//                    .padding(.top, 10)
-//                    .buttonStyle(.borderless)
-//                        
-//                    
-//                }
-//            }
+                .overlay(alignment: .topTrailing) {
+                    if !translatableText.isEmpty{
+                    Button {
+                        didTapClearText()
+                    } label: {
+                        Image(systemName: "x.circle.fill")
+                            .foregroundColor(.black.opacity(0.2))
+                            .frame(width: 20, height: 20)
+                    }
+                    .padding(.trailing, 10)
+                    .padding(.top, 10)
+                    .buttonStyle(.borderless)
+                        
+                    
+                }
+            }
                 .overlay(alignment: .bottomTrailing) {
-                    if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
-                        Button {
+                    HStack(spacing: 10){
+//                        Button {
+//                            didTapDetect()
+//                        } label: {
+//                            Text("languageSelectorView_detect".localized)
+//                                .foregroundColor(.blue)
+//                        }
+                        
+                        if textToSpeech.isAudioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
+                            Button {
                                 textToSpeech.languageRecognizer.reset()
                                 textToSpeech.synthesizeSpeech(inputMessage: translatableText)
-                        } label: {
-                            Image(systemName: "speaker.wave.2.fill")
-                                .foregroundColor(.blue.opacity(0.8))
+                            } label: {
+                                Image(systemName: "speaker.wave.2.fill")
+                                    .foregroundColor(.blue.opacity(0.8))
+                                    .font(.title3)
+                            }
+                           
+                        } else {
+                            Image(systemName: "speaker.slash.fill")
+                                .foregroundColor(.gray.opacity(0.2))
                                 .font(.title3)
+                                
                         }
-                        .padding(.bottom, 8)
-                        .padding(.trailing, 8)
-                    } else {
-                        Image(systemName: "speaker.slash.fill")
-                            .foregroundColor(.gray.opacity(0.2))
-                            .font(.title3)
-                            .padding(.bottom, 8)
-                            .padding(.trailing, 8)
+                        if textEditorCharCount == textEditorCharLimit {
+                            Text("\(textEditorCharCount) / \(textEditorCharLimit)" )
+                                .foregroundColor(.red)
+                        }
+                        Text("\(textEditorCharCount) / \(textEditorCharLimit)" )
+                            .opacity(0.8)
                     }
+                    .padding(.bottom, 10)
+                    .padding(.trailing, 10)
                 }
                 .overlay(alignment: .bottomLeading) {
                     if translatableText.isEmpty == false {
@@ -262,7 +284,7 @@ struct TranslatorView: View {
                 .padding()
                 .textFieldStyle(.roundedBorder)
                 .onChange(of: translatableText) { _ in
-                    if detectedLanguage == languageA {
+                    guard detectedLanguage != languageA else {
                         return
                     }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
@@ -307,14 +329,14 @@ struct TranslatorView: View {
             
                 .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
                 .focused($focusedField, equals: .sourceText)
-
+                .textSelection(.enabled)
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(Color.black.opacity(0.5), lineWidth: 1))
                 .overlay(alignment: .topTrailing) {
                     if !translatableText.isEmpty{
                     Button {
-                        translatableText = String()
+                        didTapClearText()
                     } label: {
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.black.opacity(0.2))
@@ -328,7 +350,7 @@ struct TranslatorView: View {
             }
 
                 .overlay(alignment: .bottomTrailing) {
-                    if textToSpeech.audioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
+                    if textToSpeech.isAudioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
                         Button {
                                 textToSpeech.languageRecognizer.reset()
                                 textToSpeech.synthesizeSpeech(inputMessage: translatableText)
@@ -448,13 +470,15 @@ struct TranslatorView: View {
             .clipShape(RoundedRectangle(cornerRadius: 15))
             .multilineTextAlignment(.leading)
             .lineSpacing(3)
+            .focused($focusedField, equals: .targetText)
+            .textSelection(.enabled)
             .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(Color.black.opacity(0.5), lineWidth: 1)
             )
             .overlay(alignment: .bottomTrailing) {
-                if textToSpeech.audioAvailable(inputString: viewModel.translatedString, googleLanguageCode: languageB.translatorID){
+                if textToSpeech.isAudioAvailable(inputString: viewModel.translatedString, googleLanguageCode: languageB.translatorID){
                     Button {
                         textToSpeech.languageRecognizer.reset()
                         textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString)
@@ -514,6 +538,11 @@ struct TranslatorView: View {
         self.selectedNavigation = LanguageSelectorView.navigation
     }
     
+    private func didTapClearText() {
+        translatableText = String()
+        viewModel.translatedString = String()
+    }
+    
     private func didTapTranslate() {
         viewModel.defaultLanguageSelector(A: languageA, B: languageB)
         viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
@@ -521,6 +550,17 @@ struct TranslatorView: View {
         self.focusedField = nil
         self.tappedSave = false
         self.hasTranslated = true
+    }
+    
+    private func didTapDetect() {
+        manager.detectLanguage(forText: translatableText) { result in
+            for language in manager.supportedLanguages {
+                if manager.sourceLanguageCode == language.translatorID {
+                    hasDetected = true
+                    detectedLanguage = language
+                }
+            }
+        }
     }
     
     private func saveButton() {

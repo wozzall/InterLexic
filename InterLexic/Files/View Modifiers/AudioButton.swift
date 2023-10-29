@@ -20,7 +20,7 @@ struct AudioButton: ViewModifier {
     func body(content: Content) -> some View {
         content
             .overlay(alignment: .bottomTrailing) {
-                if textToSpeech.audioAvailable(inputString: text, googleLanguageCode: language.translatorID){
+                if textToSpeech.isAudioAvailable(inputString: text, googleLanguageCode: language.translatorID){
                     Button {
                         textToSpeech.languageRecognizer.reset()
                         textToSpeech.synthesizeSpeech(inputMessage: text)

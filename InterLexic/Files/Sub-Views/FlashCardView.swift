@@ -42,7 +42,7 @@ struct FlashCardView: View {
                 
                 
                 Spacer()
-                if textToSpeech.audioAvailable(inputString: flashCard.sourceString, googleLanguageCode: flashCard.sourceLanguage.translatorID){
+                if textToSpeech.isAudioAvailable(inputString: flashCard.sourceString, googleLanguageCode: flashCard.sourceLanguage.translatorID){
                     Button {
                         textToSpeech.languageRecognizer.reset()
                         textToSpeech.synthesizeSpeech(inputMessage: flashCard.sourceString)
@@ -71,7 +71,7 @@ struct FlashCardView: View {
                     .padding(.horizontal)
                 
                 Spacer()
-                if textToSpeech.audioAvailable(inputString: flashCard.targetString, googleLanguageCode: flashCard.targetLanguage.translatorID){
+                if textToSpeech.isAudioAvailable(inputString: flashCard.targetString, googleLanguageCode: flashCard.targetLanguage.translatorID){
                     Button {
                         textToSpeech.languageRecognizer.reset()
                         textToSpeech.synthesizeSpeech(inputMessage: flashCard.targetString)
