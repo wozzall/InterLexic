@@ -31,7 +31,7 @@
 
 "translatorView_textEditorPlaceholder" = "Type text here to detect language or to translate!";
 
-"translatorView_detected" = "detected! Tap to select!";
+"translatorView_detected" = "detected! Tap here!";
 
 "translatorView_translationSaved" = "Translation saved!";
 

@@ -21,7 +21,8 @@ struct LanguageSelectorView: View {
     @State var hasLoaded: Bool = false
     @State var searchQuery = ""
     @State var filteredLanguages: Array<Language>?
-    var languageDetectionRequired: Bool
+    @Binding var languageDetectionRequired: Bool
+    @State var hideDetectButton: Bool
     
     var languageList: Array<Language> {
         Array(Set(filteredLanguages ?? manager.supportedLanguages)).sorted()
@@ -29,11 +30,10 @@ struct LanguageSelectorView: View {
     
     var body: some View {
         List {
-            if languageDetectionRequired{
+            if !hideDetectButton {
                 Section{
-                    Button("Detect") {
-                        languageA = Language(name: "Detect", translatorID: "")
-                        presentationMode.wrappedValue.dismiss()
+                    Button("languageSelectorView_detect".localized) {
+                        didTapDetect()
                     }
                     .foregroundColor(Color.green)
                 }
@@ -72,10 +72,15 @@ struct LanguageSelectorView: View {
             )}
     }
     
-    func didTapLanguage(tapped language: Language, direction: Bool) {
+    private func didTapLanguage(tapped language: Language, direction: Bool) {
         changeLanguages(toFromDirection: direction, in: language)
     }
     //MARK -
+    
+    private func didTapDetect() {
+        languageDetectionRequired = true
+        presentationMode.wrappedValue.dismiss()
+    }
     
     private func testLanguageSelection() {
         print(languageA)

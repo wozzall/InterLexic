@@ -32,7 +32,7 @@
 
 "translatorView_textEditorPlaceholder" = "在此处输入文本以检测语言或进行翻译!";
 
-"translatorView_detected" = "检测到了！点击选择";
+"translatorView_detected" = "检测到了！点击这里";
 
 "translatorView_translationSaved" = "翻译已保存";
 

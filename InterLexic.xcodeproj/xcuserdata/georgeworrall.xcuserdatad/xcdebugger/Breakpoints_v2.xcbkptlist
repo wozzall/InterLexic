@@ -158,8 +158,8 @@
             filePath = "InterLexic/Files/Views/CardsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -314,8 +314,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "529"
-            endingLineNumber = "529"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
             landmarkName = "didTapAudio()"
             landmarkType = "7">
          </BreakpointContent>

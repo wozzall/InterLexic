@@ -25,13 +25,15 @@ struct CardsView: View {
     @State var tapDelete: Bool = false
     @State var animationAmount = 1.0
     @State var tapFilter: Bool = false
+    @State var languageDetectionRequired: Bool = false
+    @State var hideDetect: Bool = true
     
     
     var body: some View {
         NavigationView {
             VStack{
                 NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                    LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $toFromDirection, languageDetectionRequired: false)
+                    LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $toFromDirection, languageDetectionRequired: $languageDetectionRequired, hideDetectButton: hideDetect)
                 } label: {
                     EmptyView()
                 }

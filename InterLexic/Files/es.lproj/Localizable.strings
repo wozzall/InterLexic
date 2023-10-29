@@ -32,7 +32,7 @@
 
 "translatorView_textEditorPlaceholder" = "Escriba aquí el texto para detectar el idioma o para traducir.";
 
-"translatorView_detected" = "detectado! Pulse para seleccionar.";
+"translatorView_detected" = "detectado! ¡Pulse aquí!";
 
 "translatorView_translationSaved" = "¡Traducción guardada!";
 
