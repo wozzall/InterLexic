@@ -34,6 +34,7 @@ struct LanguageSelectorView: View {
                 Section{
                     Button("languageSelectorView_detect".localized) {
                         didTapDetect()
+                        languageA = Language(name: "Detecting...", translatorID: "")
                     }
                     .foregroundColor(Color.green)
                 }

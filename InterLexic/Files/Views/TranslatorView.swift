@@ -143,6 +143,10 @@ struct TranslatorView: View {
                         Text("languageSelectorView_from".localized)
                             .padding()
                     }
+                    else if languageA.name == "Detecting..." {
+                        Text("Detecting...")
+                            .foregroundStyle(.green)
+                    }
                     else {
                         Text(languageA.name)
                             .fixedSize(horizontal: false, vertical: true)
