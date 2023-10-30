@@ -33,7 +33,7 @@ struct TranslatorView: View {
     
     @State private var translatableText: String = String()
     let textEditorPlaceHolder: String = "Type text here to detect language or to translate!"
-    let textEditorCharLimit = 250
+    let textEditorCharLimit = 200
     @State var textEditorCharCount = 0
     @State private var translationEdit: String = String()
     @State private var languagesSupported: Array<Language> = []
@@ -453,7 +453,7 @@ struct TranslatorView: View {
                 .focused($focusedField, equals: .targetText)
                 .textSelection(.enabled)
                 .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
-                .frame(minWidth: UIScreen.main.bounds.width * 0.8, minHeight: UIScreen.main.bounds.height * 0.3, maxHeight: UIScreen.main.bounds.height * 0.4)
+                .frame(height: UIScreen.main.bounds.height * 0.25)
 
                 .overlay {
                     RoundedRectangle(cornerRadius: 15)
