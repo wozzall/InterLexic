@@ -29,6 +29,7 @@ struct TranslatorView: View {
     @State var synthesizer = AVSpeechSynthesizer()
     var delegate: AVSpeechSynthesizerDelegate?
     
+    private let pasteboard = UIPasteboard.general
     
     @State private var translatableText: String = String()
     let textEditorPlaceHolder: String = "Type text here to detect language or to translate!"
@@ -52,6 +53,7 @@ struct TranslatorView: View {
     @State var hasTranslated: Bool = false
     @State var hasDetected: Bool = false
     @State var hideDetect: Bool = false
+    @State var hasCopied: Bool = false
     
     @FocusState private var focusedField: Field?
     
@@ -217,9 +219,6 @@ struct TranslatorView: View {
                 .onChange(of: translatableText) { _ in
                     translatableText = String(translatableText.prefix(textEditorCharLimit))
                     textEditorCharCount = translatableText.count
-                    if hasTranslated {
-                        
-                    }
                 }
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
@@ -448,16 +447,29 @@ struct TranslatorView: View {
     var receivedTranslationField: some View {
         ZStack(alignment: .topLeading){
             RoundedRectangle(cornerRadius: 15)
+            
                 .fill(.white)
                 .multilineTextAlignment(.leading)
                 .focused($focusedField, equals: .targetText)
                 .textSelection(.enabled)
                 .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
+                .frame(minWidth: UIScreen.main.bounds.width * 0.8, minHeight: UIScreen.main.bounds.height * 0.3, maxHeight: UIScreen.main.bounds.height * 0.4)
+
                 .overlay {
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(Color.black.opacity(0.5), lineWidth: 1)
                 }
                 .overlay(alignment: .bottomTrailing) {
+                    HStack(spacing: 15){
+                        Button {
+                            copyToClipBoard()
+                        } label: {
+                            Image(systemName: "doc.on.doc")
+                                .foregroundColor(.blue.opacity(0.8))
+                                .font(.title3)
+                                
+                        }
+
                     if textToSpeech.isAudioAvailable(inputString: viewModel.translatedString, googleLanguageCode: languageB.translatorID){
                         Button {
                             textToSpeech.languageRecognizer.reset()
@@ -466,26 +478,34 @@ struct TranslatorView: View {
                             Image(systemName: "speaker.wave.2.fill")
                                 .foregroundColor(.blue.opacity(0.8))
                                 .font(.title3)
+//                                .padding(.bottom, 8)
+//                                .padding(.trailing, 8)
+                               
                         }
-                        .padding(.bottom, 8)
-                        .padding(.trailing, 8)
+                        
                     } else {
                         Image(systemName: "speaker.slash.fill")
                             .foregroundColor(.gray.opacity(0.2))
                             .font(.title3)
-                            .padding(.bottom, 8)
-                            .padding(.trailing, 8)
+//                            .padding(.bottom, 8)
+//                            .padding(.trailing, 8)
+                            
                     }
                 }
-                .padding()
-                .focused($focusedField, equals: .targetText)
-                .toast(isPresenting: $tappedSave, message: "translatorView_translationSaved".localized)
-            Text(viewModel.translatedString)
-                .textSelection(.enabled)
-                .padding(30)
+                    .padding(.bottom, 10)
+                    .padding(.trailing, 10)
                 
         }
-        .frame(minWidth: UIScreen.main.bounds.width * 0.8, minHeight: UIScreen.main.bounds.height * 0.3)
+            Text(viewModel.translatedString)
+                .textSelection(.enabled)
+                .padding(20)
+                
+        }
+        .padding()
+        .toast(isPresenting: $tappedSave, message: "translatorView_translationSaved".localized)
+        .toast(isPresenting: $hasCopied, message: "Translation copied!")
+        .focused($focusedField, equals: .targetText)
+
 
     }
     
@@ -570,6 +590,16 @@ struct TranslatorView: View {
             print(flashCardStorage.flashCardDecks)
         }
         return
+    }
+    
+    private func copyToClipBoard() {
+        pasteboard.string = viewModel.translatedString
+        self.hasCopied = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.hasCopied = false
+        }
+        )
     }
 }
 
