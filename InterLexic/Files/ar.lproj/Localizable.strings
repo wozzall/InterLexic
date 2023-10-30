@@ -30,7 +30,7 @@
 
 "translatorView_saveButton" = "حفظ";
 
-"translatorView_textEditorPlaceholder" = "اكتب النص هنا لاكتشاف اللغة أو للترجمة!";
+"translatorView_textEditorPlaceholder" = "اكتب النص هنا للترجمة!";
 
 "translatorView_detected" = "تم اكتشاف اللغة! انقر لتحديد!";
 

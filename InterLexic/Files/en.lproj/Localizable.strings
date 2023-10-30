@@ -29,7 +29,7 @@
 
 "translatorView_saveButton" = "Save";
 
-"translatorView_textEditorPlaceholder" = "Type text here to detect language or to translate!";
+"translatorView_textEditorPlaceholder" = "Type text here to translate!";
 
 "translatorView_detected" = "detected! Tap here!";
 

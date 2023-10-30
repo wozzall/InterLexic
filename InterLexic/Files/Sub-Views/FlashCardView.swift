@@ -45,7 +45,7 @@ struct FlashCardView: View {
                 if textToSpeech.isAudioAvailable(inputString: flashCard.sourceString, googleLanguageCode: flashCard.sourceLanguage.translatorID){
                     Button {
                         textToSpeech.languageRecognizer.reset()
-                        textToSpeech.synthesizeSpeech(inputMessage: flashCard.sourceString)
+                        textToSpeech.synthesizeSpeech(inputMessage: flashCard.sourceString, inputLanguageCode: flashCard.sourceLanguage.translatorID)
                     } label: {
                         Image(systemName: "speaker.wave.2.fill")
                             .foregroundColor(.blue.opacity(0.8))
@@ -74,7 +74,7 @@ struct FlashCardView: View {
                 if textToSpeech.isAudioAvailable(inputString: flashCard.targetString, googleLanguageCode: flashCard.targetLanguage.translatorID){
                     Button {
                         textToSpeech.languageRecognizer.reset()
-                        textToSpeech.synthesizeSpeech(inputMessage: flashCard.targetString)
+                        textToSpeech.synthesizeSpeech(inputMessage: flashCard.targetString, inputLanguageCode: flashCard.targetLanguage.translatorID)
                     } label: {
                         Image(systemName: "speaker.wave.2.fill")
                             .foregroundColor(.blue.opacity(0.8))

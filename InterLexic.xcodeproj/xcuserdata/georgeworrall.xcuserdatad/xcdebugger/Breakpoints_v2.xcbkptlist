@@ -223,6 +223,21 @@
                   endingLineNumber = "184"
                   offsetFromSymbolStart = "120">
                </Location>
+               <Location
+                  uuid = "0B6FB175-1A2C-4A35-9F13-CAB3B9D50554 - 744786a3936bd661"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; Swift.Optional&lt;SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0 in closure #1 (InterLexic.FlashCard) -&gt; SwiftUI.Section&lt;SwiftUI.Text, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt; in closure #2 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;InterLexic.FlashCard&gt;, Foundation.UUID, SwiftUI.Section&lt;SwiftUI.Text, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;&gt; in closure #5 () -&gt; SwiftUI.TupleView&lt;(Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, perform: (&#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, InterLexic.LanguageSelectorView&gt;, SwiftUI._ConditionalContent&lt;SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, perform: (&#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in InterLexic.CardsView.body.getter : some"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Documents/GitHub/InterLexic/InterLexic/Files/Views/CardsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "142"
+                  endingLineNumber = "142"
+                  offsetFromSymbolStart = "120">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -314,9 +329,166 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "513"
-            endingLineNumber = "513"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
             landmarkName = "didTapAudio()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "509B3550-474A-422C-92D7-F086DF00B6A0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Viewmodels/TextToSpeech.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "findAudioLanguageCode(inputString:inputLanguageCode:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "509B3550-474A-422C-92D7-F086DF00B6A0 - 9c47c9fd8409d55c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TextToSpeech.isLanguageCodeAvailable(inputString: Swift.String) -&gt; Swift.String"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Documents/GitHub/InterLexic/InterLexic/Files/Viewmodels/TextToSpeech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "864">
+               </Location>
+               <Location
+                  uuid = "509B3550-474A-422C-92D7-F086DF00B6A0 - 9c47c9fd8409d55c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TextToSpeech.isLanguageCodeAvailable(inputString: Swift.String) -&gt; Swift.String"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Documents/GitHub/InterLexic/InterLexic/Files/Viewmodels/TextToSpeech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "1004">
+               </Location>
+               <Location
+                  uuid = "509B3550-474A-422C-92D7-F086DF00B6A0 - 9c47c9fd8409d55c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TextToSpeech.isLanguageCodeAvailable(inputString: Swift.String) -&gt; Swift.String"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Documents/GitHub/InterLexic/InterLexic/Files/Viewmodels/TextToSpeech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "1180">
+               </Location>
+               <Location
+                  uuid = "509B3550-474A-422C-92D7-F086DF00B6A0 - 8d8598a0fb057aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TextToSpeech.findAudioLanguageCode(inputString: Swift.String, inputLanguageCode: Swift.String) -&gt; Swift.String"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Documents/GitHub/InterLexic/InterLexic/Files/Viewmodels/TextToSpeech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "864">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37BC4EDB-B6FC-4D2E-967A-772CB6C357E7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Viewmodels/TextToSpeech.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "findAudioLanguageCode(inputString:inputLanguageCode:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "37BC4EDB-B6FC-4D2E-967A-772CB6C357E7 - 9c47c9fd8409d573"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TextToSpeech.isLanguageCodeAvailable(inputString: Swift.String) -&gt; Swift.String"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Documents/GitHub/InterLexic/InterLexic/Files/Viewmodels/TextToSpeech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "1180">
+               </Location>
+               <Location
+                  uuid = "37BC4EDB-B6FC-4D2E-967A-772CB6C357E7 - 9c47c9fd8409d573"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TextToSpeech.isLanguageCodeAvailable(inputString: Swift.String) -&gt; Swift.String"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Documents/GitHub/InterLexic/InterLexic/Files/Viewmodels/TextToSpeech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "1316">
+               </Location>
+               <Location
+                  uuid = "37BC4EDB-B6FC-4D2E-967A-772CB6C357E7 - 8d8598a0fb05789"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InterLexic.TextToSpeech.findAudioLanguageCode(inputString: Swift.String, inputLanguageCode: Swift.String) -&gt; Swift.String"
+                  moduleName = "InterLexic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgeworrall/Documents/GitHub/InterLexic/InterLexic/Files/Viewmodels/TextToSpeech.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "1044">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "526AEC7A-052A-45C8-A313-44314DE9C56B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InterLexic/Files/Viewmodels/TextToSpeech.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "synthesizeSpeech(inputMessage:inputLanguageCode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

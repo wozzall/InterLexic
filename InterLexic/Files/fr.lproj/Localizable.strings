@@ -30,7 +30,7 @@
 
 "translatorView_saveButton" = "Enregistrer";
 
-"translatorView_textEditorPlaceholder" = "Tapez du texte ici pour détecter la langue ou pour traduire !";
+"translatorView_textEditorPlaceholder" = "Tapez le texte ici à traduire !";
 
 "translatorView_detected" = "détecté ! Tapez ici !";
 

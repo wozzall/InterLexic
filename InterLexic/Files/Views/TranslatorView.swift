@@ -40,6 +40,8 @@ struct TranslatorView: View {
     
     @State var languageA: Language = Language(name: "", translatorID: "")
     @State var languageB: Language = Language(name: "", translatorID: "")
+    @State var translatedLanguageA: Language = Language(name: "", translatorID: "")
+    @State var translatedLanguageB: Language = Language(name: "", translatorID: "")
     @State var detectedLanguage: Language?
     
     @State var sameLanguage: Bool = false
@@ -111,10 +113,13 @@ struct TranslatorView: View {
                 focusedField = nil
             }
             .onChange(of: languageB) { newLanguage in
-                if hasTranslated {
+                    translatedLanguageB = newLanguage
                     viewModel.translatedString = String()
                     hasTranslated = false
-                }
+            }
+            .onChange(of: languageA) { newLanguage in
+                translatedLanguageA = newLanguage
+                
             }
         }
     }
@@ -208,6 +213,9 @@ struct TranslatorView: View {
                 .onChange(of: translatableText) { _ in
                     translatableText = String(translatableText.prefix(textEditorCharLimit))
                     textEditorCharCount = translatableText.count
+                    if hasTranslated {
+                        
+                    }
                 }
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
@@ -245,7 +253,7 @@ struct TranslatorView: View {
                         if textToSpeech.isAudioAvailable(inputString: translatableText, googleLanguageCode: languageA.translatorID){
                             Button {
                                 textToSpeech.languageRecognizer.reset()
-                                textToSpeech.synthesizeSpeech(inputMessage: translatableText)
+                                textToSpeech.synthesizeSpeech(inputMessage: translatableText, inputLanguageCode: translatedLanguageA.translatorID)
                             } label: {
                                 Image(systemName: "speaker.wave.2.fill")
                                     .foregroundColor(.blue.opacity(0.8))
@@ -396,43 +404,43 @@ struct TranslatorView: View {
         }
     }
     
-    var receivedTranslationEditor: some View {
-        TextEditor(text: $viewModel.translatedString)
-            .clipShape(RoundedRectangle(cornerRadius: 15))
-            .multilineTextAlignment(.leading)
-            .frame(height: UIScreen.main.bounds.height * 0.25)
-            .focused($focusedField, equals: .targetText)
-            .textSelection(.enabled)
-            .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
-            .overlay(
-                RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color.black.opacity(0.5), lineWidth: 1)
-            )
-            .overlay(alignment: .bottomTrailing) {
-                if textToSpeech.isAudioAvailable(inputString: viewModel.translatedString, googleLanguageCode: languageB.translatorID){
-                    Button {
-                        textToSpeech.languageRecognizer.reset()
-                        textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString)
-                    } label: {
-                        Image(systemName: "speaker.wave.2.fill")
-                            .foregroundColor(.blue.opacity(0.8))
-                            .font(.title3)
-                    }
-                    .padding(.bottom, 8)
-                    .padding(.trailing, 8)
-                } else {
-                    Image(systemName: "speaker.slash.fill")
-                        .foregroundColor(.gray.opacity(0.2))
-                        .font(.title3)
-                        .padding(.bottom, 8)
-                        .padding(.trailing, 8)
-                }
-            }
-            .padding()
-            .focused($focusedField, equals: .targetText)
-            .toast(isPresenting: $tappedSave, message: "translatorView_translationSaved".localized)
-    }
-    
+//    var receivedTranslationEditor: some View {
+//        TextEditor(text: $viewModel.translatedString)
+//            .clipShape(RoundedRectangle(cornerRadius: 15))
+//            .multilineTextAlignment(.leading)
+//            .frame(height: UIScreen.main.bounds.height * 0.25)
+//            .focused($focusedField, equals: .targetText)
+//            .textSelection(.enabled)
+//            .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 15)
+//                    .stroke(Color.black.opacity(0.5), lineWidth: 1)
+//            )
+//            .overlay(alignment: .bottomTrailing) {
+//                if textToSpeech.isAudioAvailable(inputString: viewModel.translatedString, googleLanguageCode: languageB.translatorID){
+//                    Button {
+//                        textToSpeech.languageRecognizer.reset()
+//                        textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString, inputLanguageCode: translatedLanguageB.translatorID)
+//                    } label: {
+//                        Image(systemName: "speaker.wave.2.fill")
+//                            .foregroundColor(.blue.opacity(0.8))
+//                            .font(.title3)
+//                    }
+//                    .padding(.bottom, 8)
+//                    .padding(.trailing, 8)
+//                } else {
+//                    Image(systemName: "speaker.slash.fill")
+//                        .foregroundColor(.gray.opacity(0.2))
+//                        .font(.title3)
+//                        .padding(.bottom, 8)
+//                        .padding(.trailing, 8)
+//                }
+//            }
+//            .padding()
+//            .focused($focusedField, equals: .targetText)
+//            .toast(isPresenting: $tappedSave, message: "translatorView_translationSaved".localized)
+//    }
+//    
     var receivedTranslationField: some View {
         ZStack(alignment: .topLeading){
             RoundedRectangle(cornerRadius: 15)
@@ -449,7 +457,7 @@ struct TranslatorView: View {
                     if textToSpeech.isAudioAvailable(inputString: viewModel.translatedString, googleLanguageCode: languageB.translatorID){
                         Button {
                             textToSpeech.languageRecognizer.reset()
-                            textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString)
+                            textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString, inputLanguageCode: translatedLanguageB.translatorID)
                         } label: {
                             Image(systemName: "speaker.wave.2.fill")
                                 .foregroundColor(.blue.opacity(0.8))
@@ -530,6 +538,8 @@ struct TranslatorView: View {
     private func didTapTranslate() {
         viewModel.defaultLanguageSelector(A: languageA, B: languageB)
         viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
+        self.translatedLanguageA = languageA
+        self.translatedLanguageB = languageB
         self.disabledSave = false
         self.focusedField = nil
         self.tappedSave = false
