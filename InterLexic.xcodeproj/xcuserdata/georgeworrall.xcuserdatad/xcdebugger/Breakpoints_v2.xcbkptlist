@@ -329,8 +329,8 @@
             filePath = "InterLexic/Files/Views/TranslatorView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "545"
-            endingLineNumber = "545"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
             landmarkName = "didTapAudio()"
             landmarkType = "7">
          </BreakpointContent>

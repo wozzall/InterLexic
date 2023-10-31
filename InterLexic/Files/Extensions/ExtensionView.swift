@@ -11,4 +11,8 @@ extension View {
     static var navigation: String {
         String(describing: self)
     }
+    
+    public func addBorder(color: Color) -> some View {
+        modifier(AddBorder(color: color))
+    }
 }

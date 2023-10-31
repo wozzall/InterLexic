@@ -37,6 +37,7 @@
 		AD53213D2866018B004E4F44 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213C2866018B004E4F44 /* ExtensionString.swift */; };
 		AD5321402868ABB9004E4F44 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53213F2868ABB9004E4F44 /* Language.swift */; };
 		AD55744929352DD000AD7376 /* AcknowledgmentsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD55744829352DD000AD7376 /* AcknowledgmentsCellView.swift */; };
+		AD60323C2AF1394E0003059A /* AddBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD60323B2AF1394E0003059A /* AddBorder.swift */; };
 		AD642C7328A1232200D1638E /* TranslateLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642C7228A1232200D1638E /* TranslateLanguages.swift */; };
 		AD642C7528A299F400D1638E /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642C7428A299F400D1638E /* SplashScreenView.swift */; };
 		AD642C7728A2B4CC00D1638E /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD642C7628A2B4CA00D1638E /* ExtensionColor.swift */; };
@@ -106,6 +107,7 @@
 		AD53213C2866018B004E4F44 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
 		AD53213F2868ABB9004E4F44 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		AD55744829352DD000AD7376 /* AcknowledgmentsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsCellView.swift; sourceTree = "<group>"; };
+		AD60323B2AF1394E0003059A /* AddBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBorder.swift; sourceTree = "<group>"; };
 		AD642C7228A1232200D1638E /* TranslateLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateLanguages.swift; sourceTree = "<group>"; };
 		AD642C7428A299F400D1638E /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		AD642C7628A2B4CA00D1638E /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 			children = (
 				ADE4F3522ACF2095006527E3 /* TextEditorClearButton.swift */,
 				ADE4F3552ACF25AA006527E3 /* AudioButton.swift */,
+				AD60323B2AF1394E0003059A /* AddBorder.swift */,
 			);
 			path = "View Modifiers";
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				AD8C7A2F2A558CE70080D53A /* TextToSpeech.swift in Sources */,
 				ADA3A2B52875E4C700193F87 /* InterLexic.xcdatamodeld in Sources */,
 				AD24DD882910144800793B85 /* Acknowledgement.swift in Sources */,
+				AD60323C2AF1394E0003059A /* AddBorder.swift in Sources */,
 				AD1DA05A27FCAAD40049444D /* InterLexicApp.swift in Sources */,
 				AD18312E287C6D3800C04EAA /* ExtensionArray.swift in Sources */,
 			);
