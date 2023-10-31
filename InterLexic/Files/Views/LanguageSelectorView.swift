@@ -99,7 +99,6 @@ struct LanguageSelectorView: View {
             languageA = language
         }
     }
-    
     //MARK - This function sets which language selector receives the chosen value based on a boolean value. In this case, true is language B and false is language A.
     
     func filterLanguages() {
@@ -109,8 +108,7 @@ struct LanguageSelectorView: View {
         } else {
             // 2
             filteredLanguages = manager.supportedLanguages.filter {
-                $0.name
-                    .localizedCaseInsensitiveContains(searchQuery)
+                $0.name.localizedCaseInsensitiveContains(searchQuery)
             }
         }
     }
