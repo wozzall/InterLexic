@@ -69,8 +69,8 @@ struct TranslatorView: View {
                 } label: {
                     EmptyView()
                 }
-                
-                languageSelectorButtonsView
+                LanguageSelectorButtons(viewModel: viewModel, languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection, languageDetectionRequired: $languageDetectionRequired, hideDetect: $hideDetect, selectedNavigation: $selectedNavigation, isCardView: false)
+//                languageSelectorButtonsView
                 
                 textEditorView
                 
@@ -113,64 +113,64 @@ struct TranslatorView: View {
         }
     }
     
-    var languageSelectorButtonsView: some View {
-        HStack {
-            Button {
-                viewModel.setDirection(direction: false)
-                didTapSelector(doNotPassDetectOn: false)
-            } label: {
-                ZStack {
-                    Color.offWhite
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
-                        .addBorder(color: .black)
-                    if languageA.name.isEmpty {
-                        Text("languageSelectorView_from".localized)
-                            .padding()
-                    }
-                    else if languageA.name == "Detecting..." {
-                        Text("Detecting...")
-                            .foregroundStyle(.green)
-                    }
-                    else {
-                        Text(languageA.name)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
-                    }
-                }
-                .foregroundColor(.blue)
-            }
-            Image(systemName: "arrow.right")
-                .foregroundColor(.accentColor)
-            Button {
-                viewModel.setDirection(direction: true)
-                didTapSelector(doNotPassDetectOn: true)
-            } label: {
-                ZStack {
-                    Color.offWhite
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
-                        .addBorder(color: .black)
-                    if languageB.name == "" {
-                        Text("languageSelectorView_to".localized)
-                            .padding()
-                    }
-                    else {
-                        Text(languageB.name)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
-                    }
-                }
-                .foregroundColor(.blue)
-            }
-        }
-        .frame(height: 50)
-        .padding(.horizontal)
-        .padding(.top, 30)
-        .buttonStyle(.borderless)
-    }
+//    var languageSelectorButtonsView: some View {
+//        HStack {
+//            Button {
+//                viewModel.setDirection(direction: false)
+//                didTapSelector(doNotPassDetectOn: false)
+//            } label: {
+//                ZStack {
+//                    Color.offWhite
+//                        .clipShape(RoundedRectangle(cornerRadius: 15))
+//                        .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
+//                        .addBorder(color: .black)
+//                    if languageA.name.isEmpty {
+//                        Text("languageSelectorView_from".localized)
+//                            .padding()
+//                    }
+//                    else if languageA.name == "Detecting..." {
+//                        Text("Detecting...")
+//                            .foregroundStyle(.green)
+//                    }
+//                    else {
+//                        Text(languageA.name)
+//                            .fixedSize(horizontal: false, vertical: true)
+//                            .multilineTextAlignment(.center)
+//                            .padding(.horizontal)
+//                    }
+//                }
+//                .foregroundColor(.blue)
+//            }
+//            Image(systemName: "arrow.right")
+//                .foregroundColor(.accentColor)
+//            Button {
+//                viewModel.setDirection(direction: true)
+//                didTapSelector(doNotPassDetectOn: true)
+//            } label: {
+//                ZStack {
+//                    Color.offWhite
+//                        .clipShape(RoundedRectangle(cornerRadius: 15))
+//                        .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
+//                        .addBorder(color: .black)
+//                    if languageB.name == "" {
+//                        Text("languageSelectorView_to".localized)
+//                            .padding()
+//                    }
+//                    else {
+//                        Text(languageB.name)
+//                            .fixedSize(horizontal: false, vertical: true)
+//                            .multilineTextAlignment(.center)
+//                            .padding(.horizontal)
+//                    }
+//                }
+//                .foregroundColor(.blue)
+//            }
+//        }
+//        .frame(height: 50)
+//        .padding(.horizontal)
+//        .padding(.top, 30)
+//        .buttonStyle(.borderless)
+//    }
     
     var textEditorView: some View {
         ZStack(alignment: .topLeading) {
@@ -203,7 +203,7 @@ struct TranslatorView: View {
                 .overlay(alignment: .bottomTrailing) {
                     HStack(spacing: 10){
                         CharacterCounter(charCount: $textEditorCharCount, charLimit: textEditorCharLimit)
-                        AudioButton(text: $translatableText, translatedLanguage: $translatedLanguageA)
+                        AudioButton(text: translatableText, translatedLanguage: translatedLanguageA)
                     }
                     .padding(.bottom, 10)
                     .padding(.trailing, 10)
@@ -312,7 +312,7 @@ struct TranslatorView: View {
                                 .foregroundColor(.blue.opacity(0.8))
                                 .font(.title3)
                         }
-                        AudioButton(text: $viewModel.translatedString, translatedLanguage: $translatedLanguageB)
+                        AudioButton(text: viewModel.translatedString, translatedLanguage: translatedLanguageB)
                     }
                     .padding(.bottom, 10)
                     .padding(.trailing, 10)

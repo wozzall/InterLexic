@@ -11,8 +11,8 @@ struct AudioButton: View {
     
     let textToSpeech = TextToSpeech()
     
-    @Binding var text: String
-    @Binding var translatedLanguage: Language
+    @State var text: String
+    @State var translatedLanguage: Language
     
     var audioAvailable: Bool {
         if textToSpeech.isAudioAvailable(inputString: text, googleLanguageCode: translatedLanguage.translatorID) {

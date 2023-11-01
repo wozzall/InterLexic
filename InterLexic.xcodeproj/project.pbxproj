@@ -51,7 +51,7 @@
 		ADA3A2B52875E4C700193F87 /* InterLexic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADA3A2B32875E4C700193F87 /* InterLexic.xcdatamodeld */; };
 		ADDF80AD292299F50040B93F /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF80AC292299F50040B93F /* CardsView.swift */; };
 		ADDF80AF292699F80040B93F /* SupportedLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF80AE292699F80040B93F /* SupportedLanguages.swift */; };
-		ADF408C9292D32DF00058C12 /* InputLanguagesSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF408C8292D32DF00058C12 /* InputLanguagesSelectorView.swift */; };
+		ADF408C9292D32DF00058C12 /* LanguageSelectorButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF408C8292D32DF00058C12 /* LanguageSelectorButtons.swift */; };
 		ADF408CB292D33C800058C12 /* ClearLanguagesSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF408CA292D33C800058C12 /* ClearLanguagesSelectorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,7 +121,7 @@
 		ADA3A2B42875E4C700193F87 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		ADDF80AC292299F50040B93F /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
 		ADDF80AE292699F80040B93F /* SupportedLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedLanguages.swift; sourceTree = "<group>"; };
-		ADF408C8292D32DF00058C12 /* InputLanguagesSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputLanguagesSelectorView.swift; sourceTree = "<group>"; };
+		ADF408C8292D32DF00058C12 /* LanguageSelectorButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectorButtons.swift; sourceTree = "<group>"; };
 		ADF408CA292D33C800058C12 /* ClearLanguagesSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearLanguagesSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,7 +167,7 @@
 				AD183138287F2D3800C04EAA /* FlashCardView.swift */,
 				AD60323D2AF156090003059A /* AudioButton.swift */,
 				AD60323F2AF157060003059A /* CharacterCounter.swift */,
-				ADF408C8292D32DF00058C12 /* InputLanguagesSelectorView.swift */,
+				ADF408C8292D32DF00058C12 /* LanguageSelectorButtons.swift */,
 				ADF408CA292D33C800058C12 /* ClearLanguagesSelectorView.swift */,
 				AD4B11482AEE9F0800CC0D29 /* ExpandingTextEditorView.swift */,
 			);
@@ -514,7 +514,7 @@
 				AD183139287F2D3800C04EAA /* FlashCardView.swift in Sources */,
 				AD4B11492AEE9F0800CC0D29 /* ExpandingTextEditorView.swift in Sources */,
 				AD4B85EE280089E200030EF2 /* TranslationManager.swift in Sources */,
-				ADF408C9292D32DF00058C12 /* InputLanguagesSelectorView.swift in Sources */,
+				ADF408C9292D32DF00058C12 /* LanguageSelectorButtons.swift in Sources */,
 				AD642C7528A299F400D1638E /* SplashScreenView.swift in Sources */,
 				AD6032402AF157060003059A /* CharacterCounter.swift in Sources */,
 				ADF408CB292D33C800058C12 /* ClearLanguagesSelectorView.swift in Sources */,
@@ -706,7 +706,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
@@ -742,7 +742,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;

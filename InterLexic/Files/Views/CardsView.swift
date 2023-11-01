@@ -13,6 +13,7 @@ struct CardsView: View {
     
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     @EnvironmentObject var manager: TranslationManager
+    @ObservedObject var viewModel = TranslatorViewModel()
     @ObservedObject var textToSpeech = TextToSpeech()
     @State var synthesizer = AVSpeechSynthesizer()
     @State var languageA: Language = Language(name: "", translatorID: "")
@@ -21,25 +22,31 @@ struct CardsView: View {
     @State var toFromDirection: Bool = false
     // MARK - True = to, False = from
     @State var selectedNavigation: String?
-    @State var filteredFlashCards: Array<FlashCard> = []
     @State var tapDelete: Bool = false
     @State var animationAmount = 1.0
     @State var tapFilter: Bool = false
     @State var languageDetectionRequired: Bool = false
     @State var hideDetect: Bool = true
     
+    @State var filteredFlashCards: Array<FlashCard> = []
+    
+    
     
     var body: some View {
         NavigationView {
-            VStack{
+            ScrollView{
                 NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-                    LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $toFromDirection, languageDetectionRequired: $languageDetectionRequired, hideDetectButton: hideDetect)
+                    LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection, languageDetectionRequired: $languageDetectionRequired, hideDetectButton: hideDetect)
                 } label: {
                     EmptyView()
                 }
-                //MARK - Flashcards
+                //MARK - Flashcard
+                if tapFilter{
+                    LanguageSelectorButtons(viewModel: viewModel, languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection, languageDetectionRequired: $languageDetectionRequired, hideDetect: $hideDetect, selectedNavigation: $selectedNavigation, isCardView: true)
+                }
                 if flashCardStorage.flashCards.isEmpty {
-                    VStack{
+                    Spacer()
+                    VStack(alignment: .center){
                         Spacer()
                         Text("cardsView_noTranslationsSaved".localized)
                             .multilineTextAlignment(.center)
@@ -73,69 +80,10 @@ struct CardsView: View {
                 }
                 
                 else {
-                    ScrollView {
-                        if tapFilter{
-                            HStack{
-                                Button {
-                                    toFromDirection = false
-                                    didTapSelector()
-                                } label: {
-                                    ZStack {
-                                        Color.offWhite
-                                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 15)
-                                                    .stroke(.black)
-                                                    .opacity(0.3)
-                                            )
-                                        if languageA.name.isEmpty {
-                                            Text("languageSelectorView_from".localized)
-                                                .padding()
-                                        } else {
-                                            Text(languageA.name)
-                                                .fixedSize(horizontal: false, vertical: true)
-                                                .multilineTextAlignment(.center)
-                                                .padding(.horizontal)
-                                        }
-                                    }
-                                    .foregroundColor(.blue)
-                                }
-                                Image(systemName: "arrow.right")
-                                    .foregroundColor(.accentColor)
-                                Button {
-                                    toFromDirection = true
-                                    didTapSelector()
-                                } label: {
-                                    ZStack {
-                                        Color.offWhite
-                                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 15)
-                                                    .stroke(.black)
-                                                    .opacity(0.3)
-                                            )
-                                        if languageB.name.isEmpty {
-                                            Text("languageSelectorView_to".localized)
-                                                .padding()
-                                        }
-                                        Text(languageB.name)
-                                            .fixedSize(horizontal: false, vertical: true)
-                                            .multilineTextAlignment(.center)
-                                            .padding(.horizontal)
-                                    }
-                                    .foregroundColor(.blue)
-                                }
-                            }
-                            .frame(height: 50)
-                            .padding()
-                            .buttonStyle(.borderless)
-                        }
                         LazyVStack{
                             ForEach(filteredFlashCards, id: \.id) { flashCard in
                                 Section("") {
-                                    FlashCardView(flashCard: flashCard)
+                                    FlashCardView(synthesizer: $synthesizer, flashCard: flashCard)
                                         .overlay(alignment: .topTrailing) {
                                             if tapDelete {
                                                 Button {
@@ -158,50 +106,81 @@ struct CardsView: View {
                                         }
                                         .padding(.horizontal, 50)
                                 }
+                                .padding()
                                 
                             }
                         }
-                        .environment(\.defaultMinListRowHeight, 50)
+//                        .environment(\.defaultMinListRowHeight, 50)
                         .onChange(of: flashCardStorage.flashCards) { _ in
                             filterFlashCards()
                         }
-                    }
-                    .toolbar {
-                        ToolbarItemGroup(placement: .automatic) {
-                            Button {
-                                tapFilter.toggle()
-                            } label: {
-                                if tapFilter {
-                                    Text("cardsView_hideFilterButton".localized)
-                                } else {
-                                    Text("cardsView_filterButton".localized)
-                                }
-                            }
-                            if tapFilter {
-                                Button("cardsView_clearFilterButton".localized) {
-                                    languageA = didTapClear()
-                                    languageB = didTapClear()
-                                }
-                            }
-                            Button {
-                                tapDelete.toggle()
-                            } label: {
-                                if tapDelete == false {
-                                    Text("cardsView_deleteButton".localized)
-                                        .foregroundColor(.red)
-                                } else {
-                                    Text("cardsView_cancelButton".localized)
-                                        .foregroundColor(.red)
-                                    
-                                }
-                            }
-                        }
-                    }
+//                    }
+//                    .toolbar {
+//                        ToolbarItemGroup(placement: .automatic) {
+//                            Button {
+//                                tapFilter.toggle()
+//                            } label: {
+//                                if tapFilter {
+//                                    Text("cardsView_hideFilterButton".localized)
+//                                } else {
+//                                    Text("cardsView_filterButton".localized)
+//                                }
+//                            }
+//                            if tapFilter {
+//                                Button("cardsView_clearFilterButton".localized) {
+//                                    languageA = didTapClear()
+//                                    languageB = didTapClear()
+//                                }
+//                            }
+//                            Button {
+//                                tapDelete.toggle()
+//                            } label: {
+//                                if tapDelete == false {
+//                                    Text("cardsView_deleteButton".localized)
+//                                        .foregroundColor(.red)
+//                                } else {
+//                                    Text("cardsView_cancelButton".localized)
+//                                        .foregroundColor(.red)
+//                                    
+//                                }
+//                            }
+//                        }
+//                    }
 //                    .background(Color.offWhite.opacity(0.7))
                 }
             }
             .background(Color.offWhite.opacity(0.7))
-
+            .toolbar {
+                ToolbarItemGroup(placement: .automatic) {
+                    Button {
+                        tapFilter.toggle()
+                    } label: {
+                        if tapFilter {
+                            Text("cardsView_hideFilterButton".localized)
+                        } else {
+                            Text("cardsView_filterButton".localized)
+                        }
+                    }
+                    if tapFilter {
+                        Button("cardsView_clearFilterButton".localized) {
+                            languageA = didTapClear()
+                            languageB = didTapClear()
+                        }
+                    }
+                    Button {
+                        tapDelete.toggle()
+                    } label: {
+                        if tapDelete == false {
+                            Text("cardsView_deleteButton".localized)
+                                .foregroundColor(.red)
+                        } else {
+                            Text("cardsView_cancelButton".localized)
+                                .foregroundColor(.red)
+                            
+                        }
+                    }
+                }
+            }
             
             .onAppear{
                 filterFlashCards()
