@@ -14,7 +14,7 @@ struct CardsView: View {
     @EnvironmentObject var flashCardStorage: FlashCardStorage
     @EnvironmentObject var manager: TranslationManager
     @ObservedObject var viewModel = TranslatorViewModel()
-    @ObservedObject var textToSpeech = TextToSpeech()
+    let textToSpeech = TextToSpeech()
     @State var synthesizer = AVSpeechSynthesizer()
     @State var languageA: Language = Language(name: "", translatorID: "")
     @State var languageB: Language = Language(name: "", translatorID: "")
@@ -114,6 +114,9 @@ struct CardsView: View {
                         .onChange(of: flashCardStorage.flashCards) { _ in
                             filterFlashCards()
                         }
+//                        .onChange(of: synthesizer) { newSynth in
+//                            synthesizer.stopSpeaking(at: .now)
+//                        }
 //                    }
 //                    .toolbar {
 //                        ToolbarItemGroup(placement: .automatic) {

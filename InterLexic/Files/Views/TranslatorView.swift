@@ -203,7 +203,7 @@ struct TranslatorView: View {
                 .overlay(alignment: .bottomTrailing) {
                     HStack(spacing: 10){
                         CharacterCounter(charCount: $textEditorCharCount, charLimit: textEditorCharLimit)
-                        AudioButton(text: translatableText, translatedLanguage: translatedLanguageA)
+                        AudioButton(textToSpeech: textToSpeech, text: translatableText, translatedLanguage: translatedLanguageA)
                     }
                     .padding(.bottom, 10)
                     .padding(.trailing, 10)
@@ -312,7 +312,7 @@ struct TranslatorView: View {
                                 .foregroundColor(.blue.opacity(0.8))
                                 .font(.title3)
                         }
-                        AudioButton(text: viewModel.translatedString, translatedLanguage: translatedLanguageB)
+                        AudioButton(textToSpeech: textToSpeech, text: viewModel.translatedString, translatedLanguage: translatedLanguageB)
                     }
                     .padding(.bottom, 10)
                     .padding(.trailing, 10)

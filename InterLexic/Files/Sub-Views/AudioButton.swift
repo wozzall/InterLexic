@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AudioButton: View {
     
-    let textToSpeech = TextToSpeech()
+    let textToSpeech: TextToSpeech
     
     @State var text: String
     @State var translatedLanguage: Language

@@ -39,7 +39,7 @@ struct FlashCardView: View {
                             .textSelection(.enabled)
                             .padding(.horizontal)
                             .gridCellColumns(2)
-                        AudioButton(text: flashCard.sourceString, translatedLanguage: flashCard.sourceLanguage)
+                        AudioButton(textToSpeech: textToSpeech, text: flashCard.sourceString, translatedLanguage: flashCard.sourceLanguage)
                     }
                     .padding()
                     Divider()
@@ -50,7 +50,7 @@ struct FlashCardView: View {
                             .textSelection(.enabled)
                             .padding(.horizontal)
                             .gridCellColumns(2)
-                        AudioButton(text: flashCard.targetString, translatedLanguage: flashCard.targetLanguage)
+                        AudioButton(textToSpeech: textToSpeech, text: flashCard.targetString, translatedLanguage: flashCard.targetLanguage)
                         
                     }
                     .padding()
