@@ -12,7 +12,7 @@ extension View {
         String(describing: self)
     }
     
-    public func addBorder(color: Color) -> some View {
+    public func addRoundedBorder(color: Color) -> some View {
         modifier(AddBorder(color: color))
     }
 }

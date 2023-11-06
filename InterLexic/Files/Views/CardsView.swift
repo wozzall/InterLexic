@@ -40,20 +40,18 @@ struct CardsView: View {
                 } label: {
                     EmptyView()
                 }
-                //MARK - Flashcard
                 if tapFilter{
                     LanguageSelectorButtons(viewModel: viewModel, languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection, languageDetectionRequired: $languageDetectionRequired, hideDetect: $hideDetect, selectedNavigation: $selectedNavigation, isCardView: true)
+                        .padding(.bottom, 20)
                 }
                 if flashCardStorage.flashCards.isEmpty {
-                    Spacer()
                     VStack(alignment: .center){
-                        Spacer()
+                        Spacer(minLength: 240)
                         Text("cardsView_noTranslationsSaved".localized)
                             .multilineTextAlignment(.center)
                             .font(.body)
                             .foregroundColor(.red.opacity(0.7))
                             .padding()
-
                         HStack {
                             Text("cardsView_tap".localized)
                             Image(systemName: "character.bubble.fill")
@@ -61,98 +59,50 @@ struct CardsView: View {
                         }
                         .font(.body)
                         .foregroundColor(.gray.opacity(0.8))
-                        Spacer()
-
                     }
-                    .frame(maxWidth: .infinity)
-                    
                 } else if filteredFlashCards.isEmpty {
                     VStack{
-                        Spacer()
+                        Spacer(minLength: 240)
                         Text("cardsView_noCards".localized)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.gray)
                             .font(.body)
                             .padding()
-                        Spacer()
                     }
-                    .frame(maxWidth: .infinity)
-                }
-                
-                else {
-                        LazyVStack{
-                            ForEach(filteredFlashCards, id: \.id) { flashCard in
-                                Section("") {
-                                    FlashCardView(synthesizer: $synthesizer, flashCard: flashCard)
-                                        .overlay(alignment: .topTrailing) {
-                                            if tapDelete {
-                                                Button {
-                                                    flashCardStorage.removeCard(selectedCard: flashCard)
-                                                } label: {
-                                                    ZStack{
-                                                        Image(systemName: "minus.circle.fill")
-                                                            .resizable()
-                                                            .foregroundColor(Color.red)
-                                                            .frame(width: 25, height: 25)
-                                                            .opacity(0.8)
-                                                            .animation(.easeIn(duration: 2)
-                                                                .repeatForever(autoreverses: false),
-                                                                       value: animationAmount)
-                                                    }
-                                                    .padding(.trailing, 4)
-                                                    .padding(.top, 4)
-                                                }
+                } else {
+                    LazyVStack(spacing: 30) {
+                        ForEach(filteredFlashCards, id: \.id) { flashCard in
+                            FlashCardView(synthesizer: $synthesizer, flashCard: flashCard)
+                                .overlay(alignment: .topTrailing) {
+                                    if tapDelete {
+                                        Button {
+                                            flashCardStorage.removeCard(selectedCard: flashCard)
+                                        } label: {
+                                            ZStack{
+                                                Image(systemName: "minus.circle")
+                                                    .resizable()
+                                                    .foregroundColor(Color.red)
+                                                    .frame(width: 25, height: 25)
+                                                    .opacity(0.8)
+                                                    .animation(.easeIn(duration: 2)
+                                                        .repeatForever(autoreverses: false),
+                                                               value: animationAmount)
                                             }
+                                            .padding(.trailing, 4)
+                                            .padding(.top, 4)
                                         }
-                                        .padding(.horizontal, 50)
+                                    }
                                 }
-                                .padding()
-                                
-                            }
+                                .padding(.horizontal, 50)
                         }
-//                        .environment(\.defaultMinListRowHeight, 50)
-                        .onChange(of: flashCardStorage.flashCards) { _ in
-                            filterFlashCards()
-                        }
-//                        .onChange(of: synthesizer) { newSynth in
-//                            synthesizer.stopSpeaking(at: .now)
-//                        }
-//                    }
-//                    .toolbar {
-//                        ToolbarItemGroup(placement: .automatic) {
-//                            Button {
-//                                tapFilter.toggle()
-//                            } label: {
-//                                if tapFilter {
-//                                    Text("cardsView_hideFilterButton".localized)
-//                                } else {
-//                                    Text("cardsView_filterButton".localized)
-//                                }
-//                            }
-//                            if tapFilter {
-//                                Button("cardsView_clearFilterButton".localized) {
-//                                    languageA = didTapClear()
-//                                    languageB = didTapClear()
-//                                }
-//                            }
-//                            Button {
-//                                tapDelete.toggle()
-//                            } label: {
-//                                if tapDelete == false {
-//                                    Text("cardsView_deleteButton".localized)
-//                                        .foregroundColor(.red)
-//                                } else {
-//                                    Text("cardsView_cancelButton".localized)
-//                                        .foregroundColor(.red)
-//                                    
-//                                }
-//                            }
-//                        }
-//                    }
-//                    .background(Color.offWhite.opacity(0.7))
+                    }
+                    .onChange(of: flashCardStorage.flashCards) { _ in
+                        filterFlashCards()
+                    }
                 }
             }
-            .background(Color.offWhite.opacity(0.7))
+            .frame(maxWidth: .infinity)
+            .background(Color.offWhite)
             .toolbar {
                 ToolbarItemGroup(placement: .automatic) {
                     Button {
@@ -170,21 +120,21 @@ struct CardsView: View {
                             languageB = didTapClear()
                         }
                     }
-                    Button {
-                        tapDelete.toggle()
-                    } label: {
-                        if tapDelete == false {
-                            Text("cardsView_deleteButton".localized)
-                                .foregroundColor(.red)
-                        } else {
-                            Text("cardsView_cancelButton".localized)
-                                .foregroundColor(.red)
-                            
+                    if !filteredFlashCards.isEmpty {
+                        Button {
+                            tapDelete.toggle()
+                        } label: {
+                            if tapDelete {
+                                Text("cardsView_cancelButton".localized)
+                                    .foregroundColor(.red)
+                            } else {
+                                Text("cardsView_deleteButton".localized)
+                                    .foregroundColor(.red)
+                            }
                         }
                     }
                 }
             }
-            
             .onAppear{
                 filterFlashCards()
                 animationAmount = 2
@@ -195,8 +145,8 @@ struct CardsView: View {
             .onChange(of: languageB) { _ in
                 filterFlashCards()
             }
+            .navigationTitle(Text("tabView_flashCards".localized))
         }
-        .navigationTitle(Text("tabView_flashCards".localized))
     }
     
     private func didTapSelector() {
@@ -208,8 +158,6 @@ struct CardsView: View {
         let clearedLanguage = Language(name: "", translatorID: "")
         return clearedLanguage
     }
-    
-
     
     func filterFlashCards() {
         
@@ -231,12 +179,3 @@ struct CardsView: View {
         }
     }
 }
-
-
-
-
-//struct CardsTESTView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SwiftUIView()
-//    }
-//}

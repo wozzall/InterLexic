@@ -39,7 +39,7 @@ struct LanguageSelectorButtons: View {
                         Color.offWhite
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
-                            .addBorder(color: .black)
+                            .addRoundedBorder(color: .black)
                         if languageA.name.isEmpty {
                             Text("languageSelectorView_from".localized)
                                 .padding()
@@ -67,7 +67,7 @@ struct LanguageSelectorButtons: View {
                         Color.offWhite
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
-                            .addBorder(color: .black)
+                            .addRoundedBorder(color: .black)
                         if languageB.name == "" {
                             Text("languageSelectorView_to".localized)
                                 .padding()

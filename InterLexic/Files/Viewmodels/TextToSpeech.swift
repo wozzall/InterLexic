@@ -9,7 +9,7 @@ import Foundation
 import AVFoundation
 import NaturalLanguage
 
-class TextToSpeech: NSObject, ObservableObject {
+class TextToSpeech: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
     
     let speechSynthesizer = AVSpeechSynthesizer()
     
@@ -24,25 +24,21 @@ class TextToSpeech: NSObject, ObservableObject {
             return devicePreferredLanguage!
         }
     }
-        
-    let availableLanguages: Array<String> =
-    ["ar-001","bg-BG","ca-ES","cs-CZ","da-DK","de-DE","de-DE","de-DE","de-DE","de-DE","de-DE","de-DE","de-DE","de-DE","de-DE","de-DE","el-GR","en-AU","en-AU","en-AU","en-GB","en-GB","en-GB","en-GB","en-GB","en-GB","en-GB","en-GB","en-GB","en-GB","en-GB","en-IE","en-IN","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-US","en-ZA","es-ES","es-ES","es-ES","es-ES","es-ES","es-ES","es-ES","es-ES","es-ES","es-MX","es-MX","es-MX","es-MX","es-MX","es-MX","es-MX","es-MX","es-MX","fi-FI","fi-FI","fi-FI","fi-FI","fi-FI","fi-FI","fi-FI","fi-FI","fi-FI","fr-CA","fr-CA","fr-CA","fr-CA","fr-CA","fr-CA","fr-CA","fr-CA","fr-CA","fr-FR","fr-FR","fr-FR","fr-FR","fr-FR","fr-FR","fr-FR","fr-FR","fr-FR","fr-FR","fr-FR","he-IL","hi-IN","hr-HR","hu-HU","id-ID","it-IT","it-IT","it-IT","it-IT","it-IT","it-IT","it-IT","it-IT","it-IT","ja-JP","ja-JP","ja-JP","ko-KR","ms-MY","nb-NO","nl-BE","nl-NL","pl-PL","pt-BR","pt-BR","pt-BR","pt-BR","pt-BR","pt-BR","pt-BR","pt-BR","pt-BR","pt-PT","ro-RO","ru-RU","sk-SK","sv-SE","th-TH","tr-TR","uk-UA","vi-VN","zh-CN","zh-CN","zh-CN","zh-HK","zh-TW"]
+    
+    override init() {
+        super.init()
+        speechSynthesizer.delegate = self
+    }
     
     func findAudioLanguageCode(inputString: String, inputLanguageCode: String) ->  String {
         
-        print(devicePreferredLanguage)
         let languageCode = inputLanguageCode.prefix(2)
         let voices = AVSpeechSynthesisVoice.speechVoices()
-        //            for	voice in voices where voice.language.contains(languageCode) {
-        //                print(voice.language + voice.name)
-        //                return voice.language
-        //            }
+        
         for voice in voices where voice.language.contains(languageCode) {
             if languageCode == devicePreferredLanguage.prefix(2) {
                 return devicePreferredLanguage
             }
-        }
-        for voice in voices where voice.language.contains(languageCode) {
             if voice.language.contains(languageCode) {
                 return voice.language
             }
@@ -67,7 +63,8 @@ class TextToSpeech: NSObject, ObservableObject {
     func synthesizeSpeech(inputMessage: String, inputLanguageCode: String) {
         
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback,mode: .default)
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playback, options: .duckOthers)
         } catch let error {
             print("This error message from SpeechSynthesizer \(error.localizedDescription)")
         }
@@ -82,5 +79,10 @@ class TextToSpeech: NSObject, ObservableObject {
     
     }
     
-    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        guard !synthesizer.isSpeaking else { return }
+
+            let audioSession = AVAudioSession.sharedInstance()
+            try? audioSession.setActive(false)
+        }
 }

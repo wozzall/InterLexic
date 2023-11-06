@@ -181,7 +181,7 @@ struct TranslatorView: View {
                 .shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
                 .focused($focusedField, equals: .sourceTextWithDetection)
                 .textSelection(.enabled)
-                .addBorder(color: .black)
+                .addRoundedBorder(color: .black)
                 .onChange(of: translatableText) { _ in
                     translatableText = String(translatableText.prefix(textEditorCharLimit))
                     textEditorCharCount = translatableText.count
@@ -213,7 +213,7 @@ struct TranslatorView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 15)
                                 .fill(Color.offWhite.opacity(0.1))
-                                .addBorder(color: .black)
+                                .addRoundedBorder(color: .black)
                                 .padding(7)
                             Text(detectedLanguage?.name ?? "Detecting...")
                                 .foregroundColor(.blue)
@@ -279,7 +279,7 @@ struct TranslatorView: View {
             RoundedRectangle(cornerRadius: 15)
                 .foregroundColor(disabledSave ? Color.offWhite : .yellow)
                 .shadow(color: disabledSave ? Color.clear : Color.black.opacity(0.5), radius: 2, x: 2, y: 2)
-                .addBorder(color: disabledSave ? Color.clear : .white)
+                .addRoundedBorder(color: disabledSave ? Color.clear : .white)
                 .opacity(disabledSave ? 0.6 : 1)
             Button(action: {
                 saveButton()
@@ -302,7 +302,7 @@ struct TranslatorView: View {
                 .textSelection(.enabled)
                 .shadow(color: .black.opacity(0.5), radius: 2, x: 2, y: 2)
                 .frame(height: UIScreen.main.bounds.height * 0.25)
-                .addBorder(color: .black)
+                .addRoundedBorder(color: .black)
                 .overlay(alignment: .bottomTrailing) {
                     HStack(spacing: 15){
                         Button {
