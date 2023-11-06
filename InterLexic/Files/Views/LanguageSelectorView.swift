@@ -24,6 +24,8 @@ struct LanguageSelectorView: View {
     @Binding var languageDetectionRequired: Bool
     @State var hideDetectButton: Bool
     
+    var alphabetList: Array<Character> = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","z"]
+    
     var languageList: Array<Language> {
         Array(Set(filteredLanguages ?? manager.supportedLanguages)).sorted()
     }
@@ -39,17 +41,19 @@ struct LanguageSelectorView: View {
                     .foregroundColor(Color.green)
                 }
             }
-            Section{
-                ForEach(languageList) { language in
-                    Button {
-                        didTapLanguage(tapped: language, direction: toFromDirection)
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Text(language.name)
+            ForEach(alphabetList, id: \.self) { letter in
+                Section(header: Text(String(letter))) {
+                    ForEach(languageList.filter {$0.name.first == letter }) { language in
+                        Button {
+                            didTapLanguage(tapped: language, direction: toFromDirection)
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Text(language.name)
+                        }
+                        .buttonStyle(.borderless)
                     }
                 }
             }
-            
         }
         .searchable(text: $searchQuery, placement: .navigationBarDrawer(displayMode: .always))
         .onChange(of: searchQuery) { _ in
@@ -112,6 +116,7 @@ struct LanguageSelectorView: View {
             }
         }
     }
+    
     // MARK - Filters language based on the current search query. Along with .onChange and .onSubmit, the list of languages dynamically changes.
     
 //    func supportedLanguagesSetup() {
