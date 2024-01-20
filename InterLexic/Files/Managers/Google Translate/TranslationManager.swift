@@ -25,8 +25,19 @@ class TranslationManager: NSObject, ObservableObject {
     let network = Monitor()
     
     static let shared = TranslationManager()
-    
-    private let apiKey = "AIzaSyATkpxkaYc59u0TuYmD2f5Xdwe0z1V2WEs"
+        
+    private var apiKey: String {
+        get{
+            guard let filePath = Bundle.main.path(forResource: "CloudTranslation", ofType: "plist") else {
+                fatalError("Could't find file 'CloudTranslation.plist'.")
+            }
+            let pList = NSDictionary(contentsOfFile: filePath)
+            guard let value = pList?.object(forKey: "API_KEY") as? String else {
+                fatalError("Could find key 'API_KEY' in 'CloudTranslation.plist'.")
+            }
+            return value
+        }
+    }
 
     var supportedLanguages: Array<Language> = []
     

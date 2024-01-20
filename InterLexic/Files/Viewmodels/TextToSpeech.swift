@@ -28,6 +28,7 @@ class TextToSpeech: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
     override init() {
         super.init()
         speechSynthesizer.delegate = self
+        AVSpeechSynthesisVoice.speechVoices()	
     }
     
     func findAudioLanguageCode(inputString: String, inputLanguageCode: String) ->  String {
@@ -48,6 +49,7 @@ class TextToSpeech: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
     
     func isAudioAvailable(inputString: String, googleLanguageCode: String) -> Bool {
                 
+        languageRecognizer.reset()
         languageRecognizer.processString(inputString)
         
         if let appleRecognizedLanguage = languageRecognizer.dominantLanguage?.rawValue {

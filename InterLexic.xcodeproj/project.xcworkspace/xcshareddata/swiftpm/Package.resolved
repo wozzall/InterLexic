@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/exyte/PopupView",
       "state" : {
-        "revision" : "7cfd26db6cc8a4aedb1a80a5df669019a417bfd2",
-        "version" : "2.7.0"
+        "revision" : "4e64eb67d4510c96f82efd9e34b8fa5b9b397791",
+        "version" : "2.8.3"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "936f1c7067728d16c362ba4fb93c17df78b5fd79",
-        "version" : "5.18.2"
+        "revision" : "59730af512c06fb569c119d737df4c1c499e001d",
+        "version" : "5.18.10"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
       "state" : {
-        "revision" : "e837c37d45449fbd3b4745c10c5b5274e73edead",
-        "version" : "2.2.3"
+        "revision" : "261b6cec35686d2dc192b809ab50742b4502a73b",
+        "version" : "2.2.6"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/huynguyencong/ToastSwiftUI.git",
       "state" : {
-        "revision" : "fc621e168dd8b308a1a4a6ea3bf6a85716d3d361",
-        "version" : "0.3.4"
+        "revision" : "dd9421d487c7f932c39604fc04b3381e9176ef13",
+        "version" : "0.3.6"
       }
     }
   ],

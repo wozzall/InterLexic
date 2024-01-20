@@ -46,7 +46,7 @@ struct LanguageSelectorButtons: View {
                         }
                         else if languageA.name == "Detecting..." {
                             Text("Detecting...")
-                                .foregroundStyle(.green)
+                                .foregroundStyle(.blue)
                         }
                         else {
                             Text(languageA.name)

@@ -6,20 +6,23 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct AudioButton: View {
     
-    let textToSpeech: TextToSpeech
-    
+    let synthesizer = AVSpeechSynthesizer()
+    @ObservedObject var textToSpeech = TextToSpeech()
     @State var text: String
     @State var translatedLanguage: Language
+    @State var audioAvailable: Bool = false
+//    var audioAvailable: Bool {
+//        if textToSpeech.isAudioAvailable(inputString: text, googleLanguageCode: translatedLanguage.translatorID) {
+//            return true
+//        }
+//        return false
+//    }
     
-    var audioAvailable: Bool {
-        if textToSpeech.isAudioAvailable(inputString: text, googleLanguageCode: translatedLanguage.translatorID) {
-            return true
-        }
-        return false
-    }
+//    @State var audioAvailable: Bool
     
     var body: some View {
             Button {
@@ -33,7 +36,12 @@ struct AudioButton: View {
                     .padding(.top, 4)
                     .padding(.trailing, 4)
             }
+            .onChange(of: translatedLanguage, perform: { newLanguage in
+                audioAvailable = textToSpeech.isAudioAvailable(inputString: text, googleLanguageCode: newLanguage.translatorID)
+            })
+            
     }
+    
 }
 
 //#Preview {

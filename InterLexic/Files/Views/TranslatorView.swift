@@ -19,7 +19,6 @@ private enum Field: Int, CaseIterable {
 
 struct TranslatorView: View {
     
-    
     @EnvironmentObject var networkMonitor: Monitor
     @EnvironmentObject var manager: TranslationManager
     @EnvironmentObject var flashCardStorage: FlashCardStorage
@@ -35,7 +34,6 @@ struct TranslatorView: View {
     let textEditorPlaceHolder: String = "Type text here to detect language or to translate!"
     let textEditorCharLimit = 200
     @State var textEditorCharCount = 0
-    @State private var translationEdit: String = String()
     @State private var languagesSupported: Array<Language> = []
     @State var selectedNavigation: String?
     
@@ -55,10 +53,25 @@ struct TranslatorView: View {
     @State var hideDetect: Bool = false
     @State var hasCopied: Bool = false
     
+    var audioAvailableA: Bool {
+        if textToSpeech.isAudioAvailable(inputString: translatableText, googleLanguageCode: translatedLanguageA.translatorID) {
+            return true
+        }
+        return false
+    }
+    
+    var audioAvailableB: Bool {
+        if textToSpeech.isAudioAvailable(inputString: viewModel.translatedString, googleLanguageCode: translatedLanguageB.translatorID) {
+            return true
+        }
+        return false
+    }
+    
     @FocusState private var focusedField: Field?
     
     init() {
         UITextView.appearance().textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 35, right: 25)
+        AVSpeechSynthesisVoice.speechVoices()
     }
     
     var body: some View {
@@ -70,7 +83,6 @@ struct TranslatorView: View {
                     EmptyView()
                 }
                 LanguageSelectorButtons(viewModel: viewModel, languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection, languageDetectionRequired: $languageDetectionRequired, hideDetect: $hideDetect, selectedNavigation: $selectedNavigation, isCardView: false)
-//                languageSelectorButtonsView
                 
                 textEditorView
                 
@@ -101,7 +113,6 @@ struct TranslatorView: View {
                 }
             }
             .onTapGesture { focusedField = nil }
-            
             .onChange(of: languageB) { newLanguage in
                 translatedLanguageB = newLanguage
                 viewModel.translatedString = String()
@@ -112,65 +123,6 @@ struct TranslatorView: View {
             }
         }
     }
-    
-//    var languageSelectorButtonsView: some View {
-//        HStack {
-//            Button {
-//                viewModel.setDirection(direction: false)
-//                didTapSelector(doNotPassDetectOn: false)
-//            } label: {
-//                ZStack {
-//                    Color.offWhite
-//                        .clipShape(RoundedRectangle(cornerRadius: 15))
-//                        .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
-//                        .addBorder(color: .black)
-//                    if languageA.name.isEmpty {
-//                        Text("languageSelectorView_from".localized)
-//                            .padding()
-//                    }
-//                    else if languageA.name == "Detecting..." {
-//                        Text("Detecting...")
-//                            .foregroundStyle(.green)
-//                    }
-//                    else {
-//                        Text(languageA.name)
-//                            .fixedSize(horizontal: false, vertical: true)
-//                            .multilineTextAlignment(.center)
-//                            .padding(.horizontal)
-//                    }
-//                }
-//                .foregroundColor(.blue)
-//            }
-//            Image(systemName: "arrow.right")
-//                .foregroundColor(.accentColor)
-//            Button {
-//                viewModel.setDirection(direction: true)
-//                didTapSelector(doNotPassDetectOn: true)
-//            } label: {
-//                ZStack {
-//                    Color.offWhite
-//                        .clipShape(RoundedRectangle(cornerRadius: 15))
-//                        .shadow(color: Color.black.opacity(0.5), radius: 3, x: 2, y: 2)
-//                        .addBorder(color: .black)
-//                    if languageB.name == "" {
-//                        Text("languageSelectorView_to".localized)
-//                            .padding()
-//                    }
-//                    else {
-//                        Text(languageB.name)
-//                            .fixedSize(horizontal: false, vertical: true)
-//                            .multilineTextAlignment(.center)
-//                            .padding(.horizontal)
-//                    }
-//                }
-//                .foregroundColor(.blue)
-//            }
-//        }
-//        .frame(height: 50)
-//        .padding(.horizontal)
-//        .padding(.top, 30)
-//        .buttonStyle(.borderless)
-//    }
     
     var textEditorView: some View {
         ZStack(alignment: .topLeading) {
@@ -203,31 +155,37 @@ struct TranslatorView: View {
                 .overlay(alignment: .bottomTrailing) {
                     HStack(spacing: 10){
                         CharacterCounter(charCount: $textEditorCharCount, charLimit: textEditorCharLimit)
-                        AudioButton(textToSpeech: textToSpeech, text: translatableText, translatedLanguage: translatedLanguageA)
+                        Button {
+                            textToSpeech.languageRecognizer.reset()
+                            textToSpeech.synthesizeSpeech(inputMessage: translatableText, inputLanguageCode: translatedLanguageA.translatorID)
+                        } label: {
+                            Image(systemName: audioAvailableA ? "speaker.wave.2.fill" : "speaker.slash.fill")
+                                .foregroundColor( audioAvailableA ? .blue.opacity(0.8) : .gray.opacity(0.2))
+                                .font(.title3)
+                                .disabled(audioAvailableA ? false : true )
+                                .padding(.top, 4)
+                                .padding(.trailing, 4)
+                        }
+//                        AudioButton(text: translatableText, translatedLanguage: translatedLanguageA)
                     }
                     .padding(.bottom, 10)
                     .padding(.trailing, 10)
                 }
                 .overlay(alignment: .bottomLeading) {
                     if !translatableText.isEmpty && languageDetectionRequired {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color.offWhite.opacity(0.1))
-                                .addRoundedBorder(color: .black)
-                                .padding(7)
+                        Button {
+                            didTapDetectedLanguage()
+                        } label: {
                             Text(detectedLanguage?.name ?? "Detecting...")
-                                .foregroundColor(.blue)
-                                .padding(.trailing, 4)
-                            //                                Text("translatorView_detected".localized)
-                            //                                    .foregroundColor(.gray.opacity(0.8))
+                                .foregroundColor(.white)
+                                .padding(10)
+                                .background{
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .fill(.blue.opacity(0.8))
+                                        .addRoundedBorder(color: .black)
+                                }
                         }
                         .padding()
-                        
-                        .onTapGesture {
-                            languageA = detectedLanguage ?? Language(name: "None Detected", translatorID: "", id: UUID())
-                            languageDetectionRequired = false
-                            hasDetected = false
-                        }
                     }
                 }
                 .padding()
@@ -312,7 +270,18 @@ struct TranslatorView: View {
                                 .foregroundColor(.blue.opacity(0.8))
                                 .font(.title3)
                         }
-                        AudioButton(textToSpeech: textToSpeech, text: viewModel.translatedString, translatedLanguage: translatedLanguageB)
+                        Button {
+                            textToSpeech.languageRecognizer.reset()
+                            textToSpeech.synthesizeSpeech(inputMessage: viewModel.translatedString, inputLanguageCode: translatedLanguageB.translatorID)
+                        } label: {
+                            Image(systemName: audioAvailableB ? "speaker.wave.2.fill" : "speaker.slash.fill")
+                                .foregroundColor( audioAvailableB ? .blue.opacity(0.8) : .gray.opacity(0.2))
+                                .font(.title3)
+                                .disabled(audioAvailableB ? false : true )
+                                .padding(.top, 4)
+                                .padding(.trailing, 4)
+                        }
+//                        AudioButton(text: viewModel.translatedString, translatedLanguage: translatedLanguageB)
                     }
                     .padding(.bottom, 10)
                     .padding(.trailing, 10)
@@ -377,6 +346,12 @@ struct TranslatorView: View {
         viewModel.translatedString = String()
     }
     
+    private func didTapDetectedLanguage() {
+        languageA = detectedLanguage ?? Language(name: "None Detected", translatorID: "", id: UUID())
+        languageDetectionRequired = false
+        hasDetected = false
+    }
+    
     private func didTapTranslate() {
         viewModel.defaultLanguageSelector(A: languageA, B: languageB)
         viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
@@ -405,8 +380,7 @@ struct TranslatorView: View {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
             self.hasCopied = false
-        }
-        )
+        })
     }
 }
 

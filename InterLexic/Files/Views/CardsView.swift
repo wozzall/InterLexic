@@ -72,7 +72,7 @@ struct CardsView: View {
                 } else {
                     LazyVStack(spacing: 30) {
                         ForEach(filteredFlashCards, id: \.id) { flashCard in
-                            FlashCardView(synthesizer: $synthesizer, flashCard: flashCard)
+                            FlashCardView(textToSpeech: textToSpeech, synthesizer: $synthesizer, flashCard: flashCard)
                                 .overlay(alignment: .topTrailing) {
                                     if tapDelete {
                                         Button {

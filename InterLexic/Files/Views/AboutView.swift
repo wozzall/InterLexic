@@ -190,7 +190,7 @@ struct AboutView: View {
                         .padding(.leading, 50)
                     }
                 }
-                Section("settingsView_Licenses".localized) {
+                Section("settingsView_licenses".localized) {
                     ForEach(acknowledgements) { acknowledgement in
                         NavigationLink(acknowledgement.name) {
                             AcknowledgmentsCellView(info: acknowledgement)
