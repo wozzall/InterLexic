@@ -76,7 +76,8 @@ struct CardsView: View {
                                 .overlay(alignment: .topTrailing) {
                                     if tapDelete {
                                         Button {
-                                            flashCardStorage.removeCard(selectedCard: flashCard)
+                                            
+                                                flashCardStorage.removeCard(selectedCard: flashCard)
                                         } label: {
                                             ZStack{
                                                 Image(systemName: "minus.circle")
