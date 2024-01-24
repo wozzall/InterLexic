@@ -33,7 +33,11 @@
 
 "translatorView_detected" = "detected! Tap here!";
 
+"translatorView_detecting" = "Detecting...";
+
 "translatorView_translationSaved" = "Translation saved!";
+
+"translatorView_translationCopied" = "Translation copied!";
 
 
 //MARK - Language Selector View

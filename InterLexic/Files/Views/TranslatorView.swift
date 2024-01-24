@@ -28,10 +28,11 @@ struct TranslatorView: View {
     @State var synthesizer = AVSpeechSynthesizer()
     var delegate: AVSpeechSynthesizerDelegate?
     
+    @FocusState private var focusedField: Field?
+
     let pasteboard = UIPasteboard.general
     
     @State private var translatableText: String = String()
-    let textEditorPlaceHolder: String = "Type text here to detect language or to translate!"
     let textEditorCharLimit = 200
     @State var textEditorCharCount = 0
     @State private var languagesSupported: Array<Language> = []
@@ -52,22 +53,18 @@ struct TranslatorView: View {
     @State var hasDetected: Bool = false
     @State var hideDetect: Bool = false
     @State var hasCopied: Bool = false
-    
     var audioAvailableA: Bool {
         if textToSpeech.isAudioAvailable(inputString: translatableText, googleLanguageCode: translatedLanguageA.translatorID) {
             return true
         }
         return false
     }
-    
     var audioAvailableB: Bool {
         if textToSpeech.isAudioAvailable(inputString: viewModel.translatedString, googleLanguageCode: translatedLanguageB.translatorID) {
             return true
         }
         return false
     }
-    
-    @FocusState private var focusedField: Field?
     
     init() {
         UITextView.appearance().textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 35, right: 25)
@@ -166,7 +163,6 @@ struct TranslatorView: View {
                                 .padding(.top, 4)
                                 .padding(.trailing, 4)
                         }
-//                        AudioButton(text: translatableText, translatedLanguage: translatedLanguageA)
                     }
                     .padding(.bottom, 10)
                     .padding(.trailing, 10)
@@ -176,7 +172,7 @@ struct TranslatorView: View {
                         Button {
                             didTapDetectedLanguage()
                         } label: {
-                            Text(detectedLanguage?.name ?? "Detecting...")
+                            Text(detectedLanguage?.name ?? "translatorView_detecting".localized)
                                 .foregroundColor(.white)
                                 .padding(10)
                                 .background{
@@ -219,16 +215,16 @@ struct TranslatorView: View {
     var translateButton: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 15)
-                .fill(languagesAreSelected() ? Color.blue : Color.offWhite.opacity(0.6))
-                .shadow(color: languagesAreSelected() ? Color.black.opacity(0.5) : Color.clear, radius: 2, x: 2, y: 2)
+                .fill(languagesAreSelected() && areNotSameLanguages() ? Color.blue : Color.offWhite.opacity(0.6))
+                .shadow(color: languagesAreSelected() && areNotSameLanguages() ? Color.black.opacity(0.5) : Color.clear, radius: 2, x: 2, y: 2)
             Button(action: {
                 didTapTranslate()
             }) {
                 Text("translatorView_translateButton".localized)
             }
-            .foregroundColor(languagesAreSelected() ? .white : .gray)
+            .foregroundColor(languagesAreSelected() && areNotSameLanguages() ? .white : .gray)
             .buttonStyle(.borderless)
-            .disabled(languagesAreSelected() ? false : true)
+            .disabled(languagesAreSelected() && areNotSameLanguages() ? false : true)
         }
     }
     
@@ -281,7 +277,6 @@ struct TranslatorView: View {
                                 .padding(.top, 4)
                                 .padding(.trailing, 4)
                         }
-//                        AudioButton(text: viewModel.translatedString, translatedLanguage: translatedLanguageB)
                     }
                     .padding(.bottom, 10)
                     .padding(.trailing, 10)
@@ -292,7 +287,7 @@ struct TranslatorView: View {
         }
         .padding()
         .toast(isPresenting: $tappedSave, message: "translatorView_translationSaved".localized)
-        .toast(isPresenting: $hasCopied, message: "Translation copied!")
+        .toast(isPresenting: $hasCopied, message: "translatorView_translationCopied".localized)
         .focused($focusedField, equals: .targetText)
     }
     
@@ -306,54 +301,38 @@ struct TranslatorView: View {
             }
         }
     }
-    
-    private func isDetectionRequired() {
-        if languageA == detectedLanguage {
-            languageDetectionRequired = false
-        }
-    }
+    //MARK - Instructs the Google Translate API to activate the Detect function and then display the result to the user by comparing its language code to the list of languages provided by the API.
     
     private func languagesAreSelected() -> Bool {
-        if languageA.name == "" || languageB.name == "" {
+        if languageA.name.isEmpty || languageB.name.isEmpty {
             return false
         }
         return true
     }
+    //MARK - Returns a boolean value based on whether the user has selected languages to translate with. Translate button is disabled until the user has made a selection in both fields.
     
-    private func sameLanguageChecker() -> Bool {
-        // MARK -- Checks to see if Language A and B are still empty values of type Language. Loads the translate function with default values, in this case English as Language A and Chinese (Simplified) as Language B.
+    private func areNotSameLanguages() -> Bool {
         if languageA == languageB {
-            return true
+            return false
         }
-        return false
+        return true
     }
-    
-    private func didTapAudio() -> Bool {
-        if synthesizer.isSpeaking {
-            return true
-        }
-        return false
-    }
-    
-    private func didTapSelector(doNotPassDetectOn: Bool) {
-        self.selectedNavigation = nil
-        self.hideDetect = doNotPassDetectOn
-        self.selectedNavigation = LanguageSelectorView.navigation
-    }
+    // MARK -- Verifies that the two languages selected are not of the same value. Translate button remains disabled until two different languages are selected.
     
     private func didTapClearText() {
         translatableText = String()
         viewModel.translatedString = String()
     }
+    //MARK - Clears textEditorView of text and in turn the receivedTranslationField's text box. Allows user to quickly start a new translation.
     
     private func didTapDetectedLanguage() {
-        languageA = detectedLanguage ?? Language(name: "None Detected", translatorID: "", id: UUID())
+        languageA = detectedLanguage ?? Language(name: "???", translatorID: "", id: UUID())
         languageDetectionRequired = false
         hasDetected = false
     }
+    //MARK - Stops the Cloud Translation API Detect function once the user has selected the detected language. Reduces overusage of API and reduces overhead costs at when scaled up.
     
     private func didTapTranslate() {
-        viewModel.defaultLanguageSelector(A: languageA, B: languageB)
         viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
         self.translatedLanguageA = languageA
         self.translatedLanguageB = languageB
@@ -362,32 +341,24 @@ struct TranslatorView: View {
         self.tappedSave = false
         self.hasTranslated = true
     }
+    //MARK - Instructs the viewModel to initiate translation. Also retains current language selection so that user can change language selector fields without losing functionality of the audio buttons. disabledSave and tappedSave are also set to false as a new translation has been carried out and the user may wish to save. Equally, hasTranslated becomes true which disables the translation button until the user has made a new selection. This in turn increases efficiency and reduces wasted throughput on the API.
     
     private func saveButton() {
         if tappedSave != true {
             let newFlashCard = FlashCard(sourceLanguage: languageA, sourceString: translatableText, targetLanguage: languageB, targetString: viewModel.translatedString, id: UUID())
             flashCardStorage.add(newFlashCard)
             tappedSave = true
-            flashCardStorage.flashCardDecks = flashCardStorage.sortIntoDecks()
-            print(flashCardStorage.flashCardDecks)
         }
         return
     }
+    //MARK - Checks flashcard has not already been saved before allowing the user to save.
     
     private func copyToClipBoard() {
         pasteboard.string = viewModel.translatedString
         self.hasCopied = true
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
             self.hasCopied = false
         })
     }
+    //MARK - Copies translatedString to device's pasteboard. hasCopied triggers a toast to show the user the string has been copied.
 }
-
-
-//struct TranslatorView_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        TranslatorView(languageA: Language(name: "", translatorID: "", id: UUID()), languageB: Language(name: "", translatorID: "", id: UUID()))
-//    }
-//}

@@ -34,7 +34,11 @@
 
 "translatorView_detected" = "تم اكتشاف اللغة! انقر لتحديد!";
 
+"translatorView_detecting" = "كشف اللغة...";
+
 "translatorView_translationSaved" = "تم حفظ الترجمة!";
+
+"translatorView_translationCopied" = "تم نسخ الترجمة!";
 
 
 //MARK - Language Selector View

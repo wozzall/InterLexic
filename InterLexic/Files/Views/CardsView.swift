@@ -76,14 +76,13 @@ struct CardsView: View {
                                 .overlay(alignment: .topTrailing) {
                                     if tapDelete {
                                         Button {
-                                            
-                                                flashCardStorage.removeCard(selectedCard: flashCard)
+                                            flashCardStorage.removeCard(selectedCard: flashCard)
                                         } label: {
                                             ZStack{
-                                                Image(systemName: "minus.circle")
+                                                Image(systemName: "trash")
                                                     .resizable()
                                                     .foregroundColor(Color.red)
-                                                    .frame(width: 25, height: 25)
+                                                    .frame(width: 20, height: 25)
                                                     .opacity(0.8)
                                                     .animation(.easeIn(duration: 2)
                                                         .repeatForever(autoreverses: false),
@@ -126,10 +125,10 @@ struct CardsView: View {
                             tapDelete.toggle()
                         } label: {
                             if tapDelete {
-                                Text("cardsView_cancelButton".localized)
+                                Image(systemName: "trash.slash")
                                     .foregroundColor(.red)
                             } else {
-                                Text("cardsView_deleteButton".localized)
+                                Image(systemName: "trash")
                                     .foregroundColor(.red)
                             }
                         }
@@ -154,11 +153,13 @@ struct CardsView: View {
         self.selectedNavigation = nil
         self.selectedNavigation = LanguageSelectorView.navigation
     }
+    //MARK - Function changes selectedNavigation's string value which programatically activates the NavigationLink to the LanguageSelectorView.
     
     private func didTapClear() -> Language {
         let clearedLanguage = Language(name: "", translatorID: "")
         return clearedLanguage
     }
+    //MARK - Returns an empty Language value to clear the selection fields.
     
     func filterFlashCards() {
         
@@ -179,4 +180,5 @@ struct CardsView: View {
             }
         }
     }
+    //MARK - Function checks values of languageA and languageB selection field values and applies a filter to the saved flashcards. Allows the user to narrow down their search of their flashcards.
 }

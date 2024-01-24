@@ -42,31 +42,13 @@ class TranslatorViewModel: ObservableObject {
             }
         })
     }
-    
-    func defaultLanguageSelector(A: Language, B: Language) {
-        
-            if A.name == "" {
-                languageA = Language(name: "languageSelectors_English".localized, translatorID: "en", id: UUID())
-                if B.name == "" {
-                    languageB = Language(name: "languageSelectors_ChineseSimp".localized, translatorID: "zh-CN", id: UUID())
-                    return
-                }
-            }
-        return
-    }
-    
-    func changeLanguages(toFromDirection: Bool, in language: Language) {
-        if toFromDirection {
-            languageB = language
-        }
-        else {
-            languageA = language
-        }
-    }
+    //MARK - Requests the translation method from the Cloud Translation API model passing the parameters given by the user and returns the translation to the translatedString property.
     
     func setDirection(direction: Bool) {
         toFromDirection = direction
     }
+    //MARK - Changes viewModel languages depending on the toFromDirection boolean. In this case, true is 'from' direction and false is 'to' direction.
+
 }
 
 

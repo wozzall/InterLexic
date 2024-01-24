@@ -7,14 +7,12 @@
 
 import Foundation
 import AVFoundation
+import SwiftUI
 
 class FlashCardStorage: ObservableObject {
     
     @Published var flashCards: Array<FlashCard>
-    @Published var flashCardDecks: Array<FlashCardDeck> = []
-    @Published var sectionNames: Array<String> = []
     @Published var hasLoaded: Bool = false
-
     private var saveKey = "flashCardDecks"
     
     
@@ -29,33 +27,13 @@ class FlashCardStorage: ObservableObject {
         flashCards = [sampleCard]
     }
     
-    func sortIntoDecks() -> Array<FlashCardDeck> {
-        
-        let decks: Array<FlashCardDeck> = []
-        for flashCard in flashCards {
-            for var deck in decks {
-                let cardPair: String = flashCard.sourceLanguage.name + flashCard.targetString
-                let deckPair: String = deck.sourceLanguage + deck.targetLanguage
-                
-                if !deck.flashCards.contains(flashCard) {
-                    flashCardDecks.append(FlashCardDeck(id: UUID(), name: flashCard.sourceLanguage.name + " -> " + flashCard.targetLanguage.name, sourceLanguage: flashCard.sourceLanguage.name, targetLanguage: flashCard.targetLanguage.name, flashCards: [flashCard]))
-                    if !sectionNames.contains(flashCard.sourceLanguage.name) {
-                        sectionNames.append(flashCard.sourceLanguage.name)
-                    }
-                } else if cardPair == deckPair {
-                    deck.flashCards.append(flashCard)
-                }
-            }
-        }
-        return decks
-    }
-    
     func containsCard(_ flashCard: FlashCard) -> Bool {
         if flashCards.contains(flashCard){
             return true
         }
         return false
     }
+    //MARK - Checks to see if the persisted array contains the selected flashcard.
     
     
     func add(_ flashCard: FlashCard) {
@@ -63,23 +41,22 @@ class FlashCardStorage: ObservableObject {
         self.flashCards.sort()
         save()
     }
+    //MARK - Appends a new flashcard to the array and saves the change.
     
     func removeCard(selectedCard: FlashCard) {
-        objectWillChange.send()
-        let selectedIndex = self.flashCards.firstIndex { $0.id == selectedCard.id }
-        self.flashCards.remove(at: selectedIndex!)
+        withAnimation {
+            objectWillChange.send()
+            let selectedIndex = self.flashCards.firstIndex { $0.id == selectedCard.id }
+            self.flashCards.remove(at: selectedIndex!)
+        }
         save()
     }
-    
-    func removeDeck(at offsets: IndexSet) {
-        objectWillChange.send()
-        flashCards.remove(atOffsets: offsets)
-        save()
-    }
+    //MARK - Removes the selected flashcard using its ID property to delete exactly that card.
     
     func save() {
         if let encoded = try? JSONEncoder().encode(flashCards) {
             UserDefaults.standard.set(encoded, forKey: saveKey)
         }
     }
+    //MARK - Encodes/saves the flashCards array to UserDefaults using the provided key.
 }

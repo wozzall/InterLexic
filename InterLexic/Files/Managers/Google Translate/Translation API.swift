@@ -25,6 +25,7 @@ enum TranslationAPI {
         }
         return urlString
     }
+    //MARK - Returns a URL string based on the selected TranslationAPI enum value.
     
     func getHTTPMethod() -> String {
         if self == .supportedLanguages {
@@ -33,6 +34,7 @@ enum TranslationAPI {
             return "POST"
         }
     }
+    //MARK - Returns the appropriate HTTP Request method based on the selected TranslationAPI enum value.
 }
 
 

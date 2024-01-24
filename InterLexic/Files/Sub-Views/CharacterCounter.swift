@@ -11,7 +11,6 @@ struct CharacterCounter: View {
     
     @Binding var charCount: Int
     let charLimit: Int
-    
     var countEqual: Bool {
         if charCount == charLimit {
             return true
@@ -20,7 +19,7 @@ struct CharacterCounter: View {
     }
     
     var body: some View {
-            Text("\(charCount) / \(charLimit)" )
+        Text("\(charCount) / \(charLimit)" )
             .foregroundColor(countEqual ? .red : .black.opacity(0.4))
     }
 }

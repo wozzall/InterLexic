@@ -28,13 +28,9 @@ struct AcknowledgmentsCellView: View {
             }
         }
     }
+    
     func didTapURL(url: String) {
         UIApplication.shared.open(URL(string: url)!)
     }
+    //MARK - Sends user to the Package's URL.
 }
-
-//struct AcknowledgmentsCellView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AcknowledgmentsCellView()
-//    }
-//}

@@ -13,7 +13,7 @@ import MessageUI
 struct AboutView: View {
     
     @Environment(\.openURL) private var openURL
-            
+    
     private var biography: String
     
     private var acknowledgements: Array<Acknowledgement>
@@ -27,7 +27,7 @@ struct AboutView: View {
     @State private var showMailView = false
     
     @State private var canSendMail = MailViewRepresentative.canSendMail
-
+    
     
     init() {
         biography = """
@@ -112,19 +112,15 @@ struct AboutView: View {
             List{
                 Section("aboutView_sectionTitleDeveloper".localized) {
                     VStack {
-                            WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
-                                .resizable()
-                                .frame(width: 100, height: 100, alignment: .leading)
-                                .clipShape(Circle())
-                                .shadow(color: .gray, radius: 2, x: 1, y: 1)
-                            
-                            
-                            
-                            Text("George Worrall")
-                                .multilineTextAlignment(.center)
-                                .font(.title)
-                                .padding(.top)
-                        
+                        WebImage(url: URL(string: "https://avatars.githubusercontent.com/u/93731716"))
+                            .resizable()
+                            .frame(width: 100, height: 100, alignment: .leading)
+                            .clipShape(Circle())
+                            .shadow(color: .gray, radius: 2, x: 1, y: 1)
+                        Text("George Worrall")
+                            .multilineTextAlignment(.center)
+                            .font(.title)
+                            .padding(.top)
                         Text(biography)
                             .opacity(0.8)
                             .multilineTextAlignment(.center)
@@ -201,22 +197,16 @@ struct AboutView: View {
         }
         .background(
             Color.offWhite.opacity(0.7)
-            )
-        
+        )
     }
     
     func didTapGitHub() {
         UIApplication.shared.open(URL(string: "https://github.com/wozzall")!)
     }
+    //MARK - Function that sends user to developer GitHub profile upon tapping the GitHub icon.
     
     func didTapLinkedIn() {
         UIApplication.shared.open(URL(string: "https://www.linkedin.com/in/georgeworrall/")!)
     }
-}
-
-
-struct CreditsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AboutView()
-    }
+    //MARK - Function that sends user to developer LinkedIn profile upon tapping the LinkedIn icon.
 }

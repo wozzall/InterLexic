@@ -24,12 +24,6 @@ struct LanguageSelectorButtons: View {
     
 
     var body: some View {
-//        NavigationView {
-//            NavigationLink(tag: LanguageSelectorView.navigation, selection: $selectedNavigation) {
-//                LanguageSelectorView(languageA: $languageA, languageB: $languageB, toFromDirection: $viewModel.toFromDirection, languageDetectionRequired: $languageDetectionRequired, hideDetectButton: hideDetect)
-//            } label: {
-//                EmptyView()
-//            }
             HStack {
                 Button {
                     viewModel.setDirection(direction: false)
@@ -86,7 +80,6 @@ struct LanguageSelectorButtons: View {
             .padding(.horizontal)
             .padding(.top, 30)
             .buttonStyle(.borderless)
-//        }
     }
     
     private func didTapSelector(doNotPassOnDetect: Bool) {

@@ -34,7 +34,12 @@
 
 "translatorView_detected" = "detectado! ¡Pulse aquí!";
 
+"translatorView_detecting" = "Detectando...";
+
 "translatorView_translationSaved" = "¡Traducción guardada!";
+
+"translatorView_translationCopied" = "¡Traducción copiada!";
+
 
 //MARK - Language Selector View
 

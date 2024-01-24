@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    
-    @EnvironmentObject var translatorLanguages: SupportedLanguages
-    
+        
     @EnvironmentObject var manager: TranslationManager
     
     @State var selection: Int = 1
@@ -18,19 +16,16 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selection){
-            
             TranslatorView()
                 .tabItem {
                     Label("tabView_translate".localized, systemImage: "character.bubble.fill")
                 }
                 .tag(1)
-            
             CardsView()
                 .tabItem {
                     Label("tabView_flashCards".localized, systemImage: "star.fill")
                 }
                 .tag(2)
-            
             AboutView()
                 .tabItem {
                     Label("tabView_about".localized, systemImage: "questionmark.circle")
@@ -40,9 +35,3 @@ struct MainView: View {
         .edgesIgnoringSafeArea(.top)
     }
 }
-
-//struct MainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainView(manager)
-//    }
-//}

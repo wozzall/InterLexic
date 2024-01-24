@@ -34,7 +34,12 @@
 
 "translatorView_detected" = "检测到了！点击这里";
 
-"translatorView_translationSaved" = "翻译已保存";
+"translatorView_detecting" = "检测语言...";
+
+"translatorView_translationSaved" = "翻译已保存！";
+
+"translatorView_translationCopied" = "翻译复制了！";
+
 
 //MARK - Language Selector View
 
