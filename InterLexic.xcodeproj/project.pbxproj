@@ -47,6 +47,7 @@
 		AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */; };
 		AD75256A286DEFDA00CD30A7 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD752569286DEFDA00CD30A7 /* ExtensionView.swift */; };
 		AD8259D82811BC0B00CA9805 /* Translation API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8259D72811BC0B00CA9805 /* Translation API.swift */; };
+		AD8A2AF92B62B8B800E52F4F /* ExtensionCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8A2AF82B62B8B800E52F4F /* ExtensionCharacter.swift */; };
 		AD8C7A2F2A558CE70080D53A /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8C7A2E2A558CE70080D53A /* TextToSpeech.swift */; };
 		ADA3A2B52875E4C700193F87 /* InterLexic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADA3A2B32875E4C700193F87 /* InterLexic.xcdatamodeld */; };
 		ADDF80AD292299F50040B93F /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF80AC292299F50040B93F /* CardsView.swift */; };
@@ -117,6 +118,7 @@
 		AD752567286CA05500CD30A7 /* LanguageSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectorView.swift; sourceTree = "<group>"; };
 		AD752569286DEFDA00CD30A7 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		AD8259D72811BC0B00CA9805 /* Translation API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translation API.swift"; sourceTree = "<group>"; };
+		AD8A2AF82B62B8B800E52F4F /* ExtensionCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCharacter.swift; sourceTree = "<group>"; };
 		AD8C7A2E2A558CE70080D53A /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		ADA3A2B42875E4C700193F87 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		ADDF80AC292299F50040B93F /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				AD18312D287C6D3800C04EAA /* ExtensionArray.swift */,
+				AD8A2AF82B62B8B800E52F4F /* ExtensionCharacter.swift */,
 				AD642C7628A2B4CA00D1638E /* ExtensionColor.swift */,
 				AD53213C2866018B004E4F44 /* ExtensionString.swift */,
 				AD752569286DEFDA00CD30A7 /* ExtensionView.swift */,
@@ -434,7 +437,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					AD1DA05527FCAAD40049444D = {
 						CreatedOnToolsVersion = 13.0;
@@ -542,6 +545,7 @@
 				AD752568286CA05600CD30A7 /* LanguageSelectorView.swift in Sources */,
 				ADDF80AD292299F50040B93F /* CardsView.swift in Sources */,
 				AD8C7A2F2A558CE70080D53A /* TextToSpeech.swift in Sources */,
+				AD8A2AF92B62B8B800E52F4F /* ExtensionCharacter.swift in Sources */,
 				ADA3A2B52875E4C700193F87 /* InterLexic.xcdatamodeld in Sources */,
 				AD24DD882910144800793B85 /* Acknowledgement.swift in Sources */,
 				AD60323C2AF1394E0003059A /* AddBorder.swift in Sources */,
@@ -636,6 +640,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -650,7 +655,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -698,6 +703,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -706,7 +712,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -723,7 +729,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
@@ -735,7 +741,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -759,7 +765,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_ASSET_PATHS = "\"InterLexic/Preview Content\"";
 				DEVELOPMENT_TEAM = W6DVW7UM24;
 				ENABLE_PREVIEWS = YES;
@@ -771,7 +777,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

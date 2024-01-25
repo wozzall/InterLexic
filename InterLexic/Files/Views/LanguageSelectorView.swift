@@ -24,10 +24,14 @@ struct LanguageSelectorView: View {
     @Binding var languageDetectionRequired: Bool
     @State var hideDetectButton: Bool
     
-    var alphabetList: Array<Character> = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+    var localeCode = Locale.current.language.languageCode!.identifier
     
     var languageList: Array<Language> {
         Array(Set(filteredLanguages ?? manager.supportedLanguages)).sorted()
+    }
+    
+    var alphabetList: Array<Character> {
+        return makeAlphabetList()
     }
     
     var body: some View {
@@ -43,6 +47,18 @@ struct LanguageSelectorView: View {
                                 .foregroundColor(.white)
                         }
                         .listRowBackground(Color.blue)
+                    }
+                }
+                if Locale.current.language.languageCode!.identifier == "zh" {
+                    ForEach(languageList) { language in
+                        if !languageList.isEmpty {
+                            Button {
+                                didTapLanguage(tapped: language, direction: toFromDirection)
+                                presentationMode.wrappedValue.dismiss()
+                            } label: {
+                                Text(language.name)
+                            }
+                        }
                     }
                 }
                 ForEach(alphabetList, id: \.self) { letter in
@@ -142,4 +158,20 @@ struct LanguageSelectorView: View {
         }
     }
     // MARK - Filters language based on the current search query. Along with .onChange and .onSubmit, the list of languages dynamically changes.
+    
+    private func makeAlphabetList() -> Array<Character> {
+        
+        var list: Array<Character> = []
+        if Locale.current.language.languageCode!.identifier == "zh" {
+            return list
+        }
+        for language in languageList {
+            let firstLetter = language.name.first!
+            if !list.contains(firstLetter) {
+                list.append(firstLetter)
+            }
+        }
+        return list.sorted()
+    }
+    //MARK - Function assesses the locale of the user's device and generates an alphabet list based on the returned list of languages from the Cloud Translation API. For Chinese, the list cannot be organised with an alphabet so this function returns a blank array of characters.
 }

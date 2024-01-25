@@ -38,7 +38,6 @@ class TranslationManager: NSObject, ObservableObject {
             return value
         }
     }
-
     var supportedLanguages: Array<Language> = []
     
     var sourceLanguageCode: String?
@@ -129,7 +128,9 @@ class TranslationManager: NSObject, ObservableObject {
     func fetchSupportedLanguages(completion: @escaping (_ result: Result<[Language], TranslationManagerError>) -> Void) {
         var urlParams = [String: String]()
         urlParams["key"] = apiKey
-        urlParams["target"] = Locale.current.languageCode ?? "en"
+//        urlParams["target"] = Locale.current.language.languageCode?.identifier ?? "en"
+        urlParams["target"] = Locale.current.language.languageCode!.identifier
+
         
         DispatchQueue.main.async { [self] in
             
@@ -151,7 +152,6 @@ class TranslationManager: NSObject, ObservableObject {
                             }
                             if languageName != "" && languageCode != "zh" {
                                 self.supportedLanguages.append(Language(name: languageName!, translatorID: languageCode!, id: UUID()))
-                               
                             }
                         }
                         self.supportedLanguages.sort()
