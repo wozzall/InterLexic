@@ -27,22 +27,27 @@ class FlashCardStorage: ObservableObject {
         flashCards = [sampleCard]
     }
     
+    /// Checks to see if the persisted array contains the selected flashcard.
+    /// - Parameter flashCard: User generated Flashcard.
+    /// - Returns: Boolean which describes if FlashCard is already in the storage.
     func containsCard(_ flashCard: FlashCard) -> Bool {
         if flashCards.contains(flashCard){
             return true
         }
         return false
     }
-    //MARK - Checks to see if the persisted array contains the selected flashcard.
     
     
+    /// Appends a new flashcard to the array and saves the change.
+    /// - Parameter flashCard: Flashcard created by the user.
     func add(_ flashCard: FlashCard) {
         self.flashCards.append(flashCard)
         self.flashCards.sort()
         save()
     }
-    //MARK - Appends a new flashcard to the array and saves the change.
     
+    /// Removes the selected flashcard using its ID property to delete exactly that card.
+    /// - Parameter selectedCard: The Flashcard on which the delete button is presented.
     func removeCard(selectedCard: FlashCard) {
         withAnimation {
             objectWillChange.send()
@@ -51,12 +56,11 @@ class FlashCardStorage: ObservableObject {
         }
         save()
     }
-    //MARK - Removes the selected flashcard using its ID property to delete exactly that card.
     
+    /// Encodes/saves the flashCards array to UserDefaults using the provided key.
     func save() {
         if let encoded = try? JSONEncoder().encode(flashCards) {
             UserDefaults.standard.set(encoded, forKey: saveKey)
         }
     }
-    //MARK - Encodes/saves the flashCards array to UserDefaults using the provided key.
 }

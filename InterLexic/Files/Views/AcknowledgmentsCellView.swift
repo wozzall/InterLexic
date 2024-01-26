@@ -28,9 +28,9 @@ struct AcknowledgmentsCellView: View {
             }
         }
     }
-    
+    /// Sends user to the API Package's URL.
+    /// - Parameter url: String describing the desired URL
     func didTapURL(url: String) {
         UIApplication.shared.open(URL(string: url)!)
     }
-    //MARK - Sends user to the Package's URL.
 }

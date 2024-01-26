@@ -149,18 +149,20 @@ struct CardsView: View {
         }
     }
     
+    /// Function changes selectedNavigation's string value which programatically activates the NavigationLink to the LanguageSelectorView.
     private func didTapSelector() {
         self.selectedNavigation = nil
         self.selectedNavigation = LanguageSelectorView.navigation
     }
-    //MARK - Function changes selectedNavigation's string value which programatically activates the NavigationLink to the LanguageSelectorView.
     
+    /// Returns an empty Language value to clear the selection fields.
+    /// - Returns: Returns an empty Language value to clear the selection fields.
     private func didTapClear() -> Language {
         let clearedLanguage = Language(name: "", translatorID: "")
         return clearedLanguage
     }
-    //MARK - Returns an empty Language value to clear the selection fields.
     
+    /// Function checks values of languageA and languageB selection field values and applies a filter to the saved flashcards. Allows the user to narrow down their search of their flashcards.
     func filterFlashCards() {
         
         self.filteredFlashCards = flashCardStorage.flashCards.sorted()
@@ -180,5 +182,4 @@ struct CardsView: View {
             }
         }
     }
-    //MARK - Function checks values of languageA and languageB selection field values and applies a filter to the saved flashcards. Allows the user to narrow down their search of their flashcards.
 }

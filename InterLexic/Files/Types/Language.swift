@@ -14,6 +14,11 @@ struct Language: Identifiable, Hashable, Comparable, Codable {
     var translatorID: String
     var id = UUID()
     
+    /// Sorts Language alphabetically by name.
+    /// - Parameters:
+    ///   - lhs: <#lhs description#>
+    ///   - rhs: <#rhs description#>
+    /// - Returns: <#description#>
     static func < (lhs: Language, rhs: Language) -> Bool {
         lhs.name < rhs.name
     }

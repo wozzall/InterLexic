@@ -117,25 +117,32 @@ struct LanguageSelectorView: View {
         }
     }
     
+    /// Directs the view to pass back the tapped language to the correct selector field in the parent view. Allows re-use of the same view.
+    /// - Parameters:
+    ///   - language: Language selected by the user.
+    ///   - direction: True is language B and false is language A.
     private func didTapLanguage(tapped language: Language, direction: Bool) {
         changeLanguages(toFromDirection: direction, in: language)
     }
-    //MARK - Directs the view to pass back the tapped language to the correct selector field in the parent view. Allows re-use of the same view.
     
+    /// Changes the boolean value of languageDetectionRequired in order to inform the parent view that the detect function is required.
     private func didTapDetect() {
         languageDetectionRequired = true
         presentationMode.wrappedValue.dismiss()
     }
-    //MARK - Changes the boolean value of languageDetectionRequired in order to inform the parent view that the detect function is required.
     
+    /// Prints out languages selected for testing ease-of-viewing and debugging.
     private func testLanguageSelection() {
         print(languageA)
         print(languageB)
         toFromDirection = false
     }
-    //MARK - Prints out languages selected for testing ease-of-viewing and debugging.
     
     
+    /// This function sets which language selector receives the language parameter based on a boolean value.
+    /// - Parameters:
+    ///   - toFromDirection: True is language B and false is language A.
+    ///   - language: Selected language on the page.
     func changeLanguages(toFromDirection: Bool, in language: Language) {
         if toFromDirection {
             languageB = language
@@ -144,8 +151,8 @@ struct LanguageSelectorView: View {
             languageA = language
         }
     }
-    //MARK - This function sets which language selector receives the language parameter based on a boolean value. In this case, true is language B and false is language A.
     
+    /// Filters language based on the current search query. Along with .onChange and .onSubmit, the list of languages dynamically changes.
     func filterLanguages() {
         if searchQuery.isEmpty {
             // 1
@@ -157,8 +164,9 @@ struct LanguageSelectorView: View {
             }
         }
     }
-    // MARK - Filters language based on the current search query. Along with .onChange and .onSubmit, the list of languages dynamically changes.
     
+    /// Function assesses the locale of the user's device and generates an alphabet list based on the returned list of languages from the Cloud Translation API. For Chinese, the list cannot be organised with an alphabet so this function returns a blank array of characters.
+    /// - Returns: Function assesses the locale of the user's device and generates an alphabet list based on the returned list of languages from the Cloud Translation API. For Chinese, the list cannot be organised with an alphabet so this function returns a blank array of characters.
     private func makeAlphabetList() -> Array<Character> {
         
         var list: Array<Character> = []
@@ -173,5 +181,4 @@ struct LanguageSelectorView: View {
         }
         return list.sorted()
     }
-    //MARK - Function assesses the locale of the user's device and generates an alphabet list based on the returned list of languages from the Cloud Translation API. For Chinese, the list cannot be organised with an alphabet so this function returns a blank array of characters.
 }

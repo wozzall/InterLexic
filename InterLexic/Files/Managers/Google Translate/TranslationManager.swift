@@ -60,6 +60,11 @@ class TranslationManager: NSObject, ObservableObject {
         super.init()
     }
     
+    /// Setup for URL session to make HTTP request and decode the JSON packet into a dictionary result with String: Any values.
+    /// - Parameters:
+    ///   - api: <#api description#>
+    ///   - urlParams: <#urlParams description#>
+    ///   - completion: <#completion description#>
     private func makeRequest(usingTranslationAPI api: TranslationAPI, urlParams: [String: String], completion: @escaping (_ results: [String:Any]?) -> Void) {
         
         if var components = URLComponents(string: api.getURL()) {
@@ -96,8 +101,11 @@ class TranslationManager: NSObject, ObservableObject {
             }
         }
     }
-    //MARK - Setup for URL session to make HTTP request and decode the JSON packet into a dictionary result with String: Any values.
     
+    /// Assigns the results of the HTTP Request using the .detectLanguage TranslationAPI enum parameter to the detectedLanguages array. The correct detectedLanguage is array position [0] is assigned to self.sourceLanguageCode which reflects on the UI to the user.
+    /// - Parameters:
+    ///   - text: <#text description#>
+    ///   - completion: <#completion description#>
     func detectLanguage(forText text: String, completion: @escaping (_ language: String?) -> Void) {
         
         let urlParams = ["key": apiKey, "q": text]
@@ -123,12 +131,12 @@ class TranslationManager: NSObject, ObservableObject {
             }
         }
     }
-    //MARK - Assigns the results of the HTTP Request using the .detectLanguage TranslationAPI enum parameter to the detectedLanguages array. The correct detectedLanguage is array position [0] is assigned to self.sourceLanguageCode which reflects on the UI to the user.
     
+    /// Requests the API to return the supported languages offered by the Cloud Translation API. Results are then converted from a dictionary result into String values and assigned to the supportedLanguage string array.
+    /// - Parameter completion: <#completion description#>
     func fetchSupportedLanguages(completion: @escaping (_ result: Result<[Language], TranslationManagerError>) -> Void) {
         var urlParams = [String: String]()
         urlParams["key"] = apiKey
-//        urlParams["target"] = Locale.current.language.languageCode?.identifier ?? "en"
         urlParams["target"] = Locale.current.language.languageCode!.identifier
 
         
@@ -164,8 +172,9 @@ class TranslationManager: NSObject, ObservableObject {
             }
         }
     }
-    //MARK - Requests the API to return the supported languages offered by the Cloud Translation API. Results are then converted from a dictionary result into String values and assigned to the supportedLanguage string array.
     
+    /// Requests the API to return a translation using the user's input string. Result is then converted from dictionary result into a string and assigned.
+    /// - Parameter completion: <#completion description#>
     func translate(completion: @escaping (_ translations: String?) -> Void) {
         guard let textToTranslate = textToTranslate, let targetLanguage = targetLanguageCode else { completion(nil); return }
         
@@ -199,8 +208,8 @@ class TranslationManager: NSObject, ObservableObject {
             }
         }
     }
-    //MARK - Requests the API to return a translation using the user's input string. Result is then converted from dictionary result into a string and assigned
     
+    /// Checks to make sure device has network connection before requesting the API to fetch languages. If it has connection, it will return the languages. If no connection is available, a boolean value is returned which fires an Alert to the user warning them that the request is not possible at that time.
     func fetchLanguages() {
         if self.hasLoaded == false {
             if !network.isDisconnected {
@@ -227,7 +236,6 @@ class TranslationManager: NSObject, ObservableObject {
         }
         self.isLoading = false
     }
-    //MARK - Checks to make sure device has network connection before requesting the API to fetch languages. If it has connection, it will return the languages. If no connection is available, a boolean value is returned which fires an Alert to the user warning them that the request is not possible at that time.
 }
 
 struct Translation {

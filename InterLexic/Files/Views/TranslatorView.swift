@@ -291,6 +291,7 @@ struct TranslatorView: View {
         .focused($focusedField, equals: .targetText)
     }
     
+    /// Instructs the Google Translate API to activate the Detect function and then display the result to the user by comparing its language code to the list of languages provided by the API.
     private func detectLanguage() {
         manager.detectLanguage(forText: translatableText) { result in
             for language in manager.supportedLanguages {
@@ -301,37 +302,39 @@ struct TranslatorView: View {
             }
         }
     }
-    //MARK - Instructs the Google Translate API to activate the Detect function and then display the result to the user by comparing its language code to the list of languages provided by the API.
     
+    /// Returns a boolean value based on whether the user has selected languages to translate with. Translate button is disabled until the user has made a selection in both fields.
+    /// - Returns: Returns a boolean value based on whether the user has selected languages to translate with. Translate button is disabled until the user has made a selection in both fields.
     private func languagesAreSelected() -> Bool {
         if languageA.name.isEmpty || languageB.name.isEmpty {
             return false
         }
         return true
     }
-    //MARK - Returns a boolean value based on whether the user has selected languages to translate with. Translate button is disabled until the user has made a selection in both fields.
     
+    /// Verifies that the two languages selected are not of the same value. Translate button remains disabled until two different languages are selected.
+    /// - Returns: Verifies that the two languages selected are not of the same value. Translate button remains disabled until two different languages are selected.
     private func areNotSameLanguages() -> Bool {
         if languageA == languageB {
             return false
         }
         return true
     }
-    // MARK -- Verifies that the two languages selected are not of the same value. Translate button remains disabled until two different languages are selected.
     
+    /// Clears textEditorView of text and in turn the receivedTranslationField's text box. Allows user to quickly start a new translation.
     private func didTapClearText() {
         translatableText = String()
         viewModel.translatedString = String()
     }
-    //MARK - Clears textEditorView of text and in turn the receivedTranslationField's text box. Allows user to quickly start a new translation.
     
+    /// Stops the Cloud Translation API Detect function once the user has selected the detected language. Reduces overusage of API and reduces overhead costs at when scaled up.
     private func didTapDetectedLanguage() {
         languageA = detectedLanguage ?? Language(name: "???", translatorID: "", id: UUID())
         languageDetectionRequired = false
         hasDetected = false
     }
-    //MARK - Stops the Cloud Translation API Detect function once the user has selected the detected language. Reduces overusage of API and reduces overhead costs at when scaled up.
     
+    /// Instructs the viewModel to initiate translation. Also retains current language selection so that user can change language selector fields without losing functionality of the audio buttons. disabledSave and tappedSave are also set to false as a new translation has been carried out and the user may wish to save. Equally, hasTranslated becomes true which disables the translation button until the user has made a new selection. This in turn increases efficiency and reduces wasted throughput on the API.
     private func didTapTranslate() {
         viewModel.initiateTranslation(text: translatableText, sourceLanguage: languageA.translatorID, targetLanguage: languageB.translatorID, sameLanguage: sameLanguage)
         self.translatedLanguageA = languageA
@@ -341,8 +344,8 @@ struct TranslatorView: View {
         self.tappedSave = false
         self.hasTranslated = true
     }
-    //MARK - Instructs the viewModel to initiate translation. Also retains current language selection so that user can change language selector fields without losing functionality of the audio buttons. disabledSave and tappedSave are also set to false as a new translation has been carried out and the user may wish to save. Equally, hasTranslated becomes true which disables the translation button until the user has made a new selection. This in turn increases efficiency and reduces wasted throughput on the API.
     
+    /// Checks flashcard has not already been saved before allowing the user to save.
     private func saveButton() {
         if tappedSave != true {
             let newFlashCard = FlashCard(sourceLanguage: languageA, sourceString: translatableText, targetLanguage: languageB, targetString: viewModel.translatedString, id: UUID())
@@ -351,8 +354,8 @@ struct TranslatorView: View {
         }
         return
     }
-    //MARK - Checks flashcard has not already been saved before allowing the user to save.
     
+    /// Copies translatedString to device's pasteboard. hasCopied triggers a toast to show the user the string has been copied.
     private func copyToClipBoard() {
         pasteboard.string = viewModel.translatedString
         self.hasCopied = true
@@ -360,5 +363,4 @@ struct TranslatorView: View {
             self.hasCopied = false
         })
     }
-    //MARK - Copies translatedString to device's pasteboard. hasCopied triggers a toast to show the user the string has been copied.
 }

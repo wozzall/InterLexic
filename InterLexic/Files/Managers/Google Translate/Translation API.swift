@@ -13,6 +13,8 @@ enum TranslationAPI {
     case translate
     case supportedLanguages
     
+    /// Returns a URL string based on the selected TranslationAPI enum value.
+    /// - Returns: A string which contains the URL for the desired Cloud Translation API service.
     func getURL() -> String {
         var urlString = String()
         
@@ -25,8 +27,9 @@ enum TranslationAPI {
         }
         return urlString
     }
-    //MARK - Returns a URL string based on the selected TranslationAPI enum value.
     
+    /// Returns the appropriate HTTP Request method based on the selected TranslationAPI enum value.
+    /// - Returns: A string which describes 'GET' or 'POST' to give to the HTTP request.
     func getHTTPMethod() -> String {
         if self == .supportedLanguages {
             return "GET"
@@ -34,7 +37,6 @@ enum TranslationAPI {
             return "POST"
         }
     }
-    //MARK - Returns the appropriate HTTP Request method based on the selected TranslationAPI enum value.
 }
 
 

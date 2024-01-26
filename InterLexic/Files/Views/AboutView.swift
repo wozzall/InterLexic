@@ -200,13 +200,13 @@ struct AboutView: View {
         )
     }
     
+    /// Function that sends user to developer GitHub profile upon tapping the GitHub icon.
     func didTapGitHub() {
         UIApplication.shared.open(URL(string: "https://github.com/wozzall")!)
     }
-    //MARK - Function that sends user to developer GitHub profile upon tapping the GitHub icon.
     
+    /// Function that sends user to developer LinkedIn profile upon tapping the LinkedIn icon.
     func didTapLinkedIn() {
         UIApplication.shared.open(URL(string: "https://www.linkedin.com/in/georgeworrall/")!)
     }
-    //MARK - Function that sends user to developer LinkedIn profile upon tapping the LinkedIn icon.
 }

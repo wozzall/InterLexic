@@ -82,16 +82,11 @@ struct LanguageSelectorButtons: View {
             .buttonStyle(.borderless)
     }
     
+    /// Tapping the button navigates the user to the LanguageSelectorView to select a translating language.
+    /// - Parameter doNotPassOnDetect: User should only be detecting languageA, so this boolean removes the detect function if the user selects languageB whilst allowing re-use of the view.
     private func didTapSelector(doNotPassOnDetect: Bool) {
         self.selectedNavigation = nil
         self.hideDetect = doNotPassOnDetect
         self.selectedNavigation = LanguageSelectorView.navigation
     }
 }
-
-    
-//struct InputLanguagesSelector_Previews: PreviewProvider {
-//    static var previews: some View {
-//        InputLanguagesSelector()
-//    }
-//}

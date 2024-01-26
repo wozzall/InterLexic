@@ -58,7 +58,6 @@ struct MailViewRepresentative: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: MFMailComposeViewController,
                                 context: UIViewControllerRepresentableContext<MailViewRepresentative>) {
     }
-    //MARK - Compatibility function allowing UIKit MailView to function and update properly when used in SwiftUI
     
     static var canSendMail: Bool {
         MFMailComposeViewController.canSendMail()

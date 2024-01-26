@@ -19,6 +19,11 @@ struct Acknowledgement: Identifiable, Comparable {
     var terms: String?
     var image: Image?
     
+    /// Sorts Acknowledgement alphabetically by name.
+    /// - Parameters:
+    ///   - lhs: <#lhs description#>
+    ///   - rhs: <#rhs description#>
+    /// - Returns: <#description#>
     static func < (lhs: Acknowledgement, rhs: Acknowledgement) -> Bool {
         (lhs.name) < (rhs.name)
     }

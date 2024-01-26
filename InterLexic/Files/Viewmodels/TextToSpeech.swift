@@ -31,6 +31,11 @@ class TextToSpeech: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
         AVSpeechSynthesisVoice.speechVoices()	
     }
     
+    /// Searches AVSpeechSynthesis voices array for a voice that matches the language of the inputted string.
+    /// - Parameters:
+    ///   - inputString: User inputted string or API generated translation.
+    ///   - inputLanguageCode: User selected language.
+    /// - Returns: Returns the code for a voice language that is available for the inputString.
     func findAudioLanguageCode(inputString: String, inputLanguageCode: String) ->  String {
         
         let languageCode = inputLanguageCode.prefix(2)
@@ -46,8 +51,12 @@ class TextToSpeech: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
         }
         return String("Error!")
     }
-    //MARK - Searches AVSpeechSynthesis voices array for a voice that matches the language of the inputted string.
     
+    /// Uses the NaturalLanguage module's languageRecognizer to match an Apple recognised language code to a Google translated language. If it returns true, the audio button icon lights up on TranslatorView or on the CardsView.
+    /// - Parameters:
+    ///   - inputString: User inputted string or API generated translation.
+    ///   - googleLanguageCode: 2 letter string returned by Cloud Translation API which allows Google's end to identify the language.
+    /// - Returns: Uses the NaturalLanguage module's languageRecognizer to match an Apple recognised language code to a Google translated language. If it returns true, the audio button icon lights up on TranslatorView or on the CardsView.
     func isAudioAvailable(inputString: String, googleLanguageCode: String) -> Bool {
         
         languageRecognizer.reset()
@@ -62,8 +71,11 @@ class TextToSpeech: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
         }
         return false
     }
-    //MARK - Uses the NaturalLanguage module's languageRecognizer to match an Apple recognised language code to a Google translated language. If it returns true, the audio button icon lights up on TranslatorView or on the CardsView.
     
+    /// Requests the AVSpeechSynthesizer to produce speech based on the inputMessage and inputLanguageCode parameters. Ensures audio output ducks other background audio. Tapping the audio button a second time will stop the speech, and restart it from the beginning. This avoids overlap.
+    /// - Parameters:
+    ///   - inputMessage: User inputted string or API generated translation.
+    ///   - inputLanguageCode: User selected language.
     func synthesizeSpeech(inputMessage: String, inputLanguageCode: String) {
         
         do {
@@ -81,5 +93,4 @@ class TextToSpeech: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
         speechSynthesizer.stopSpeaking(at: .immediate)
         speechSynthesizer.speak(utterance)
     }
-    //MARK - Requests the AVSpeechSynthesizer to produce speech based on the inputMessage and inputLanguageCode parameters. Ensures audio output ducks other background audio. Tapping the audio button a second time will stop the speech, and restart it from the beginning. This avoids overlap.
 }

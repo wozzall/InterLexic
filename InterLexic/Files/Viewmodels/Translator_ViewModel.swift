@@ -25,6 +25,12 @@ class TranslatorViewModel: ObservableObject {
         self.toFromDirection = false
     }
     
+    /// Requests the translation method from the Cloud Translation API model passing the parameters given by the user and returns the translation to the translatedString property.
+    /// - Parameters:
+    ///   - text: User input text
+    ///   - sourceLanguage: Source Language chosen by the user.
+    ///   - targetLanguage: Target Language chosen by the user.
+    ///   - sameLanguage: Boolean value that explains whether the source and target language are the same.
     func initiateTranslation(text: String, sourceLanguage: String, targetLanguage: String, sameLanguage: Bool) {
         
         if sameLanguage {
@@ -42,13 +48,12 @@ class TranslatorViewModel: ObservableObject {
             }
         })
     }
-    //MARK - Requests the translation method from the Cloud Translation API model passing the parameters given by the user and returns the translation to the translatedString property.
     
+    /// Changes viewModel languages depending on the toFromDirection boolean.
+    /// - Parameter direction:  True is 'from' direction and False is 'to' direction.
     func setDirection(direction: Bool) {
         toFromDirection = direction
     }
-    //MARK - Changes viewModel languages depending on the toFromDirection boolean. In this case, true is 'from' direction and false is 'to' direction.
-
 }
 
 

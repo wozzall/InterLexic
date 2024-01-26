@@ -24,6 +24,3 @@ struct CharacterCounter: View {
     }
 }
 
-//#Preview {
-//    CharacterCounter()
-//}

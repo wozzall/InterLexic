@@ -15,14 +15,6 @@ struct AudioButton: View {
     @State var text: String
     @State var translatedLanguage: Language
     @State var audioAvailable: Bool = false
-//    var audioAvailable: Bool {
-//        if textToSpeech.isAudioAvailable(inputString: text, googleLanguageCode: translatedLanguage.translatorID) {
-//            return true
-//        }
-//        return false
-//    }
-    
-//    @State var audioAvailable: Bool
     
     var body: some View {
         Button {
@@ -42,6 +34,3 @@ struct AudioButton: View {
     }
 }
 
-//#Preview {
-//    AudioButtonView()
-//}
