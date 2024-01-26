@@ -9,7 +9,6 @@ import Foundation
 import Network
 import SwiftUI
 
-// An enum to handle the network status
 enum NetworkStatus: String {
     case connected
     case disconnected
